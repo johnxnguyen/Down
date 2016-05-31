@@ -10,7 +10,12 @@ import Foundation
 
 public enum DownErrors: ErrorType {
     /**
-     Indicates that cmark could not properly parse the Markdown for some reason :(
+     Thrown when there was an issue converting the Markdown into an abstract syntax tree
+     */
+    case MarkdownToASTError
+
+    /**
+     Thrown when the abstract syntax tree could not be rendered into another format
     */
-    case ParseError
+    case ASTRenderingError
 }

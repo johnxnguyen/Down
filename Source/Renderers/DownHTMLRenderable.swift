@@ -10,26 +10,60 @@ import Foundation
 import libcmark
 
 public protocol DownHTMLRenderable: DownRenderable {
+    /**
+     Generates an HTML string from the `markdownString` property
+
+     - parameter options: `DownOptions` to modify parsing or rendering
+
+     - throws: `DownErrors` depending on the scenario
+
+     - returns: HTML string
+     */
     @warn_unused_result
     func toHTML(options: DownOptions) throws -> String
 }
 
 public extension DownHTMLRenderable {
+    /**
+     Generates an HTML string from the `markdownString` property
 
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+
+     - throws: `DownErrors` depending on the scenario
+
+     - returns: HTML string
+     */
     @warn_unused_result
     public func toHTML(options: DownOptions = .Default) throws -> String {
-        var outputString: String?
-        markdownString.withCString {
-            let stringLength = Int(strlen($0))
-            let cBuffer = cmark_markdown_to_html($0, stringLength, options.rawValue)
-            outputString = String(CString: cBuffer, encoding: NSUTF8StringEncoding)
-            free(cBuffer)
-        }
+        let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
+        let html = try DownHTMLRenderer.astToHTML(ast, options: options)
+        cmark_node_free(ast)
+        return html
+    }
+}
+
+public struct DownHTMLRenderer {
+    /**
+     Generates an HTML string from the given abstract syntax tree
+
+     **Note:** caller is responsible for calling `cmark_node_free(ast)` after this returns
+
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+
+     - throws: `ASTRenderingError` if the AST could not be converted
+
+     - returns: HTML string
+     */
+    @warn_unused_result
+    public static func astToHTML(ast: UnsafeMutablePointer<cmark_node>, options: DownOptions = .Default) throws -> String {
+        let cHTMLString = cmark_render_html(ast, options.rawValue)
+        let outputString = String(CString: cHTMLString, encoding: NSUTF8StringEncoding)
+
+        free(cHTMLString)
 
         guard let htmlString = outputString else {
-            throw DownErrors.ParseError
+            throw DownErrors.ASTRenderingError
         }
         return htmlString
     }
-
 }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D4201E8B1CFA5151008EEC6E /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4201E801CFA5151008EEC6E /* Down.framework */; };
-		D4201EEF1CFA59AD008EEC6E /* cmarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4201EC51CFA59A5008EEC6E /* cmarkTests.swift */; };
+		D4201EEF1CFA59AD008EEC6E /* BindingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4201EC51CFA59A5008EEC6E /* BindingTests.swift */; };
 		D4201EF11CFA59F2008EEC6E /* Down.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF01CFA59F2008EEC6E /* Down.swift */; };
 		D4201F1F1CFA5D63008EEC6E /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF71CFA5D63008EEC6E /* blocks.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		D4201F201CFA5D63008EEC6E /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF81CFA5D63008EEC6E /* buffer.c */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -51,6 +51,11 @@
 		D44875E61CFA6B660037A624 /* DownHTMLRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E51CFA6B660037A624 /* DownHTMLRenderable.swift */; };
 		D44875EA1CFA6CF30037A624 /* DownErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E81CFA6CF30037A624 /* DownErrors.swift */; };
 		D44875EB1CFA6CF30037A624 /* DownOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E91CFA6CF30037A624 /* DownOptions.swift */; };
+		D486E9941CFDD33C0059FD7C /* DownXMLRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D486E9931CFDD33C0059FD7C /* DownXMLRenderable.swift */; };
+		D486E9961CFDD4860059FD7C /* DownASTRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D486E9951CFDD4860059FD7C /* DownASTRenderable.swift */; };
+		D486E9981CFDE2730059FD7C /* DownLaTeXRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D486E9971CFDE2730059FD7C /* DownLaTeXRenderable.swift */; };
+		D486E99A1CFDE28B0059FD7C /* DownGroffRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D486E9991CFDE28B0059FD7C /* DownGroffRenderable.swift */; };
+		D4DC91141CFDED4B0091CE09 /* DownCommonMarkRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC91131CFDED4B0091CE09 /* DownCommonMarkRenderable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +72,7 @@
 		D4201E801CFA5151008EEC6E /* Down.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Down.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4201E8A1CFA5151008EEC6E /* DownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4201E9A1CFA59A5008EEC6E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4201EC51CFA59A5008EEC6E /* cmarkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cmarkTests.swift; sourceTree = "<group>"; };
+		D4201EC51CFA59A5008EEC6E /* BindingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindingTests.swift; sourceTree = "<group>"; };
 		D4201EF01CFA59F2008EEC6E /* Down.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Down.swift; sourceTree = "<group>"; };
 		D4201EF71CFA5D63008EEC6E /* blocks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blocks.c; sourceTree = "<group>"; };
 		D4201EF81CFA5D63008EEC6E /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer.c; sourceTree = "<group>"; };
@@ -111,6 +116,11 @@
 		D44875E51CFA6B660037A624 /* DownHTMLRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownHTMLRenderable.swift; sourceTree = "<group>"; };
 		D44875E81CFA6CF30037A624 /* DownErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownErrors.swift; sourceTree = "<group>"; };
 		D44875E91CFA6CF30037A624 /* DownOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownOptions.swift; sourceTree = "<group>"; };
+		D486E9931CFDD33C0059FD7C /* DownXMLRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownXMLRenderable.swift; sourceTree = "<group>"; };
+		D486E9951CFDD4860059FD7C /* DownASTRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownASTRenderable.swift; sourceTree = "<group>"; };
+		D486E9971CFDE2730059FD7C /* DownLaTeXRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownLaTeXRenderable.swift; sourceTree = "<group>"; };
+		D486E9991CFDE28B0059FD7C /* DownGroffRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownGroffRenderable.swift; sourceTree = "<group>"; };
+		D4DC91131CFDED4B0091CE09 /* DownCommonMarkRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownCommonMarkRenderable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +175,7 @@
 		D4201EC41CFA59A5008EEC6E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D4201EC51CFA59A5008EEC6E /* cmarkTests.swift */,
+				D4201EC51CFA59A5008EEC6E /* BindingTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -218,8 +228,13 @@
 		D44875E21CFA6B120037A624 /* Renderers */ = {
 			isa = PBXGroup;
 			children = (
-				D44875E31CFA6B200037A624 /* DownRenderable.swift */,
+				D486E9951CFDD4860059FD7C /* DownASTRenderable.swift */,
+				D4DC91131CFDED4B0091CE09 /* DownCommonMarkRenderable.swift */,
+				D486E9991CFDE28B0059FD7C /* DownGroffRenderable.swift */,
 				D44875E51CFA6B660037A624 /* DownHTMLRenderable.swift */,
+				D486E9971CFDE2730059FD7C /* DownLaTeXRenderable.swift */,
+				D486E9931CFDD33C0059FD7C /* DownXMLRenderable.swift */,
+				D44875E31CFA6B200037A624 /* DownRenderable.swift */,
 			);
 			path = Renderers;
 			sourceTree = "<group>";
@@ -359,24 +374,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4201F261CFA5D63008EEC6E /* cmark_ctype.c in Sources */,
+				D486E9941CFDD33C0059FD7C /* DownXMLRenderable.swift in Sources */,
 				D4201F361CFA5D63008EEC6E /* iterator.c in Sources */,
 				D4201F391CFA5D63008EEC6E /* man.c in Sources */,
 				D4201F3D1CFA5D63008EEC6E /* references.c in Sources */,
 				D4201F301CFA5D63008EEC6E /* houdini_html_e.c in Sources */,
 				D4201F3F1CFA5D63008EEC6E /* render.c in Sources */,
+				D486E9981CFDE2730059FD7C /* DownLaTeXRenderable.swift in Sources */,
 				D4201F2A1CFA5D63008EEC6E /* commonmark.c in Sources */,
 				D4201EF11CFA59F2008EEC6E /* Down.swift in Sources */,
 				D4201F2F1CFA5D63008EEC6E /* houdini_href_e.c in Sources */,
 				D4201F451CFA5D63008EEC6E /* xml.c in Sources */,
+				D486E99A1CFDE28B0059FD7C /* DownGroffRenderable.swift in Sources */,
 				D44875EB1CFA6CF30037A624 /* DownOptions.swift in Sources */,
 				D44875E61CFA6B660037A624 /* DownHTMLRenderable.swift in Sources */,
 				D4201F201CFA5D63008EEC6E /* buffer.c in Sources */,
 				D4201F431CFA5D63008EEC6E /* utf8.c in Sources */,
+				D4DC91141CFDED4B0091CE09 /* DownCommonMarkRenderable.swift in Sources */,
 				D4201F411CFA5D63008EEC6E /* scanners.c in Sources */,
 				D4201F381CFA5D63008EEC6E /* latex.c in Sources */,
 				D4201F321CFA5D63008EEC6E /* html.c in Sources */,
 				D4201F3A1CFA5D63008EEC6E /* node.c in Sources */,
 				D44875E41CFA6B200037A624 /* DownRenderable.swift in Sources */,
+				D486E9961CFDD4860059FD7C /* DownASTRenderable.swift in Sources */,
 				D44875EA1CFA6CF30037A624 /* DownErrors.swift in Sources */,
 				D4201F241CFA5D63008EEC6E /* cmark.c in Sources */,
 				D4201F1F1CFA5D63008EEC6E /* blocks.c in Sources */,
@@ -389,7 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4201EEF1CFA59AD008EEC6E /* cmarkTests.swift in Sources */,
+				D4201EEF1CFA59AD008EEC6E /* BindingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

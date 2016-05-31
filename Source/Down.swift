@@ -8,13 +8,22 @@
 
 import Foundation
 
-public class Down: DownHTMLRenderable {
-
+public struct Down: DownASTRenderable, DownHTMLRenderable, DownXMLRenderable,
+                    DownLaTeXRenderable, DownGroffRenderable, DownCommonMarkRenderable {
+    /**
+     A string containing CommonMark Markdown
+    */
     public var markdownString: String
 
+    /**
+     Initializes the container with a CommonMark Markdown string which can then be rendered depending on protocol conformance
+
+     - parameter markdownString: A string containing CommonMark Markdown
+
+     - returns: An instance of Self
+     */
     @warn_unused_result
     public init(markdownString: String) {
         self.markdownString = markdownString
     }
-
 }

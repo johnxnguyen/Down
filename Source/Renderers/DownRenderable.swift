@@ -9,5 +9,8 @@
 import Foundation
 
 public protocol DownRenderable {
+    /**
+     A string containing CommonMark Markdown
+     */
     var markdownString: String { get set }
 }
