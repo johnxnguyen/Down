@@ -7,7 +7,10 @@ Pod::Spec.new do |spec|
   spec.authors      = { "Rob Phillips" => "rob@desideratalabs.co" }
   spec.source       = { :git => "https://github.com/iwasrobbed/Down.git", :tag => "v" + spec.version.to_s }
   spec.source_files = "Source/**/*"
+  spec.public_header_files = "Source/*.h"
   spec.platform		= :ios, "9.0"
   spec.requires_arc = true
   spec.module_name = "Down"
+  spec.preserve_path = 'Source/cmark/module.modulemap'
+  spec.pod_target_xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/Down/Source/cmark/**' }
 end
