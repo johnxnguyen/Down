@@ -1,0 +1,9 @@
+osx_image: xcode7.3
+language: objective-c
+before_install: 
+  - gem install xcpretty slather -N
+  - xcrun instruments -w "iPhone 5 (9.3)" || echo "(Pre)Launched the simulator."
+script:
+  - set -o pipefail && xcodebuild test -project Down.xcodeproj -scheme "Down" -destination "platform=iOS Simulator,name=iPhone 5,OS=9.3" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES | xcpretty -c
+after_success:
+  - slather coverage --ignore "../**/*/Xcode*" --ignore "Source/cmark/*" --scheme "Down" Down.xcodeproj

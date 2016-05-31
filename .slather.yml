@@ -1,0 +1,5 @@
+coverage_service: coveralls
+xcodeproj: Down.xcodeproj
+source_directory: Source
+ignore: 
+  - Source/cmark/*
