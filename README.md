@@ -64,7 +64,7 @@ let ast = try? down.toAST()
 
 ```
 
-### Rendering Granualrity
+### Rendering Granularity
 
 If you'd like more granularity for the output types you want to support, you can create your own struct conforming to at least one of the renderable protocols:
 

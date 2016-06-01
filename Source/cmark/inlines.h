@@ -1,6 +1,8 @@
 #ifndef CMARK_INLINES_H
 #define CMARK_INLINES_H
 
+#import "references.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
