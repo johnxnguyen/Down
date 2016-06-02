@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.name         = "Down"
   spec.summary      = "Blazing fast Markdown rendering in Swift, built upon cmark."
-  spec.version      = "0.1.1"
+  spec.version      = "0.2"
   spec.homepage     = "https://github.com/iwasrobbed/Down"
   spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.authors      = { "Rob Phillips" => "rob@desideratalabs.co" }
@@ -13,4 +13,5 @@ Pod::Spec.new do |spec|
   spec.module_name = "Down"
   spec.preserve_path = 'Source/cmark/module.modulemap'
   spec.pod_target_xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/Down/Source/cmark/**' }
+  spec.resource = 'Resources/DownView.bundle'
 end

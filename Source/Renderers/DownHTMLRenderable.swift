@@ -35,10 +35,7 @@ public extension DownHTMLRenderable {
      */
     @warn_unused_result
     public func toHTML(options: DownOptions = .Default) throws -> String {
-        let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
-        let html = try DownHTMLRenderer.astToHTML(ast, options: options)
-        cmark_node_free(ast)
-        return html
+        return try markdownString.toHTML(options)
     }
 }
 

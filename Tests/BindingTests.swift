@@ -9,7 +9,7 @@
 import XCTest
 @testable import Down
 
-class RenderableTests: XCTestCase {
+class BindingTests: XCTestCase {
 
     let down = Down(markdownString: "## [Down](https://github.com/iwasrobbed/Down)")
 
