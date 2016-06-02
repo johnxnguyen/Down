@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D41689B31CFFE28200E5802B /* DownViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41689B21CFFE28200E5802B /* DownViewTests.swift */; };
+		D41689B61CFFE6BB00E5802B /* DownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D41689B51CFFE6BB00E5802B /* DownView.bundle */; };
 		D4201E8B1CFA5151008EEC6E /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4201E801CFA5151008EEC6E /* Down.framework */; };
 		D4201EEF1CFA59AD008EEC6E /* BindingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4201EC51CFA59A5008EEC6E /* BindingTests.swift */; };
 		D4201EF11CFA59F2008EEC6E /* Down.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF01CFA59F2008EEC6E /* Down.swift */; };
@@ -48,6 +50,8 @@
 		D4201F441CFA5D63008EEC6E /* utf8.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F1D1CFA5D63008EEC6E /* utf8.h */; };
 		D4201F451CFA5D63008EEC6E /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F1E1CFA5D63008EEC6E /* xml.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		D43AE5CA1CFFAE4D006E1522 /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AE5C91CFFAE4D006E1522 /* NSAttributedString+HTML.swift */; };
+		D43AE5DA1CFFD0D0006E1522 /* DownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AE5D91CFFD0D0006E1522 /* DownView.swift */; };
+		D43AE5DC1CFFD473006E1522 /* String+ToHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AE5DB1CFFD473006E1522 /* String+ToHTML.swift */; };
 		D44875E41CFA6B200037A624 /* DownRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E31CFA6B200037A624 /* DownRenderable.swift */; };
 		D44875E61CFA6B660037A624 /* DownHTMLRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E51CFA6B660037A624 /* DownHTMLRenderable.swift */; };
 		D44875EA1CFA6CF30037A624 /* DownErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E81CFA6CF30037A624 /* DownErrors.swift */; };
@@ -71,6 +75,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D41689B21CFFE28200E5802B /* DownViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownViewTests.swift; sourceTree = "<group>"; };
+		D41689B51CFFE6BB00E5802B /* DownView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DownView.bundle; sourceTree = "<group>"; };
 		D4201E801CFA5151008EEC6E /* Down.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Down.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4201E8A1CFA5151008EEC6E /* DownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4201E9A1CFA59A5008EEC6E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,6 +121,8 @@
 		D4201F1E1CFA5D63008EEC6E /* xml.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xml.c; sourceTree = "<group>"; };
 		D42869501CFF501200FACB4C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		D43AE5C91CFFAE4D006E1522 /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
+		D43AE5D91CFFD0D0006E1522 /* DownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownView.swift; sourceTree = "<group>"; };
+		D43AE5DB1CFFD473006E1522 /* String+ToHTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ToHTML.swift"; sourceTree = "<group>"; };
 		D44875E31CFA6B200037A624 /* DownRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownRenderable.swift; sourceTree = "<group>"; };
 		D44875E51CFA6B660037A624 /* DownHTMLRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownHTMLRenderable.swift; sourceTree = "<group>"; };
 		D44875E81CFA6CF30037A624 /* DownErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownErrors.swift; sourceTree = "<group>"; };
@@ -147,11 +155,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D41689B41CFFE6BB00E5802B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D41689B51CFFE6BB00E5802B /* DownView.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		D4201E761CFA5151008EEC6E = {
 			isa = PBXGroup;
 			children = (
 				D4201E9A1CFA59A5008EEC6E /* Info.plist */,
 				D4201E9B1CFA59A5008EEC6E /* Source */,
+				D41689B41CFFE6BB00E5802B /* Resources */,
 				D4201EC41CFA59A5008EEC6E /* Tests */,
 				D4201E811CFA5151008EEC6E /* Products */,
 			);
@@ -174,6 +191,7 @@
 				D44875E71CFA6CF30037A624 /* Enums & Options */,
 				D43AE5C81CFFAE39006E1522 /* Extensions */,
 				D44875E21CFA6B120037A624 /* Renderers */,
+				D43AE5CB1CFFD068006E1522 /* Views */,
 				D4201EF61CFA5D63008EEC6E /* cmark */,
 			);
 			path = Source;
@@ -183,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				D4201EC51CFA59A5008EEC6E /* BindingTests.swift */,
+				D41689B21CFFE28200E5802B /* DownViewTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -236,8 +255,17 @@
 			isa = PBXGroup;
 			children = (
 				D43AE5C91CFFAE4D006E1522 /* NSAttributedString+HTML.swift */,
+				D43AE5DB1CFFD473006E1522 /* String+ToHTML.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D43AE5CB1CFFD068006E1522 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D43AE5D91CFFD0D0006E1522 /* DownView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D44875E21CFA6B120037A624 /* Renderers */ = {
@@ -372,6 +400,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41689B61CFFE6BB00E5802B /* DownView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +424,7 @@
 				D4201F391CFA5D63008EEC6E /* man.c in Sources */,
 				D4CF88981CFFAC2C00F07FD1 /* DownAttributedStringRenderable.swift in Sources */,
 				D4201F3D1CFA5D63008EEC6E /* references.c in Sources */,
+				D43AE5DC1CFFD473006E1522 /* String+ToHTML.swift in Sources */,
 				D4201F301CFA5D63008EEC6E /* houdini_html_e.c in Sources */,
 				D4201F3F1CFA5D63008EEC6E /* render.c in Sources */,
 				D486E9981CFDE2730059FD7C /* DownLaTeXRenderable.swift in Sources */,
@@ -409,6 +439,7 @@
 				D4201F201CFA5D63008EEC6E /* buffer.c in Sources */,
 				D4201F431CFA5D63008EEC6E /* utf8.c in Sources */,
 				D4DC91141CFDED4B0091CE09 /* DownCommonMarkRenderable.swift in Sources */,
+				D43AE5DA1CFFD0D0006E1522 /* DownView.swift in Sources */,
 				D4201F411CFA5D63008EEC6E /* scanners.c in Sources */,
 				D4201F381CFA5D63008EEC6E /* latex.c in Sources */,
 				D4201F321CFA5D63008EEC6E /* html.c in Sources */,
@@ -427,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41689B31CFFE28200E5802B /* DownViewTests.swift in Sources */,
 				D4201EEF1CFA59AD008EEC6E /* BindingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
