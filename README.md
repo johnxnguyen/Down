@@ -1,9 +1,9 @@
 ## Down
-[![Coverage Status](https://coveralls.io/repos/github/iwasrobbed/Down/badge.svg?branch=master)](https://coveralls.io/github/iwasrobbed/Down?branch=master)
 [![Build Status](https://travis-ci.org/iwasrobbed/Down.svg?branch=master)](https://travis-ci.org/iwasrobbed/Down)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/iwasrobbed/Down/blob/master/LICENSE)
 [![CocoaPods](https://img.shields.io/cocoapods/v/Down.svg?maxAge=2592000)]()
 [![Swift](https://img.shields.io/badge/language-Swift-blue.svg)](https://swift.org)
+[![Coverage Status](https://coveralls.io/repos/github/iwasrobbed/Down/badge.svg?branch=master)](https://coveralls.io/github/iwasrobbed/Down?branch=master)
 
 Blazing fast Markdown rendering in Swift, built upon [cmark](https://github.com/jgm/cmark).
 
@@ -16,6 +16,14 @@ Quickly install using [CocoaPods](https://cocoapods.org):
 ```ruby
 pod 'Down'
 ```
+
+Or manually install:
+
+1. Clone this repository
+2. Build the Down project
+3. Add the resulting framework file to your project
+4. ?
+5. Profit
 
 ### Robust Performance
 
