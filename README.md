@@ -24,6 +24,7 @@ pod 'Down'
 > The library has been extensively fuzz-tested using [american fuzzy lop](http://lcamtuf.coredump.cx/afl). The test suite includes pathological cases that bring many other Markdown parsers to a crawl (for example, thousands-deep nested bracketed text or block quotes).
 
 ### Output Formats
+* Web View (see DownView class)
 * HTML
 * XML
 * LaTeX
@@ -32,9 +33,22 @@ pod 'Down'
 * NSAttributedString
 * AST (abstract syntax tree)
 
-### API
+### View Rendering
 
-The `Down` struct has everything you need if you just want out-of-the-box setup. 
+The `DownView` class offers a very simple way to parse a UTF-8 encoded string with Markdown and convert it to a web view that can be added to any view:
+
+```swift
+let downView = try? DownView(frame: self.view.bounds, markdownString: "**Oh Hai**")
+// Now add to view or constrain w/ Autolayout
+```
+
+Meta example of rendering this README:
+
+![Example gif](Images/ohhai.gif)
+
+### Parsing API
+
+The `Down` struct has everything you need if you just want out-of-the-box setup for parsing and conversion. 
 
 ```swift
 let down = Down(markdownString: "## [Down](https://github.com/iwasrobbed/Down)")
