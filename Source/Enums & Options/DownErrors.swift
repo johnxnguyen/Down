@@ -18,4 +18,9 @@ public enum DownErrors: ErrorType {
      Thrown when the abstract syntax tree could not be rendered into another format
     */
     case ASTRenderingError
+
+    /**
+     Thrown when an HTML string cannot be converted into an `NSData` representation
+    */
+    case HTMLDataConversionError
 }

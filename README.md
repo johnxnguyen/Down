@@ -29,6 +29,7 @@ pod 'Down'
 * LaTeX
 * groff man
 * CommonMark Markdown
+* NSAttributedString
 * AST (abstract syntax tree)
 
 ### API
@@ -58,6 +59,10 @@ let latex = try? down.toLaTeX()
 let commonMark = try? down.toCommonMark()
 // "## [Down](https://github.com/iwasrobbed/Down)\n"
 
+// Convert to an attributed string
+let attributedString = try? down.toAttributedString()
+// NSAttributedString representation of the rendered HTML
+
 // Convert to abstract syntax tree
 let ast = try? down.toAST()
 // Returns pointer to AST that you can manipulate
@@ -74,6 +79,7 @@ If you'd like more granularity for the output types you want to support, you can
 * DownGroffRenderable
 * DownCommonMarkRenderable
 * DownASTRenderable
+* DownAttributedStringRenderable
 
 Example:
 

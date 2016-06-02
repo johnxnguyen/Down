@@ -47,5 +47,11 @@ class RenderableTests: XCTestCase {
         XCTAssertNotNil(commonMark)
         XCTAssertTrue(commonMark == "## [Down](https://github.com/iwasrobbed/Down)\n")
     }
+
+    func testAttributedStringBindingsWork() {
+        let attributedString = try? down.toAttributedString()
+        XCTAssertNotNil(attributedString)
+        XCTAssertTrue(attributedString!.string == "Down\n")
+    }
     
 }
