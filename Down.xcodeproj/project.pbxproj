@@ -49,6 +49,7 @@
 		D4201F431CFA5D63008EEC6E /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F1C1CFA5D63008EEC6E /* utf8.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		D4201F441CFA5D63008EEC6E /* utf8.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F1D1CFA5D63008EEC6E /* utf8.h */; };
 		D4201F451CFA5D63008EEC6E /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F1E1CFA5D63008EEC6E /* xml.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		D438696C1D00D27700E95A1F /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438696B1D00D27700E95A1F /* StringTests.swift */; };
 		D43AE5CA1CFFAE4D006E1522 /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AE5C91CFFAE4D006E1522 /* NSAttributedString+HTML.swift */; };
 		D43AE5DA1CFFD0D0006E1522 /* DownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AE5D91CFFD0D0006E1522 /* DownView.swift */; };
 		D43AE5DC1CFFD473006E1522 /* String+ToHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AE5DB1CFFD473006E1522 /* String+ToHTML.swift */; };
@@ -62,6 +63,7 @@
 		D486E99A1CFDE28B0059FD7C /* DownGroffRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D486E9991CFDE28B0059FD7C /* DownGroffRenderable.swift */; };
 		D4CF88981CFFAC2C00F07FD1 /* DownAttributedStringRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CF88971CFFAC2C00F07FD1 /* DownAttributedStringRenderable.swift */; };
 		D4DC91141CFDED4B0091CE09 /* DownCommonMarkRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC91131CFDED4B0091CE09 /* DownCommonMarkRenderable.swift */; };
+		D4F948DC1D00A4A800C9C0F6 /* NSAttributedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +122,7 @@
 		D4201F1D1CFA5D63008EEC6E /* utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf8.h; sourceTree = "<group>"; };
 		D4201F1E1CFA5D63008EEC6E /* xml.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xml.c; sourceTree = "<group>"; };
 		D42869501CFF501200FACB4C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		D438696B1D00D27700E95A1F /* StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		D43AE5C91CFFAE4D006E1522 /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		D43AE5D91CFFD0D0006E1522 /* DownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownView.swift; sourceTree = "<group>"; };
 		D43AE5DB1CFFD473006E1522 /* String+ToHTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ToHTML.swift"; sourceTree = "<group>"; };
@@ -134,6 +137,7 @@
 		D4CF88961CFF94B300F07FD1 /* Down.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Down.h; sourceTree = "<group>"; };
 		D4CF88971CFFAC2C00F07FD1 /* DownAttributedStringRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownAttributedStringRenderable.swift; sourceTree = "<group>"; };
 		D4DC91131CFDED4B0091CE09 /* DownCommonMarkRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownCommonMarkRenderable.swift; sourceTree = "<group>"; };
+		D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +206,8 @@
 			children = (
 				D4201EC51CFA59A5008EEC6E /* BindingTests.swift */,
 				D41689B21CFFE28200E5802B /* DownViewTests.swift */,
+				D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */,
+				D438696B1D00D27700E95A1F /* StringTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -460,6 +466,8 @@
 			files = (
 				D41689B31CFFE28200E5802B /* DownViewTests.swift in Sources */,
 				D4201EEF1CFA59AD008EEC6E /* BindingTests.swift in Sources */,
+				D438696C1D00D27700E95A1F /* StringTests.swift in Sources */,
+				D4F948DC1D00A4A800C9C0F6 /* NSAttributedStringTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
