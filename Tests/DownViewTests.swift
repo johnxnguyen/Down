@@ -12,8 +12,7 @@ import XCTest
 class DownViewTests: XCTestCase {
 
     func testInstantiation() {
-        let string = "## [Down](https://github.com/iwasrobbed/Down)"
-        let downView = try? DownView(frame: CGRectZero, markdownString: string)
+        let downView = try? DownView(frame: CGRectZero, markdownString: "## [Down](https://github.com/iwasrobbed/Down)")
         XCTAssertNotNil(downView)
     }
 
