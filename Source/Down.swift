@@ -23,7 +23,7 @@ public struct Down: DownASTRenderable, DownHTMLRenderable, DownXMLRenderable,
 
      - returns: An instance of Self
      */
-    @warn_unused_result
+    
     public init(markdownString: String) {
         self.markdownString = markdownString
     }

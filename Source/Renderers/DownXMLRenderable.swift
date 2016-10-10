@@ -19,8 +19,8 @@ public protocol DownXMLRenderable: DownRenderable {
 
      - returns: XML string
      */
-    @warn_unused_result
-    func toXML(options: DownOptions) throws -> String
+    
+    func toXML(_ options: DownOptions) throws -> String
 }
 
 public extension DownXMLRenderable {
@@ -33,8 +33,8 @@ public extension DownXMLRenderable {
 
      - returns: XML string
      */
-    @warn_unused_result
-    public func toXML(options: DownOptions = .Default) throws -> String {
+    
+    public func toXML(_ options: DownOptions = .Default) throws -> String {
         let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
         let xml = try DownXMLRenderer.astToXML(ast, options: options)
         cmark_node_free(ast)
@@ -54,16 +54,17 @@ public struct DownXMLRenderer {
 
      - returns: XML string
      */
-    @warn_unused_result
-    public static func astToXML(ast: UnsafeMutablePointer<cmark_node>, options: DownOptions = .Default) throws -> String {
-        let cXMLString = cmark_render_xml(ast, options.rawValue)
-        let outputString = String(CString: cXMLString, encoding: NSUTF8StringEncoding)
-
-        free(cXMLString)
-
-        guard let xmlString = outputString else {
-            throw DownErrors.ASTRenderingError
+    
+    public static func astToXML(_ ast: UnsafeMutablePointer<cmark_node>, options: DownOptions = .Default) throws -> String {
+        guard let cXMLString = cmark_render_xml(ast, options.rawValue) else {
+            throw DownErrors.astRenderingError
         }
+        defer { free(cXMLString) }
+        
+        guard let xmlString = String(cString: cXMLString, encoding: String.Encoding.utf8) else {
+            throw DownErrors.astRenderingError
+        }
+
         return xmlString
     }
 }

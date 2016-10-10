@@ -20,8 +20,8 @@ public protocol DownCommonMarkRenderable: DownRenderable {
 
      - returns: CommonMark Markdown string
      */
-    @warn_unused_result
-    func toCommonMark(options: DownOptions, width: Int32) throws -> String
+    
+    func toCommonMark(_ options: DownOptions, width: Int32) throws -> String
 }
 
 public extension DownCommonMarkRenderable {
@@ -35,8 +35,8 @@ public extension DownCommonMarkRenderable {
 
      - returns: CommonMark Markdown string
      */
-    @warn_unused_result
-    public func toCommonMark(options: DownOptions = .Default, width: Int32 = 0) throws -> String {
+    
+    public func toCommonMark(_ options: DownOptions = .Default, width: Int32 = 0) throws -> String {
         let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
         let commonMark = try DownCommonMarkRenderer.astToCommonMark(ast, options: options, width: width)
         cmark_node_free(ast)
@@ -57,18 +57,19 @@ public struct DownCommonMarkRenderer {
 
      - returns: CommonMark Markdown string
      */
-    @warn_unused_result
-    public static func astToCommonMark(ast: UnsafeMutablePointer<cmark_node>,
+    
+    public static func astToCommonMark(_ ast: UnsafeMutablePointer<cmark_node>,
                                        options: DownOptions = .Default,
                                        width: Int32 = 0) throws -> String {
-        let cCommonMarkString = cmark_render_commonmark(ast, options.rawValue, width)
-        let outputString = String(CString: cCommonMarkString, encoding: NSUTF8StringEncoding)
-
-        free(cCommonMarkString)
-
-        guard let commonMarkString = outputString else {
-            throw DownErrors.ASTRenderingError
+        guard let cCommonMarkString = cmark_render_commonmark(ast, options.rawValue, width) else {
+            throw DownErrors.astRenderingError
         }
+        defer { free(cCommonMarkString) }
+        
+        guard let commonMarkString = String(cString: cCommonMarkString, encoding: String.Encoding.utf8) else {
+            throw DownErrors.astRenderingError
+        }
+        
         return commonMarkString
     }
 }

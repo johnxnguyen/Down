@@ -20,12 +20,15 @@ extension NSAttributedString {
      - returns: An attributed string
      */
     convenience init(htmlString: String) throws {
-        guard let data = htmlString.dataUsingEncoding(NSUTF8StringEncoding) else {
-            throw DownErrors.HTMLDataConversionError
+        guard let data = htmlString.data(using: String.Encoding.utf8) else {
+            throw DownErrors.htmlDataConversionError
         }
 
-        let options = [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType,
-                       NSCharacterEncodingDocumentAttribute: NSNumber(unsignedInteger:NSUTF8StringEncoding)]
+        
+        let options: [String: Any] = [
+            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+            NSCharacterEncodingDocumentAttribute: NSNumber(value: String.Encoding.utf8.rawValue)
+        ]
         try self.init(data: data, options: options, documentAttributes: nil)
     }
 

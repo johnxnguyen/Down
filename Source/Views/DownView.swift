@@ -10,7 +10,7 @@ import WebKit
 
 // MARK: - Public API
 
-public class DownView: WKWebView {
+open class DownView: WKWebView {
 
     /**
      Initializes a web view with the results of rendering a CommonMark Markdown string
@@ -21,7 +21,7 @@ public class DownView: WKWebView {
 
      - returns: An instance of Self
      */
-    @warn_unused_result
+    
     public init(frame: CGRect, markdownString: String, openLinksInBrowser: Bool = true) throws {
         super.init(frame: frame, configuration: WKWebViewConfiguration())
 
@@ -29,16 +29,20 @@ public class DownView: WKWebView {
         try loadHTMLView(markdownString)
     }
 
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - Private Properties
 
-    private let bundle: NSBundle = {
-        let bundle = NSBundle(forClass: DownView.self)
-        let url = bundle.URLForResource("DownView", withExtension: "bundle")!
-        return NSBundle(URL: url)!
+    fileprivate let bundle: Bundle = {
+        let bundle = Bundle(for: DownView.self)
+        let url = bundle.url(forResource: "DownView", withExtension: "bundle")!
+        return Bundle(url: url)!
     }()
 
-    private lazy var baseURL: NSURL = {
-        return self.bundle.URLForResource("index", withExtension: "html")!
+    fileprivate lazy var baseURL: URL = {
+        return self.bundle.url(forResource: "index", withExtension: "html")!
     }()
 }
 
@@ -46,15 +50,15 @@ public class DownView: WKWebView {
 
 private extension DownView {
 
-    func loadHTMLView(markdownString: String) throws {
+    func loadHTMLView(_ markdownString: String) throws {
         let htmlString = try markdownString.toHTML()
         let pageHTMLString = try htmlFromTemplate(htmlString)
         loadHTMLString(pageHTMLString, baseURL: baseURL)
     }
 
-    func htmlFromTemplate(htmlString: String) throws -> String {
-        let template = try NSString(contentsOfURL: baseURL, encoding: NSUTF8StringEncoding)
-        return template.stringByReplacingOccurrencesOfString("DOWN_HTML", withString: htmlString)
+    func htmlFromTemplate(_ htmlString: String) throws -> String {
+        let template = try NSString(contentsOf: baseURL, encoding: String.Encoding.utf8.rawValue)
+        return template.replacingOccurrences(of: "DOWN_HTML", with: htmlString)
     }
 
 }
@@ -63,15 +67,15 @@ private extension DownView {
 
 extension DownView: WKNavigationDelegate {
 
-    public func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
-        guard let url = navigationAction.request.URL else { return }
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        guard let url = navigationAction.request.url else { return }
 
         switch navigationAction.navigationType {
-        case .LinkActivated:
-            decisionHandler(.Cancel)
-            UIApplication.sharedApplication().openURL(url)
+        case .linkActivated:
+            decisionHandler(.cancel)
+            UIApplication.shared.openURL(url)
         default:
-            decisionHandler(.Allow)
+            decisionHandler(.allow)
         }
     }
     
