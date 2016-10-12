@@ -20,8 +20,8 @@ public protocol DownGroffRenderable: DownRenderable {
 
      - returns: groff man string
      */
-    @warn_unused_result
-    func toGroff(options: DownOptions, width: Int32) throws -> String
+    
+    func toGroff(_ options: DownOptions, width: Int32) throws -> String
 }
 
 public extension DownGroffRenderable {
@@ -35,8 +35,8 @@ public extension DownGroffRenderable {
 
      - returns: groff man string
      */
-    @warn_unused_result
-    public func toGroff(options: DownOptions = .Default, width: Int32 = 0) throws -> String {
+    
+    public func toGroff(_ options: DownOptions = .Default, width: Int32 = 0) throws -> String {
         let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
         let groff = try DownGroffRenderer.astToGroff(ast, options: options, width: width)
         cmark_node_free(ast)
@@ -57,18 +57,19 @@ public struct DownGroffRenderer {
 
      - returns: groff man string
      */
-    @warn_unused_result
-    public static func astToGroff(ast: UnsafeMutablePointer<cmark_node>,
+    
+    public static func astToGroff(_ ast: UnsafeMutablePointer<cmark_node>,
                                   options: DownOptions = .Default,
                                   width: Int32 = 0) throws -> String {
-        let cGroffString = cmark_render_man(ast, options.rawValue, width)
-        let outputString = String(CString: cGroffString, encoding: NSUTF8StringEncoding)
-
-        free(cGroffString)
-
-        guard let groffString = outputString else {
-            throw DownErrors.ASTRenderingError
+        guard let cGroffString = cmark_render_man(ast, options.rawValue, width) else {
+            throw DownErrors.astRenderingError
         }
+        defer { free(cGroffString) }
+        
+        guard let groffString = String(cString: cGroffString, encoding: String.Encoding.utf8) else {
+            throw DownErrors.astRenderingError
+        }
+
         return groffString
     }
 }

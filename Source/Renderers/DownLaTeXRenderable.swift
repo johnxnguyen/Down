@@ -20,8 +20,8 @@ public protocol DownLaTeXRenderable: DownRenderable {
 
      - returns: LaTeX string
      */
-    @warn_unused_result
-    func toLaTeX(options: DownOptions, width: Int32) throws -> String
+    
+    func toLaTeX(_ options: DownOptions, width: Int32) throws -> String
 }
 
 public extension DownLaTeXRenderable {
@@ -35,8 +35,8 @@ public extension DownLaTeXRenderable {
 
      - returns: LaTeX string
      */
-    @warn_unused_result
-    public func toLaTeX(options: DownOptions = .Default, width: Int32 = 0) throws -> String {
+    
+    public func toLaTeX(_ options: DownOptions = .Default, width: Int32 = 0) throws -> String {
         let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
         let latex = try DownLaTeXRenderer.astToLaTeX(ast, options: options, width: width)
         cmark_node_free(ast)
@@ -57,18 +57,19 @@ public struct DownLaTeXRenderer {
 
      - returns: LaTeX string
      */
-    @warn_unused_result
-    public static func astToLaTeX(ast: UnsafeMutablePointer<cmark_node>,
+    
+    public static func astToLaTeX(_ ast: UnsafeMutablePointer<cmark_node>,
                                   options: DownOptions = .Default,
                                   width: Int32 = 0) throws -> String {
-        let cLatexString = cmark_render_latex(ast, options.rawValue, width)
-        let outputString = String(CString: cLatexString, encoding: NSUTF8StringEncoding)
-
-        free(cLatexString)
-
-        guard let latexString = outputString else {
-            throw DownErrors.ASTRenderingError
+        guard let cLatexString = cmark_render_latex(ast, options.rawValue, width) else {
+            throw DownErrors.astRenderingError
         }
+        defer { free(cLatexString) }
+        
+        guard let latexString = String(cString: cLatexString, encoding: String.Encoding.utf8) else {
+            throw DownErrors.astRenderingError
+        }
+        
         return latexString
     }
 }

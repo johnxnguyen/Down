@@ -19,8 +19,8 @@ public protocol DownHTMLRenderable: DownRenderable {
 
      - returns: HTML string
      */
-    @warn_unused_result
-    func toHTML(options: DownOptions) throws -> String
+    
+    func toHTML(_ options: DownOptions) throws -> String
 }
 
 public extension DownHTMLRenderable {
@@ -33,8 +33,8 @@ public extension DownHTMLRenderable {
 
      - returns: HTML string
      */
-    @warn_unused_result
-    public func toHTML(options: DownOptions = .Default) throws -> String {
+    
+    public func toHTML(_ options: DownOptions = .Default) throws -> String {
         return try markdownString.toHTML(options)
     }
 }
@@ -51,16 +51,17 @@ public struct DownHTMLRenderer {
 
      - returns: HTML string
      */
-    @warn_unused_result
-    public static func astToHTML(ast: UnsafeMutablePointer<cmark_node>, options: DownOptions = .Default) throws -> String {
-        let cHTMLString = cmark_render_html(ast, options.rawValue)
-        let outputString = String(CString: cHTMLString, encoding: NSUTF8StringEncoding)
-
-        free(cHTMLString)
-
-        guard let htmlString = outputString else {
-            throw DownErrors.ASTRenderingError
+    
+    public static func astToHTML(_ ast: UnsafeMutablePointer<cmark_node>, options: DownOptions = .Default) throws -> String {
+        guard let cHTMLString = cmark_render_html(ast, options.rawValue) else {
+            throw DownErrors.astRenderingError
         }
+        defer { free(cHTMLString) }
+        
+        guard let htmlString = String(cString: cHTMLString, encoding: String.Encoding.utf8) else {
+            throw DownErrors.astRenderingError
+        }
+
         return htmlString
     }
 }

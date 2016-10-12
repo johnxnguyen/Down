@@ -19,8 +19,8 @@ public protocol DownAttributedStringRenderable: DownHTMLRenderable {
 
      - returns: An `NSAttributedString`
      */
-    @warn_unused_result
-    func toAttributedString(options: DownOptions) throws -> NSAttributedString
+    
+    func toAttributedString(_ options: DownOptions) throws -> NSAttributedString
 }
 
 public extension DownAttributedStringRenderable {
@@ -33,8 +33,8 @@ public extension DownAttributedStringRenderable {
 
      - returns: An `NSAttributedString`
      */
-    @warn_unused_result
-    public func toAttributedString(options: DownOptions = .Default) throws -> NSAttributedString {
+    
+    public func toAttributedString(_ options: DownOptions = .Default) throws -> NSAttributedString {
         let html = try self.toHTML(options)
         return try NSAttributedString(htmlString: html)
     }

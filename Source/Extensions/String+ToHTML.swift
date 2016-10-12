@@ -20,7 +20,7 @@ extension String {
 
      - returns: HTML string
      */
-    public func toHTML(options: DownOptions = .Default) throws -> String {
+    public func toHTML(_ options: DownOptions = .Default) throws -> String {
         let ast = try DownASTRenderer.stringToAST(self, options: options)
         let html = try DownHTMLRenderer.astToHTML(ast, options: options)
         cmark_node_free(ast)

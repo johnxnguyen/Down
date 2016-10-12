@@ -8,19 +8,19 @@
 
 import Foundation
 
-public enum DownErrors: ErrorType {
+public enum DownErrors: Error {
     /**
      Thrown when there was an issue converting the Markdown into an abstract syntax tree
      */
-    case MarkdownToASTError
+    case markdownToASTError
 
     /**
      Thrown when the abstract syntax tree could not be rendered into another format
     */
-    case ASTRenderingError
+    case astRenderingError
 
     /**
      Thrown when an HTML string cannot be converted into an `NSData` representation
     */
-    case HTMLDataConversionError
+    case htmlDataConversionError
 }
