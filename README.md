@@ -17,6 +17,12 @@ Quickly install using [CocoaPods](https://cocoapods.org):
 pod 'Down'
 ```
 
+Or [Carthage](https://github.com/Carthage/Carthage):
+
+```
+github "iwasrobbed/Down"
+```
+
 Or manually install:
 
 1. Clone this repository
