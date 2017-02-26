@@ -1,12 +1,21 @@
 # Change Log
 
-## [Unreleased](https://github.com/iwasrobbed/Down/tree/HEAD)
+## [v0.3.2](https://github.com/iwasrobbed/Down/tree/v0.3.2) (2017-02-26)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.1...v0.3.2)
 
-[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.1...HEAD)
+**Implemented enhancements:**
+
+- Create changelog [\#20](https://github.com/iwasrobbed/Down/issues/20)
 
 **Closed issues:**
 
+- A faster substitute to NSHTMLTextDocumentType? [\#23](https://github.com/iwasrobbed/Down/issues/23)
 - How to update DownView content and keep the style? [\#19](https://github.com/iwasrobbed/Down/issues/19)
+
+**Merged pull requests:**
+
+- Add tvOS support [\#24](https://github.com/iwasrobbed/Down/pull/24) ([invliD](https://github.com/invliD))
+- v0.3.1: Add the ability to update DownView content [\#22](https://github.com/iwasrobbed/Down/pull/22) ([iwasrobbed](https://github.com/iwasrobbed))
 
 ## [v0.3.1](https://github.com/iwasrobbed/Down/tree/v0.3.1) (2017-02-09)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3...v0.3.1)
