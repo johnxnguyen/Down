@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D4201E7F1CFA5151008EEC6E"
-               BuildableName = "Down.framework"
-               BlueprintName = "Down"
+               BuildableName = "Down-iOS.framework"
+               BlueprintName = "Down-iOS"
                ReferencedContainer = "container:Down.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D4201E7F1CFA5151008EEC6E"
-            BuildableName = "Down.framework"
-            BlueprintName = "Down"
+            BuildableName = "Down-iOS.framework"
+            BlueprintName = "Down-iOS"
             ReferencedContainer = "container:Down.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,8 +65,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D4201E7F1CFA5151008EEC6E"
-            BuildableName = "Down.framework"
-            BlueprintName = "Down"
+            BuildableName = "Down-iOS.framework"
+            BlueprintName = "Down-iOS"
             ReferencedContainer = "container:Down.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,8 +83,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D4201E7F1CFA5151008EEC6E"
-            BuildableName = "Down.framework"
-            BlueprintName = "Down"
+            BuildableName = "Down-iOS.framework"
+            BlueprintName = "Down-iOS"
             ReferencedContainer = "container:Down.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -331,9 +331,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D4201E7F1CFA5151008EEC6E /* Down */ = {
+		D4201E7F1CFA5151008EEC6E /* Down-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4201E941CFA5151008EEC6E /* Build configuration list for PBXNativeTarget "Down" */;
+			buildConfigurationList = D4201E941CFA5151008EEC6E /* Build configuration list for PBXNativeTarget "Down-iOS" */;
 			buildPhases = (
 				D4201E7B1CFA5151008EEC6E /* Sources */,
 				D4201E7C1CFA5151008EEC6E /* Frameworks */,
@@ -344,7 +344,7 @@
 			);
 			dependencies = (
 			);
-			name = Down;
+			name = "Down-iOS";
 			productName = Down;
 			productReference = D4201E801CFA5151008EEC6E /* Down.framework */;
 			productType = "com.apple.product-type.framework";
@@ -400,7 +400,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D4201E7F1CFA5151008EEC6E /* Down */,
+				D4201E7F1CFA5151008EEC6E /* Down-iOS */,
 				D4201E891CFA5151008EEC6E /* DownTests */,
 			);
 		};
@@ -481,7 +481,7 @@
 /* Begin PBXTargetDependency section */
 		D4201E8D1CFA5151008EEC6E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D4201E7F1CFA5151008EEC6E /* Down */;
+			target = D4201E7F1CFA5151008EEC6E /* Down-iOS */;
 			targetProxy = D4201E8C1CFA5151008EEC6E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -531,6 +531,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Down;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -576,6 +577,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Down;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -601,7 +603,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.glazeddonut.Down;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Source/cmark/**";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -625,7 +626,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.glazeddonut.Down;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Source/cmark/**";
 				SWIFT_VERSION = 3.0;
@@ -668,7 +668,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4201E941CFA5151008EEC6E /* Build configuration list for PBXNativeTarget "Down" */ = {
+		D4201E941CFA5151008EEC6E /* Build configuration list for PBXNativeTarget "Down-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4201E951CFA5151008EEC6E /* Debug */,
