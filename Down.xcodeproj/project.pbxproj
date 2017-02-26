@@ -7,6 +7,56 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24F833B41E6271D200590E90 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F031CFA5D63008EEC6E /* config.h */; };
+		24F833B51E6271D900590E90 /* scanners.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F1B1CFA5D63008EEC6E /* scanners.h */; };
+		24F833B61E6271E000590E90 /* render.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F191CFA5D63008EEC6E /* render.h */; };
+		24F833B71E6271E700590E90 /* cmark_export.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F001CFA5D63008EEC6E /* cmark_export.h */; };
+		24F833B81E6271EE00590E90 /* parser.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F151CFA5D63008EEC6E /* parser.h */; };
+		24F833B91E6271F400590E90 /* inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F0D1CFA5D63008EEC6E /* inlines.h */; };
+		24F833BA1E6271FB00590E90 /* buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201EF91CFA5D63008EEC6E /* buffer.h */; };
+		24F833BB1E62720300590E90 /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F041CFA5D63008EEC6E /* debug.h */; };
+		24F833BC1E62720A00590E90 /* chunk.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201EFB1CFA5D63008EEC6E /* chunk.h */; };
+		24F833BD1E62721100590E90 /* references.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F171CFA5D63008EEC6E /* references.h */; };
+		24F833BE1E62721700590E90 /* utf8.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F1D1CFA5D63008EEC6E /* utf8.h */; };
+		24F833BF1E62721E00590E90 /* cmark_version.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F011CFA5D63008EEC6E /* cmark_version.h */; };
+		24F833C01E62722500590E90 /* html_unescape.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F0B1CFA5D63008EEC6E /* html_unescape.h */; };
+		24F833C11E62723000590E90 /* cmark_ctype.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201EFF1CFA5D63008EEC6E /* cmark_ctype.h */; };
+		24F833C21E62723600590E90 /* iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F0F1CFA5D63008EEC6E /* iterator.h */; };
+		24F833C31E62723E00590E90 /* houdini.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F061CFA5D63008EEC6E /* houdini.h */; };
+		24F833C41E62724600590E90 /* cmark.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201EFD1CFA5D63008EEC6E /* cmark.h */; };
+		24F833C51E62724C00590E90 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F141CFA5D63008EEC6E /* node.h */; };
+		24F833C71E62727400590E90 /* inlines.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F0C1CFA5D63008EEC6E /* inlines.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833C81E62727D00590E90 /* houdini_html_u.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F091CFA5D63008EEC6E /* houdini_html_u.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833C91E62728300590E90 /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF71CFA5D63008EEC6E /* blocks.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833CA1E62728A00590E90 /* DownErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E81CFA6CF30037A624 /* DownErrors.swift */; };
+		24F833CB1E62729100590E90 /* DownASTRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D486E9951CFDD4860059FD7C /* DownASTRenderable.swift */; };
+		24F833CC1E62729800590E90 /* DownRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E31CFA6B200037A624 /* DownRenderable.swift */; };
+		24F833CD1E62729E00590E90 /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F131CFA5D63008EEC6E /* node.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833CE1E6272A400590E90 /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F0A1CFA5D63008EEC6E /* html.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833CF1E6272A800590E90 /* latex.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F101CFA5D63008EEC6E /* latex.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833D01E6272B000590E90 /* scanners.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F1A1CFA5D63008EEC6E /* scanners.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833D21E6272BC00590E90 /* DownCommonMarkRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC91131CFDED4B0091CE09 /* DownCommonMarkRenderable.swift */; };
+		24F833D31E6272C200590E90 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F1C1CFA5D63008EEC6E /* utf8.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833D41E6272C500590E90 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF81CFA5D63008EEC6E /* buffer.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833D51E6272CF00590E90 /* DownHTMLRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E51CFA6B660037A624 /* DownHTMLRenderable.swift */; };
+		24F833D61E6272E900590E90 /* DownOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E91CFA6CF30037A624 /* DownOptions.swift */; };
+		24F833D71E6272ED00590E90 /* DownGroffRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D486E9991CFDE28B0059FD7C /* DownGroffRenderable.swift */; };
+		24F833D81E6272F400590E90 /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F1E1CFA5D63008EEC6E /* xml.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833D91E6272F900590E90 /* houdini_href_e.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F071CFA5D63008EEC6E /* houdini_href_e.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833DA1E62730200590E90 /* Down.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF01CFA59F2008EEC6E /* Down.swift */; };
+		24F833DB1E62730900590E90 /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AE5C91CFFAE4D006E1522 /* NSAttributedString+HTML.swift */; };
+		24F833DC1E62731200590E90 /* commonmark.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F021CFA5D63008EEC6E /* commonmark.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833DD1E62731600590E90 /* DownLaTeXRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D486E9971CFDE2730059FD7C /* DownLaTeXRenderable.swift */; };
+		24F833DE1E62731F00590E90 /* render.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F181CFA5D63008EEC6E /* render.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833DF1E62732300590E90 /* houdini_html_e.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F081CFA5D63008EEC6E /* houdini_html_e.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833E01E62732D00590E90 /* String+ToHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AE5DB1CFFD473006E1522 /* String+ToHTML.swift */; };
+		24F833E11E62733200590E90 /* references.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F161CFA5D63008EEC6E /* references.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833E21E62733C00590E90 /* DownAttributedStringRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CF88971CFFAC2C00F07FD1 /* DownAttributedStringRenderable.swift */; };
+		24F833E31E62734000590E90 /* man.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F111CFA5D63008EEC6E /* man.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833E41E62734400590E90 /* iterator.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F0E1CFA5D63008EEC6E /* iterator.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833E51E62734C00590E90 /* DownXMLRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D486E9931CFDD33C0059FD7C /* DownXMLRenderable.swift */; };
+		24F833E61E62735000590E90 /* cmark_ctype.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EFE1CFA5D63008EEC6E /* cmark_ctype.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		24F833E71E62735C00590E90 /* cmark.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EFC1CFA5D63008EEC6E /* cmark.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		D41689B31CFFE28200E5802B /* DownViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41689B21CFFE28200E5802B /* DownViewTests.swift */; };
 		D41689B61CFFE6BB00E5802B /* DownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D41689B51CFFE6BB00E5802B /* DownView.bundle */; };
 		D4201E8B1CFA5151008EEC6E /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4201E801CFA5151008EEC6E /* Down.framework */; };
@@ -77,6 +127,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24F833AA1E62706000590E90 /* Down.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Down.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		24F833AC1E62706000590E90 /* Down.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Down.h; sourceTree = "<group>"; };
+		24F833AD1E62706000590E90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D41689B21CFFE28200E5802B /* DownViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownViewTests.swift; sourceTree = "<group>"; };
 		D41689B51CFFE6BB00E5802B /* DownView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DownView.bundle; sourceTree = "<group>"; };
 		D4201E801CFA5151008EEC6E /* Down.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Down.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +194,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		24F833A61E62706000590E90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4201E7C1CFA5151008EEC6E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -159,6 +219,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24F833AB1E62706000590E90 /* Down */ = {
+			isa = PBXGroup;
+			children = (
+				24F833AC1E62706000590E90 /* Down.h */,
+				24F833AD1E62706000590E90 /* Info.plist */,
+			);
+			path = Down;
+			sourceTree = "<group>";
+		};
 		D41689B41CFFE6BB00E5802B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +243,7 @@
 				D4201E9B1CFA59A5008EEC6E /* Source */,
 				D41689B41CFFE6BB00E5802B /* Resources */,
 				D4201EC41CFA59A5008EEC6E /* Tests */,
+				24F833AB1E62706000590E90 /* Down */,
 				D4201E811CFA5151008EEC6E /* Products */,
 			);
 			indentWidth = 4;
@@ -185,6 +255,7 @@
 			children = (
 				D4201E801CFA5151008EEC6E /* Down.framework */,
 				D4201E8A1CFA5151008EEC6E /* DownTests.xctest */,
+				24F833AA1E62706000590E90 /* Down.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,6 +374,31 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		24F833A71E62706000590E90 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24F833C51E62724C00590E90 /* node.h in Headers */,
+				24F833C41E62724600590E90 /* cmark.h in Headers */,
+				24F833C31E62723E00590E90 /* houdini.h in Headers */,
+				24F833C21E62723600590E90 /* iterator.h in Headers */,
+				24F833C11E62723000590E90 /* cmark_ctype.h in Headers */,
+				24F833C01E62722500590E90 /* html_unescape.h in Headers */,
+				24F833BF1E62721E00590E90 /* cmark_version.h in Headers */,
+				24F833BE1E62721700590E90 /* utf8.h in Headers */,
+				24F833BD1E62721100590E90 /* references.h in Headers */,
+				24F833BC1E62720A00590E90 /* chunk.h in Headers */,
+				24F833BB1E62720300590E90 /* debug.h in Headers */,
+				24F833BA1E6271FB00590E90 /* buffer.h in Headers */,
+				24F833B91E6271F400590E90 /* inlines.h in Headers */,
+				24F833B81E6271EE00590E90 /* parser.h in Headers */,
+				24F833B71E6271E700590E90 /* cmark_export.h in Headers */,
+				24F833B61E6271E000590E90 /* render.h in Headers */,
+				24F833B51E6271D900590E90 /* scanners.h in Headers */,
+				24F833B41E6271D200590E90 /* config.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4201E7D1CFA5151008EEC6E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -331,6 +427,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		24F833A91E62706000590E90 /* Down-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24F833AF1E62706000590E90 /* Build configuration list for PBXNativeTarget "Down-tvOS" */;
+			buildPhases = (
+				24F833A51E62706000590E90 /* Sources */,
+				24F833A61E62706000590E90 /* Frameworks */,
+				24F833A71E62706000590E90 /* Headers */,
+				24F833A81E62706000590E90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Down-tvOS";
+			productName = Down;
+			productReference = 24F833AA1E62706000590E90 /* Down.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		D4201E7F1CFA5151008EEC6E /* Down-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4201E941CFA5151008EEC6E /* Build configuration list for PBXNativeTarget "Down-iOS" */;
@@ -377,6 +491,10 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Glazed Donut, LLC.";
 				TargetAttributes = {
+					24F833A91E62706000590E90 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					D4201E7F1CFA5151008EEC6E = {
 						CreatedOnToolsVersion = 7.3;
 						LastSwiftMigration = 0800;
@@ -401,12 +519,20 @@
 			projectRoot = "";
 			targets = (
 				D4201E7F1CFA5151008EEC6E /* Down-iOS */,
+				24F833A91E62706000590E90 /* Down-tvOS */,
 				D4201E891CFA5151008EEC6E /* DownTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		24F833A81E62706000590E90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4201E7E1CFA5151008EEC6E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -425,6 +551,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		24F833A51E62706000590E90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24F833E61E62735000590E90 /* cmark_ctype.c in Sources */,
+				24F833E51E62734C00590E90 /* DownXMLRenderable.swift in Sources */,
+				24F833E41E62734400590E90 /* iterator.c in Sources */,
+				24F833E31E62734000590E90 /* man.c in Sources */,
+				24F833E21E62733C00590E90 /* DownAttributedStringRenderable.swift in Sources */,
+				24F833E11E62733200590E90 /* references.c in Sources */,
+				24F833E01E62732D00590E90 /* String+ToHTML.swift in Sources */,
+				24F833DF1E62732300590E90 /* houdini_html_e.c in Sources */,
+				24F833DE1E62731F00590E90 /* render.c in Sources */,
+				24F833DD1E62731600590E90 /* DownLaTeXRenderable.swift in Sources */,
+				24F833DC1E62731200590E90 /* commonmark.c in Sources */,
+				24F833DB1E62730900590E90 /* NSAttributedString+HTML.swift in Sources */,
+				24F833DA1E62730200590E90 /* Down.swift in Sources */,
+				24F833D91E6272F900590E90 /* houdini_href_e.c in Sources */,
+				24F833D81E6272F400590E90 /* xml.c in Sources */,
+				24F833D71E6272ED00590E90 /* DownGroffRenderable.swift in Sources */,
+				24F833D61E6272E900590E90 /* DownOptions.swift in Sources */,
+				24F833D51E6272CF00590E90 /* DownHTMLRenderable.swift in Sources */,
+				24F833D41E6272C500590E90 /* buffer.c in Sources */,
+				24F833D31E6272C200590E90 /* utf8.c in Sources */,
+				24F833D21E6272BC00590E90 /* DownCommonMarkRenderable.swift in Sources */,
+				24F833D01E6272B000590E90 /* scanners.c in Sources */,
+				24F833CF1E6272A800590E90 /* latex.c in Sources */,
+				24F833CE1E6272A400590E90 /* html.c in Sources */,
+				24F833CD1E62729E00590E90 /* node.c in Sources */,
+				24F833CC1E62729800590E90 /* DownRenderable.swift in Sources */,
+				24F833CB1E62729100590E90 /* DownASTRenderable.swift in Sources */,
+				24F833CA1E62728A00590E90 /* DownErrors.swift in Sources */,
+				24F833E71E62735C00590E90 /* cmark.c in Sources */,
+				24F833C91E62728300590E90 /* blocks.c in Sources */,
+				24F833C81E62727D00590E90 /* houdini_html_u.c in Sources */,
+				24F833C71E62727400590E90 /* inlines.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4201E7B1CFA5151008EEC6E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,6 +652,46 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		24F833B01E62706000590E90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.glazeddonut.Down;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Source/cmark/**";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+		24F833B11E62706000590E90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.glazeddonut.Down;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Source/cmark/**";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
 		D4201E921CFA5151008EEC6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -535,6 +740,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -581,6 +787,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -590,8 +797,6 @@
 		D4201E951CFA5151008EEC6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
-				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -600,12 +805,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.glazeddonut.Down;
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Source/cmark/**";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -613,8 +816,6 @@
 		D4201E961CFA5151008EEC6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
-				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -623,7 +824,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.glazeddonut.Down;
 				SKIP_INSTALL = YES;
@@ -659,6 +859,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		24F833AF1E62706000590E90 /* Build configuration list for PBXNativeTarget "Down-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24F833B01E62706000590E90 /* Debug */,
+				24F833B11E62706000590E90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		D4201E7A1CFA5151008EEC6E /* Build configuration list for PBXProject "Down" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
