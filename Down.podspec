@@ -6,12 +6,14 @@ Pod::Spec.new do |spec|
   spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.authors      = { "Rob Phillips" => "rob@desideratalabs.co" }
   spec.source       = { :git => "https://github.com/iwasrobbed/Down.git", :tag => "v" + spec.version.to_s }
-  spec.source_files = "Source/**/*"
+  spec.source_files = "Source/{cmark,Enums & Options,Extensions,Renderers}/**", "Source/*"
+  spec.ios.source_files = "Source/Views/**"
   spec.public_header_files = "Source/*.h"
-  spec.platform		= :ios, "8.0"
+  spec.ios.deployment_target = "8.0"
+  spec.tvos.deployment_target = "9.0"
   spec.requires_arc = true
   spec.module_name = "Down"
   spec.preserve_path = 'Source/cmark/module.modulemap'
   spec.pod_target_xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/Down/Source/cmark/**' }
-  spec.resource = 'Resources/DownView.bundle'
+  spec.ios.resource = 'Resources/DownView.bundle'
 end
