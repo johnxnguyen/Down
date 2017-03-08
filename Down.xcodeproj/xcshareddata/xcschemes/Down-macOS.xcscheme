@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "24F833A91E62706000590E90"
+               BlueprintIdentifier = "8A569F3F1E6B3E50008BE2AC"
                BuildableName = "Down.framework"
-               BlueprintName = "Down-tvOS"
+               BlueprintName = "Down"
                ReferencedContainer = "container:Down.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D4201E891CFA5151008EEC6E"
+               BuildableName = "DownTests.xctest"
+               BlueprintName = "DownTests"
+               ReferencedContainer = "container:Down.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8A569F3F1E6B3E50008BE2AC"
+            BuildableName = "Down.framework"
+            BlueprintName = "Down"
+            ReferencedContainer = "container:Down.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -45,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24F833A91E62706000590E90"
+            BlueprintIdentifier = "8A569F3F1E6B3E50008BE2AC"
             BuildableName = "Down.framework"
-            BlueprintName = "Down-tvOS"
+            BlueprintName = "Down"
             ReferencedContainer = "container:Down.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24F833A91E62706000590E90"
+            BlueprintIdentifier = "8A569F3F1E6B3E50008BE2AC"
             BuildableName = "Down.framework"
-            BlueprintName = "Down-tvOS"
+            BlueprintName = "Down"
             ReferencedContainer = "container:Down.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
