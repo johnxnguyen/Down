@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.3.3](https://github.com/iwasrobbed/Down/tree/v0.3.3) (2017-03-09)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.2...v0.3.3)
+
+**Implemented enhancements:**
+
+- Add OS X support [\#6](https://github.com/iwasrobbed/Down/issues/6)
+
+**Merged pull requests:**
+
+- \#6 macOS Support [\#25](https://github.com/iwasrobbed/Down/pull/25) ([128keaton](https://github.com/128keaton))
+
 ## [v0.3.2](https://github.com/iwasrobbed/Down/tree/v0.3.2) (2017-02-26)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.1...v0.3.2)
 
