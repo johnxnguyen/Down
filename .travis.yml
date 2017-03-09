@@ -5,5 +5,7 @@ before_install:
   - xcrun instruments -w "iPhone 5 (9.3)" || echo "(Pre)Launched the simulator."
 script:
   - set -o pipefail && xcodebuild test -project Down.xcodeproj -scheme "Down-iOS" -destination "platform=iOS Simulator,name=iPhone 5,OS=9.3" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES | xcpretty -c
+  - set -o pipefail &&  xcodebuild -project Down.xcodeproj -scheme "DownTests-macOS" -sdk macosx -destination 'platform=OS X,arch=x86_64' test | xcpretty -c
 after_success:
   - slather coverage --ignore "../**/*/Xcode*" --ignore "Source/cmark/*" --scheme "Down-iOS" Down.xcodeproj
+  - slather coverage --ignore "../**/*/Xcode*" --ignore "Source/cmark/*" --scheme "Down-macOS" Down.xcodeproj
