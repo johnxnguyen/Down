@@ -20,12 +20,22 @@ open class DownView: WKWebView {
      - parameter frame:               The frame size of the web view
      - parameter markdownString:      A string containing CommonMark Markdown
      - parameter openLinksInBrowser:  Whether or not to open links using an external browser
+     - parameter templateBundle:      Optional custom template bundle. Leaving this as `nil` will use the bundle included with Down.
      - parameter didLoadSuccessfully: Optional callback for when the web content has loaded successfully
 
      - returns: An instance of Self
      */
-    public init(frame: CGRect, markdownString: String, openLinksInBrowser: Bool = true, didLoadSuccessfully: DownViewClosure? = nil) throws {
+    public init(frame: CGRect, markdownString: String, openLinksInBrowser: Bool = true, templateBundle: Bundle? = nil, didLoadSuccessfully: DownViewClosure? = nil) throws {
         self.didLoadSuccessfully = didLoadSuccessfully
+
+        if let templateBundle = templateBundle {
+            self.bundle = templateBundle
+        } else {
+            let classBundle = Bundle(for: DownView.self)
+            let url = classBundle.url(forResource: "DownView", withExtension: "bundle")!
+            self.bundle = Bundle(url: url)!
+        }
+
         super.init(frame: frame, configuration: WKWebViewConfiguration())
 
         if openLinksInBrowser || didLoadSuccessfully != nil { navigationDelegate = self }
@@ -58,11 +68,7 @@ open class DownView: WKWebView {
 
     // MARK: - Private Properties
 
-    fileprivate let bundle: Bundle = {
-        let bundle = Bundle(for: DownView.self)
-        let url = bundle.url(forResource: "DownView", withExtension: "bundle")!
-        return Bundle(url: url)!
-    }()
+    let bundle: Bundle
 
     fileprivate lazy var baseURL: URL = {
         return self.bundle.url(forResource: "index", withExtension: "html")!
