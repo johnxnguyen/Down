@@ -65,6 +65,33 @@ class DownViewTests: XCTestCase {
         }
     }
 
+    func testInstantiationWithCustomTemplateBundle() {
+        let expect1 = expectation(description: "DownView accepts and uses a custom theme bundle")
+        guard
+            let bundle = Bundle(for: type(of: self)).url(forResource: "TestDownView", withExtension: "bundle"),
+            let templateBundle = Bundle(url: bundle)
+        else {
+            XCTFail("Test template bundle not found in test target!")
+            return
+        }
+
+        var downView: DownView?
+        downView = try? DownView(frame: .zero, markdownString: "## [Down](https://github.com/iwasrobbed/Down)", templateBundle: templateBundle, didLoadSuccessfully: {
+            self._pageContents(for: downView!) { (htmlString) in
+                XCTAssertTrue(htmlString!.contains("css/down.min.css"))
+                XCTAssertTrue(htmlString!.contains("https://github.com/iwasrobbed/Down"))
+                XCTAssertTrue(htmlString!.contains("But also, custom HTML!"))
+
+                expect1.fulfill()
+            }
+        })
+
+        waitForExpectations(timeout: 10) { (error: Error?) in
+            if let error = error {
+                XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+            }
+        }
+    }
 }
 
 fileprivate extension DownViewTests {
