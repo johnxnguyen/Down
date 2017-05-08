@@ -1,11 +1,10 @@
 osx_image: xcode8
 language: objective-c
-before_install: 
+before_install:
   - gem install xcpretty slather -N
   - xcrun instruments -w "iPhone 5 (9.3)" || echo "(Pre)Launched the simulator."
 script:
-  - set -o pipefail && xcodebuild test -project Down.xcodeproj -scheme "Down-iOS" -destination "platform=iOS Simulator,name=iPhone 5,OS=9.3" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES | xcpretty -c
-  - set -o pipefail &&  xcodebuild -project Down.xcodeproj -scheme "DownTests-macOS" -sdk macosx -destination 'platform=OS X,arch=x86_64' test | xcpretty -c
+  - set -o pipefail && xcodebuild -project Down.xcodeproj -scheme "Down" -destination "platform=iOS Simulator,name=iPhone 5,OS=9.3" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES test | xcpretty -c
+  - set -o pipefail && xcodebuild -project Down.xcodeproj -scheme "Down" -sdk macosx -destination 'platform=OS X,arch=x86_64' -enableCodeCoverage YES test | xcpretty -c
 after_success:
-  - slather coverage --ignore "../**/*/Xcode*" --ignore "Source/cmark/*" --scheme "Down-iOS" Down.xcodeproj
-  - slather coverage --ignore "../**/*/Xcode*" --ignore "Source/cmark/*" --scheme "Down-macOS" Down.xcodeproj
+  - slather coverage --ignore "../**/*/Xcode*" --ignore "Source/cmark/*" --scheme "Down" Down.xcodeproj
