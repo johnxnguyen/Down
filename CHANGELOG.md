@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.3.4](https://github.com/iwasrobbed/Down/tree/v0.3.4) (2017-05-13)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.3...v0.3.4)
+
+**Merged pull requests:**
+
+- Suggested project fixes/changes [\#28](https://github.com/iwasrobbed/Down/pull/28) ([tonyarnold](https://github.com/tonyarnold))
+- Add the ability to initialise a DownView using a custom template bundle [\#27](https://github.com/iwasrobbed/Down/pull/27) ([tonyarnold](https://github.com/tonyarnold))
+
 ## [v0.3.3](https://github.com/iwasrobbed/Down/tree/v0.3.3) (2017-03-09)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.2...v0.3.3)
 
