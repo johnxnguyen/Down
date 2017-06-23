@@ -69,6 +69,9 @@ Meta example of rendering this README:
 
 ![Example gif](Images/ohhai.gif)
 
+##### Prevent zoom
+The default implementation of the `DownView` allows for zooming in the rendered content. If you want to disable this, then you’ll need to instantiate the `DownView` with a custom bundle where the `viewport` in `index.html` has been assigned `user-scalable=no`. More info can be found [here](https://github.com/iwasrobbed/Down/pull/30).
+
 ### Parsing API
 
 The `Down` struct has everything you need if you just want out-of-the-box setup for parsing and conversion. 
