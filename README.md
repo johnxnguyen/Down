@@ -14,6 +14,8 @@ Is your app using it? [Let me know!](mailto:rob@desideratalabs.co)
 
 ### Installation
 
+Swift 4 support can be found on the `swift4` branch.
+
 Quickly install using [CocoaPods](https://cocoapods.org): 
 
 ```ruby
