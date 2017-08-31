@@ -8,43 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8A569F481E6B3ED2008BE2AC /* DownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AE5D91CFFD0D0006E1522 /* DownView.swift */; };
-		8A569F491E6B3ED9008BE2AC /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF71CFA5D63008EEC6E /* blocks.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F4A1E6B3ED9008BE2AC /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF81CFA5D63008EEC6E /* buffer.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F4B1E6B3ED9008BE2AC /* buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201EF91CFA5D63008EEC6E /* buffer.h */; };
-		8A569F4C1E6B3ED9008BE2AC /* chunk.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201EFB1CFA5D63008EEC6E /* chunk.h */; };
-		8A569F4D1E6B3ED9008BE2AC /* cmark.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EFC1CFA5D63008EEC6E /* cmark.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F4E1E6B3ED9008BE2AC /* cmark.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201EFD1CFA5D63008EEC6E /* cmark.h */; };
-		8A569F4F1E6B3ED9008BE2AC /* cmark_ctype.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EFE1CFA5D63008EEC6E /* cmark_ctype.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F501E6B3ED9008BE2AC /* cmark_ctype.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201EFF1CFA5D63008EEC6E /* cmark_ctype.h */; };
-		8A569F511E6B3ED9008BE2AC /* cmark_export.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F001CFA5D63008EEC6E /* cmark_export.h */; };
-		8A569F521E6B3ED9008BE2AC /* cmark_version.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F011CFA5D63008EEC6E /* cmark_version.h */; };
-		8A569F531E6B3ED9008BE2AC /* commonmark.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F021CFA5D63008EEC6E /* commonmark.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F541E6B3ED9008BE2AC /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F031CFA5D63008EEC6E /* config.h */; };
-		8A569F551E6B3ED9008BE2AC /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F041CFA5D63008EEC6E /* debug.h */; };
-		8A569F561E6B3ED9008BE2AC /* houdini.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F061CFA5D63008EEC6E /* houdini.h */; };
-		8A569F571E6B3ED9008BE2AC /* houdini_href_e.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F071CFA5D63008EEC6E /* houdini_href_e.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F581E6B3ED9008BE2AC /* houdini_html_e.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F081CFA5D63008EEC6E /* houdini_html_e.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F591E6B3ED9008BE2AC /* houdini_html_u.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F091CFA5D63008EEC6E /* houdini_html_u.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F5A1E6B3ED9008BE2AC /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F0A1CFA5D63008EEC6E /* html.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F5B1E6B3ED9008BE2AC /* html_unescape.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F0B1CFA5D63008EEC6E /* html_unescape.h */; };
-		8A569F5C1E6B3ED9008BE2AC /* inlines.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F0C1CFA5D63008EEC6E /* inlines.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F5D1E6B3ED9008BE2AC /* inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F0D1CFA5D63008EEC6E /* inlines.h */; };
-		8A569F5E1E6B3ED9008BE2AC /* iterator.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F0E1CFA5D63008EEC6E /* iterator.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F5F1E6B3ED9008BE2AC /* iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F0F1CFA5D63008EEC6E /* iterator.h */; };
-		8A569F601E6B3ED9008BE2AC /* latex.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F101CFA5D63008EEC6E /* latex.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F611E6B3ED9008BE2AC /* man.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F111CFA5D63008EEC6E /* man.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F621E6B3ED9008BE2AC /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F131CFA5D63008EEC6E /* node.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F631E6B3ED9008BE2AC /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F141CFA5D63008EEC6E /* node.h */; };
-		8A569F641E6B3ED9008BE2AC /* parser.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F151CFA5D63008EEC6E /* parser.h */; };
-		8A569F651E6B3ED9008BE2AC /* references.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F161CFA5D63008EEC6E /* references.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F661E6B3ED9008BE2AC /* references.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F171CFA5D63008EEC6E /* references.h */; };
-		8A569F671E6B3ED9008BE2AC /* render.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F181CFA5D63008EEC6E /* render.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F681E6B3ED9008BE2AC /* render.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F191CFA5D63008EEC6E /* render.h */; };
-		8A569F691E6B3ED9008BE2AC /* scanners.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F1A1CFA5D63008EEC6E /* scanners.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F6A1E6B3ED9008BE2AC /* scanners.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F1B1CFA5D63008EEC6E /* scanners.h */; };
-		8A569F6B1E6B3ED9008BE2AC /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F1C1CFA5D63008EEC6E /* utf8.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F6C1E6B3ED9008BE2AC /* utf8.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F1D1CFA5D63008EEC6E /* utf8.h */; };
-		8A569F6D1E6B3ED9008BE2AC /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F1E1CFA5D63008EEC6E /* xml.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8A569F6E1E6B3EDE008BE2AC /* DownASTRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D486E9951CFDD4860059FD7C /* DownASTRenderable.swift */; };
 		8A569F6F1E6B3EDE008BE2AC /* DownAttributedStringRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CF88971CFFAC2C00F07FD1 /* DownAttributedStringRenderable.swift */; };
 		8A569F701E6B3EDE008BE2AC /* DownCommonMarkRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC91131CFDED4B0091CE09 /* DownCommonMarkRenderable.swift */; };
@@ -105,44 +68,6 @@
 		D41689B51CFFE6BB00E5802B /* DownView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DownView.bundle; sourceTree = "<group>"; };
 		D4201EC51CFA59A5008EEC6E /* BindingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindingTests.swift; sourceTree = "<group>"; };
 		D4201EF01CFA59F2008EEC6E /* Down.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Down.swift; sourceTree = "<group>"; };
-		D4201EF71CFA5D63008EEC6E /* blocks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blocks.c; sourceTree = "<group>"; };
-		D4201EF81CFA5D63008EEC6E /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer.c; sourceTree = "<group>"; };
-		D4201EF91CFA5D63008EEC6E /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
-		D4201EFB1CFA5D63008EEC6E /* chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chunk.h; sourceTree = "<group>"; };
-		D4201EFC1CFA5D63008EEC6E /* cmark.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cmark.c; sourceTree = "<group>"; };
-		D4201EFD1CFA5D63008EEC6E /* cmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmark.h; sourceTree = "<group>"; };
-		D4201EFE1CFA5D63008EEC6E /* cmark_ctype.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cmark_ctype.c; sourceTree = "<group>"; };
-		D4201EFF1CFA5D63008EEC6E /* cmark_ctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmark_ctype.h; sourceTree = "<group>"; };
-		D4201F001CFA5D63008EEC6E /* cmark_export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmark_export.h; sourceTree = "<group>"; };
-		D4201F011CFA5D63008EEC6E /* cmark_version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmark_version.h; sourceTree = "<group>"; };
-		D4201F021CFA5D63008EEC6E /* commonmark.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = commonmark.c; sourceTree = "<group>"; };
-		D4201F031CFA5D63008EEC6E /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
-		D4201F041CFA5D63008EEC6E /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
-		D4201F061CFA5D63008EEC6E /* houdini.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houdini.h; sourceTree = "<group>"; };
-		D4201F071CFA5D63008EEC6E /* houdini_href_e.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = houdini_href_e.c; sourceTree = "<group>"; };
-		D4201F081CFA5D63008EEC6E /* houdini_html_e.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = houdini_html_e.c; sourceTree = "<group>"; };
-		D4201F091CFA5D63008EEC6E /* houdini_html_u.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = houdini_html_u.c; sourceTree = "<group>"; };
-		D4201F0A1CFA5D63008EEC6E /* html.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = html.c; sourceTree = "<group>"; };
-		D4201F0B1CFA5D63008EEC6E /* html_unescape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_unescape.h; sourceTree = "<group>"; };
-		D4201F0C1CFA5D63008EEC6E /* inlines.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inlines.c; sourceTree = "<group>"; };
-		D4201F0D1CFA5D63008EEC6E /* inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inlines.h; sourceTree = "<group>"; };
-		D4201F0E1CFA5D63008EEC6E /* iterator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iterator.c; sourceTree = "<group>"; };
-		D4201F0F1CFA5D63008EEC6E /* iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iterator.h; sourceTree = "<group>"; };
-		D4201F101CFA5D63008EEC6E /* latex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = latex.c; sourceTree = "<group>"; };
-		D4201F111CFA5D63008EEC6E /* man.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = man.c; sourceTree = "<group>"; };
-		D4201F131CFA5D63008EEC6E /* node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = node.c; sourceTree = "<group>"; };
-		D4201F141CFA5D63008EEC6E /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
-		D4201F151CFA5D63008EEC6E /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
-		D4201F161CFA5D63008EEC6E /* references.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = references.c; sourceTree = "<group>"; };
-		D4201F171CFA5D63008EEC6E /* references.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = references.h; sourceTree = "<group>"; };
-		D4201F181CFA5D63008EEC6E /* render.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = render.c; sourceTree = "<group>"; };
-		D4201F191CFA5D63008EEC6E /* render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = render.h; sourceTree = "<group>"; };
-		D4201F1A1CFA5D63008EEC6E /* scanners.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scanners.c; sourceTree = "<group>"; };
-		D4201F1B1CFA5D63008EEC6E /* scanners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scanners.h; sourceTree = "<group>"; };
-		D4201F1C1CFA5D63008EEC6E /* utf8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf8.c; sourceTree = "<group>"; };
-		D4201F1D1CFA5D63008EEC6E /* utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf8.h; sourceTree = "<group>"; };
-		D4201F1E1CFA5D63008EEC6E /* xml.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xml.c; sourceTree = "<group>"; };
-		D42869501CFF501200FACB4C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		D438696B1D00D27700E95A1F /* StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		D43AE5C91CFFAE4D006E1522 /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		D43AE5D91CFFD0D0006E1522 /* DownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownView.swift; sourceTree = "<group>"; };
@@ -232,7 +157,6 @@
 				D43AE5C81CFFAE39006E1522 /* Extensions */,
 				D44875E21CFA6B120037A624 /* Renderers */,
 				D43AE5CB1CFFD068006E1522 /* Views */,
-				D4201EF61CFA5D63008EEC6E /* cmark */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -247,51 +171,6 @@
 				D438696B1D00D27700E95A1F /* StringTests.swift */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		D4201EF61CFA5D63008EEC6E /* cmark */ = {
-			isa = PBXGroup;
-			children = (
-				D4201EF71CFA5D63008EEC6E /* blocks.c */,
-				D4201EF81CFA5D63008EEC6E /* buffer.c */,
-				D4201EF91CFA5D63008EEC6E /* buffer.h */,
-				D4201EFB1CFA5D63008EEC6E /* chunk.h */,
-				D4201EFC1CFA5D63008EEC6E /* cmark.c */,
-				D4201EFD1CFA5D63008EEC6E /* cmark.h */,
-				D4201EFE1CFA5D63008EEC6E /* cmark_ctype.c */,
-				D4201EFF1CFA5D63008EEC6E /* cmark_ctype.h */,
-				D4201F001CFA5D63008EEC6E /* cmark_export.h */,
-				D4201F011CFA5D63008EEC6E /* cmark_version.h */,
-				D4201F021CFA5D63008EEC6E /* commonmark.c */,
-				D4201F031CFA5D63008EEC6E /* config.h */,
-				D4201F041CFA5D63008EEC6E /* debug.h */,
-				D4201F061CFA5D63008EEC6E /* houdini.h */,
-				D4201F071CFA5D63008EEC6E /* houdini_href_e.c */,
-				D4201F081CFA5D63008EEC6E /* houdini_html_e.c */,
-				D4201F091CFA5D63008EEC6E /* houdini_html_u.c */,
-				D4201F0A1CFA5D63008EEC6E /* html.c */,
-				D4201F0B1CFA5D63008EEC6E /* html_unescape.h */,
-				D4201F0C1CFA5D63008EEC6E /* inlines.c */,
-				D4201F0D1CFA5D63008EEC6E /* inlines.h */,
-				D4201F0E1CFA5D63008EEC6E /* iterator.c */,
-				D4201F0F1CFA5D63008EEC6E /* iterator.h */,
-				D4201F101CFA5D63008EEC6E /* latex.c */,
-				D4201F111CFA5D63008EEC6E /* man.c */,
-				D42869501CFF501200FACB4C /* module.modulemap */,
-				D4201F131CFA5D63008EEC6E /* node.c */,
-				D4201F141CFA5D63008EEC6E /* node.h */,
-				D4201F151CFA5D63008EEC6E /* parser.h */,
-				D4201F161CFA5D63008EEC6E /* references.c */,
-				D4201F171CFA5D63008EEC6E /* references.h */,
-				D4201F181CFA5D63008EEC6E /* render.c */,
-				D4201F191CFA5D63008EEC6E /* render.h */,
-				D4201F1A1CFA5D63008EEC6E /* scanners.c */,
-				D4201F1B1CFA5D63008EEC6E /* scanners.h */,
-				D4201F1C1CFA5D63008EEC6E /* utf8.c */,
-				D4201F1D1CFA5D63008EEC6E /* utf8.h */,
-				D4201F1E1CFA5D63008EEC6E /* xml.c */,
-			);
-			path = cmark;
 			sourceTree = "<group>";
 		};
 		D43AE5C81CFFAE39006E1522 /* Extensions */ = {
@@ -342,24 +221,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A569F551E6B3ED9008BE2AC /* debug.h in Headers */,
-				8A569F4C1E6B3ED9008BE2AC /* chunk.h in Headers */,
-				8A569F631E6B3ED9008BE2AC /* node.h in Headers */,
-				8A569F521E6B3ED9008BE2AC /* cmark_version.h in Headers */,
-				8A569F661E6B3ED9008BE2AC /* references.h in Headers */,
-				8A569F6A1E6B3ED9008BE2AC /* scanners.h in Headers */,
-				8A569F4B1E6B3ED9008BE2AC /* buffer.h in Headers */,
-				8A569F5D1E6B3ED9008BE2AC /* inlines.h in Headers */,
-				8A569F681E6B3ED9008BE2AC /* render.h in Headers */,
-				8A569F561E6B3ED9008BE2AC /* houdini.h in Headers */,
-				8A569F6C1E6B3ED9008BE2AC /* utf8.h in Headers */,
-				8A569F641E6B3ED9008BE2AC /* parser.h in Headers */,
-				8A569F5F1E6B3ED9008BE2AC /* iterator.h in Headers */,
-				8A569F541E6B3ED9008BE2AC /* config.h in Headers */,
-				8A569F511E6B3ED9008BE2AC /* cmark_export.h in Headers */,
-				8A569F4E1E6B3ED9008BE2AC /* cmark.h in Headers */,
-				8A569F501E6B3ED9008BE2AC /* cmark_ctype.h in Headers */,
-				8A569F5B1E6B3ED9008BE2AC /* html_unescape.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,39 +325,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A569F611E6B3ED9008BE2AC /* man.c in Sources */,
 				8A569F761E6B3EE3008BE2AC /* NSAttributedString+HTML.swift in Sources */,
-				8A569F5A1E6B3ED9008BE2AC /* html.c in Sources */,
-				8A569F5E1E6B3ED9008BE2AC /* iterator.c in Sources */,
 				8A569F481E6B3ED2008BE2AC /* DownView.swift in Sources */,
-				8A569F591E6B3ED9008BE2AC /* houdini_html_u.c in Sources */,
-				8A569F621E6B3ED9008BE2AC /* node.c in Sources */,
 				8A569F6F1E6B3EDE008BE2AC /* DownAttributedStringRenderable.swift in Sources */,
 				8A569F721E6B3EDE008BE2AC /* DownHTMLRenderable.swift in Sources */,
-				8A569F581E6B3ED9008BE2AC /* houdini_html_e.c in Sources */,
-				8A569F531E6B3ED9008BE2AC /* commonmark.c in Sources */,
-				8A569F4A1E6B3ED9008BE2AC /* buffer.c in Sources */,
 				8A569F771E6B3EE3008BE2AC /* String+ToHTML.swift in Sources */,
 				8A569F751E6B3EDE008BE2AC /* DownRenderable.swift in Sources */,
 				8A569F741E6B3EDE008BE2AC /* DownXMLRenderable.swift in Sources */,
-				8A569F6B1E6B3ED9008BE2AC /* utf8.c in Sources */,
 				8A569F791E6B3EE7008BE2AC /* DownOptions.swift in Sources */,
-				8A569F601E6B3ED9008BE2AC /* latex.c in Sources */,
 				8A569F711E6B3EDE008BE2AC /* DownGroffRenderable.swift in Sources */,
-				8A569F691E6B3ED9008BE2AC /* scanners.c in Sources */,
 				8A569F701E6B3EDE008BE2AC /* DownCommonMarkRenderable.swift in Sources */,
 				8A569F7A1E6B3EEA008BE2AC /* Down.swift in Sources */,
 				8A569F731E6B3EDE008BE2AC /* DownLaTeXRenderable.swift in Sources */,
 				8A569F781E6B3EE7008BE2AC /* DownErrors.swift in Sources */,
-				8A569F5C1E6B3ED9008BE2AC /* inlines.c in Sources */,
-				8A569F571E6B3ED9008BE2AC /* houdini_href_e.c in Sources */,
-				8A569F4D1E6B3ED9008BE2AC /* cmark.c in Sources */,
-				8A569F6D1E6B3ED9008BE2AC /* xml.c in Sources */,
 				8A569F6E1E6B3EDE008BE2AC /* DownASTRenderable.swift in Sources */,
-				8A569F491E6B3ED9008BE2AC /* blocks.c in Sources */,
-				8A569F4F1E6B3ED9008BE2AC /* cmark_ctype.c in Sources */,
-				8A569F671E6B3ED9008BE2AC /* render.c in Sources */,
-				8A569F651E6B3ED9008BE2AC /* references.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
