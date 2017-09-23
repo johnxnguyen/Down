@@ -107,7 +107,7 @@ extension DownView: WKNavigationDelegate {
             #if os(iOS)
                 UIApplication.shared.openURL(url)
             #elseif os(OSX)
-                NSWorkspace.shared().open(url)
+                NSWorkspace.shared.open(url)
             #endif
         default:
             decisionHandler(.allow)
