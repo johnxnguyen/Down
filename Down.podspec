@@ -1,11 +1,11 @@
 Pod::Spec.new do |spec|
-  spec.name         = "Down"
-  spec.summary      = "Blazing fast Markdown rendering in Swift, built upon cmark."
+  spec.name         = "Down-gfm"
+  spec.summary      = "Blazing fast GitHub-Flavored Markdown rendering in Swift, built upon cmark-gfm."
   spec.version      = "0.3.5"
   spec.homepage     = "https://github.com/iwasrobbed/Down"
   spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.authors      = { "Rob Phillips" => "rob@desideratalabs.co" }
-  spec.source       = { :git => "https://github.com/iwasrobbed/Down.git", :tag => "v" + spec.version.to_s }
+  spec.source       = { :git => "https://github.com/lachlanbell/Down-gfm.git", :tag => "v" + spec.version.to_s }
   spec.source_files = "Source/{cmark,Enums & Options,Extensions,Renderers}/**", "Source/*"
   spec.ios.source_files = "Source/Views/**"
   spec.osx.source_files = "Source/Views/**"

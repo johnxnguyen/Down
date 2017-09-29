@@ -5,21 +5,13 @@
 #include "inlines.h"
 #include "chunk.h"
 
-static unsigned int refhash(const unsigned char *link_ref) {
-  unsigned int hash = 0;
-
-  while (*link_ref)
-    hash = (*link_ref++) + (hash << 6) + (hash << 16) - hash;
-
-  return hash;
-}
-
-static void reference_free(cmark_reference *ref) {
+static void reference_free(cmark_reference_map *map, cmark_reference *ref) {
+  cmark_mem *mem = map->mem;
   if (ref != NULL) {
-    free(ref->label);
-    cmark_chunk_free(&ref->url);
-    cmark_chunk_free(&ref->title);
-    free(ref);
+    mem->free(ref->label);
+    cmark_chunk_free(mem, &ref->url);
+    cmark_chunk_free(mem, &ref->title);
+    mem->free(ref);
   }
 }
 
@@ -27,8 +19,8 @@ static void reference_free(cmark_reference *ref) {
 // remove leading/trailing whitespace, case fold
 // Return NULL if the reference name is actually empty (i.e. composed
 // solely from whitespace)
-static unsigned char *normalize_reference(cmark_chunk *ref) {
-  cmark_strbuf normalized = GH_BUF_INIT;
+static unsigned char *normalize_reference(cmark_mem *mem, cmark_chunk *ref) {
+  cmark_strbuf normalized = CMARK_BUF_INIT(mem);
   unsigned char *result;
 
   if (ref == NULL)
@@ -45,100 +37,120 @@ static unsigned char *normalize_reference(cmark_chunk *ref) {
   assert(result);
 
   if (result[0] == '\0') {
-    free(result);
+    mem->free(result);
     return NULL;
   }
 
   return result;
 }
 
-static void add_reference(cmark_reference_map *map, cmark_reference *ref) {
-  cmark_reference *t = ref->next = map->table[ref->hash % REFMAP_SIZE];
-
-  while (t) {
-    if (t->hash == ref->hash && !strcmp((char *)t->label, (char *)ref->label)) {
-      reference_free(ref);
-      return;
-    }
-
-    t = t->next;
-  }
-
-  map->table[ref->hash % REFMAP_SIZE] = ref;
-}
-
 void cmark_reference_create(cmark_reference_map *map, cmark_chunk *label,
                             cmark_chunk *url, cmark_chunk *title) {
   cmark_reference *ref;
-  unsigned char *reflabel = normalize_reference(label);
+  unsigned char *reflabel = normalize_reference(map->mem, label);
 
   /* empty reference name, or composed from only whitespace */
   if (reflabel == NULL)
     return;
 
-  ref = (cmark_reference *)calloc(1, sizeof(*ref));
-  if (ref != NULL) {
-    ref->label = reflabel;
-    ref->hash = refhash(ref->label);
-    ref->url = cmark_clean_url(url);
-    ref->title = cmark_clean_title(title);
-    ref->next = NULL;
+  assert(map->sorted == NULL);
 
-    add_reference(map, ref);
+  ref = (cmark_reference *)map->mem->calloc(1, sizeof(*ref));
+  ref->label = reflabel;
+  ref->url = cmark_clean_url(map->mem, url);
+  ref->title = cmark_clean_title(map->mem, title);
+  ref->age = map->size;
+  ref->next = map->refs;
+
+  map->refs = ref;
+  map->size++;
+}
+
+static int
+labelcmp(const unsigned char *a, const unsigned char *b) {
+  return strcmp((const char *)a, (const char *)b);
+}
+
+static int
+refcmp(const void *p1, const void *p2) {
+  cmark_reference *r1 = *(cmark_reference **)p1;
+  cmark_reference *r2 = *(cmark_reference **)p2;
+  int res = labelcmp(r1->label, r2->label);
+  return res ? res : ((int)r1->age - (int)r2->age);
+}
+
+static int
+refsearch(const void *label, const void *p2) {
+  cmark_reference *ref = *(cmark_reference **)p2;
+  return labelcmp((const unsigned char *)label, ref->label);
+}
+
+static void sort_references(cmark_reference_map *map) {
+  unsigned int i = 0, last = 0, size = map->size;
+  cmark_reference *r = map->refs, **sorted = NULL;
+
+  sorted = (cmark_reference **)map->mem->calloc(size, sizeof(cmark_reference *));
+  while (r) {
+    sorted[i++] = r;
+    r = r->next;
   }
+
+  qsort(sorted, size, sizeof(cmark_reference *), refcmp);
+
+  for (i = 1; i < size; i++) {
+    if (labelcmp(sorted[i]->label, sorted[last]->label) != 0)
+      sorted[++last] = sorted[i];
+  }
+
+  map->sorted = sorted;
+  map->size = last + 1;
 }
 
 // Returns reference if refmap contains a reference with matching
 // label, otherwise NULL.
 cmark_reference *cmark_reference_lookup(cmark_reference_map *map,
                                         cmark_chunk *label) {
-  cmark_reference *ref = NULL;
+  cmark_reference **ref = NULL;
   unsigned char *norm;
-  unsigned int hash;
 
-  if (label->len > MAX_LINK_LABEL_LENGTH)
+  if (label->len < 1 || label->len > MAX_LINK_LABEL_LENGTH)
     return NULL;
 
-  if (map == NULL)
+  if (map == NULL || !map->size)
     return NULL;
 
-  norm = normalize_reference(label);
+  norm = normalize_reference(map->mem, label);
   if (norm == NULL)
     return NULL;
 
-  hash = refhash(norm);
-  ref = map->table[hash % REFMAP_SIZE];
+  if (!map->sorted)
+    sort_references(map);
 
-  while (ref) {
-    if (ref->hash == hash && !strcmp((char *)ref->label, (char *)norm))
-      break;
-    ref = ref->next;
-  }
-
-  free(norm);
-  return ref;
+  ref = (cmark_reference **)bsearch(norm, map->sorted, map->size, sizeof(cmark_reference *), refsearch);
+  map->mem->free(norm);
+  return ref ? ref[0] : NULL;
 }
 
 void cmark_reference_map_free(cmark_reference_map *map) {
-  unsigned int i;
+  cmark_reference *ref;
 
   if (map == NULL)
     return;
 
-  for (i = 0; i < REFMAP_SIZE; ++i) {
-    cmark_reference *ref = map->table[i];
-    cmark_reference *next;
-
-    while (ref) {
-      next = ref->next;
-      reference_free(ref);
-      ref = next;
-    }
+  ref = map->refs;
+  while (ref) {
+    cmark_reference *next = ref->next;
+    reference_free(map, ref);
+    ref = next;
   }
 
-  free(map);
+  map->mem->free(map->sorted);
+  map->mem->free(map);
 }
 
-cmark_reference_map *cmark_reference_map_new(void) {
-  return (cmark_reference_map *)calloc(1, sizeof(cmark_reference_map));
+cmark_reference_map *cmark_reference_map_new(cmark_mem *mem) {
+  cmark_reference_map *map =
+      (cmark_reference_map *)mem->calloc(1, sizeof(cmark_reference_map));
+  map->mem = mem;
+  return map;
 }

@@ -657,8 +657,59 @@
       case 0x0232:
         bufpush(0x0233);
         break;
+      case 0x023A:
+        bufpush(0x2C65);
+        break;
+      case 0x023B:
+        bufpush(0x023C);
+        break;
+      case 0x023D:
+        bufpush(0x019A);
+        break;
+      case 0x023E:
+        bufpush(0x2C66);
+        break;
+      case 0x0241:
+        bufpush(0x0242);
+        break;
+      case 0x0243:
+        bufpush(0x0180);
+        break;
+      case 0x0244:
+        bufpush(0x0289);
+        break;
+      case 0x0245:
+        bufpush(0x028C);
+        break;
+      case 0x0246:
+        bufpush(0x0247);
+        break;
+      case 0x0248:
+        bufpush(0x0249);
+        break;
+      case 0x024A:
+        bufpush(0x024B);
+        break;
+      case 0x024C:
+        bufpush(0x024D);
+        break;
+      case 0x024E:
+        bufpush(0x024F);
+        break;
       case 0x0345:
         bufpush(0x03B9);
+        break;
+      case 0x0370:
+        bufpush(0x0371);
+        break;
+      case 0x0372:
+        bufpush(0x0373);
+        break;
+      case 0x0376:
+        bufpush(0x0377);
+        break;
+      case 0x037F:
+        bufpush(0x03F3);
         break;
       case 0x0386:
         bufpush(0x03AC);
@@ -772,6 +823,9 @@
       case 0x03C2:
         bufpush(0x03C3);
         break;
+      case 0x03CF:
+        bufpush(0x03D7);
+        break;
       case 0x03D0:
         bufpush(0x03B2);
         break;
@@ -826,14 +880,29 @@
       case 0x03F1:
         bufpush(0x03C1);
         break;
-      case 0x03F2:
-        bufpush(0x03C3);
-        break;
       case 0x03F4:
         bufpush(0x03B8);
         break;
       case 0x03F5:
         bufpush(0x03B5);
+        break;
+      case 0x03F7:
+        bufpush(0x03F8);
+        break;
+      case 0x03F9:
+        bufpush(0x03F2);
+        break;
+      case 0x03FA:
+        bufpush(0x03FB);
+        break;
+      case 0x03FD:
+        bufpush(0x037B);
+        break;
+      case 0x03FE:
+        bufpush(0x037C);
+        break;
+      case 0x03FF:
+        bufpush(0x037D);
         break;
       case 0x0400:
         bufpush(0x0450);
@@ -1111,6 +1180,9 @@
       case 0x04BE:
         bufpush(0x04BF);
         break;
+      case 0x04C0:
+        bufpush(0x04CF);
+        break;
       case 0x04C1:
         bufpush(0x04C2);
         break;
@@ -1189,8 +1261,20 @@
       case 0x04F4:
         bufpush(0x04F5);
         break;
+      case 0x04F6:
+        bufpush(0x04F7);
+        break;
       case 0x04F8:
         bufpush(0x04F9);
+        break;
+      case 0x04FA:
+        bufpush(0x04FB);
+        break;
+      case 0x04FC:
+        bufpush(0x04FD);
+        break;
+      case 0x04FE:
+        bufpush(0x04FF);
         break;
       case 0x0500:
         bufpush(0x0501);
@@ -1215,6 +1299,54 @@
         break;
       case 0x050E:
         bufpush(0x050F);
+        break;
+      case 0x0510:
+        bufpush(0x0511);
+        break;
+      case 0x0512:
+        bufpush(0x0513);
+        break;
+      case 0x0514:
+        bufpush(0x0515);
+        break;
+      case 0x0516:
+        bufpush(0x0517);
+        break;
+      case 0x0518:
+        bufpush(0x0519);
+        break;
+      case 0x051A:
+        bufpush(0x051B);
+        break;
+      case 0x051C:
+        bufpush(0x051D);
+        break;
+      case 0x051E:
+        bufpush(0x051F);
+        break;
+      case 0x0520:
+        bufpush(0x0521);
+        break;
+      case 0x0522:
+        bufpush(0x0523);
+        break;
+      case 0x0524:
+        bufpush(0x0525);
+        break;
+      case 0x0526:
+        bufpush(0x0527);
+        break;
+      case 0x0528:
+        bufpush(0x0529);
+        break;
+      case 0x052A:
+        bufpush(0x052B);
+        break;
+      case 0x052C:
+        bufpush(0x052D);
+        break;
+      case 0x052E:
+        bufpush(0x052F);
         break;
       case 0x0531:
         bufpush(0x0561);
@@ -1333,6 +1465,171 @@
       case 0x0587:
         bufpush(0x0565);
         bufpush(0x0582);
+        break;
+      case 0x10A0:
+        bufpush(0x2D00);
+        break;
+      case 0x10A1:
+        bufpush(0x2D01);
+        break;
+      case 0x10A2:
+        bufpush(0x2D02);
+        break;
+      case 0x10A3:
+        bufpush(0x2D03);
+        break;
+      case 0x10A4:
+        bufpush(0x2D04);
+        break;
+      case 0x10A5:
+        bufpush(0x2D05);
+        break;
+      case 0x10A6:
+        bufpush(0x2D06);
+        break;
+      case 0x10A7:
+        bufpush(0x2D07);
+        break;
+      case 0x10A8:
+        bufpush(0x2D08);
+        break;
+      case 0x10A9:
+        bufpush(0x2D09);
+        break;
+      case 0x10AA:
+        bufpush(0x2D0A);
+        break;
+      case 0x10AB:
+        bufpush(0x2D0B);
+        break;
+      case 0x10AC:
+        bufpush(0x2D0C);
+        break;
+      case 0x10AD:
+        bufpush(0x2D0D);
+        break;
+      case 0x10AE:
+        bufpush(0x2D0E);
+        break;
+      case 0x10AF:
+        bufpush(0x2D0F);
+        break;
+      case 0x10B0:
+        bufpush(0x2D10);
+        break;
+      case 0x10B1:
+        bufpush(0x2D11);
+        break;
+      case 0x10B2:
+        bufpush(0x2D12);
+        break;
+      case 0x10B3:
+        bufpush(0x2D13);
+        break;
+      case 0x10B4:
+        bufpush(0x2D14);
+        break;
+      case 0x10B5:
+        bufpush(0x2D15);
+        break;
+      case 0x10B6:
+        bufpush(0x2D16);
+        break;
+      case 0x10B7:
+        bufpush(0x2D17);
+        break;
+      case 0x10B8:
+        bufpush(0x2D18);
+        break;
+      case 0x10B9:
+        bufpush(0x2D19);
+        break;
+      case 0x10BA:
+        bufpush(0x2D1A);
+        break;
+      case 0x10BB:
+        bufpush(0x2D1B);
+        break;
+      case 0x10BC:
+        bufpush(0x2D1C);
+        break;
+      case 0x10BD:
+        bufpush(0x2D1D);
+        break;
+      case 0x10BE:
+        bufpush(0x2D1E);
+        break;
+      case 0x10BF:
+        bufpush(0x2D1F);
+        break;
+      case 0x10C0:
+        bufpush(0x2D20);
+        break;
+      case 0x10C1:
+        bufpush(0x2D21);
+        break;
+      case 0x10C2:
+        bufpush(0x2D22);
+        break;
+      case 0x10C3:
+        bufpush(0x2D23);
+        break;
+      case 0x10C4:
+        bufpush(0x2D24);
+        break;
+      case 0x10C5:
+        bufpush(0x2D25);
+        break;
+      case 0x10C7:
+        bufpush(0x2D27);
+        break;
+      case 0x10CD:
+        bufpush(0x2D2D);
+        break;
+      case 0x13F8:
+        bufpush(0x13F0);
+        break;
+      case 0x13F9:
+        bufpush(0x13F1);
+        break;
+      case 0x13FA:
+        bufpush(0x13F2);
+        break;
+      case 0x13FB:
+        bufpush(0x13F3);
+        break;
+      case 0x13FC:
+        bufpush(0x13F4);
+        break;
+      case 0x13FD:
+        bufpush(0x13F5);
+        break;
+      case 0x1C80:
+        bufpush(0x0432);
+        break;
+      case 0x1C81:
+        bufpush(0x0434);
+        break;
+      case 0x1C82:
+        bufpush(0x043E);
+        break;
+      case 0x1C83:
+        bufpush(0x0441);
+        break;
+      case 0x1C84:
+        bufpush(0x0442);
+        break;
+      case 0x1C85:
+        bufpush(0x0442);
+        break;
+      case 0x1C86:
+        bufpush(0x044A);
+        break;
+      case 0x1C87:
+        bufpush(0x0463);
+        break;
+      case 0x1C88:
+        bufpush(0xA64B);
         break;
       case 0x1E00:
         bufpush(0x1E01);
@@ -1582,6 +1879,10 @@
       case 0x1E9B:
         bufpush(0x1E61);
         break;
+      case 0x1E9E:
+        bufpush(0x0073);
+        bufpush(0x0073);
+        break;
       case 0x1EA0:
         bufpush(0x1EA1);
         break;
@@ -1716,6 +2017,15 @@
         break;
       case 0x1EF8:
         bufpush(0x1EF9);
+        break;
+      case 0x1EFA:
+        bufpush(0x1EFB);
+        break;
+      case 0x1EFC:
+        bufpush(0x1EFD);
+        break;
+      case 0x1EFE:
+        bufpush(0x1EFF);
         break;
       case 0x1F08:
         bufpush(0x1F00);
@@ -2264,6 +2574,9 @@
       case 0x212B:
         bufpush(0x00E5);
         break;
+      case 0x2132:
+        bufpush(0x214E);
+        break;
       case 0x2160:
         bufpush(0x2170);
         break;
@@ -2311,6 +2624,9 @@
         break;
       case 0x216F:
         bufpush(0x217F);
+        break;
+      case 0x2183:
+        bufpush(0x2184);
         break;
       case 0x24B6:
         bufpush(0x24D0);
@@ -2389,6 +2705,915 @@
         break;
       case 0x24CF:
         bufpush(0x24E9);
+        break;
+      case 0x2C00:
+        bufpush(0x2C30);
+        break;
+      case 0x2C01:
+        bufpush(0x2C31);
+        break;
+      case 0x2C02:
+        bufpush(0x2C32);
+        break;
+      case 0x2C03:
+        bufpush(0x2C33);
+        break;
+      case 0x2C04:
+        bufpush(0x2C34);
+        break;
+      case 0x2C05:
+        bufpush(0x2C35);
+        break;
+      case 0x2C06:
+        bufpush(0x2C36);
+        break;
+      case 0x2C07:
+        bufpush(0x2C37);
+        break;
+      case 0x2C08:
+        bufpush(0x2C38);
+        break;
+      case 0x2C09:
+        bufpush(0x2C39);
+        break;
+      case 0x2C0A:
+        bufpush(0x2C3A);
+        break;
+      case 0x2C0B:
+        bufpush(0x2C3B);
+        break;
+      case 0x2C0C:
+        bufpush(0x2C3C);
+        break;
+      case 0x2C0D:
+        bufpush(0x2C3D);
+        break;
+      case 0x2C0E:
+        bufpush(0x2C3E);
+        break;
+      case 0x2C0F:
+        bufpush(0x2C3F);
+        break;
+      case 0x2C10:
+        bufpush(0x2C40);
+        break;
+      case 0x2C11:
+        bufpush(0x2C41);
+        break;
+      case 0x2C12:
+        bufpush(0x2C42);
+        break;
+      case 0x2C13:
+        bufpush(0x2C43);
+        break;
+      case 0x2C14:
+        bufpush(0x2C44);
+        break;
+      case 0x2C15:
+        bufpush(0x2C45);
+        break;
+      case 0x2C16:
+        bufpush(0x2C46);
+        break;
+      case 0x2C17:
+        bufpush(0x2C47);
+        break;
+      case 0x2C18:
+        bufpush(0x2C48);
+        break;
+      case 0x2C19:
+        bufpush(0x2C49);
+        break;
+      case 0x2C1A:
+        bufpush(0x2C4A);
+        break;
+      case 0x2C1B:
+        bufpush(0x2C4B);
+        break;
+      case 0x2C1C:
+        bufpush(0x2C4C);
+        break;
+      case 0x2C1D:
+        bufpush(0x2C4D);
+        break;
+      case 0x2C1E:
+        bufpush(0x2C4E);
+        break;
+      case 0x2C1F:
+        bufpush(0x2C4F);
+        break;
+      case 0x2C20:
+        bufpush(0x2C50);
+        break;
+      case 0x2C21:
+        bufpush(0x2C51);
+        break;
+      case 0x2C22:
+        bufpush(0x2C52);
+        break;
+      case 0x2C23:
+        bufpush(0x2C53);
+        break;
+      case 0x2C24:
+        bufpush(0x2C54);
+        break;
+      case 0x2C25:
+        bufpush(0x2C55);
+        break;
+      case 0x2C26:
+        bufpush(0x2C56);
+        break;
+      case 0x2C27:
+        bufpush(0x2C57);
+        break;
+      case 0x2C28:
+        bufpush(0x2C58);
+        break;
+      case 0x2C29:
+        bufpush(0x2C59);
+        break;
+      case 0x2C2A:
+        bufpush(0x2C5A);
+        break;
+      case 0x2C2B:
+        bufpush(0x2C5B);
+        break;
+      case 0x2C2C:
+        bufpush(0x2C5C);
+        break;
+      case 0x2C2D:
+        bufpush(0x2C5D);
+        break;
+      case 0x2C2E:
+        bufpush(0x2C5E);
+        break;
+      case 0x2C60:
+        bufpush(0x2C61);
+        break;
+      case 0x2C62:
+        bufpush(0x026B);
+        break;
+      case 0x2C63:
+        bufpush(0x1D7D);
+        break;
+      case 0x2C64:
+        bufpush(0x027D);
+        break;
+      case 0x2C67:
+        bufpush(0x2C68);
+        break;
+      case 0x2C69:
+        bufpush(0x2C6A);
+        break;
+      case 0x2C6B:
+        bufpush(0x2C6C);
+        break;
+      case 0x2C6D:
+        bufpush(0x0251);
+        break;
+      case 0x2C6E:
+        bufpush(0x0271);
+        break;
+      case 0x2C6F:
+        bufpush(0x0250);
+        break;
+      case 0x2C70:
+        bufpush(0x0252);
+        break;
+      case 0x2C72:
+        bufpush(0x2C73);
+        break;
+      case 0x2C75:
+        bufpush(0x2C76);
+        break;
+      case 0x2C7E:
+        bufpush(0x023F);
+        break;
+      case 0x2C7F:
+        bufpush(0x0240);
+        break;
+      case 0x2C80:
+        bufpush(0x2C81);
+        break;
+      case 0x2C82:
+        bufpush(0x2C83);
+        break;
+      case 0x2C84:
+        bufpush(0x2C85);
+        break;
+      case 0x2C86:
+        bufpush(0x2C87);
+        break;
+      case 0x2C88:
+        bufpush(0x2C89);
+        break;
+      case 0x2C8A:
+        bufpush(0x2C8B);
+        break;
+      case 0x2C8C:
+        bufpush(0x2C8D);
+        break;
+      case 0x2C8E:
+        bufpush(0x2C8F);
+        break;
+      case 0x2C90:
+        bufpush(0x2C91);
+        break;
+      case 0x2C92:
+        bufpush(0x2C93);
+        break;
+      case 0x2C94:
+        bufpush(0x2C95);
+        break;
+      case 0x2C96:
+        bufpush(0x2C97);
+        break;
+      case 0x2C98:
+        bufpush(0x2C99);
+        break;
+      case 0x2C9A:
+        bufpush(0x2C9B);
+        break;
+      case 0x2C9C:
+        bufpush(0x2C9D);
+        break;
+      case 0x2C9E:
+        bufpush(0x2C9F);
+        break;
+      case 0x2CA0:
+        bufpush(0x2CA1);
+        break;
+      case 0x2CA2:
+        bufpush(0x2CA3);
+        break;
+      case 0x2CA4:
+        bufpush(0x2CA5);
+        break;
+      case 0x2CA6:
+        bufpush(0x2CA7);
+        break;
+      case 0x2CA8:
+        bufpush(0x2CA9);
+        break;
+      case 0x2CAA:
+        bufpush(0x2CAB);
+        break;
+      case 0x2CAC:
+        bufpush(0x2CAD);
+        break;
+      case 0x2CAE:
+        bufpush(0x2CAF);
+        break;
+      case 0x2CB0:
+        bufpush(0x2CB1);
+        break;
+      case 0x2CB2:
+        bufpush(0x2CB3);
+        break;
+      case 0x2CB4:
+        bufpush(0x2CB5);
+        break;
+      case 0x2CB6:
+        bufpush(0x2CB7);
+        break;
+      case 0x2CB8:
+        bufpush(0x2CB9);
+        break;
+      case 0x2CBA:
+        bufpush(0x2CBB);
+        break;
+      case 0x2CBC:
+        bufpush(0x2CBD);
+        break;
+      case 0x2CBE:
+        bufpush(0x2CBF);
+        break;
+      case 0x2CC0:
+        bufpush(0x2CC1);
+        break;
+      case 0x2CC2:
+        bufpush(0x2CC3);
+        break;
+      case 0x2CC4:
+        bufpush(0x2CC5);
+        break;
+      case 0x2CC6:
+        bufpush(0x2CC7);
+        break;
+      case 0x2CC8:
+        bufpush(0x2CC9);
+        break;
+      case 0x2CCA:
+        bufpush(0x2CCB);
+        break;
+      case 0x2CCC:
+        bufpush(0x2CCD);
+        break;
+      case 0x2CCE:
+        bufpush(0x2CCF);
+        break;
+      case 0x2CD0:
+        bufpush(0x2CD1);
+        break;
+      case 0x2CD2:
+        bufpush(0x2CD3);
+        break;
+      case 0x2CD4:
+        bufpush(0x2CD5);
+        break;
+      case 0x2CD6:
+        bufpush(0x2CD7);
+        break;
+      case 0x2CD8:
+        bufpush(0x2CD9);
+        break;
+      case 0x2CDA:
+        bufpush(0x2CDB);
+        break;
+      case 0x2CDC:
+        bufpush(0x2CDD);
+        break;
+      case 0x2CDE:
+        bufpush(0x2CDF);
+        break;
+      case 0x2CE0:
+        bufpush(0x2CE1);
+        break;
+      case 0x2CE2:
+        bufpush(0x2CE3);
+        break;
+      case 0x2CEB:
+        bufpush(0x2CEC);
+        break;
+      case 0x2CED:
+        bufpush(0x2CEE);
+        break;
+      case 0x2CF2:
+        bufpush(0x2CF3);
+        break;
+      case 0xA640:
+        bufpush(0xA641);
+        break;
+      case 0xA642:
+        bufpush(0xA643);
+        break;
+      case 0xA644:
+        bufpush(0xA645);
+        break;
+      case 0xA646:
+        bufpush(0xA647);
+        break;
+      case 0xA648:
+        bufpush(0xA649);
+        break;
+      case 0xA64A:
+        bufpush(0xA64B);
+        break;
+      case 0xA64C:
+        bufpush(0xA64D);
+        break;
+      case 0xA64E:
+        bufpush(0xA64F);
+        break;
+      case 0xA650:
+        bufpush(0xA651);
+        break;
+      case 0xA652:
+        bufpush(0xA653);
+        break;
+      case 0xA654:
+        bufpush(0xA655);
+        break;
+      case 0xA656:
+        bufpush(0xA657);
+        break;
+      case 0xA658:
+        bufpush(0xA659);
+        break;
+      case 0xA65A:
+        bufpush(0xA65B);
+        break;
+      case 0xA65C:
+        bufpush(0xA65D);
+        break;
+      case 0xA65E:
+        bufpush(0xA65F);
+        break;
+      case 0xA660:
+        bufpush(0xA661);
+        break;
+      case 0xA662:
+        bufpush(0xA663);
+        break;
+      case 0xA664:
+        bufpush(0xA665);
+        break;
+      case 0xA666:
+        bufpush(0xA667);
+        break;
+      case 0xA668:
+        bufpush(0xA669);
+        break;
+      case 0xA66A:
+        bufpush(0xA66B);
+        break;
+      case 0xA66C:
+        bufpush(0xA66D);
+        break;
+      case 0xA680:
+        bufpush(0xA681);
+        break;
+      case 0xA682:
+        bufpush(0xA683);
+        break;
+      case 0xA684:
+        bufpush(0xA685);
+        break;
+      case 0xA686:
+        bufpush(0xA687);
+        break;
+      case 0xA688:
+        bufpush(0xA689);
+        break;
+      case 0xA68A:
+        bufpush(0xA68B);
+        break;
+      case 0xA68C:
+        bufpush(0xA68D);
+        break;
+      case 0xA68E:
+        bufpush(0xA68F);
+        break;
+      case 0xA690:
+        bufpush(0xA691);
+        break;
+      case 0xA692:
+        bufpush(0xA693);
+        break;
+      case 0xA694:
+        bufpush(0xA695);
+        break;
+      case 0xA696:
+        bufpush(0xA697);
+        break;
+      case 0xA698:
+        bufpush(0xA699);
+        break;
+      case 0xA69A:
+        bufpush(0xA69B);
+        break;
+      case 0xA722:
+        bufpush(0xA723);
+        break;
+      case 0xA724:
+        bufpush(0xA725);
+        break;
+      case 0xA726:
+        bufpush(0xA727);
+        break;
+      case 0xA728:
+        bufpush(0xA729);
+        break;
+      case 0xA72A:
+        bufpush(0xA72B);
+        break;
+      case 0xA72C:
+        bufpush(0xA72D);
+        break;
+      case 0xA72E:
+        bufpush(0xA72F);
+        break;
+      case 0xA732:
+        bufpush(0xA733);
+        break;
+      case 0xA734:
+        bufpush(0xA735);
+        break;
+      case 0xA736:
+        bufpush(0xA737);
+        break;
+      case 0xA738:
+        bufpush(0xA739);
+        break;
+      case 0xA73A:
+        bufpush(0xA73B);
+        break;
+      case 0xA73C:
+        bufpush(0xA73D);
+        break;
+      case 0xA73E:
+        bufpush(0xA73F);
+        break;
+      case 0xA740:
+        bufpush(0xA741);
+        break;
+      case 0xA742:
+        bufpush(0xA743);
+        break;
+      case 0xA744:
+        bufpush(0xA745);
+        break;
+      case 0xA746:
+        bufpush(0xA747);
+        break;
+      case 0xA748:
+        bufpush(0xA749);
+        break;
+      case 0xA74A:
+        bufpush(0xA74B);
+        break;
+      case 0xA74C:
+        bufpush(0xA74D);
+        break;
+      case 0xA74E:
+        bufpush(0xA74F);
+        break;
+      case 0xA750:
+        bufpush(0xA751);
+        break;
+      case 0xA752:
+        bufpush(0xA753);
+        break;
+      case 0xA754:
+        bufpush(0xA755);
+        break;
+      case 0xA756:
+        bufpush(0xA757);
+        break;
+      case 0xA758:
+        bufpush(0xA759);
+        break;
+      case 0xA75A:
+        bufpush(0xA75B);
+        break;
+      case 0xA75C:
+        bufpush(0xA75D);
+        break;
+      case 0xA75E:
+        bufpush(0xA75F);
+        break;
+      case 0xA760:
+        bufpush(0xA761);
+        break;
+      case 0xA762:
+        bufpush(0xA763);
+        break;
+      case 0xA764:
+        bufpush(0xA765);
+        break;
+      case 0xA766:
+        bufpush(0xA767);
+        break;
+      case 0xA768:
+        bufpush(0xA769);
+        break;
+      case 0xA76A:
+        bufpush(0xA76B);
+        break;
+      case 0xA76C:
+        bufpush(0xA76D);
+        break;
+      case 0xA76E:
+        bufpush(0xA76F);
+        break;
+      case 0xA779:
+        bufpush(0xA77A);
+        break;
+      case 0xA77B:
+        bufpush(0xA77C);
+        break;
+      case 0xA77D:
+        bufpush(0x1D79);
+        break;
+      case 0xA77E:
+        bufpush(0xA77F);
+        break;
+      case 0xA780:
+        bufpush(0xA781);
+        break;
+      case 0xA782:
+        bufpush(0xA783);
+        break;
+      case 0xA784:
+        bufpush(0xA785);
+        break;
+      case 0xA786:
+        bufpush(0xA787);
+        break;
+      case 0xA78B:
+        bufpush(0xA78C);
+        break;
+      case 0xA78D:
+        bufpush(0x0265);
+        break;
+      case 0xA790:
+        bufpush(0xA791);
+        break;
+      case 0xA792:
+        bufpush(0xA793);
+        break;
+      case 0xA796:
+        bufpush(0xA797);
+        break;
+      case 0xA798:
+        bufpush(0xA799);
+        break;
+      case 0xA79A:
+        bufpush(0xA79B);
+        break;
+      case 0xA79C:
+        bufpush(0xA79D);
+        break;
+      case 0xA79E:
+        bufpush(0xA79F);
+        break;
+      case 0xA7A0:
+        bufpush(0xA7A1);
+        break;
+      case 0xA7A2:
+        bufpush(0xA7A3);
+        break;
+      case 0xA7A4:
+        bufpush(0xA7A5);
+        break;
+      case 0xA7A6:
+        bufpush(0xA7A7);
+        break;
+      case 0xA7A8:
+        bufpush(0xA7A9);
+        break;
+      case 0xA7AA:
+        bufpush(0x0266);
+        break;
+      case 0xA7AB:
+        bufpush(0x025C);
+        break;
+      case 0xA7AC:
+        bufpush(0x0261);
+        break;
+      case 0xA7AD:
+        bufpush(0x026C);
+        break;
+      case 0xA7AE:
+        bufpush(0x026A);
+        break;
+      case 0xA7B0:
+        bufpush(0x029E);
+        break;
+      case 0xA7B1:
+        bufpush(0x0287);
+        break;
+      case 0xA7B2:
+        bufpush(0x029D);
+        break;
+      case 0xA7B3:
+        bufpush(0xAB53);
+        break;
+      case 0xA7B4:
+        bufpush(0xA7B5);
+        break;
+      case 0xA7B6:
+        bufpush(0xA7B7);
+        break;
+      case 0xAB70:
+        bufpush(0x13A0);
+        break;
+      case 0xAB71:
+        bufpush(0x13A1);
+        break;
+      case 0xAB72:
+        bufpush(0x13A2);
+        break;
+      case 0xAB73:
+        bufpush(0x13A3);
+        break;
+      case 0xAB74:
+        bufpush(0x13A4);
+        break;
+      case 0xAB75:
+        bufpush(0x13A5);
+        break;
+      case 0xAB76:
+        bufpush(0x13A6);
+        break;
+      case 0xAB77:
+        bufpush(0x13A7);
+        break;
+      case 0xAB78:
+        bufpush(0x13A8);
+        break;
+      case 0xAB79:
+        bufpush(0x13A9);
+        break;
+      case 0xAB7A:
+        bufpush(0x13AA);
+        break;
+      case 0xAB7B:
+        bufpush(0x13AB);
+        break;
+      case 0xAB7C:
+        bufpush(0x13AC);
+        break;
+      case 0xAB7D:
+        bufpush(0x13AD);
+        break;
+      case 0xAB7E:
+        bufpush(0x13AE);
+        break;
+      case 0xAB7F:
+        bufpush(0x13AF);
+        break;
+      case 0xAB80:
+        bufpush(0x13B0);
+        break;
+      case 0xAB81:
+        bufpush(0x13B1);
+        break;
+      case 0xAB82:
+        bufpush(0x13B2);
+        break;
+      case 0xAB83:
+        bufpush(0x13B3);
+        break;
+      case 0xAB84:
+        bufpush(0x13B4);
+        break;
+      case 0xAB85:
+        bufpush(0x13B5);
+        break;
+      case 0xAB86:
+        bufpush(0x13B6);
+        break;
+      case 0xAB87:
+        bufpush(0x13B7);
+        break;
+      case 0xAB88:
+        bufpush(0x13B8);
+        break;
+      case 0xAB89:
+        bufpush(0x13B9);
+        break;
+      case 0xAB8A:
+        bufpush(0x13BA);
+        break;
+      case 0xAB8B:
+        bufpush(0x13BB);
+        break;
+      case 0xAB8C:
+        bufpush(0x13BC);
+        break;
+      case 0xAB8D:
+        bufpush(0x13BD);
+        break;
+      case 0xAB8E:
+        bufpush(0x13BE);
+        break;
+      case 0xAB8F:
+        bufpush(0x13BF);
+        break;
+      case 0xAB90:
+        bufpush(0x13C0);
+        break;
+      case 0xAB91:
+        bufpush(0x13C1);
+        break;
+      case 0xAB92:
+        bufpush(0x13C2);
+        break;
+      case 0xAB93:
+        bufpush(0x13C3);
+        break;
+      case 0xAB94:
+        bufpush(0x13C4);
+        break;
+      case 0xAB95:
+        bufpush(0x13C5);
+        break;
+      case 0xAB96:
+        bufpush(0x13C6);
+        break;
+      case 0xAB97:
+        bufpush(0x13C7);
+        break;
+      case 0xAB98:
+        bufpush(0x13C8);
+        break;
+      case 0xAB99:
+        bufpush(0x13C9);
+        break;
+      case 0xAB9A:
+        bufpush(0x13CA);
+        break;
+      case 0xAB9B:
+        bufpush(0x13CB);
+        break;
+      case 0xAB9C:
+        bufpush(0x13CC);
+        break;
+      case 0xAB9D:
+        bufpush(0x13CD);
+        break;
+      case 0xAB9E:
+        bufpush(0x13CE);
+        break;
+      case 0xAB9F:
+        bufpush(0x13CF);
+        break;
+      case 0xABA0:
+        bufpush(0x13D0);
+        break;
+      case 0xABA1:
+        bufpush(0x13D1);
+        break;
+      case 0xABA2:
+        bufpush(0x13D2);
+        break;
+      case 0xABA3:
+        bufpush(0x13D3);
+        break;
+      case 0xABA4:
+        bufpush(0x13D4);
+        break;
+      case 0xABA5:
+        bufpush(0x13D5);
+        break;
+      case 0xABA6:
+        bufpush(0x13D6);
+        break;
+      case 0xABA7:
+        bufpush(0x13D7);
+        break;
+      case 0xABA8:
+        bufpush(0x13D8);
+        break;
+      case 0xABA9:
+        bufpush(0x13D9);
+        break;
+      case 0xABAA:
+        bufpush(0x13DA);
+        break;
+      case 0xABAB:
+        bufpush(0x13DB);
+        break;
+      case 0xABAC:
+        bufpush(0x13DC);
+        break;
+      case 0xABAD:
+        bufpush(0x13DD);
+        break;
+      case 0xABAE:
+        bufpush(0x13DE);
+        break;
+      case 0xABAF:
+        bufpush(0x13DF);
+        break;
+      case 0xABB0:
+        bufpush(0x13E0);
+        break;
+      case 0xABB1:
+        bufpush(0x13E1);
+        break;
+      case 0xABB2:
+        bufpush(0x13E2);
+        break;
+      case 0xABB3:
+        bufpush(0x13E3);
+        break;
+      case 0xABB4:
+        bufpush(0x13E4);
+        break;
+      case 0xABB5:
+        bufpush(0x13E5);
+        break;
+      case 0xABB6:
+        bufpush(0x13E6);
+        break;
+      case 0xABB7:
+        bufpush(0x13E7);
+        break;
+      case 0xABB8:
+        bufpush(0x13E8);
+        break;
+      case 0xABB9:
+        bufpush(0x13E9);
+        break;
+      case 0xABBA:
+        bufpush(0x13EA);
+        break;
+      case 0xABBB:
+        bufpush(0x13EB);
+        break;
+      case 0xABBC:
+        bufpush(0x13EC);
+        break;
+      case 0xABBD:
+        bufpush(0x13ED);
+        break;
+      case 0xABBE:
+        bufpush(0x13EE);
+        break;
+      case 0xABBF:
+        bufpush(0x13EF);
         break;
       case 0xFB00:
         bufpush(0x0066);
@@ -2631,6 +3856,471 @@
         break;
       case 0x10425:
         bufpush(0x1044D);
+        break;
+      case 0x10426:
+        bufpush(0x1044E);
+        break;
+      case 0x10427:
+        bufpush(0x1044F);
+        break;
+      case 0x104B0:
+        bufpush(0x104D8);
+        break;
+      case 0x104B1:
+        bufpush(0x104D9);
+        break;
+      case 0x104B2:
+        bufpush(0x104DA);
+        break;
+      case 0x104B3:
+        bufpush(0x104DB);
+        break;
+      case 0x104B4:
+        bufpush(0x104DC);
+        break;
+      case 0x104B5:
+        bufpush(0x104DD);
+        break;
+      case 0x104B6:
+        bufpush(0x104DE);
+        break;
+      case 0x104B7:
+        bufpush(0x104DF);
+        break;
+      case 0x104B8:
+        bufpush(0x104E0);
+        break;
+      case 0x104B9:
+        bufpush(0x104E1);
+        break;
+      case 0x104BA:
+        bufpush(0x104E2);
+        break;
+      case 0x104BB:
+        bufpush(0x104E3);
+        break;
+      case 0x104BC:
+        bufpush(0x104E4);
+        break;
+      case 0x104BD:
+        bufpush(0x104E5);
+        break;
+      case 0x104BE:
+        bufpush(0x104E6);
+        break;
+      case 0x104BF:
+        bufpush(0x104E7);
+        break;
+      case 0x104C0:
+        bufpush(0x104E8);
+        break;
+      case 0x104C1:
+        bufpush(0x104E9);
+        break;
+      case 0x104C2:
+        bufpush(0x104EA);
+        break;
+      case 0x104C3:
+        bufpush(0x104EB);
+        break;
+      case 0x104C4:
+        bufpush(0x104EC);
+        break;
+      case 0x104C5:
+        bufpush(0x104ED);
+        break;
+      case 0x104C6:
+        bufpush(0x104EE);
+        break;
+      case 0x104C7:
+        bufpush(0x104EF);
+        break;
+      case 0x104C8:
+        bufpush(0x104F0);
+        break;
+      case 0x104C9:
+        bufpush(0x104F1);
+        break;
+      case 0x104CA:
+        bufpush(0x104F2);
+        break;
+      case 0x104CB:
+        bufpush(0x104F3);
+        break;
+      case 0x104CC:
+        bufpush(0x104F4);
+        break;
+      case 0x104CD:
+        bufpush(0x104F5);
+        break;
+      case 0x104CE:
+        bufpush(0x104F6);
+        break;
+      case 0x104CF:
+        bufpush(0x104F7);
+        break;
+      case 0x104D0:
+        bufpush(0x104F8);
+        break;
+      case 0x104D1:
+        bufpush(0x104F9);
+        break;
+      case 0x104D2:
+        bufpush(0x104FA);
+        break;
+      case 0x104D3:
+        bufpush(0x104FB);
+        break;
+      case 0x10C80:
+        bufpush(0x10CC0);
+        break;
+      case 0x10C81:
+        bufpush(0x10CC1);
+        break;
+      case 0x10C82:
+        bufpush(0x10CC2);
+        break;
+      case 0x10C83:
+        bufpush(0x10CC3);
+        break;
+      case 0x10C84:
+        bufpush(0x10CC4);
+        break;
+      case 0x10C85:
+        bufpush(0x10CC5);
+        break;
+      case 0x10C86:
+        bufpush(0x10CC6);
+        break;
+      case 0x10C87:
+        bufpush(0x10CC7);
+        break;
+      case 0x10C88:
+        bufpush(0x10CC8);
+        break;
+      case 0x10C89:
+        bufpush(0x10CC9);
+        break;
+      case 0x10C8A:
+        bufpush(0x10CCA);
+        break;
+      case 0x10C8B:
+        bufpush(0x10CCB);
+        break;
+      case 0x10C8C:
+        bufpush(0x10CCC);
+        break;
+      case 0x10C8D:
+        bufpush(0x10CCD);
+        break;
+      case 0x10C8E:
+        bufpush(0x10CCE);
+        break;
+      case 0x10C8F:
+        bufpush(0x10CCF);
+        break;
+      case 0x10C90:
+        bufpush(0x10CD0);
+        break;
+      case 0x10C91:
+        bufpush(0x10CD1);
+        break;
+      case 0x10C92:
+        bufpush(0x10CD2);
+        break;
+      case 0x10C93:
+        bufpush(0x10CD3);
+        break;
+      case 0x10C94:
+        bufpush(0x10CD4);
+        break;
+      case 0x10C95:
+        bufpush(0x10CD5);
+        break;
+      case 0x10C96:
+        bufpush(0x10CD6);
+        break;
+      case 0x10C97:
+        bufpush(0x10CD7);
+        break;
+      case 0x10C98:
+        bufpush(0x10CD8);
+        break;
+      case 0x10C99:
+        bufpush(0x10CD9);
+        break;
+      case 0x10C9A:
+        bufpush(0x10CDA);
+        break;
+      case 0x10C9B:
+        bufpush(0x10CDB);
+        break;
+      case 0x10C9C:
+        bufpush(0x10CDC);
+        break;
+      case 0x10C9D:
+        bufpush(0x10CDD);
+        break;
+      case 0x10C9E:
+        bufpush(0x10CDE);
+        break;
+      case 0x10C9F:
+        bufpush(0x10CDF);
+        break;
+      case 0x10CA0:
+        bufpush(0x10CE0);
+        break;
+      case 0x10CA1:
+        bufpush(0x10CE1);
+        break;
+      case 0x10CA2:
+        bufpush(0x10CE2);
+        break;
+      case 0x10CA3:
+        bufpush(0x10CE3);
+        break;
+      case 0x10CA4:
+        bufpush(0x10CE4);
+        break;
+      case 0x10CA5:
+        bufpush(0x10CE5);
+        break;
+      case 0x10CA6:
+        bufpush(0x10CE6);
+        break;
+      case 0x10CA7:
+        bufpush(0x10CE7);
+        break;
+      case 0x10CA8:
+        bufpush(0x10CE8);
+        break;
+      case 0x10CA9:
+        bufpush(0x10CE9);
+        break;
+      case 0x10CAA:
+        bufpush(0x10CEA);
+        break;
+      case 0x10CAB:
+        bufpush(0x10CEB);
+        break;
+      case 0x10CAC:
+        bufpush(0x10CEC);
+        break;
+      case 0x10CAD:
+        bufpush(0x10CED);
+        break;
+      case 0x10CAE:
+        bufpush(0x10CEE);
+        break;
+      case 0x10CAF:
+        bufpush(0x10CEF);
+        break;
+      case 0x10CB0:
+        bufpush(0x10CF0);
+        break;
+      case 0x10CB1:
+        bufpush(0x10CF1);
+        break;
+      case 0x10CB2:
+        bufpush(0x10CF2);
+        break;
+      case 0x118A0:
+        bufpush(0x118C0);
+        break;
+      case 0x118A1:
+        bufpush(0x118C1);
+        break;
+      case 0x118A2:
+        bufpush(0x118C2);
+        break;
+      case 0x118A3:
+        bufpush(0x118C3);
+        break;
+      case 0x118A4:
+        bufpush(0x118C4);
+        break;
+      case 0x118A5:
+        bufpush(0x118C5);
+        break;
+      case 0x118A6:
+        bufpush(0x118C6);
+        break;
+      case 0x118A7:
+        bufpush(0x118C7);
+        break;
+      case 0x118A8:
+        bufpush(0x118C8);
+        break;
+      case 0x118A9:
+        bufpush(0x118C9);
+        break;
+      case 0x118AA:
+        bufpush(0x118CA);
+        break;
+      case 0x118AB:
+        bufpush(0x118CB);
+        break;
+      case 0x118AC:
+        bufpush(0x118CC);
+        break;
+      case 0x118AD:
+        bufpush(0x118CD);
+        break;
+      case 0x118AE:
+        bufpush(0x118CE);
+        break;
+      case 0x118AF:
+        bufpush(0x118CF);
+        break;
+      case 0x118B0:
+        bufpush(0x118D0);
+        break;
+      case 0x118B1:
+        bufpush(0x118D1);
+        break;
+      case 0x118B2:
+        bufpush(0x118D2);
+        break;
+      case 0x118B3:
+        bufpush(0x118D3);
+        break;
+      case 0x118B4:
+        bufpush(0x118D4);
+        break;
+      case 0x118B5:
+        bufpush(0x118D5);
+        break;
+      case 0x118B6:
+        bufpush(0x118D6);
+        break;
+      case 0x118B7:
+        bufpush(0x118D7);
+        break;
+      case 0x118B8:
+        bufpush(0x118D8);
+        break;
+      case 0x118B9:
+        bufpush(0x118D9);
+        break;
+      case 0x118BA:
+        bufpush(0x118DA);
+        break;
+      case 0x118BB:
+        bufpush(0x118DB);
+        break;
+      case 0x118BC:
+        bufpush(0x118DC);
+        break;
+      case 0x118BD:
+        bufpush(0x118DD);
+        break;
+      case 0x118BE:
+        bufpush(0x118DE);
+        break;
+      case 0x118BF:
+        bufpush(0x118DF);
+        break;
+      case 0x1E900:
+        bufpush(0x1E922);
+        break;
+      case 0x1E901:
+        bufpush(0x1E923);
+        break;
+      case 0x1E902:
+        bufpush(0x1E924);
+        break;
+      case 0x1E903:
+        bufpush(0x1E925);
+        break;
+      case 0x1E904:
+        bufpush(0x1E926);
+        break;
+      case 0x1E905:
+        bufpush(0x1E927);
+        break;
+      case 0x1E906:
+        bufpush(0x1E928);
+        break;
+      case 0x1E907:
+        bufpush(0x1E929);
+        break;
+      case 0x1E908:
+        bufpush(0x1E92A);
+        break;
+      case 0x1E909:
+        bufpush(0x1E92B);
+        break;
+      case 0x1E90A:
+        bufpush(0x1E92C);
+        break;
+      case 0x1E90B:
+        bufpush(0x1E92D);
+        break;
+      case 0x1E90C:
+        bufpush(0x1E92E);
+        break;
+      case 0x1E90D:
+        bufpush(0x1E92F);
+        break;
+      case 0x1E90E:
+        bufpush(0x1E930);
+        break;
+      case 0x1E90F:
+        bufpush(0x1E931);
+        break;
+      case 0x1E910:
+        bufpush(0x1E932);
+        break;
+      case 0x1E911:
+        bufpush(0x1E933);
+        break;
+      case 0x1E912:
+        bufpush(0x1E934);
+        break;
+      case 0x1E913:
+        bufpush(0x1E935);
+        break;
+      case 0x1E914:
+        bufpush(0x1E936);
+        break;
+      case 0x1E915:
+        bufpush(0x1E937);
+        break;
+      case 0x1E916:
+        bufpush(0x1E938);
+        break;
+      case 0x1E917:
+        bufpush(0x1E939);
+        break;
+      case 0x1E918:
+        bufpush(0x1E93A);
+        break;
+      case 0x1E919:
+        bufpush(0x1E93B);
+        break;
+      case 0x1E91A:
+        bufpush(0x1E93C);
+        break;
+      case 0x1E91B:
+        bufpush(0x1E93D);
+        break;
+      case 0x1E91C:
+        bufpush(0x1E93E);
+        break;
+      case 0x1E91D:
+        bufpush(0x1E93F);
+        break;
+      case 0x1E91E:
+        bufpush(0x1E940);
+        break;
+      case 0x1E91F:
+        bufpush(0x1E941);
+        break;
+      case 0x1E920:
+        bufpush(0x1E942);
+        break;
+      case 0x1E921:
+        bufpush(0x1E943);
         break;
       default:
         bufpush(c);

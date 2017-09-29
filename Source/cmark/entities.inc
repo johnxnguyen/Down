@@ -6,7 +6,7 @@ struct cmark_entity_node {
 };
 
 #define CMARK_ENTITY_MIN_LENGTH 2
-#define CMARK_ENTITY_MAX_LENGTH 31
+#define CMARK_ENTITY_MAX_LENGTH 32
 #define CMARK_NUM_ENTITIES 2125
 
 static const struct cmark_entity_node cmark_entities[] = {

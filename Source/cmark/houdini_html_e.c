@@ -48,7 +48,7 @@ int houdini_escape_html0(cmark_strbuf *ob, const uint8_t *src, bufsize_t size,
     if (unlikely(i >= size))
       break;
 
-    /* The forward slash is only escaped in secure mode */
+    /* The forward slash and single quote are only escaped in secure mode */
     if ((src[i] == '/' || src[i] == '\'') && !secure) {
       cmark_strbuf_putc(ob, src[i]);
     } else {

@@ -9,15 +9,17 @@
 #include "buffer.h"
 #include "utf8.h"
 #include "render.h"
+#include "syntax_extension.h"
 
-#define OUT(s, wrap, escaping) renderer->out(renderer, s, wrap, escaping)
-#define LIT(s) renderer->out(renderer, s, false, LITERAL)
+#define OUT(s, wrap, escaping) renderer->out(renderer, node, s, wrap, escaping)
+#define LIT(s) renderer->out(renderer, node, s, false, LITERAL)
 #define CR() renderer->cr(renderer)
 #define BLANKLINE() renderer->blankline(renderer)
 #define LIST_NUMBER_SIZE 20
 
 // Functions to convert cmark_nodes to groff man strings.
-static void S_outc(cmark_renderer *renderer, cmark_escaping escape, int32_t c,
+static void S_outc(cmark_renderer *renderer, cmark_node *node, 
+                   cmark_escaping escape, int32_t c,
                    unsigned char nextc) {
   (void)(nextc);
 
@@ -75,12 +77,28 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
   cmark_node *tmp;
   int list_number;
   bool entering = (ev_type == CMARK_EVENT_ENTER);
+  bool allow_wrap = renderer->width > 0 && !(CMARK_OPT_NOBREAKS & options);
 
-  // avoid unused parameter error:
-  (void)(options);
+  if (node->extension && node->extension->man_render_func) {
+    node->extension->man_render_func(node->extension, renderer, node, ev_type, options);
+    return 1;
+  }
 
   switch (node->type) {
   case CMARK_NODE_DOCUMENT:
+    if (entering) {
+      /* Define a strikethrough macro */
+      /* Commenting out because this makes tests fail
+      LIT(".de ST");
+      CR();
+      LIT(".nr ww \\w'\\\\$1'");
+      CR();
+      LIT("\\Z@\\v'-.25m'\\l'\\\\n[ww]u'@\\\\$1");
+      CR();
+      LIT("..");
+      CR();
+      */
+    }
     break;
 
   case CMARK_NODE_BLOCK_QUOTE:
@@ -173,7 +191,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     break;
 
   case CMARK_NODE_TEXT:
-    OUT(cmark_node_get_literal(node), true, NORMAL);
+    OUT(cmark_node_get_literal(node), allow_wrap, NORMAL);
     break;
 
   case CMARK_NODE_LINEBREAK:
@@ -182,16 +200,19 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     break;
 
   case CMARK_NODE_SOFTBREAK:
-    if (renderer->width == 0) {
+    if (options & CMARK_OPT_HARDBREAKS) {
+      LIT(".PD 0\n.P\n.PD");
+      CR();
+    } else if (renderer->width == 0 && !(CMARK_OPT_NOBREAKS & options)) {
       CR();
     } else {
-      OUT(" ", true, LITERAL);
+      OUT(" ", allow_wrap, LITERAL);
     }
     break;
 
   case CMARK_NODE_CODE:
     LIT("\\f[C]");
-    OUT(cmark_node_get_literal(node), true, NORMAL);
+    OUT(cmark_node_get_literal(node), allow_wrap, NORMAL);
     LIT("\\f[]");
     break;
 
@@ -222,7 +243,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
   case CMARK_NODE_LINK:
     if (!entering) {
       LIT(" (");
-      OUT(cmark_node_get_url(node), true, URL);
+      OUT(cmark_node_get_url(node), allow_wrap, URL);
       LIT(")");
     }
     break;
@@ -244,5 +265,9 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
 }
 
 char *cmark_render_man(cmark_node *root, int options, int width) {
-  return cmark_render(root, options, width, S_outc, S_render_node);
+  return cmark_render_man_with_mem(root, options, width, cmark_node_mem(root));
+}
+
+char *cmark_render_man_with_mem(cmark_node *root, int options, int width, cmark_mem *mem) {
+  return cmark_render(mem, root, options, width, S_outc, S_render_node);
 }

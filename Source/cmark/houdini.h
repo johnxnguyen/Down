@@ -31,17 +31,23 @@ extern "C" {
 #define HOUDINI_ESCAPED_SIZE(x) (((x)*12) / 10)
 #define HOUDINI_UNESCAPED_SIZE(x) (x)
 
-extern bufsize_t houdini_unescape_ent(cmark_strbuf *ob, const uint8_t *src,
+CMARK_EXPORT
+bufsize_t houdini_unescape_ent(cmark_strbuf *ob, const uint8_t *src,
                                       bufsize_t size);
-extern int houdini_escape_html(cmark_strbuf *ob, const uint8_t *src,
+CMARK_EXPORT
+int houdini_escape_html(cmark_strbuf *ob, const uint8_t *src,
                                bufsize_t size);
-extern int houdini_escape_html0(cmark_strbuf *ob, const uint8_t *src,
+CMARK_EXPORT
+int houdini_escape_html0(cmark_strbuf *ob, const uint8_t *src,
                                 bufsize_t size, int secure);
-extern int houdini_unescape_html(cmark_strbuf *ob, const uint8_t *src,
+CMARK_EXPORT
+int houdini_unescape_html(cmark_strbuf *ob, const uint8_t *src,
                                  bufsize_t size);
-extern void houdini_unescape_html_f(cmark_strbuf *ob, const uint8_t *src,
+CMARK_EXPORT
+void houdini_unescape_html_f(cmark_strbuf *ob, const uint8_t *src,
                                     bufsize_t size);
-extern int houdini_escape_href(cmark_strbuf *ob, const uint8_t *src,
+CMARK_EXPORT
+int houdini_escape_href(cmark_strbuf *ob, const uint8_t *src,
                                bufsize_t size);
 
 #ifdef __cplusplus

@@ -5,46 +5,59 @@
 #include <stdarg.h>
 #include <string.h>
 #include <limits.h>
+#include <stdint.h>
 #include "config.h"
+#include "cmark.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef int bufsize_t;
+typedef int32_t bufsize_t;
 
 typedef struct {
+  cmark_mem *mem;
   unsigned char *ptr;
   bufsize_t asize, size;
 } cmark_strbuf;
 
 extern unsigned char cmark_strbuf__initbuf[];
 
-#define GH_BUF_INIT                                                            \
-  { cmark_strbuf__initbuf, 0, 0 }
-#define BUFSIZE_MAX INT_MAX
+#define CMARK_BUF_INIT(mem)                                                    \
+  { mem, cmark_strbuf__initbuf, 0, 0 }
 
 /**
  * Initialize a cmark_strbuf structure.
  *
- * For the cases where GH_BUF_INIT cannot be used to do static
+ * For the cases where CMARK_BUF_INIT cannot be used to do static
  * initialization.
  */
-void cmark_strbuf_init(cmark_strbuf *buf, bufsize_t initial_size);
+CMARK_EXPORT
+void cmark_strbuf_init(cmark_mem *mem, cmark_strbuf *buf,
+                       bufsize_t initial_size);
 
 /**
  * Grow the buffer to hold at least `target_size` bytes.
  */
+CMARK_EXPORT
 void cmark_strbuf_grow(cmark_strbuf *buf, bufsize_t target_size);
 
+CMARK_EXPORT
 void cmark_strbuf_free(cmark_strbuf *buf);
+
+CMARK_EXPORT
 void cmark_strbuf_swap(cmark_strbuf *buf_a, cmark_strbuf *buf_b);
 
+CMARK_EXPORT
 bufsize_t cmark_strbuf_len(const cmark_strbuf *buf);
 
+CMARK_EXPORT
 int cmark_strbuf_cmp(const cmark_strbuf *a, const cmark_strbuf *b);
 
+CMARK_EXPORT
 unsigned char *cmark_strbuf_detach(cmark_strbuf *buf);
+
+CMARK_EXPORT
 void cmark_strbuf_copy_cstr(char *data, bufsize_t datasize,
                             const cmark_strbuf *buf);
 
@@ -54,37 +67,49 @@ static CMARK_INLINE const char *cmark_strbuf_cstr(const cmark_strbuf *buf) {
 
 #define cmark_strbuf_at(buf, n) ((buf)->ptr[n])
 
+CMARK_EXPORT
 void cmark_strbuf_set(cmark_strbuf *buf, const unsigned char *data,
                       bufsize_t len);
+
+CMARK_EXPORT
 void cmark_strbuf_sets(cmark_strbuf *buf, const char *string);
+
+CMARK_EXPORT
 void cmark_strbuf_putc(cmark_strbuf *buf, int c);
+
+CMARK_EXPORT
 void cmark_strbuf_put(cmark_strbuf *buf, const unsigned char *data,
                       bufsize_t len);
+
+CMARK_EXPORT
 void cmark_strbuf_puts(cmark_strbuf *buf, const char *string);
+
+CMARK_EXPORT
 void cmark_strbuf_clear(cmark_strbuf *buf);
 
+CMARK_EXPORT
 bufsize_t cmark_strbuf_strchr(const cmark_strbuf *buf, int c, bufsize_t pos);
+
+CMARK_EXPORT
 bufsize_t cmark_strbuf_strrchr(const cmark_strbuf *buf, int c, bufsize_t pos);
+
+CMARK_EXPORT
 void cmark_strbuf_drop(cmark_strbuf *buf, bufsize_t n);
+
+CMARK_EXPORT
 void cmark_strbuf_truncate(cmark_strbuf *buf, bufsize_t len);
+
+CMARK_EXPORT
 void cmark_strbuf_rtrim(cmark_strbuf *buf);
+
+CMARK_EXPORT
 void cmark_strbuf_trim(cmark_strbuf *buf);
+
+CMARK_EXPORT
 void cmark_strbuf_normalize_whitespace(cmark_strbuf *s);
+
+CMARK_EXPORT
 void cmark_strbuf_unescape(cmark_strbuf *s);
-
-/* Print error and abort. */
-void cmark_strbuf_overflow_err(void);
-
-static CMARK_INLINE bufsize_t cmark_strbuf_check_bufsize(size_t size) {
-  if (size > BUFSIZE_MAX) {
-    cmark_strbuf_overflow_err();
-  }
-  return (bufsize_t)size;
-}
-
-static CMARK_INLINE bufsize_t cmark_strbuf_safe_strlen(const char *str) {
-  return cmark_strbuf_check_bufsize(strlen(str));
-}
 
 #ifdef __cplusplus
 }

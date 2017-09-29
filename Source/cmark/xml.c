@@ -148,8 +148,12 @@ static int S_render_node(cmark_node *node, cmark_event_type ev_type,
 }
 
 char *cmark_render_xml(cmark_node *root, int options) {
+  return cmark_render_xml_with_mem(root, options, cmark_node_mem(root));
+}
+
+char *cmark_render_xml_with_mem(cmark_node *root, int options, cmark_mem *mem) {
   char *result;
-  cmark_strbuf xml = GH_BUF_INIT;
+  cmark_strbuf xml = CMARK_BUF_INIT(mem);
   cmark_event_type ev_type;
   cmark_node *cur;
   struct render_state state = {&xml, 0};
