@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import libcmark
+import libcmark-gfm
 
 extension String {
 
