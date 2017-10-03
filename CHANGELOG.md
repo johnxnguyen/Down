@@ -1,5 +1,46 @@
 # Change Log
 
+## [Unreleased](https://github.com/iwasrobbed/Down/tree/HEAD)
+
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.4.0...HEAD)
+
+**Closed issues:**
+
+- Carthage install fails: no such module 'libcmark' [\#43](https://github.com/iwasrobbed/Down/issues/43)
+
+**Merged pull requests:**
+
+- Fixes issue \#43 [\#47](https://github.com/iwasrobbed/Down/pull/47) ([128keaton](https://github.com/128keaton))
+- Update to Swift 4  [\#46](https://github.com/iwasrobbed/Down/pull/46) ([iwasrobbed](https://github.com/iwasrobbed))
+- Fixed error with accessing shared workspace. [\#44](https://github.com/iwasrobbed/Down/pull/44) ([mjzac](https://github.com/mjzac))
+
+## [v0.4.0](https://github.com/iwasrobbed/Down/tree/v0.4.0) (2017-08-31)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.5...v0.4.0)
+
+**Implemented enhancements:**
+
+- Example project [\#37](https://github.com/iwasrobbed/Down/issues/37)
+- Markdown tables support [\#36](https://github.com/iwasrobbed/Down/issues/36)
+
+**Closed issues:**
+
+- Unable to build with Xcode 9 [\#41](https://github.com/iwasrobbed/Down/issues/41)
+- Can not load local image and link to local .md file [\#40](https://github.com/iwasrobbed/Down/issues/40)
+- Fenced code syntax highlighting [\#35](https://github.com/iwasrobbed/Down/issues/35)
+- down.toAttributedString\(\) custom text font and image size [\#33](https://github.com/iwasrobbed/Down/issues/33)
+
+**Merged pull requests:**
+
+- Closes “Example” Issue [\#38](https://github.com/iwasrobbed/Down/pull/38) ([128keaton](https://github.com/128keaton))
+- Prevent zoom documentation [\#34](https://github.com/iwasrobbed/Down/pull/34) ([Kumuluzz](https://github.com/Kumuluzz))
+
+## [v0.3.5](https://github.com/iwasrobbed/Down/tree/v0.3.5) (2017-05-25)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.4...v0.3.5)
+
+**Implemented enhancements:**
+
+- Disable analysis of cmark source code [\#31](https://github.com/iwasrobbed/Down/pull/31) ([tonyarnold](https://github.com/tonyarnold))
+
 ## [v0.3.4](https://github.com/iwasrobbed/Down/tree/v0.3.4) (2017-05-13)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.3...v0.3.4)
 
