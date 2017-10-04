@@ -1,15 +1,16 @@
 # Change Log
 
-## [Unreleased](https://github.com/iwasrobbed/Down/tree/HEAD)
-
-[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.4.0...HEAD)
+## [v0.4.1](https://github.com/iwasrobbed/Down/tree/v0.4.1) (2017-10-04)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.4.0...v0.4.1)
 
 **Closed issues:**
 
 - Carthage install fails: no such module 'libcmark' [\#43](https://github.com/iwasrobbed/Down/issues/43)
+- Xcode 8.3 warnings [\#26](https://github.com/iwasrobbed/Down/issues/26)
 
 **Merged pull requests:**
 
+- Adds filters to remove Xcode-specific warnings [\#48](https://github.com/iwasrobbed/Down/pull/48) ([128keaton](https://github.com/128keaton))
 - Fixes issue \#43 [\#47](https://github.com/iwasrobbed/Down/pull/47) ([128keaton](https://github.com/128keaton))
 - Update to Swift 4  [\#46](https://github.com/iwasrobbed/Down/pull/46) ([iwasrobbed](https://github.com/iwasrobbed))
 - Fixed error with accessing shared workspace. [\#44](https://github.com/iwasrobbed/Down/pull/44) ([mjzac](https://github.com/mjzac))
