@@ -7,6 +7,7 @@ Pod::Spec.new do |spec|
   spec.authors      = { "Rob Phillips" => "rob@robphillips.me" }
   spec.source       = { :git => "https://github.com/iwasrobbed/Down.git", :tag => "v" + spec.version.to_s }
   spec.source_files = "Source/{cmark,Enums & Options,Extensions,Renderers}/**", "Source/*"
+  spec.exclude_files = "Source/cmark/*.inc", "Source/cmark/COPYING"
   spec.ios.source_files = "Source/Views/**"
   spec.osx.source_files = "Source/Views/**"
   spec.public_header_files = "Source/*.h"
@@ -15,6 +16,7 @@ Pod::Spec.new do |spec|
   spec.osx.deployment_target = "10.11"
   spec.requires_arc = true
   spec.module_name = "Down"
+  spec.module_map = "Source/cmark/module.modulemap"
   spec.preserve_path = 'Source/cmark/module.modulemap'
   spec.pod_target_xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/Down/Source/cmark/**' }
   spec.ios.resource = 'Resources/DownView.bundle'
