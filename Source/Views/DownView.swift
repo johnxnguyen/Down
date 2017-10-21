@@ -6,6 +6,9 @@
 //  Copyright © 2016 Glazed Donut, LLC. All rights reserved.
 //
 
+#if os(tvOS)
+    // Sorry, not available for tvOS
+#else
 import WebKit
 
 // MARK: - Public API
@@ -119,3 +122,4 @@ extension DownView: WKNavigationDelegate {
     }
     
 }
+#endif
