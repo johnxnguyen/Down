@@ -1,10 +1,12 @@
 osx_image: xcode9
 language: objective-c
 before_install:
+  - set -o pipefail 
   - gem install xcpretty slather -N
   - xcrun instruments -w "iPhone 6 (11.0)" || echo "(Pre)Launched the simulator."
 script:
-  - set -o pipefail && xcodebuild -project Down.xcodeproj -scheme "Down" -destination "platform=iOS Simulator,name=iPhone 6,OS=11.0" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES test | xcpretty -c
-  - set -o pipefail && xcodebuild -project Down.xcodeproj -scheme "Down" -sdk macosx -destination 'platform=OS X,arch=x86_64' -enableCodeCoverage YES test | xcpretty -c
+  - xcodebuild -project Down.xcodeproj -scheme "Down" -destination "platform=iOS Simulator,name=iPhone 6,OS=11.0" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES test | xcpretty -c
+  - xcodebuild -project Down.xcodeproj -scheme "Down" -sdk macosx -destination 'platform=OS X,arch=x86_64' -enableCodeCoverage YES test | xcpretty -c
+  - xcodebuild -project Down.xcodeproj -scheme "Down" -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV' -enableCodeCoverage YES test | xcpretty -c
 after_success:
   - slather coverage --ignore "../**/*/Xcode*" --ignore "Source/cmark/*" --scheme "Down" Down.xcodeproj
