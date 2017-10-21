@@ -1,5 +1,20 @@
 # Change Log
 
+## [v0.4.2](https://github.com/iwasrobbed/Down/tree/v0.4.2) (2017-10-21)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.4.1...v0.4.2)
+
+**Fixed bugs:**
+
+- Building for tvOS fails [\#49](https://github.com/iwasrobbed/Down/issues/49)
+
+**Merged pull requests:**
+
+- \[tvOS\] Conditionally compile DownView [\#52](https://github.com/iwasrobbed/Down/pull/52) ([iwasrobbed](https://github.com/iwasrobbed))
+
+**Closed issues:**
+
+- Push v0.4.1 to cocoapods  [\#51](https://github.com/iwasrobbed/Down/issues/51)
+
 ## [v0.4.1](https://github.com/iwasrobbed/Down/tree/v0.4.1) (2017-10-04)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.4.0...v0.4.1)
 
