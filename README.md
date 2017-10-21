@@ -14,7 +14,7 @@ Is your app using it? [Let me know!](mailto:rob@robphillips.me)
 
 ### Installation
 
-Note: Swift 4 support is now on the `master` branch.
+Note: Swift 4 support is now on the `master` branch and any tag >= 0.4.x (Swift 3 is 0.3.x)
 
 Quickly install using [CocoaPods](https://cocoapods.org): 
 
