@@ -214,4 +214,4 @@ Please feel free to fork and create a pull request for bug fixes or improvements
 ### Credit
 This library is a wrapper around [cmark](https://github.com/jgm/cmark), which is built upon the [CommonMark](http://commonmark.org) Markdown specification. 
 
-[cmark](https://github.com/jgm/cmark) is Copyright (c) 2014, John MacFarlane. View [full license](https://github.com/jgm/cmark/blob/master/COPYING).
+[cmark](https://github.com/jgm/cmark) is Copyright (c) 2014 - 2017, John MacFarlane. View [full license](https://github.com/jgm/cmark/blob/master/COPYING).
