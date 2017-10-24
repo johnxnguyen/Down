@@ -27,6 +27,11 @@ Or [Carthage](https://github.com/Carthage/Carthage):
 ```
 github "iwasrobbed/Down"
 ```
+Due to limitations in Carthage regarding platform specification, you need to define the platform with Carthage. 
+
+e.g.
+
+```carthage update --platform iOS```
 
 Or manually install:
 
