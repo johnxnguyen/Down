@@ -10,7 +10,13 @@
 
 Blazing fast Markdown rendering in Swift, built upon [cmark](https://github.com/jgm/cmark).
 
-Is your app using it? [Let me know!](mailto:rob@robphillips.me)
+Is your app using it? [Let us know!](mailto:rob@robphillips.me)
+
+#### Maintainers
+
+- [Rob Phillips](https://github.com/iwasrobbed)
+- [Keaton Burleson](https://github.com/128keaton)
+- [Other contributors](https://github.com/iwasrobbed/Down/graphs/contributors) 🙌 
 
 ### Installation
 
