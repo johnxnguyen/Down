@@ -6,7 +6,7 @@
 //  Copyright © 2016 Glazed Donut, LLC. All rights reserved.
 //
 
-#if !os(tvOS) || !os(watchOS)
+#if os(tvOS) || os(watchOS)
     // Sorry, not available for tvOS nor watchOS
 #else
 import WebKit
