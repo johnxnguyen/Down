@@ -91,7 +91,7 @@ public struct Style {
     
     // list attributes
     // TODO: list indentation property
-    public var listParagraphStyle = NSParagraphStyle.default.with(tabStopOffset: 16).indentedBy(points: 16)
+    public var listParagraphStyle = NSParagraphStyle.default.with(topSpacing: 4, bottomSpacing: 4).with(tabStopOffset: 16).indentedBy(points: 16)
     
     var defaultAttributes: Attributes {
         return [.font: baseFont,
@@ -250,18 +250,15 @@ extension NSMutableAttributedString {
         }
     }
     
-    // FIXME: this assumes there is already a paragraph style.
-    //    func deepIndentBy(points: CGFloat) {
-    //        var paragraphStyles = [(style: NSParagraphStyle, range: NSRange)]()
-    //        enumerateAttribute(.paragraphStyle, in: wholeRange, options: []) { val, range, _ in
-    //            guard let style = val as? NSParagraphStyle else { return }
-    //            paragraphStyles.append((style, range))
-    //        }
-    //
-    //        for (style, range) in paragraphStyles {
-    //            addAttribute(.paragraphStyle, value: style.indentedBy(points: points), range: range)
-    //        }
-    //    }
+    
+    var rangesOfNestedLists: [NSRange] {
+        var result = [NSRange]()
+        enumerateAttribute(.markdown, in: wholeRange, options: []) { val, range, _ in
+            guard let markdown = val as? Markdown else { return }
+            if markdown.contains(.list) { result.append(range) }
+        }
+        return result
+    }
     
 }
 
@@ -279,11 +276,6 @@ extension NSParagraphStyle {
         let copy = mutableCopy() as! NSMutableParagraphStyle
         copy.firstLineHeadIndent += points
         copy.headIndent += points
-        // FIXME: could be better
-        copy.tabStops = copy.tabStops.map {
-            NSTextTab(textAlignment: .left, location: $0.location + points, options: [:])
-        }
-        
         return copy as NSParagraphStyle
     }
     

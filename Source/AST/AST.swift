@@ -195,9 +195,13 @@ extension Block : Renderable {
         case .list(let items, type: _):
             let content = items.map { $0.render(with: style) }.join()
             // paragraph indentation should be accumulative!
+            let ranges = content.rangesOfNestedLists
             content.addAttributes(attrs)
-            //            // take this from the style
-            //            content.deepIndentBy(points: 16)
+            // reapply nested list attributes
+            let nestedListStyle = style.listParagraphStyle.indentedBy(points: 24)
+            ranges.forEach {
+                content.addAttribute(.paragraphStyle, value: nestedListStyle, range: $0)
+            }
             return content
             
         case .listItem(let children, let prefix):
