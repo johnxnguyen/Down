@@ -22,7 +22,7 @@ import UIKit
 import Foundation
 import libcmark
 
-// Maybe it makes sense to insert empty string if no literal
+// MARK: - DEFINITIONS
 
 protocol Renderable {
     func render(with style: Style) -> NSMutableAttributedString?
@@ -32,6 +32,15 @@ enum ListType : CustomStringConvertible {
     case ordered(start: Int)
     case unordered
     
+    init?(node: Node) {
+        guard node.type == CMARK_NODE_LIST else { return nil }
+        switch node.listType {
+        case CMARK_ORDERED_LIST:    self = .ordered(start: node.listStart)
+        default:                    self = .unordered
+        }
+    }
+    
+    /// Returns the prefix for the this lists item at the given index.
     func prefix(itemIndex: Int) -> String {
         switch self {
         case .ordered(let start):   return "\(start + itemIndex). "
@@ -41,28 +50,24 @@ enum ListType : CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .ordered(let start): return "Ordered: Start: \(start)"
-        case .unordered: return "Unordered"
+        case .ordered(let start):   return "Ordered: Start: \(start)"
+        case .unordered:            return "Unordered"
         }
     }
 }
 
-// MARK: - BLOCK DEFINITION
-
 enum Block {
     case document(children: [Block])
     case blockQuote(items: [Block])
-    case list(items: [Block], type: ListType) // 2D array for nested lists?
+    case list(items: [Block], type: ListType)
     case listItem(children: [Block], prefix: String)
     case codeBlock(text: String)
     case htmlBlock(text: String)
-    case customBlock(literal: String)    // ???
+    case customBlock(literal: String)
     case paragraph(children: [Inline])
     case heading(children: [Inline], level: Int)
     case thematicBreak
 }
-
-// MARK: - INLINE DEFINITION
 
 enum Inline {
     case text(text: String)
@@ -70,14 +75,14 @@ enum Inline {
     case lineBreak
     case code(text: String)
     case html(text: String)
-    case custom(literal: String) // ???
+    case custom(literal: String)
     case emphasis(children: [Inline])
     case strong(children: [Inline])
     case link(children: [Inline], title: String?, url: String?)
     case image(children: [Inline], title: String?, url: String?)
 }
 
-// MARK: - BLOCK INIT
+// MARK: - INITIALIZERS
 
 extension Block {
     init(_ node: Node) {
@@ -92,12 +97,9 @@ extension Block {
             self = .blockQuote(items: blockChildren())
             
         case CMARK_NODE_LIST:
-            let listType: ListType
-            switch node.listType {
-            case CMARK_ORDERED_LIST: listType = .ordered(start: node.listStart)
-            default: listType = .unordered
-            }
+            let listType = ListType(node: node) ?? .ordered(start: 0)
             
+            // we process the lists items here so that we can append their prefixes
             var items = [Block]()
             for (idx, item) in node.children.enumerated() {
                 items.append(.listItem(children: item.children.map(Block.init), prefix: listType.prefix(itemIndex: idx)))
@@ -132,9 +134,6 @@ extension Block {
     }
     
 }
-
-
-// MARK: - INLINE INIT
 
 extension Inline {
     init(_ node: Node) {
@@ -177,36 +176,55 @@ extension Inline {
     }
 }
 
-// MARK: - BLOCK RENDER
+// MARK: - RENDER HELPERS
+
+fileprivate extension Sequence where Iterator.Element == Block {
+    /// Calls render(with style:) to each element in the sequence and returns
+    /// the concatenation of their results.
+    func render(with style: Style) -> NSMutableAttributedString {
+        return self.map { $0.render(with: style) }.join()
+    }
+}
+
+fileprivate extension Sequence where Iterator.Element == Inline {
+    /// Calls render(with style:) to each element in the sequence and returns
+    /// the concatenation of their results.
+    func render(with style: Style) -> NSMutableAttributedString {
+        return self.map { $0.render(with: style) }.join()
+    }
+}
+
+// MARK: - RENDERING
 
 extension Block : Renderable {
-    /// Renders the tree rooted at the current node.
+    /// Renders the tree rooted at the current node with the given style.
     func render(with style: Style) -> NSMutableAttributedString? {
         let attrs = style.attributes(for: self)
+        
         switch self {
         case .document(let children):
-            return children.map { $0.render(with: style) }.join()
+            return children.render(with: style)
             
         case .blockQuote(let items):
-            let content = items.map { $0.render(with: style) }.join()
+            let content = items.render(with: style)
             content.addAttributes(attrs)
             return content
             
         case .list(let items, type: _):
-            let content = items.map { $0.render(with: style) }.join()
-            // paragraph indentation should be accumulative!
+            // TODO: general tidy up
+            let content = items.render(with: style)
             let ranges = content.rangesOfNestedLists
+            // important to get nested ranges before apply attrs
             content.addAttributes(attrs)
             // reapply nested list attributes
-            let nestedListStyle = style.listParagraphStyle.indentedBy(points: 24)
+            let nestedListParagraphStyle = style.listParagraphStyle.indentedBy(points: 24)
             ranges.forEach {
-                content.addAttribute(.paragraphStyle, value: nestedListStyle, range: $0)
+                content.addAttribute(.paragraphStyle, value: nestedListParagraphStyle, range: $0)
             }
             return content
             
         case .listItem(let children, let prefix):
-            // need to add style!
-            let content = children.map { $0.render(with: style) }.join()
+            let content = children.render(with: style)
             let attrPrefix = NSMutableAttributedString(string: prefix, attributes: style.codeAttributes)
             return [attrPrefix, content].join()
             
@@ -220,29 +238,29 @@ extension Block : Renderable {
             return NSMutableAttributedString(string: literal, attributes: attrs)
             
         case .paragraph(let children):
-            let content = children.map { $0.render(with: style) }.join()
+            let content = children.render(with: style)
             content.appendBreak()
             return content
             
         case .heading(let children, let level):
-            // need to add style!
-            let content = children.map { $0.render(with: style) }.join()
+            let content = children.render(with: style)
             content.deepAddHeader(with: style.headerSize(for: level))
-            content.appendBreak()
             content.addAttributes(attrs)
+            content.appendBreak()
             return content
             
         case .thematicBreak:
+            // TODO: should this be nil?
             return nil
         }
     }
 }
 
-// MARK: - INLINE RENDER
-
 extension Inline : Renderable {
+    /// Renders the tree rooted at the current node with the given style.
     func render(with style: Style) -> NSMutableAttributedString? {
         let attrs = style.attributes(for: self)
+        
         switch self {
         case .text(let text):
             return NSMutableAttributedString(string: text, attributes: attrs)
@@ -263,31 +281,31 @@ extension Inline : Renderable {
             return NSMutableAttributedString(string: literal, attributes: attrs)
             
         case .emphasis(let children):
-            let content = children.map { $0.render(with: style) }.join()
+            let content = children.render(with: style)
             content.deppAddItalic()
-            if let attrs = attrs { content.addAttributes(attrs, range: content.wholeRange) }
+            content.addAttributes(attrs)
             return content
             
         case .strong(let children):
-            let content = children.map { $0.render(with: style) }.join()
+            let content = children.render(with: style)
             content.deepAddBold()
-            if let attrs = attrs { content.addAttributes(attrs, range: content.wholeRange) }
+            content.addAttributes(attrs)
             return content
             
         case .link(let children, title: _, url: _):
-            let content = children.map { $0.render(with: style) }.join()
-            // MISSING ATTRIBUTES
+            let content = children.render(with: style)
+            // TODO: attributes
             return content
             
         case .image(let children, title: _, url: _):
-            let content = children.map { $0.render(with: style) }.join()
-            // MISSING ATTRIBUTES
+            let content = children.render(with: style)
+            // TODO: attributes
             return content
         }
     }
 }
 
-// MARK: - BLOCK DESCRIPTION
+// MARK: - STRING DESCRIPTION
 
 extension Block : CustomStringConvertible {
     /// Describes the tree rooted at this node.
@@ -338,8 +356,6 @@ extension Block : CustomStringConvertible {
     }
 }
 
-// MARK: - INLINE DESCRIPTION
-
 extension Inline : CustomStringConvertible {
     /// Describes the tree rooted at this node.
     var description: String {
@@ -386,4 +402,3 @@ extension Inline : CustomStringConvertible {
         return String(repeating: "\t", count: indent) + str
     }
 }
-
