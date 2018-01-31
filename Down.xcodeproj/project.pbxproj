@@ -67,6 +67,7 @@
 		8AFAEB091E6E331700E09B68 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438696B1D00D27700E95A1F /* StringTests.swift */; };
 		907C64651EC133780095FEE1 /* TestDownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 907C64621EC120530095FEE1 /* TestDownView.bundle */; };
 		90A40A9C1EC03292004F2E91 /* Down.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EE6CBE0A2021C03600AD9E30 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE092021C03600AD9E30 /* Node.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -193,6 +194,7 @@
 		D4CF88971CFFAC2C00F07FD1 /* DownAttributedStringRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownAttributedStringRenderable.swift; sourceTree = "<group>"; };
 		D4DC91131CFDED4B0091CE09 /* DownCommonMarkRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownCommonMarkRenderable.swift; sourceTree = "<group>"; };
 		D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
+		EE6CBE092021C03600AD9E30 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +269,7 @@
 				D44875E21CFA6B120037A624 /* Renderers */,
 				D43AE5CB1CFFD068006E1522 /* Views */,
 				D4201EF61CFA5D63008EEC6E /* cmark */,
+				EE6CBE082021C01100AD9E30 /* AST */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -367,6 +370,14 @@
 				D44875E91CFA6CF30037A624 /* DownOptions.swift */,
 			);
 			path = "Enums & Options";
+			sourceTree = "<group>";
+		};
+		EE6CBE082021C01100AD9E30 /* AST */ = {
+			isa = PBXGroup;
+			children = (
+				EE6CBE092021C03600AD9E30 /* Node.swift */,
+			);
+			path = AST;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -531,6 +542,7 @@
 				8A569F5C1E6B3ED9008BE2AC /* inlines.c in Sources */,
 				8A569F571E6B3ED9008BE2AC /* houdini_href_e.c in Sources */,
 				8A569F4D1E6B3ED9008BE2AC /* cmark.c in Sources */,
+				EE6CBE0A2021C03600AD9E30 /* Node.swift in Sources */,
 				8A569F6D1E6B3ED9008BE2AC /* xml.c in Sources */,
 				8A569F6E1E6B3EDE008BE2AC /* DownASTRenderable.swift in Sources */,
 				8A569F491E6B3ED9008BE2AC /* blocks.c in Sources */,
