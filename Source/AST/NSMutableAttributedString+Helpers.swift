@@ -100,12 +100,12 @@ extension NSMutableAttributedString {
         }
     }
     
-    // TODO: perhaps make this for any markdown attribute. But need to consider
-    // that we're just checking for membership at the moment, not exact matches.
-    var rangesOfNestedLists: [NSRange] {
+    /// Returns the ranges containing the specified markdown. Note, this is
+    /// a partial match, i.e the ranges may also contain other markdown identifiers.
+    func ranges(containing markdown: Markdown) -> [NSRange] {
         var result = [NSRange]()
         enumerateAttribute(.markdown, in: wholeRange, options: []) { val, range, _ in
-            guard let markdown = val as? Markdown, markdown.contains(.list) else { return }
+            guard let markdown = val as? Markdown, markdown.contains(markdown) else { return }
             result.append(range)
         }
         return result

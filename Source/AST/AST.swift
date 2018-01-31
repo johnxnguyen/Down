@@ -213,7 +213,7 @@ extension Block : Renderable {
         case .list(let items, type: _):
             // TODO: general tidy up
             let content = items.render(with: style)
-            let ranges = content.rangesOfNestedLists
+            let ranges = content.ranges(containing: .list)
             // important to get nested ranges before apply attrs
             content.addAttributes(attrs)
             // reapply nested list attributes
