@@ -22,6 +22,36 @@ import UIKit
 // TODO: check that code font is actually rendering
 // what happens with code in header?
 
+/// This OptionSet describes the Markdown units and contains useful helper
+/// methods to determine deeper information regarding a type of Markdown.
+///
+private struct Markdown: OptionSet, Hashable {
+    
+    public let rawValue: Int
+    
+    public var hashValue: Int {
+        return self.rawValue
+    }
+    
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+    
+    // atomic options
+    
+    public static let none             = Markdown(rawValue: 0)
+    public static let header           = Markdown(rawValue: 1 << 0)
+    public static let bold             = Markdown(rawValue: 1 << 1)
+    public static let italic           = Markdown(rawValue: 1 << 2)
+    public static let code             = Markdown(rawValue: 1 << 3)
+    public static let list             = Markdown(rawValue: 1 << 4)
+    
+}
+
+private extension NSAttributedStringKey {
+    static let markdown = NSAttributedStringKey.init(rawValue: "markdown")
+}
+
 public struct Style {
     
     public static var `default`: Style { return Style() }
@@ -91,7 +121,9 @@ public struct Style {
     }
     
     var listAttributes: Attributes {
-        return [.paragraphStyle: listParagraphStyle]
+        return [.markdown: Markdown.list,
+                .paragraphStyle: listParagraphStyle,
+        ]
     }
     
     var h1Attributes: Attributes {
