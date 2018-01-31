@@ -21,6 +21,20 @@ public protocol DownASTRenderable: DownRenderable {
      */
     
     func toAST(_ options: DownOptions) throws -> UnsafeMutablePointer<cmark_node>
+    
+    /**
+     Generates an `NSAttributedString` from the `markdownString` property
+     
+     - parameter options: `DownOptions` to modify parsing or rendering
+     
+     - parameter style: `Style` instance to use when applying attributes
+     
+     - throws: `DownErrors` depending on the scenario
+     
+     - returns: An `NSAttributedString`
+     */
+    
+    func toAttributedString(_ options: DownOptions, usingStyle style: Style) throws -> NSAttributedString
 }
 
 public extension DownASTRenderable {
@@ -36,6 +50,26 @@ public extension DownASTRenderable {
     
     public func toAST(_ options: DownOptions = .Default) throws -> UnsafeMutablePointer<cmark_node> {
         return try DownASTRenderer.stringToAST(markdownString, options: options)
+    }
+    
+    /**
+     Generates an `NSAttributedString` from the `markdownString` property
+     
+     - parameter options: `DownOptions` to modify parsing or rendering
+     
+     - parameter style: `Style` instance to use when applying attributes
+     
+     - throws: `DownErrors` depending on the scenario
+     
+     - returns: An `NSAttributedString`
+     */
+    
+    func toAttributedString(_ options: DownOptions = .Default, usingStyle style: Style) throws -> NSAttributedString {
+        let ast = try self.toAST(options)
+        let root = Node(node: ast)
+        let document = Block(root)
+        // FIXME: Clean this up
+        return document.render(with: style)! as NSAttributedString
     }
 }
 
