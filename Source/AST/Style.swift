@@ -22,33 +22,21 @@ import UIKit
 // TODO: check that code font is actually rendering
 // what happens with code in header?
 
-/// This OptionSet describes the Markdown units and contains useful helper
-/// methods to determine deeper information regarding a type of Markdown.
-///
-private struct Markdown: OptionSet, Hashable {
+/// Use as values for `NSAttributedStringKey.markdown` to be able to easily
+/// identify ranges of markdown in an `NSAttributedString`.
+struct Markdown: OptionSet {
     
-    public let rawValue: Int
+    let rawValue: Int
     
-    public var hashValue: Int {
-        return self.rawValue
-    }
-    
-    public init(rawValue: Int) {
-        self.rawValue = rawValue
-    }
-    
-    // atomic options
-    
-    public static let none             = Markdown(rawValue: 0)
-    public static let header           = Markdown(rawValue: 1 << 0)
-    public static let bold             = Markdown(rawValue: 1 << 1)
-    public static let italic           = Markdown(rawValue: 1 << 2)
-    public static let code             = Markdown(rawValue: 1 << 3)
-    public static let list             = Markdown(rawValue: 1 << 4)
-    
+    static let none             = Markdown(rawValue: 0)
+    static let header           = Markdown(rawValue: 1 << 0)
+    static let bold             = Markdown(rawValue: 1 << 1)
+    static let italic           = Markdown(rawValue: 1 << 2)
+    static let code             = Markdown(rawValue: 1 << 3)
+    static let list             = Markdown(rawValue: 1 << 4)
 }
 
-private extension NSAttributedStringKey {
+extension NSAttributedStringKey {
     static let markdown = NSAttributedStringKey.init(rawValue: "markdown")
 }
 
@@ -205,62 +193,7 @@ public struct Style {
     
 }
 
-extension NSMutableAttributedString {
-    
-    func addAttributes(_ attrs: Style.Attributes?) {
-        guard let attrs = attrs else { return }
-        addAttributes(attrs, range: wholeRange)
-    }
-    
-    func deppAddItalic() {
-        var fonts = [(font: UIFont, range: NSRange)]()
-        enumerateAttribute(.font, in: wholeRange, options: []) { val, range, _ in
-            guard let font = val as? UIFont else { return }
-            fonts.append((font, range))
-        }
-        
-        for (font, range) in fonts {
-            addAttributes([.font: font.italic], range: range)
-        }
-    }
-    
-    func deepAddBold() {
-        var fonts = [(font: UIFont, range: NSRange)]()
-        enumerateAttribute(.font, in: wholeRange, options: []) { val, range, _ in
-            guard let font = val as? UIFont else { return }
-            fonts.append((font, range))
-        }
-        
-        for (font, range) in fonts {
-            addAttribute(.font, value: font.bold, range: range)
-        }
-    }
-    
-    func deepAddHeader(with size: CGFloat) {
-        var fonts = [(font: UIFont, range: NSRange)]()
-        enumerateAttribute(.font, in: wholeRange, options: []) { val, range, _ in
-            guard let font = val as? UIFont else { return }
-            fonts.append((font, range))
-        }
-        
-        for (font, range) in fonts {
-            // need to change size before adding bold, because o/w if font
-            // contains italics beforehand, it gets removed.
-            addAttribute(.font, value: font.withSize(size).bold, range: range)
-        }
-    }
-    
-    
-    var rangesOfNestedLists: [NSRange] {
-        var result = [NSRange]()
-        enumerateAttribute(.markdown, in: wholeRange, options: []) { val, range, _ in
-            guard let markdown = val as? Markdown else { return }
-            if markdown.contains(.list) { result.append(range) }
-        }
-        return result
-    }
-    
-}
+
 
 extension NSParagraphStyle {
     

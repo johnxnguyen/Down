@@ -244,7 +244,7 @@ extension Block : Renderable {
             
         case .heading(let children, let level):
             let content = children.render(with: style)
-            content.deepAddHeader(with: style.headerSize(for: level))
+            content.bolden(with: style.headerSize(for: level))
             content.addAttributes(attrs)
             content.appendBreak()
             return content
@@ -282,13 +282,13 @@ extension Inline : Renderable {
             
         case .emphasis(let children):
             let content = children.render(with: style)
-            content.deppAddItalic()
+            content.italicize()
             content.addAttributes(attrs)
             return content
             
         case .strong(let children):
             let content = children.render(with: style)
-            content.deepAddBold()
+            content.bolden()
             content.addAttributes(attrs)
             return content
             
