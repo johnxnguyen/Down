@@ -100,6 +100,13 @@ extension NSMutableAttributedString {
         }
     }
     
+    /// Inserts the new markdown identifier into all existing identifiers.
+    func add(markdownIdentifier: Markdown) {
+        map(overKey: .markdown) { (markdown: Markdown) -> Markdown in
+            return markdown.union(markdownIdentifier)
+        }
+    }
+    
     /// Returns the ranges containing the specified markdown. Note, this is
     /// a partial match, i.e the ranges may also contain other markdown identifiers.
     func ranges(containing markdown: Markdown) -> [NSRange] {
