@@ -79,8 +79,11 @@ public struct Style {
     public var quoteParagraphStyle: NSParagraphStyle? = NSParagraphStyle.default.indentedBy(points: 24)
     
     // list attributes
-    // TODO: list indentation property
-    public var listParagraphStyle = NSParagraphStyle.default.with(topSpacing: 4, bottomSpacing: 4).with(tabStopOffset: 16).indentedBy(points: 16)
+    
+    /// The amount the list is indented from the leading margin
+    public var listIndentation: CGFloat = 16
+    /// the amount of space between the prefix and content of a list item
+    public var listItemPrefixSpacing: CGFloat = 8
     
     var defaultAttributes: Attributes {
         return [.font: baseFont,
@@ -110,9 +113,7 @@ public struct Style {
     }
     
     var listAttributes: Attributes {
-        return [.markdown: Markdown.list,
-                .paragraphStyle: listParagraphStyle,
-        ]
+        return [.markdown: Markdown.list]
     }
     
     var h1Attributes: Attributes {
@@ -133,6 +134,14 @@ public struct Style {
         case 2:  return h2Size
         default: return h3Size
         }
+    }
+    
+    func listParagraphStyle(with prefixWidth: CGFloat) -> NSParagraphStyle {
+        return NSParagraphStyle
+            .default
+            .with(topSpacing: 4, bottomSpacing: 4)
+            .with(tabStopOffset: prefixWidth + listItemPrefixSpacing)
+            .indentedBy(points: listIndentation)
     }
     
     func attributes(for renderable: Renderable) -> Attributes? {
@@ -210,15 +219,17 @@ extension NSParagraphStyle {
         let copy = mutableCopy() as! NSMutableParagraphStyle
         copy.firstLineHeadIndent += points
         copy.headIndent += points
+        copy.tabStops = copy.tabStops.map {
+            NSTextTab(textAlignment: .left, location: $0.location + points)
+        }
         return copy as NSParagraphStyle
     }
     
     /// Shifts the tabstop offset
     func with(tabStopOffset offset: CGFloat) -> NSParagraphStyle {
         let copy = mutableCopy() as! NSMutableParagraphStyle
-        let tabOffset = copy.headIndent + offset
-        copy.headIndent = tabOffset
-        copy.tabStops = [NSTextTab(textAlignment: .left, location: tabOffset, options: [:])]
+        copy.headIndent = offset
+        copy.tabStops = [NSTextTab(textAlignment: .left, location: offset)]
         return copy as NSParagraphStyle
     }
 }

@@ -42,9 +42,10 @@ enum ListType : CustomStringConvertible {
     
     /// Returns the prefix for the this lists item at the given index.
     func prefix(itemIndex: Int) -> String {
+        // the tabs are used to align the list item content
         switch self {
-        case .ordered(let start):   return "\(start + itemIndex). "
-        case .unordered:            return "• "
+        case .ordered(let start):   return "\(start + itemIndex).\t"
+        case .unordered:            return "•\t"
         }
     }
     
@@ -210,17 +211,51 @@ extension Block : Renderable {
             content.addAttributes(attrs)
             return content
             
-        case .list(let items, type: _):
+        case .list(let items, type: let type):
             // TODO: general tidy up
             let content = items.render(with: style)
+            // find ranges of existing nested lists (we must do this before
+            // applying new attributes)
             let ranges = content.ranges(containing: .list)
-            // important to get nested ranges before apply attrs
+            
             content.addAttributes(attrs)
-            // reapply nested list attributes
-            let nestedListParagraphStyle = style.listParagraphStyle.indentedBy(points: 24)
-            ranges.forEach {
-                content.addAttribute(.paragraphStyle, value: nestedListParagraphStyle, range: $0)
+            
+            // calculate size of prefix in points
+            var prefixWidth: CGFloat?
+            if let lastItem = items.last {
+                // last item will be the largest (if it's ordered)
+                switch lastItem {
+                case .listItem(_, let prefix):
+                    let trimmed = prefix.trimmingCharacters(in: .whitespaces)
+                    let size = trimmed.size(withAttributes: style.codeAttributes)
+                    prefixWidth = ceil(size.width)
+                default: break
+                }
             }
+            
+            // the style for this outer list
+            let paragraphStyle = style.listParagraphStyle(with: prefixWidth!)
+            // the indentation of the list item content (after the prefix)
+            let indentation = paragraphStyle.headIndent
+            
+            // get the existing paragraph styles & ranges for the nested lists
+            var existingStyles: [(NSParagraphStyle, NSRange)] = []
+            ranges.forEach {
+                let val = content.attribute(.paragraphStyle, at: $0.location, effectiveRange: nil)
+                if let old = val as? NSParagraphStyle {
+                    let new = old.indentedBy(points: indentation - style.listIndentation)
+                    existingStyles.append((new, $0))
+                }
+            }
+            
+            // apply the outer list paragraph style
+            content.addAttributes([.paragraphStyle: paragraphStyle])
+            
+            // apply the updated paragraph styles for the inner lists
+            for (val, range) in existingStyles {
+                content.addAttribute(.paragraphStyle, value: val, range: range)
+            }
+            
             return content
             
         case .listItem(let children, let prefix):
