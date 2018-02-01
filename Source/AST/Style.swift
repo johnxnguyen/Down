@@ -61,6 +61,7 @@ public struct Style {
     public var italicColor: UIColor?
     
     // code attributes
+    public var codeFont = UIFont(name: "Menlo", size: 17)!
     public var codeColor: UIColor? = UIColor.darkGray
     
     // header attributes
@@ -75,7 +76,7 @@ public struct Style {
     
     // quote attributes
     public var quoteColor: UIColor? = .gray
-    public var quoteParagraphStyle: NSParagraphStyle? = NSParagraphStyle.default.indentedBy(points: 16)
+    public var quoteParagraphStyle: NSParagraphStyle? = NSParagraphStyle.default.indentedBy(points: 24)
     
     // list attributes
     // TODO: list indentation property
@@ -97,7 +98,7 @@ public struct Style {
     }
     
     var codeAttributes: Attributes {
-        return [.font: baseFont.monospace,
+        return [.font: codeFont,
                 .foregroundColor: codeColor ?? baseFontColor,
         ]
     }
