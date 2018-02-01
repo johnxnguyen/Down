@@ -28,12 +28,13 @@ struct Markdown: OptionSet {
     
     let rawValue: Int
     
-    static let none             = Markdown(rawValue: 0)
-    static let header           = Markdown(rawValue: 1 << 0)
-    static let bold             = Markdown(rawValue: 1 << 1)
-    static let italic           = Markdown(rawValue: 1 << 2)
-    static let code             = Markdown(rawValue: 1 << 3)
-    static let list             = Markdown(rawValue: 1 << 4)
+    static let none     = Markdown(rawValue: 0)
+    static let header   = Markdown(rawValue: 1 << 0)
+    static let bold     = Markdown(rawValue: 1 << 1)
+    static let italic   = Markdown(rawValue: 1 << 2)
+    static let code     = Markdown(rawValue: 1 << 3)
+    static let list     = Markdown(rawValue: 1 << 4)
+    static let quote    = Markdown(rawValue: 1 << 5)
 }
 
 extension NSAttributedStringKey {
@@ -86,28 +87,35 @@ public struct Style {
     public var listItemPrefixSpacing: CGFloat = 8
     
     var defaultAttributes: Attributes {
-        return [.font: baseFont,
+        return [.markdown: Markdown.none,
+                .font: baseFont,
                 .foregroundColor: baseFontColor,
                 .paragraphStyle: baseParagraphStyle,
         ]
     }
     
     var boldAttributes: Attributes {
-        return [.foregroundColor: boldColor ?? baseFontColor]
+        return [.markdown: Markdown.bold,
+                .foregroundColor: boldColor ?? baseFontColor
+        ]
     }
     
     var italicAttributes: Attributes {
-        return [.foregroundColor: italicColor ?? baseFontColor]
+        return [.markdown: Markdown.italic,
+                .foregroundColor: italicColor ?? baseFontColor
+        ]
     }
     
     var codeAttributes: Attributes {
-        return [.font: codeFont,
+        return [.markdown: Markdown.code,
+                .font: codeFont,
                 .foregroundColor: codeColor ?? baseFontColor,
         ]
     }
     
     var quoteAttributes: Attributes {
-        return [.foregroundColor: quoteColor ?? baseFontColor,
+        return [.markdown: Markdown.quote,
+                .foregroundColor: quoteColor ?? baseFontColor,
                 .paragraphStyle: quoteParagraphStyle ?? baseParagraphStyle,
         ]
     }
@@ -117,15 +125,21 @@ public struct Style {
     }
     
     var h1Attributes: Attributes {
-        return [.foregroundColor: h1Color ?? baseFontColor]
+        return [.markdown: Markdown.header,
+                .foregroundColor: h1Color ?? baseFontColor
+        ]
     }
     
     var h2Attributes: Attributes {
-        return [.foregroundColor: h2Color ?? baseFontColor]
+        return [.markdown: Markdown.header,
+                .foregroundColor: h2Color ?? baseFontColor
+        ]
     }
     
     var h3Attributes: Attributes {
-        return [.foregroundColor: h3Color ?? baseFontColor]
+        return [.markdown: Markdown.header,
+                .foregroundColor: h3Color ?? baseFontColor
+        ]
     }
     
     func headerSize(for level: Int) -> CGFloat {
