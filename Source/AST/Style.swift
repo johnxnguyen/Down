@@ -35,6 +35,7 @@ struct Markdown: OptionSet {
     static let code     = Markdown(rawValue: 1 << 3)
     static let list     = Markdown(rawValue: 1 << 4)
     static let quote    = Markdown(rawValue: 1 << 5)
+    static let link     = Markdown(rawValue: 1 << 5)
 }
 
 extension NSAttributedStringKey {

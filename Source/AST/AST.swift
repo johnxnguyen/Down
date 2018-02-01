@@ -327,9 +327,12 @@ extension Inline : Renderable {
             content.addAttributes(attrs)
             return content
             
-        case .link(let children, title: _, url: _):
+        case .link(let children, title: _, let url):
             let content = children.render(with: style)
-            // TODO: attributes
+            if let url = url {
+                content.addAttribute(.markdown, value: Markdown.list, range: content.wholeRange)
+                content.addAttribute(.link, value: url, range: content.wholeRange)
+            }
             return content
             
         case .image(let children, title: _, url: _):
