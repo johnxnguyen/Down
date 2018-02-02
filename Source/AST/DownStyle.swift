@@ -24,18 +24,22 @@ import UIKit
 
 /// Use as values for `NSAttributedStringKey.markdown` to be able to easily
 /// identify ranges of markdown in an `NSAttributedString`.
-struct Markdown: OptionSet {
+public struct Markdown: OptionSet {
     
-    let rawValue: Int
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
     
-    static let none     = Markdown(rawValue: 0)
-    static let header   = Markdown(rawValue: 1 << 0)
-    static let bold     = Markdown(rawValue: 1 << 1)
-    static let italic   = Markdown(rawValue: 1 << 2)
-    static let code     = Markdown(rawValue: 1 << 3)
-    static let list     = Markdown(rawValue: 1 << 4)
-    static let quote    = Markdown(rawValue: 1 << 5)
-    static let link     = Markdown(rawValue: 1 << 5)
+    public let rawValue: Int
+    
+    public static let none     = Markdown(rawValue: 0)
+    public static let header   = Markdown(rawValue: 1 << 0)
+    public static let bold     = Markdown(rawValue: 1 << 1)
+    public static let italic   = Markdown(rawValue: 1 << 2)
+    public static let code     = Markdown(rawValue: 1 << 3)
+    public static let list     = Markdown(rawValue: 1 << 4)
+    public static let quote    = Markdown(rawValue: 1 << 5)
+    public static let link     = Markdown(rawValue: 1 << 5)
 }
 
 public let MarkdownIDAttributeName = "MarkdownIDAttributeName"
