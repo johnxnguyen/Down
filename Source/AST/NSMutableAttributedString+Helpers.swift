@@ -53,7 +53,7 @@ extension NSMutableAttributedString {
         append(NSAttributedString(string: string))
     }
     
-    func addAttributes(_ attrs: Style.Attributes?) {
+    func addAttributes(_ attrs: DownStyle.Attributes?) {
         guard let attrs = attrs else { return }
         addAttributes(attrs, range: wholeRange)
     }
@@ -65,7 +65,7 @@ extension NSMutableAttributedString {
     
     /// Updates the value for the given attribute key with the return value of
     // the given transform function.
-    private func map<T>(overKey key: NSAttributedStringKey, using transform: (T) -> T) {
+    private func map<T>(overKey key: String, using transform: (T) -> T) {
         // collect exists values & ranges for the key
         var values = [(value: T, range: NSRange)]()
         enumerateAttribute(key, in: wholeRange, options: []) { value, range, _ in
@@ -80,14 +80,14 @@ extension NSMutableAttributedString {
     
     /// Italicizes the font while preserving existing symbolic traits.
     func italicize() {
-        map(overKey: .font) { (font: UIFont) -> UIFont in
+        map(overKey: NSFontAttributeName) { (font: UIFont) -> UIFont in
             return font.italic
         }
     }
     
     /// Boldens the font while preserving existing symbolic traits.
     func bolden() {
-        map(overKey: .font) { (font: UIFont) -> UIFont in
+        map(overKey: NSFontAttributeName) { (font: UIFont) -> UIFont in
             return font.bold
         }
     }
@@ -95,14 +95,14 @@ extension NSMutableAttributedString {
     /// Boldens the font while preserving existing symbolic traits and updates
     /// the font size.
     func bolden(with size: CGFloat) {
-        map(overKey: .font) { (font: UIFont) -> UIFont in
+        map(overKey: NSFontAttributeName) { (font: UIFont) -> UIFont in
             return font.withSize(size).bold
         }
     }
     
     /// Inserts the new markdown identifier into all existing identifiers.
     func add(markdownIdentifier: Markdown) {
-        map(overKey: .markdown) { (markdown: Markdown) -> Markdown in
+        map(overKey: MarkdownIDAttributeName) { (markdown: Markdown) -> Markdown in
             return markdown.union(markdownIdentifier)
         }
     }
@@ -111,7 +111,7 @@ extension NSMutableAttributedString {
     /// a partial match, i.e the ranges may also contain other markdown identifiers.
     func ranges(containing markdown: Markdown) -> [NSRange] {
         var result = [NSRange]()
-        enumerateAttribute(.markdown, in: wholeRange, options: []) { val, range, _ in
+        enumerateAttribute(MarkdownIDAttributeName, in: wholeRange, options: []) { val, range, _ in
             guard let markdown = val as? Markdown, markdown.contains(markdown) else { return }
             result.append(range)
         }

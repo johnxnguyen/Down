@@ -38,23 +38,21 @@ struct Markdown: OptionSet {
     static let link     = Markdown(rawValue: 1 << 5)
 }
 
-extension NSAttributedStringKey {
-    static let markdown = NSAttributedStringKey.init(rawValue: "markdown")
-}
+public let MarkdownIDAttributeName = "MarkdownIDAttributeName"
 
-public struct Style {
+@objc public class DownStyle: NSObject {
     
-    public static var `default`: Style { return Style() }
+    public static var `default`: DownStyle { return DownStyle() }
     
-    typealias Attributes = [NSAttributedStringKey : Any]
+    typealias Attributes = [String : Any]
     
     // base attributes - these will be used for normal text and will be manipulated
     // for bold, italic and code etc.
     
     // change this to system font size
-    public var baseFont = UIFont.systemFont(ofSize: 17)
-    public var baseFontColor = UIColor.black
-    public var baseParagraphStyle = NSParagraphStyle.default.with(topSpacing: 8, bottomSpacing: 8)
+    @objc public var baseFont = UIFont.systemFont(ofSize: 17)
+    @objc public var baseFontColor = UIColor.black
+    @objc public var baseParagraphStyle = NSParagraphStyle.default.with(topSpacing: 8, bottomSpacing: 8)
     
     // bold attributes
     public var boldColor: UIColor?
@@ -67,13 +65,13 @@ public struct Style {
     public var codeColor: UIColor? = UIColor.darkGray
     
     // header attributes
-    public var h1Color: UIColor? = #colorLiteral(red: 0.9529746175, green: 0.3621142805, blue: 0.3340556622, alpha: 1)
+    public var h1Color: UIColor?
     public var h1Size: CGFloat = 27
     
-    public var h2Color: UIColor? = #colorLiteral(red: 0.9529746175, green: 0.3621142805, blue: 0.3340556622, alpha: 1)
+    public var h2Color: UIColor?
     public var h2Size: CGFloat = 24
     
-    public var h3Color: UIColor? = #colorLiteral(red: 0.9529746175, green: 0.3621142805, blue: 0.3340556622, alpha: 1)
+    public var h3Color: UIColor?
     public var h3Size: CGFloat = 20
     
     // quote attributes
@@ -88,58 +86,58 @@ public struct Style {
     public var listItemPrefixSpacing: CGFloat = 8
     
     var defaultAttributes: Attributes {
-        return [.markdown: Markdown.none,
-                .font: baseFont,
-                .foregroundColor: baseFontColor,
-                .paragraphStyle: baseParagraphStyle,
+        return [MarkdownIDAttributeName: Markdown.none,
+                NSFontAttributeName: baseFont,
+                NSForegroundColorAttributeName: baseFontColor,
+                NSParagraphStyleAttributeName: baseParagraphStyle,
         ]
     }
     
     var boldAttributes: Attributes {
-        return [.markdown: Markdown.bold,
-                .foregroundColor: boldColor ?? baseFontColor
+        return [MarkdownIDAttributeName: Markdown.bold,
+                NSForegroundColorAttributeName: boldColor ?? baseFontColor
         ]
     }
     
     var italicAttributes: Attributes {
-        return [.markdown: Markdown.italic,
-                .foregroundColor: italicColor ?? baseFontColor
+        return [MarkdownIDAttributeName: Markdown.italic,
+                NSForegroundColorAttributeName: italicColor ?? baseFontColor
         ]
     }
     
     var codeAttributes: Attributes {
-        return [.markdown: Markdown.code,
-                .font: codeFont,
-                .foregroundColor: codeColor ?? baseFontColor,
+        return [MarkdownIDAttributeName: Markdown.code,
+                NSFontAttributeName: codeFont,
+                NSForegroundColorAttributeName: codeColor ?? baseFontColor,
         ]
     }
     
     var quoteAttributes: Attributes {
-        return [.markdown: Markdown.quote,
-                .foregroundColor: quoteColor ?? baseFontColor,
-                .paragraphStyle: quoteParagraphStyle ?? baseParagraphStyle,
+        return [MarkdownIDAttributeName: Markdown.quote,
+                NSForegroundColorAttributeName: quoteColor ?? baseFontColor,
+                NSParagraphStyleAttributeName: quoteParagraphStyle ?? baseParagraphStyle,
         ]
     }
     
     var listAttributes: Attributes {
-        return [.markdown: Markdown.list]
+        return [MarkdownIDAttributeName: Markdown.list]
     }
     
     var h1Attributes: Attributes {
-        return [.markdown: Markdown.header,
-                .foregroundColor: h1Color ?? baseFontColor
+        return [MarkdownIDAttributeName: Markdown.header,
+                NSForegroundColorAttributeName: h1Color ?? baseFontColor
         ]
     }
     
     var h2Attributes: Attributes {
-        return [.markdown: Markdown.header,
-                .foregroundColor: h2Color ?? baseFontColor
+        return [MarkdownIDAttributeName: Markdown.header,
+                NSForegroundColorAttributeName: h2Color ?? baseFontColor
         ]
     }
     
     var h3Attributes: Attributes {
-        return [.markdown: Markdown.header,
-                .foregroundColor: h3Color ?? baseFontColor
+        return [MarkdownIDAttributeName: Markdown.header,
+                NSForegroundColorAttributeName: h3Color ?? baseFontColor
         ]
     }
     

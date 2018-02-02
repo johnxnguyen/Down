@@ -25,7 +25,7 @@ import libcmark
 // MARK: - DEFINITIONS
 
 protocol Renderable {
-    func render(with style: Style) -> NSMutableAttributedString?
+    func render(with style: DownStyle) -> NSMutableAttributedString?
 }
 
 enum ListType : CustomStringConvertible {
@@ -182,7 +182,7 @@ extension Inline {
 fileprivate extension Sequence where Iterator.Element == Block {
     /// Calls render(with style:) to each element in the sequence and returns
     /// the concatenation of their results.
-    func render(with style: Style) -> NSMutableAttributedString {
+    func render(with style: DownStyle) -> NSMutableAttributedString {
         return self.map { $0.render(with: style) }.join()
     }
 }
@@ -190,7 +190,7 @@ fileprivate extension Sequence where Iterator.Element == Block {
 fileprivate extension Sequence where Iterator.Element == Inline {
     /// Calls render(with style:) to each element in the sequence and returns
     /// the concatenation of their results.
-    func render(with style: Style) -> NSMutableAttributedString {
+    func render(with style: DownStyle) -> NSMutableAttributedString {
         return self.map { $0.render(with: style) }.join()
     }
 }
@@ -199,7 +199,7 @@ fileprivate extension Sequence where Iterator.Element == Inline {
 
 extension Block : Renderable {
     /// Renders the tree rooted at the current node with the given style.
-    func render(with style: Style) -> NSMutableAttributedString? {
+    func render(with style: DownStyle) -> NSMutableAttributedString? {
         let attrs = style.attributes(for: self)
         
         switch self {
@@ -227,7 +227,7 @@ extension Block : Renderable {
                 switch lastItem {
                 case .listItem(_, let prefix):
                     let trimmed = prefix.trimmingCharacters(in: .whitespaces)
-                    let size = trimmed.size(withAttributes: style.codeAttributes)
+                    let size = trimmed.size(attributes: style.codeAttributes)
                     prefixWidth = ceil(size.width)
                 default: break
                 }
@@ -241,7 +241,7 @@ extension Block : Renderable {
             // get the existing paragraph styles & ranges for the nested lists
             var existingStyles: [(NSParagraphStyle, NSRange)] = []
             ranges.forEach {
-                let val = content.attribute(.paragraphStyle, at: $0.location, effectiveRange: nil)
+                let val = content.attribute(NSParagraphStyleAttributeName, at: $0.location, effectiveRange: nil)
                 if let old = val as? NSParagraphStyle {
                     let new = old.indentedBy(points: indentation - style.listIndentation)
                     existingStyles.append((new, $0))
@@ -249,11 +249,11 @@ extension Block : Renderable {
             }
             
             // apply the outer list paragraph style
-            content.addAttributes([.paragraphStyle: paragraphStyle])
+            content.addAttributes([NSParagraphStyleAttributeName: paragraphStyle])
             
             // apply the updated paragraph styles for the inner lists
             for (val, range) in existingStyles {
-                content.addAttribute(.paragraphStyle, value: val, range: range)
+                content.addAttribute(NSParagraphStyleAttributeName, value: val, range: range)
             }
             
             return content
@@ -293,7 +293,7 @@ extension Block : Renderable {
 
 extension Inline : Renderable {
     /// Renders the tree rooted at the current node with the given style.
-    func render(with style: Style) -> NSMutableAttributedString? {
+    func render(with style: DownStyle) -> NSMutableAttributedString? {
         let attrs = style.attributes(for: self)
         
         switch self {
@@ -330,8 +330,8 @@ extension Inline : Renderable {
         case .link(let children, title: _, let url):
             let content = children.render(with: style)
             if let url = url {
-                content.addAttribute(.markdown, value: Markdown.list, range: content.wholeRange)
-                content.addAttribute(.link, value: url, range: content.wholeRange)
+                content.addAttribute(MarkdownIDAttributeName, value: Markdown.list, range: content.wholeRange)
+                content.addAttribute(NSLinkAttributeName, value: url, range: content.wholeRange)
             }
             return content
             

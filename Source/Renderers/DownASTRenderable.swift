@@ -34,7 +34,7 @@ public protocol DownASTRenderable: DownRenderable {
      - returns: An `NSAttributedString`
      */
     
-    func toAttributedString(_ options: DownOptions, usingStyle style: Style) throws -> NSAttributedString
+    func toAttributedString(_ options: DownOptions, usingStyle style: DownStyle) throws -> NSAttributedString
 }
 
 public extension DownASTRenderable {
@@ -64,7 +64,7 @@ public extension DownASTRenderable {
      - returns: An `NSAttributedString`
      */
     
-    func toAttributedString(_ options: DownOptions = .Default, usingStyle style: Style) throws -> NSAttributedString {
+    func toAttributedString(_ options: DownOptions = .Default, usingStyle style: DownStyle) throws -> NSAttributedString {
         let ast = try self.toAST(options)
         let root = Node(node: ast)
         let document = Block(root)

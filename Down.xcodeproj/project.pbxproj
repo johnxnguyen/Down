@@ -69,7 +69,7 @@
 		90A40A9C1EC03292004F2E91 /* Down.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE6CBE0A2021C03600AD9E30 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE092021C03600AD9E30 /* Node.swift */; };
 		EE6CBE102021C42D00AD9E30 /* AST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE0F2021C42D00AD9E30 /* AST.swift */; };
-		EE6CBE122021C47D00AD9E30 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE112021C47D00AD9E30 /* Style.swift */; };
+		EE6CBE122021C47D00AD9E30 /* DownStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE112021C47D00AD9E30 /* DownStyle.swift */; };
 		EE6CBE142021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE132021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift */; };
 /* End PBXBuildFile section */
 
@@ -199,7 +199,7 @@
 		D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
 		EE6CBE092021C03600AD9E30 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		EE6CBE0F2021C42D00AD9E30 /* AST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AST.swift; sourceTree = "<group>"; };
-		EE6CBE112021C47D00AD9E30 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		EE6CBE112021C47D00AD9E30 /* DownStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownStyle.swift; sourceTree = "<group>"; };
 		EE6CBE132021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -383,7 +383,7 @@
 			children = (
 				EE6CBE092021C03600AD9E30 /* Node.swift */,
 				EE6CBE0F2021C42D00AD9E30 /* AST.swift */,
-				EE6CBE112021C47D00AD9E30 /* Style.swift */,
+				EE6CBE112021C47D00AD9E30 /* DownStyle.swift */,
 				EE6CBE132021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift */,
 			);
 			path = AST;
@@ -531,7 +531,7 @@
 				8A569F481E6B3ED2008BE2AC /* DownView.swift in Sources */,
 				8A569F591E6B3ED9008BE2AC /* houdini_html_u.c in Sources */,
 				8A569F621E6B3ED9008BE2AC /* node.c in Sources */,
-				EE6CBE122021C47D00AD9E30 /* Style.swift in Sources */,
+				EE6CBE122021C47D00AD9E30 /* DownStyle.swift in Sources */,
 				8A569F6F1E6B3EDE008BE2AC /* DownAttributedStringRenderable.swift in Sources */,
 				EE6CBE102021C42D00AD9E30 /* AST.swift in Sources */,
 				8A569F721E6B3EDE008BE2AC /* DownHTMLRenderable.swift in Sources */,
@@ -600,7 +600,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Source/cmark";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -618,7 +618,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Source/cmark";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
