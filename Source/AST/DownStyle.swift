@@ -24,7 +24,7 @@ import UIKit
 
 /// Use as values for `NSAttributedStringKey.markdown` to be able to easily
 /// identify ranges of markdown in an `NSAttributedString`.
-public struct Markdown: OptionSet {
+public struct Markdown: OptionSet, CustomStringConvertible {
     
     public init(rawValue: Int) {
         self.rawValue = rawValue
@@ -56,6 +56,22 @@ public struct Markdown: OptionSet {
         if self.contains(.h1) { return .h1 }
         else if self.contains(.h2) { return .h2 }
         else { return .h3 }
+    }
+    
+    public var description: String {
+        switch self {
+        case .none:     return "None"
+        case .h1:       return "H1"
+        case .h2:       return "H2"
+        case .h3:       return "H3"
+        case .bold:     return "Bold"
+        case .italic:   return "Italic"
+        case .code:     return "Code"
+        case .list:     return "List"
+        case .quote:    return "Quote"
+        case .link:     return "Link"
+        default:        return "Combined Markdown"
+        }
     }
 }
 
