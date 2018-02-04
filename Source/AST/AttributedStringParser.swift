@@ -18,6 +18,31 @@
 
 import Foundation
 
+private struct MarkdownRange: Comparable, CustomStringConvertible {
+    
+    let markdown: Markdown
+    let range: NSRange
+    
+    var description: String {
+        return "\(markdown): \(range)"
+    }
+    
+    static func <(lhs: MarkdownRange, rhs: MarkdownRange) -> Bool {
+        // first compare range location ascending
+        if lhs.range.location < rhs.range.location { return true }
+        if lhs.range.location > rhs.range.location { return false }
+        // then compare range length descending
+        if lhs.range.length > rhs.range.length     { return true }
+        if lhs.range.length < rhs.range.length     { return false }
+        // finally compare markdown priority ascending
+        return lhs.markdown.rawValue < rhs.markdown.rawValue
+    }
+    
+    static func ==(lhs: MarkdownRange, rhs: MarkdownRange) -> Bool {
+        return NSEqualRanges(lhs.range, rhs.range) && lhs.markdown == rhs.markdown
+    }
+}
+
 public class AttributedStringParser {
     
     var stack = [Markdown]()
@@ -27,92 +52,117 @@ public class AttributedStringParser {
     
     public func parse(attributedString input: NSAttributedString) -> String {
         
+        // fill stream with ranges for each atomic markdown
+        var stream = [MarkdownRange]()
+        for markdown in Markdown.atomicValues + [.none] {
+            stream += ranges(of: markdown, in: input).map {
+                MarkdownRange(markdown: markdown, range: $0)
+            }
+        }
+        
+        // sorting is very important. See the MarkdownRange struct
+        // definition for how they are compared
+        stream.sort()
+        print("ranges: \(stream)")
+        
         var result = ""
-        stack.removeAll()
-        seen = .none
+        var stack = [MarkdownRange]()
+        var cursor = 0
         
-        let appendPrefix: (Markdown) -> Void = {
-            self.seen.insert($0)
-            self.stack.append($0)
-            result.append(self.prefix(for: $0))
+        // note, not safe, must use with caution
+        let pushHead: () -> Void = {
+            let head = stream.remove(at: 0)
+            // push to stack
+            stack.append(head)
+            // append suffix
+            result.append(self.prefix(for: head.markdown))
+            // update cursor
+            cursor = head.range.location
         }
         
-        let appendSuffix: (Markdown) -> Void = {
-            self.seen.subtract($0)
-            self.stack.removeLast()
-            result.append(self.suffix(for: $0))
+        // note, not safe, must use with caution
+        let pop: () -> Void = {
+            let top = stack.removeLast()
+            // range from cursor to end of top range
+            let range = NSRange(from: cursor, to: top.range.upperBound)
+            // append substring
+            result.append(input.attributedSubstring(from: range).string)
+            // update cursor
+            cursor = range.upperBound
+            // append suffix
+            result.append(self.suffix(for: top.markdown))
         }
         
-        // iterate through the characters
-        for idx in 0..<input.length {
-            // get the markdown at the current index
-            let val = input.attribute(MarkdownIDAttributeName, at: idx, effectiveRange: nil)
-            let markdown = (val as? Markdown) ?? .none
+        while true {
+            if stream.isEmpty { break }
+            if stack.isEmpty { pushHead() }
+            let stackTop = stack.last!
             
-            // the order in which we check the markdown is important. We should
-            // start with on the highest level (markdown that can't be nested)
-            // and end on the deeplest level (markdown that can't contain nested
-            // markdown).
-            
-            Markdown.atomicValues.forEach {
-                if shouldInsertPrefix(for: $0, given: markdown) {
-                    appendPrefix($0)
+            // look at next head
+            if let head = stream.first {
+                if stackTop.range.contains(head.range) {
+                    // head is a subrange of stackTop
+                    // take up to head location
+                    let range = NSRange(from: cursor, to: head.range.location)
+                    let str = input.attributedSubstring(from: range).string
+                    result.append(str)
+                    
+                    pushHead()
+                    continue
                 }
-                else if shouldInsertSuffix(for: $0, given: markdown) {
-                    appendSuffix($0)
+                else if stackTop.range.overlaps(with: head.range) {
+                    // head starts inside stackTop but extends outside
+                    // split head range at the boundary
+                    let boundary = stackTop.range.upperBound
+                    let temp = stream.remove(at: 0)
+                    let left = NSRange(from: temp.range.location, to: boundary)
+                    let right = NSRange(from: boundary, to: temp.range.upperBound)
+                    // both back into the array starting with right side
+                    stream.insert(MarkdownRange(markdown: temp.markdown, range: right), at: 0)
+                    stream.insert(MarkdownRange(markdown: temp.markdown, range: left), at: 0)
+                    continue
+                }
+                else {
+                    // head is disjoint with stackTop
+                    pop()
+                    continue
                 }
             }
-            
-//            if shouldInsertPrefix(for: .header, given: markdown) {
-//                appendPrefix(.header)
-//            }
-//            else if shouldInsertSuffix(for: .header, given: markdown) {
-//                appendSuffix(.header)
-//            }
-//
-//            if shouldInsertPrefix(for: .bold, given: markdown) {
-//                appendPrefix(.bold)
-//            }
-//            else if shouldInsertSuffix(for: .bold, given: markdown) {
-//                appendSuffix(.bold)
-//            }
-//
-//            if shouldInsertPrefix(for: .italic, given: markdown) {
-//                appendPrefix(.italic)
-//            }
-//            else if shouldInsertSuffix(for: .italic, given: markdown) {
-//                appendSuffix(.italic)
-//            }
-//
-//            if shouldInsertPrefix(for: .code, given: markdown) {
-//                appendPrefix(.code)
-//            }
-//            else if shouldInsertSuffix(for: .code, given: markdown) {
-//                appendSuffix(.code)
-//            }
-            
-            result.append(input.attributedSubstring(from: NSMakeRange(idx, 1)).string)
-         }
+        }
         
-        // close all remaining markdown
-        while !stack.isEmpty { appendSuffix(stack.last!) }
+        // flush stack
+        while !stack.isEmpty { pop() }
+        print("stack: \(stack)")
+        print(result)
         return result
     }
     
-    /// Determines whether the prefix for the atomic markdown value should be inserted
-    /// depending on the currentMarkdown.
-    private func shouldInsertPrefix(for markdown: Markdown, given currentMarkdown: Markdown) -> Bool {
-        // we insert prefix for markdown that has not yet been seen and is now
-        // present in currentMarkdown
-        return !seen.contains(markdown) && currentMarkdown.contains(markdown)
-    }
-    
-    /// Determines whether the suffix for the atomic markdown value should be inserted
-    /// depending on the currentMarkdown.
-    private func shouldInsertSuffix(for markdown: Markdown, given currentMarkdown: Markdown) -> Bool {
-        // we insert suffix for markdown only when it has been seen and is now
-        // no longer present in currentMarkdown
-        return seen.contains(markdown) && !currentMarkdown.contains(markdown)
+    /// Returns a dictionary containing the subranges for each markdown type
+    /// where this markdown is present in the given range.
+    ///
+    private func ranges(of markdown: Markdown, in attrStr: NSAttributedString) -> [NSRange] {
+        
+        var result = [NSRange]()
+        let wholeRange = NSMakeRange(0, attrStr.length)
+        
+        attrStr.enumerateAttribute(MarkdownIDAttributeName, in: wholeRange, options: []) { val, range, _ in
+            let currentMarkdown = (val as? Markdown) ?? .none
+            
+            // special case, b/c all markdown contains .none
+            if markdown == .none {
+                if currentMarkdown == .none {
+                    result.append(range)
+                }
+            }
+            else if currentMarkdown.contains(markdown) {
+                result.append(range)
+            }
+        }
+        
+        // since we reset typing attributes at each change, the length of the ranges
+        // corresponds to the length of the last edit. This results in numerous
+        // ranges that are adjacent to each other. We want to combine these together.
+        return result.unified
     }
     
     /// Returns the syntax prefix for the given markdown. Note, this will
@@ -139,5 +189,75 @@ public class AttributedStringParser {
         case .italic:           return "_"
         default:                return ""
         }
+    }
+}
+
+fileprivate extension NSRange {
+    
+    /// Returns true iff the given range is entirely contained within self.
+    ///
+    func contains(_ range: NSRange) -> Bool {
+        guard let intersection = self.intersection(range) else { return false }
+        return NSEqualRanges(intersection, range)
+    }
+    
+    // TODO: Test this, check case that self is before other
+    func overlaps(with range: NSRange) -> Bool {
+        // there is a non empty intersection
+        guard let intersection = self.intersection(range) else { return false }
+        guard intersection.length > 0 else { return false }
+        // the intersection is not equal to either range
+        guard !NSEqualRanges(self, intersection) else { return false }
+        guard !NSEqualRanges(range, intersection) else { return false }
+        return true
+    }
+    
+    init(from x: Int, to y: Int) {
+        self = NSMakeRange(x, y - x)
+    }
+}
+
+private extension Sequence where Iterator.Element == NSRange  {
+    
+    /// Returns a copy of the array where adjacent ranges (ones that have no
+    /// gaps between them) are unified. Eg. [{0,1},{1,2},{4,1}] -> [{0,3},{4,1}]
+    ///
+    var unified: [NSRange] {
+        let sorted = self.sorted { return $0.location <= $1.location }
+        
+        return sorted.reduce(into: [], { (acc: inout [NSRange], nextRange) in
+            if acc.isEmpty {
+                return acc.append(nextRange)
+            } else {
+                let last = acc.popLast()!
+                // if adjacent
+                if NSMaxRange(last) >= nextRange.lowerBound {
+                    return acc.append(NSUnionRange(last, nextRange))
+                } else {
+                    return acc.append(contentsOf: [last, nextRange])
+                }
+            }
+        })
+    }
+}
+
+private extension Array where Iterator.Element == (Markdown, NSRange)  {
+    /// Removes and returns all elements that meet the given condition.
+    mutating func removeAll(where condition: ((Markdown, NSRange) -> Bool)) -> [(Markdown, NSRange)] {
+        var result = [(Markdown, NSRange)]()
+        var indicesToRemove = [Int]()
+        
+        for (idx, element) in enumerated() {
+            if condition(element.0, element.1) {
+                indicesToRemove.append(idx)
+                result.append(element)
+            }
+        }
+        
+        for idx in indicesToRemove.reversed() {
+            result.append(self.remove(at: idx))
+        }
+        
+        return result
     }
 }
