@@ -51,6 +51,10 @@ public struct Markdown: OptionSet, CustomStringConvertible {
         return self != .none && [.h1, .h2, .h3].contains(self)
     }
     
+    public var containsHeader: Bool {
+        return self.contains(.h1) || self.contains(.h2) || self.contains(.h3)
+    }
+    
     public var headerValue: Markdown? {
         guard isHeader else { return nil }
         if self.contains(.h1) { return .h1 }
