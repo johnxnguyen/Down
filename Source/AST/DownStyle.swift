@@ -33,13 +33,23 @@ public struct Markdown: OptionSet {
     public let rawValue: Int
     
     public static let none     = Markdown(rawValue: 0)
-    public static let header   = Markdown(rawValue: 1 << 0)
-    public static let bold     = Markdown(rawValue: 1 << 1)
-    public static let italic   = Markdown(rawValue: 1 << 2)
-    public static let code     = Markdown(rawValue: 1 << 3)
-    public static let list     = Markdown(rawValue: 1 << 4)
-    public static let quote    = Markdown(rawValue: 1 << 5)
-    public static let link     = Markdown(rawValue: 1 << 5)
+    public static let h1       = Markdown(rawValue: 1 << 0)
+    public static let h2       = Markdown(rawValue: 1 << 1)
+    public static let h3       = Markdown(rawValue: 1 << 2)
+    public static let bold     = Markdown(rawValue: 1 << 3)
+    public static let italic   = Markdown(rawValue: 1 << 4)
+    public static let code     = Markdown(rawValue: 1 << 5)
+    public static let list     = Markdown(rawValue: 1 << 6)
+    public static let quote    = Markdown(rawValue: 1 << 7)
+    public static let link     = Markdown(rawValue: 1 << 8)
+    
+    public static var atomicValues: Array<Markdown> = [
+        .h1, .h2, .h3, .bold, .italic, .code, .list, .quote, .link
+    ]
+    
+    public var isHeader: Bool {
+        return self != .none && [.h1, .h2, .h3].contains(self)
+    }
 }
 
 public let MarkdownIDAttributeName = "MarkdownIDAttributeName"
@@ -128,19 +138,19 @@ public let MarkdownIDAttributeName = "MarkdownIDAttributeName"
     }
     
     var h1Attributes: Attributes {
-        return [MarkdownIDAttributeName: Markdown.header,
+        return [MarkdownIDAttributeName: Markdown.h1,
                 NSForegroundColorAttributeName: h1Color ?? baseFontColor
         ]
     }
     
     var h2Attributes: Attributes {
-        return [MarkdownIDAttributeName: Markdown.header,
+        return [MarkdownIDAttributeName: Markdown.h2,
                 NSForegroundColorAttributeName: h2Color ?? baseFontColor
         ]
     }
     
     var h3Attributes: Attributes {
-        return [MarkdownIDAttributeName: Markdown.header,
+        return [MarkdownIDAttributeName: Markdown.h3,
                 NSForegroundColorAttributeName: h3Color ?? baseFontColor
         ]
     }

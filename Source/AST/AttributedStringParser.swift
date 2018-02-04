@@ -110,7 +110,9 @@ public class AttributedStringParser {
     /// return prefixes for atomic markdown values only.
     private func prefix(for markdown: Markdown) -> String {
         switch markdown {
-        case .header:   return "# "
+        case .h1:       return "# "
+        case .h2:       return "## "
+        case .h3:       return "### "
         case .code:     return "`"
         case .bold:     return "**"
         case .italic:   return "_"
@@ -122,11 +124,11 @@ public class AttributedStringParser {
     /// return suffixes for atomic markdown values only.
     private func suffix(for markdown: Markdown) -> String {
         switch markdown {
-        case .header:   return "\n"
-        case .code:     return "`"
-        case .bold:     return "**"
-        case .italic:   return "_"
-        default:        return ""
+        case .h1, .h2, .h3:     return "\n"
+        case .code:             return "`"
+        case .bold:             return "**"
+        case .italic:           return "_"
+        default:                return ""
         }
     }
 }
