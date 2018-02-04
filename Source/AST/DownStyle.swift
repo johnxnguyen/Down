@@ -50,6 +50,13 @@ public struct Markdown: OptionSet {
     public var isHeader: Bool {
         return self != .none && [.h1, .h2, .h3].contains(self)
     }
+    
+    public var headerValue: Markdown? {
+        guard isHeader else { return nil }
+        if self.contains(.h1) { return .h1 }
+        else if self.contains(.h2) { return .h2 }
+        else { return .h3 }
+    }
 }
 
 public let MarkdownIDAttributeName = "MarkdownIDAttributeName"
