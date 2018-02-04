@@ -54,33 +54,42 @@ public class AttributedStringParser {
             // and end on the deeplest level (markdown that can't contain nested
             // markdown).
             
-            if shouldInsertPrefix(for: .header, given: markdown) {
-                appendPrefix(.header)
-            }
-            else if shouldInsertSuffix(for: .header, given: markdown) {
-                appendSuffix(.header)
-            }
-            
-            if shouldInsertPrefix(for: .bold, given: markdown) {
-                appendPrefix(.bold)
-            }
-            else if shouldInsertSuffix(for: .bold, given: markdown) {
-                appendSuffix(.bold)
+            Markdown.atomicValues.forEach {
+                if shouldInsertPrefix(for: $0, given: markdown) {
+                    appendPrefix($0)
+                }
+                else if shouldInsertSuffix(for: $0, given: markdown) {
+                    appendSuffix($0)
+                }
             }
             
-            if shouldInsertPrefix(for: .italic, given: markdown) {
-                appendPrefix(.italic)
-            }
-            else if shouldInsertSuffix(for: .italic, given: markdown) {
-                appendSuffix(.italic)
-            }
-
-            if shouldInsertPrefix(for: .code, given: markdown) {
-                appendPrefix(.code)
-            }
-            else if shouldInsertSuffix(for: .code, given: markdown) {
-                appendSuffix(.code)
-            }
+//            if shouldInsertPrefix(for: .header, given: markdown) {
+//                appendPrefix(.header)
+//            }
+//            else if shouldInsertSuffix(for: .header, given: markdown) {
+//                appendSuffix(.header)
+//            }
+//
+//            if shouldInsertPrefix(for: .bold, given: markdown) {
+//                appendPrefix(.bold)
+//            }
+//            else if shouldInsertSuffix(for: .bold, given: markdown) {
+//                appendSuffix(.bold)
+//            }
+//
+//            if shouldInsertPrefix(for: .italic, given: markdown) {
+//                appendPrefix(.italic)
+//            }
+//            else if shouldInsertSuffix(for: .italic, given: markdown) {
+//                appendSuffix(.italic)
+//            }
+//
+//            if shouldInsertPrefix(for: .code, given: markdown) {
+//                appendPrefix(.code)
+//            }
+//            else if shouldInsertSuffix(for: .code, given: markdown) {
+//                appendSuffix(.code)
+//            }
             
             result.append(input.attributedSubstring(from: NSMakeRange(idx, 1)).string)
          }
