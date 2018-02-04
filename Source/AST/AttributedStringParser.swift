@@ -20,111 +20,113 @@ import Foundation
 
 public class AttributedStringParser {
     
-    public init() {
-        
-    }
+    var stack = [Markdown]()
+    var seen: Markdown = .none
+
+    public init() {}
     
     public func parse(attributedString input: NSAttributedString) -> String {
         
         var result = ""
-        var stack = [Markdown]()
-        var seen: Markdown = .none
+        stack.removeAll()
+        seen = .none
         
-        let shouldOpen: (Markdown, Markdown) -> Bool = {
-            $0.contains($1) && !seen.contains($1)
+        let appendPrefix: (Markdown) -> Void = {
+            self.seen.insert($0)
+            self.stack.append($0)
+            result.append(self.prefix(for: $0))
         }
         
-        let shouldClose: (Markdown, Markdown) -> Bool = {
-            !$0.contains($1) && seen.contains($1)
+        let appendSuffix: (Markdown) -> Void = {
+            self.seen.subtract($0)
+            self.stack.removeLast()
+            result.append(self.suffix(for: $0))
         }
         
-        let open: (Markdown) -> Void = {
-            seen.insert($0)
-            stack.append($0)
-            var syntax = ""
-            switch $0 {
-            case .header:   syntax = "# "
-            case .code:     syntax = "`"
-            case .bold:     syntax = "**"
-            case .italic:   syntax = "_"
-            default: break
-                
-            }
-            result.append(syntax)
-        }
-        
-        let close: (Markdown) -> Void = {
-            seen.subtract($0)
-            stack.removeLast()
-            var syntax = ""
-            switch $0 {
-            case .header:   syntax = "\n"
-            case .code:     syntax = "`"
-            case .bold:     syntax = "**"
-            case .italic:   syntax = "_"
-            default: break
-                
-            }
-            result.append(syntax)
-        }
-        
-        // step through each char
+        // iterate through the characters
         for idx in 0..<input.length {
-            // determine the markdown
+            // get the markdown at the current index
             let val = input.attribute(MarkdownIDAttributeName, at: idx, effectiveRange: nil)
             let markdown = (val as? Markdown) ?? .none
-          
-            // check for blocks first, then inlines
             
-            // need to know when new markdown comes or leaves
+            // the order in which we check the markdown is important. We should
+            // start with on the highest level (markdown that can't be nested)
+            // and end on the deeplest level (markdown that can't contain nested
+            // markdown).
             
-            // new header
-            if shouldOpen(markdown, .header) {
-                open(.header)
+            if shouldInsertPrefix(for: .header, given: markdown) {
+                appendPrefix(.header)
             }
-            // header is ended
-            else if shouldClose(markdown, .header) {
-                close(.header)
-            }
-            
-        
-            if shouldOpen(markdown, .bold) {
-                // if there's code, and we've seen it already, close and open again
-                let reopenCode =  markdown.contains(.code) && seen.contains(.code)
-                if reopenCode { close(.code) }
-                open(.bold)
-                if reopenCode { open(.code) }
-            }
-            else if shouldClose(markdown, .bold) {
-                close(.bold)
+            else if shouldInsertSuffix(for: .header, given: markdown) {
+                appendSuffix(.header)
             }
             
-            if shouldOpen(markdown, .italic) {
-                // if there's code, and we've seen it already, close and open again
-                let reopenCode =  markdown.contains(.code) && seen.contains(.code)
-                if reopenCode { close(.code) }
-                open(.italic)
-                if reopenCode { open(.code) }
+            if shouldInsertPrefix(for: .bold, given: markdown) {
+                appendPrefix(.bold)
             }
-            else if shouldClose(markdown, .italic) {
-                close(.italic)
+            else if shouldInsertSuffix(for: .bold, given: markdown) {
+                appendSuffix(.bold)
+            }
+            
+            if shouldInsertPrefix(for: .italic, given: markdown) {
+                appendPrefix(.italic)
+            }
+            else if shouldInsertSuffix(for: .italic, given: markdown) {
+                appendSuffix(.italic)
             }
 
-            // check code after other inlines
-            // problem if we start with code, then add bold/italic after
-            if shouldOpen(markdown, .code) {
-                open(.code)
+            if shouldInsertPrefix(for: .code, given: markdown) {
+                appendPrefix(.code)
             }
-            else if shouldClose(markdown, .code) {
-                close(.code)
+            else if shouldInsertSuffix(for: .code, given: markdown) {
+                appendSuffix(.code)
             }
             
             result.append(input.attributedSubstring(from: NSMakeRange(idx, 1)).string)
          }
         
-        // if seen is not empty, need to close it!
-        while !stack.isEmpty { close(stack.last!) }
-        
+        // close all remaining markdown
+        while !stack.isEmpty { appendSuffix(stack.last!) }
         return result
+    }
+    
+    /// Determines whether the prefix for the atomic markdown value should be inserted
+    /// depending on the currentMarkdown.
+    private func shouldInsertPrefix(for markdown: Markdown, given currentMarkdown: Markdown) -> Bool {
+        // we insert prefix for markdown that has not yet been seen and is now
+        // present in currentMarkdown
+        return !seen.contains(markdown) && currentMarkdown.contains(markdown)
+    }
+    
+    /// Determines whether the suffix for the atomic markdown value should be inserted
+    /// depending on the currentMarkdown.
+    private func shouldInsertSuffix(for markdown: Markdown, given currentMarkdown: Markdown) -> Bool {
+        // we insert suffix for markdown only when it has been seen and is now
+        // no longer present in currentMarkdown
+        return seen.contains(markdown) && !currentMarkdown.contains(markdown)
+    }
+    
+    /// Returns the syntax prefix for the given markdown. Note, this will
+    /// return prefixes for atomic markdown values only.
+    private func prefix(for markdown: Markdown) -> String {
+        switch markdown {
+        case .header:   return "# "
+        case .code:     return "`"
+        case .bold:     return "**"
+        case .italic:   return "_"
+        default:        return ""
+        }
+    }
+    
+    /// Returns the syntax suffix for the given markdown. Note, this will
+    /// return suffixes for atomic markdown values only.
+    private func suffix(for markdown: Markdown) -> String {
+        switch markdown {
+        case .header:   return "\n"
+        case .code:     return "`"
+        case .bold:     return "**"
+        case .italic:   return "_"
+        default:        return ""
+        }
     }
 }
