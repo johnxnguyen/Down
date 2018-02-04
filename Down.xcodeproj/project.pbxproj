@@ -71,6 +71,7 @@
 		EE6CBE102021C42D00AD9E30 /* AST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE0F2021C42D00AD9E30 /* AST.swift */; };
 		EE6CBE122021C47D00AD9E30 /* DownStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE112021C47D00AD9E30 /* DownStyle.swift */; };
 		EE6CBE142021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE132021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift */; };
+		EE932D042025F55E004CAB91 /* AttributedStringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE932D032025F55E004CAB91 /* AttributedStringParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -201,6 +202,7 @@
 		EE6CBE0F2021C42D00AD9E30 /* AST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AST.swift; sourceTree = "<group>"; };
 		EE6CBE112021C47D00AD9E30 /* DownStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownStyle.swift; sourceTree = "<group>"; };
 		EE6CBE132021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Helpers.swift"; sourceTree = "<group>"; };
+		EE932D032025F55E004CAB91 /* AttributedStringParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,6 +386,7 @@
 				EE6CBE092021C03600AD9E30 /* Node.swift */,
 				EE6CBE0F2021C42D00AD9E30 /* AST.swift */,
 				EE6CBE112021C47D00AD9E30 /* DownStyle.swift */,
+				EE932D032025F55E004CAB91 /* AttributedStringParser.swift */,
 				EE6CBE132021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift */,
 			);
 			path = AST;
@@ -557,6 +560,7 @@
 				EE6CBE0A2021C03600AD9E30 /* Node.swift in Sources */,
 				8A569F6D1E6B3ED9008BE2AC /* xml.c in Sources */,
 				8A569F6E1E6B3EDE008BE2AC /* DownASTRenderable.swift in Sources */,
+				EE932D042025F55E004CAB91 /* AttributedStringParser.swift in Sources */,
 				8A569F491E6B3ED9008BE2AC /* blocks.c in Sources */,
 				8A569F4F1E6B3ED9008BE2AC /* cmark_ctype.c in Sources */,
 				8A569F671E6B3ED9008BE2AC /* render.c in Sources */,
