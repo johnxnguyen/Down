@@ -25,9 +25,7 @@ import UIKit
 
 @objc public class DownStyle: NSObject {
     
-    public static var `default`: DownStyle { return DownStyle() }
-    
-    typealias Attributes = [String : Any]
+    public typealias Attributes = [String : Any]
     
     // base attributes - these will be used for normal text and will be manipulated
     // for bold, italic and code etc.
@@ -44,7 +42,7 @@ import UIKit
     public var italicColor: UIColor?
     
     // code attributes
-    public var codeFont = UIFont(name: "Menlo", size: 17)!
+    public var codeFont = UIFont(name: "Menlo", size: 17) ?? UIFont.systemFont(ofSize: 17)
     public var codeColor: UIColor? = UIColor.darkGray
     
     // header attributes
@@ -68,7 +66,7 @@ import UIKit
     /// the amount of space between the prefix and content of a list item
     public var listItemPrefixSpacing: CGFloat = 8
     
-    var defaultAttributes: Attributes {
+    public var defaultAttributes: Attributes {
         return [MarkdownIDAttributeName: Markdown.none,
                 NSFontAttributeName: baseFont,
                 NSForegroundColorAttributeName: baseFontColor,
