@@ -124,6 +124,24 @@ import UIKit
         ]
     }
     
+    public func headerSize(for markdown: Markdown) -> CGFloat? {
+        switch markdown {
+        case .h1:   return h1Size
+        case .h2:   return h2Size
+        case .h3:   return h3Size
+        default:    return nil
+        }
+    }
+    
+    public func headerColor(for markdown: Markdown) -> UIColor? {
+        switch markdown {
+        case .h1:   return h1Color
+        case .h2:   return h2Color
+        case .h3:   return h3Color
+        default:    return nil
+        }
+    }
+    
     func headerSize(for level: Int) -> CGFloat {
         switch level {
         case 1:  return h1Size
