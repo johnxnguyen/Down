@@ -67,6 +67,7 @@
 		8AFAEB091E6E331700E09B68 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438696B1D00D27700E95A1F /* StringTests.swift */; };
 		907C64651EC133780095FEE1 /* TestDownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 907C64621EC120530095FEE1 /* TestDownView.bundle */; };
 		90A40A9C1EC03292004F2E91 /* Down.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EE129A202028498800E50449 /* Markdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE129A1F2028498800E50449 /* Markdown.swift */; };
 		EE6CBE0A2021C03600AD9E30 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE092021C03600AD9E30 /* Node.swift */; };
 		EE6CBE102021C42D00AD9E30 /* AST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE0F2021C42D00AD9E30 /* AST.swift */; };
 		EE6CBE122021C47D00AD9E30 /* DownStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE112021C47D00AD9E30 /* DownStyle.swift */; };
@@ -198,6 +199,7 @@
 		D4CF88971CFFAC2C00F07FD1 /* DownAttributedStringRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownAttributedStringRenderable.swift; sourceTree = "<group>"; };
 		D4DC91131CFDED4B0091CE09 /* DownCommonMarkRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownCommonMarkRenderable.swift; sourceTree = "<group>"; };
 		D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
+		EE129A1F2028498800E50449 /* Markdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Markdown.swift; sourceTree = "<group>"; };
 		EE6CBE092021C03600AD9E30 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		EE6CBE0F2021C42D00AD9E30 /* AST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AST.swift; sourceTree = "<group>"; };
 		EE6CBE112021C47D00AD9E30 /* DownStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownStyle.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 			children = (
 				EE6CBE092021C03600AD9E30 /* Node.swift */,
 				EE6CBE0F2021C42D00AD9E30 /* AST.swift */,
+				EE129A1F2028498800E50449 /* Markdown.swift */,
 				EE6CBE112021C47D00AD9E30 /* DownStyle.swift */,
 				EE932D032025F55E004CAB91 /* AttributedStringParser.swift */,
 				EE6CBE132021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift */,
@@ -540,6 +543,7 @@
 				8A569F721E6B3EDE008BE2AC /* DownHTMLRenderable.swift in Sources */,
 				8A569F581E6B3ED9008BE2AC /* houdini_html_e.c in Sources */,
 				8A569F531E6B3ED9008BE2AC /* commonmark.c in Sources */,
+				EE129A202028498800E50449 /* Markdown.swift in Sources */,
 				8A569F4A1E6B3ED9008BE2AC /* buffer.c in Sources */,
 				EE6CBE142021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift in Sources */,
 				8A569F771E6B3EE3008BE2AC /* String+ToHTML.swift in Sources */,

@@ -22,64 +22,6 @@ import UIKit
 // TODO: check that code font is actually rendering
 // what happens with code in header?
 
-/// Use as values for `NSAttributedStringKey.markdown` to be able to easily
-/// identify ranges of markdown in an `NSAttributedString`.
-public struct Markdown: OptionSet, CustomStringConvertible {
-    
-    public init(rawValue: Int) {
-        self.rawValue = rawValue
-    }
-    
-    public let rawValue: Int
-    
-    public static let none     = Markdown(rawValue: 0)
-    public static let h1       = Markdown(rawValue: 1 << 0)
-    public static let h2       = Markdown(rawValue: 1 << 1)
-    public static let h3       = Markdown(rawValue: 1 << 2)
-    public static let bold     = Markdown(rawValue: 1 << 3)
-    public static let italic   = Markdown(rawValue: 1 << 4)
-    public static let code     = Markdown(rawValue: 1 << 5)
-    public static let list     = Markdown(rawValue: 1 << 6)
-    public static let quote    = Markdown(rawValue: 1 << 7)
-    public static let link     = Markdown(rawValue: 1 << 8)
-    
-    public static var atomicValues: Array<Markdown> = [
-        .h1, .h2, .h3, .bold, .italic, .code, .list, .quote, .link
-    ]
-    
-    public var isHeader: Bool {
-        return self != .none && [.h1, .h2, .h3].contains(self)
-    }
-    
-    public var containsHeader: Bool {
-        return self.contains(.h1) || self.contains(.h2) || self.contains(.h3)
-    }
-    
-    public var headerValue: Markdown? {
-        guard isHeader else { return nil }
-        if self.contains(.h1) { return .h1 }
-        else if self.contains(.h2) { return .h2 }
-        else { return .h3 }
-    }
-    
-    public var description: String {
-        switch self {
-        case .none:     return "None"
-        case .h1:       return "H1"
-        case .h2:       return "H2"
-        case .h3:       return "H3"
-        case .bold:     return "Bold"
-        case .italic:   return "Italic"
-        case .code:     return "Code"
-        case .list:     return "List"
-        case .quote:    return "Quote"
-        case .link:     return "Link"
-        default:        return "Combined Markdown"
-        }
-    }
-}
-
-public let MarkdownIDAttributeName = "MarkdownIDAttributeName"
 
 @objc public class DownStyle: NSObject {
     
