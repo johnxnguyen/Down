@@ -31,7 +31,7 @@ public class AttributedStringParser {
         // fill stream with ranges for each atomic markdown
         var stream = [MarkdownRange]()
         for markdown in Markdown.atomicValues + [.none] {
-            stream += ranges(of: markdown, in: input).map {
+            stream += input.ranges(containing: markdown).map {
                 MarkdownRange(markdown: markdown, range: $0)
             }
         }
@@ -142,27 +142,9 @@ public class AttributedStringParser {
         }
     }
     
-    /// Returns an array of ranges where the given markdown ID is present in
-    /// the given attributed string.
-    private func ranges(of markdown: Markdown, in attrStr: NSAttributedString) -> [NSRange] {
-        var result = [NSRange]()
-        let wholeRange = NSMakeRange(0, attrStr.length)
         
-        attrStr.enumerateAttribute(MarkdownIDAttributeName, in: wholeRange, options: []) { val, range, _ in
-            let currentMarkdown = (val as? Markdown) ?? .none
-            
-            // special case, b/c all markdown contains .none
-            if markdown == .none {
-                if currentMarkdown == .none { result.append(range) }
-            }
-            else if currentMarkdown.contains(markdown) {
-                result.append(range)
             }
         }
-
-        // combine any adjacent ranges that can be expressed as a single range
-        // eg: {0,1},{1,1} -> {0,2}
-        return result.unified
     }
     
     /// Returns the syntax prefix for the given markdown. Note, this will
@@ -217,7 +199,7 @@ private extension NSRange {
     }
 }
 
-private extension Sequence where Iterator.Element == NSRange  {
+extension Sequence where Iterator.Element == NSRange  {
     /// Returns a copy of the array where ranges that could be expressed a
     /// single range are replaced. Eg. {0,1},{1,1},{3,1} -> {0,2},{3,1}
     var unified: [NSRange] {

@@ -34,10 +34,6 @@ extension Sequence where Iterator.Element == NSMutableAttributedString? {
 
 extension NSMutableAttributedString {
     
-    var wholeRange: NSRange {
-        return NSMakeRange(0, length)
-    }
-    
     func prependBreak() {
         prepend("\n")
     }
@@ -63,12 +59,12 @@ extension NSMutableAttributedString {
 
 extension NSMutableAttributedString {
     
-    /// Updates the value for the given attribute key with the return value of
-    // the given transform function.
-    private func map<T>(overKey key: String, using transform: (T) -> T) {
+    /// Updates the value for the given attribute key in the given range
+    /// with the return value of the given transform function.
+    func map<T>(overKey key: String, inRange range: NSRange, using transform: (T) -> T) {
         // collect exists values & ranges for the key
         var values = [(value: T, range: NSRange)]()
-        enumerateAttribute(key, in: wholeRange, options: []) { value, range, _ in
+        enumerateAttribute(key, in: range, options: []) { value, range, _ in
             guard let value = value as? T else { return }
             values.append((value, range))
         }
@@ -76,6 +72,12 @@ extension NSMutableAttributedString {
         for (value, range) in values {
             addAttribute(key, value: transform(value), range: range)
         }
+    }
+    
+    /// Updates the value for the given attribute key over the whole range
+    /// with the return value of the given transform function.
+    func map<T>(overKey key: String, using transform: (T) -> T) {
+        map(overKey: key, inRange: wholeRange, using: transform)
     }
     
     /// Italicizes the font while preserving existing symbolic traits.
@@ -106,15 +108,33 @@ extension NSMutableAttributedString {
             return markdown.union(markdownIdentifier)
         }
     }
+}
+
+extension NSAttributedString {
     
-    /// Returns the ranges containing the specified markdown. Note, this is
-    /// a partial match, i.e the ranges may also contain other markdown identifiers.
+    var wholeRange: NSRange {
+        return NSMakeRange(0, length)
+    }
+    
+    /// Returns an array of ranges where the given markdown ID is present in
+    /// the given attributed string.
     func ranges(containing markdown: Markdown) -> [NSRange] {
         var result = [NSRange]()
+        
         enumerateAttribute(MarkdownIDAttributeName, in: wholeRange, options: []) { val, range, _ in
-            guard let markdown = val as? Markdown, markdown.contains(markdown) else { return }
-            result.append(range)
+            let currentMarkdown = (val as? Markdown) ?? .none
+            
+            // special case, b/c all markdown contains .none
+            if markdown == .none {
+                if currentMarkdown == .none { result.append(range) }
+            }
+            else if currentMarkdown.contains(markdown) {
+                result.append(range)
+            }
         }
-        return result
+        
+        // combine any adjacent ranges that can be expressed as a single range
+        // eg: {0,1},{1,1} -> {0,2}
+        return result.unified
     }
 }
