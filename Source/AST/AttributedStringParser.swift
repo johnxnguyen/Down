@@ -35,7 +35,7 @@ private struct MarkdownRange: Comparable, CustomStringConvertible {
         if lhs.range.length > rhs.range.length     { return true }
         if lhs.range.length < rhs.range.length     { return false }
         // finally compare markdown priority ascending
-        return lhs.markdown.rawValue < rhs.markdown.rawValue
+        return lhs.markdown.priority < rhs.markdown.priority
     }
     
     static func ==(lhs: MarkdownRange, rhs: MarkdownRange) -> Bool {

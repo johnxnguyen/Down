@@ -61,6 +61,21 @@ public struct Markdown: OptionSet, CustomStringConvertible {
         else { return .h3 }
     }
     
+    /// Used when parsing attributed strings to determine which atomic markdown
+    /// should be processed first. For example, if "hello" contains both
+    /// h1 and italic, then the parser should return `# *hello*` instead of
+    /// `*# hello*`.
+    var priority: Int {
+        switch self {
+        case .quote:            return 0
+        case .h1, .h2, .h3:     return 1
+        case .list:             return 2
+        case .bold, .italic:    return 3
+        case .code, .link:      return 4
+        default:                return 5
+        }
+    }
+    
     public var description: String {
         switch self {
         case .none:     return "None"
