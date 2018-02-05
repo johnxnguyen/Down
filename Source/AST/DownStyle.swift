@@ -35,12 +35,6 @@ import UIKit
     @objc public var baseFontColor = UIColor.black
     @objc public var baseParagraphStyle = NSParagraphStyle.default.with(topSpacing: 8, bottomSpacing: 8)
     
-    // bold attributes
-    public var boldColor: UIColor?
-    
-    // italic attributes
-    public var italicColor: UIColor?
-    
     // code attributes
     public var codeFont = UIFont(name: "Menlo", size: 17) ?? UIFont.systemFont(ofSize: 17)
     public var codeColor: UIColor? = UIColor.darkGray
@@ -60,7 +54,6 @@ import UIKit
     public var quoteParagraphStyle: NSParagraphStyle? = NSParagraphStyle.default.indentedBy(points: 24)
     
     // list attributes
-    
     /// The amount the list is indented from the leading margin
     public var listIndentation: CGFloat = 16
     /// the amount of space between the prefix and content of a list item
@@ -75,15 +68,11 @@ import UIKit
     }
     
     var boldAttributes: Attributes {
-        return [MarkdownIDAttributeName: Markdown.bold,
-                NSForegroundColorAttributeName: boldColor ?? baseFontColor
-        ]
+        return [MarkdownIDAttributeName: Markdown.bold]
     }
     
     var italicAttributes: Attributes {
-        return [MarkdownIDAttributeName: Markdown.italic,
-                NSForegroundColorAttributeName: italicColor ?? baseFontColor
-        ]
+        return [MarkdownIDAttributeName: Markdown.italic]
     }
     
     var codeAttributes: Attributes {
