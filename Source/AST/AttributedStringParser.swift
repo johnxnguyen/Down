@@ -18,38 +18,14 @@
 
 import Foundation
 
-private struct MarkdownRange: Comparable, CustomStringConvertible {
-    
-    let markdown: Markdown
-    let range: NSRange
-    
-    var description: String {
-        return "\(markdown): \(range)"
-    }
-    
-    static func <(lhs: MarkdownRange, rhs: MarkdownRange) -> Bool {
-        // first compare range location ascending
-        if lhs.range.location < rhs.range.location { return true }
-        if lhs.range.location > rhs.range.location { return false }
-        // then compare range length descending
-        if lhs.range.length > rhs.range.length     { return true }
-        if lhs.range.length < rhs.range.length     { return false }
-        // finally compare markdown priority ascending
-        return lhs.markdown.priority < rhs.markdown.priority
-    }
-    
-    static func ==(lhs: MarkdownRange, rhs: MarkdownRange) -> Bool {
-        return NSEqualRanges(lhs.range, rhs.range) && lhs.markdown == rhs.markdown
-    }
-}
-
 public class AttributedStringParser {
     
-    var stack = [Markdown]()
-    var seen: Markdown = .none
-
+    // MARK: - Public Interface
+    
     public init() {}
     
+    /// Converts an attributed string containing markdown attributes into a
+    /// plain text string containing markdown syntax.
     public func parse(attributedString input: NSAttributedString) -> String {
         
         // fill stream with ranges for each atomic markdown
@@ -60,70 +36,72 @@ public class AttributedStringParser {
             }
         }
         
-        // sorting is very important. See the MarkdownRange struct
-        // definition for how they are compared
+        // sorting is very important. See the MarkdownRange definition for
+        // how the elements are compared
         stream.sort()
-        print("ranges: \(stream)")
         
+        // the output
         var result = ""
-        var stack = [MarkdownRange]()
+        // keeps track of the position in the input string
         var cursor = 0
+        // keeps track of markdown nesting
+        var stack = [MarkdownRange]()
         
-        // note, not safe, must use with caution
-        let pushHead: () -> Void = {
-            let head = stream.remove(at: 0)
+        // not safe, use with caution
+        let pushNext: () -> Void = {
+            let next = stream.remove(at: 0)
             // push to stack
-            stack.append(head)
+            stack.append(next)
             // append suffix
-            result.append(self.prefix(for: head.markdown))
+            result.append(self.prefix(for: next.markdown))
             // update cursor
-            cursor = head.range.location
+            cursor = next.range.location
         }
         
-        // note, not safe, must use with caution
+        // not safe, use with caution
         let pop: () -> Void = {
             let top = stack.removeLast()
-            // range from cursor to end of top range
+            // range from cursor to end of top's range
             let range = NSRange(from: cursor, to: top.range.upperBound)
             // append substring
             result.append(input.attributedSubstring(from: range).string)
-            // update cursor
-            cursor = range.upperBound
             // append suffix
             result.append(self.suffix(for: top.markdown))
+            // update cursor
+            cursor = range.upperBound
         }
         
+        // begin parsing
         while true {
             if stream.isEmpty { break }
-            if stack.isEmpty { pushHead() }
-            let stackTop = stack.last!
+            if stack.isEmpty { pushNext() }
+            let current = stack.last!
             
-            // look at next head
-            if let head = stream.first {
-                if stackTop.range.contains(head.range) {
-                    // head is a subrange of stackTop
-                    // take up to head location
-                    let range = NSRange(from: cursor, to: head.range.location)
+            if let next = stream.first {
+                if current.range.contains(next.range) {
+                    // next is nested in current
+                    // take input until next's location
+                    let range = NSRange(from: cursor, to: next.range.location)
                     let str = input.attributedSubstring(from: range).string
                     result.append(str)
-                    
-                    pushHead()
+                    // enter the nest
+                    pushNext()
                     continue
                 }
-                else if stackTop.range.overlaps(with: head.range) {
-                    // head starts inside stackTop but extends outside
-                    // split head range at the boundary
-                    let boundary = stackTop.range.upperBound
+                else if current.range.overlaps(with: next.range) {
+                    // next begins in current, but ends outside of it
+                    // split next's range at the boundary
+                    let boundary = current.range.upperBound
                     let temp = stream.remove(at: 0)
                     let left = NSRange(from: temp.range.location, to: boundary)
                     let right = NSRange(from: boundary, to: temp.range.upperBound)
-                    // both back into the array starting with right side
                     stream.insert(MarkdownRange(markdown: temp.markdown, range: right), at: 0)
                     stream.insert(MarkdownRange(markdown: temp.markdown, range: left), at: 0)
                     continue
                 }
                 else {
-                    // head is disjoint with stackTop
+                    // next is disjoint with current
+                    // finish up with current before continuing with next
                     pop()
                     continue
                 }
@@ -132,16 +110,41 @@ public class AttributedStringParser {
         
         // flush stack
         while !stack.isEmpty { pop() }
-        print("stack: \(stack)")
-        print(result)
         return result
     }
     
-    /// Returns a dictionary containing the subranges for each markdown type
-    /// where this markdown is present in the given range.
-    ///
-    private func ranges(of markdown: Markdown, in attrStr: NSAttributedString) -> [NSRange] {
+    // MARK: - Private Interface
+    
+    /// Used as an element in the parsing stream to represent the range
+    /// of an attributed string where an atomic markdown ID is present.
+    private struct MarkdownRange: Comparable, CustomStringConvertible {
         
+        let markdown: Markdown
+        let range: NSRange
+        
+        var description: String {
+            return "\(markdown): \(range)"
+        }
+        
+        static func <(lhs: MarkdownRange, rhs: MarkdownRange) -> Bool {
+            // first compare range location ascending
+            if lhs.range.location < rhs.range.location { return true }
+            if lhs.range.location > rhs.range.location { return false }
+            // then compare range length descending
+            if lhs.range.length > rhs.range.length     { return true }
+            if lhs.range.length < rhs.range.length     { return false }
+            // finally compare markdown priority ascending
+            return lhs.markdown.priority < rhs.markdown.priority
+        }
+        
+        static func ==(lhs: MarkdownRange, rhs: MarkdownRange) -> Bool {
+            return NSEqualRanges(lhs.range, rhs.range) && lhs.markdown == rhs.markdown
+        }
+    }
+    
+    /// Returns an array of ranges where the given markdown ID is present in
+    /// the given attributed string.
+    private func ranges(of markdown: Markdown, in attrStr: NSAttributedString) -> [NSRange] {
         var result = [NSRange]()
         let wholeRange = NSMakeRange(0, attrStr.length)
         
@@ -150,18 +153,15 @@ public class AttributedStringParser {
             
             // special case, b/c all markdown contains .none
             if markdown == .none {
-                if currentMarkdown == .none {
-                    result.append(range)
-                }
+                if currentMarkdown == .none { result.append(range) }
             }
             else if currentMarkdown.contains(markdown) {
                 result.append(range)
             }
         }
-        
-        // since we reset typing attributes at each change, the length of the ranges
-        // corresponds to the length of the last edit. This results in numerous
-        // ranges that are adjacent to each other. We want to combine these together.
+
+        // combine any adjacent ranges that can be expressed as a single range
+        // eg: {0,1},{1,1} -> {0,2}
         return result.unified
     }
     
@@ -192,36 +192,34 @@ public class AttributedStringParser {
     }
 }
 
-fileprivate extension NSRange {
+// MARK: - Helpers
+
+private extension NSRange {
     
-    /// Returns true iff the given range is entirely contained within self.
-    ///
+    /// Range between two locations
+    init(from x: Int, to y: Int) {
+        self = NSMakeRange(x, y - x)
+    }
+
+    /// Returns true iff the given range is a subrange of the receiver.
     func contains(_ range: NSRange) -> Bool {
         guard let intersection = self.intersection(range) else { return false }
         return NSEqualRanges(intersection, range)
     }
     
-    // TODO: Test this, check case that self is before other
+    /// Returns true iff the given range is a partial subrange of the receiver.
     func overlaps(with range: NSRange) -> Bool {
         // there is a non empty intersection
-        guard let intersection = self.intersection(range) else { return false }
-        guard intersection.length > 0 else { return false }
+        guard let intersection = self.intersection(range), intersection.length > 0
+        else { return false }
         // the intersection is not equal to either range
-        guard !NSEqualRanges(self, intersection) else { return false }
-        guard !NSEqualRanges(range, intersection) else { return false }
-        return true
-    }
-    
-    init(from x: Int, to y: Int) {
-        self = NSMakeRange(x, y - x)
+        return !NSEqualRanges(self, intersection) && !NSEqualRanges(range, intersection)
     }
 }
 
 private extension Sequence where Iterator.Element == NSRange  {
-    
-    /// Returns a copy of the array where adjacent ranges (ones that have no
-    /// gaps between them) are unified. Eg. [{0,1},{1,2},{4,1}] -> [{0,3},{4,1}]
-    ///
+    /// Returns a copy of the array where ranges that could be expressed a
+    /// single range are replaced. Eg. {0,1},{1,1},{3,1} -> {0,2},{3,1}
     var unified: [NSRange] {
         let sorted = self.sorted { return $0.location <= $1.location }
         
@@ -238,26 +236,5 @@ private extension Sequence where Iterator.Element == NSRange  {
                 }
             }
         })
-    }
-}
-
-private extension Array where Iterator.Element == (Markdown, NSRange)  {
-    /// Removes and returns all elements that meet the given condition.
-    mutating func removeAll(where condition: ((Markdown, NSRange) -> Bool)) -> [(Markdown, NSRange)] {
-        var result = [(Markdown, NSRange)]()
-        var indicesToRemove = [Int]()
-        
-        for (idx, element) in enumerated() {
-            if condition(element.0, element.1) {
-                indicesToRemove.append(idx)
-                result.append(element)
-            }
-        }
-        
-        for idx in indicesToRemove.reversed() {
-            result.append(self.remove(at: idx))
-        }
-        
-        return result
     }
 }
