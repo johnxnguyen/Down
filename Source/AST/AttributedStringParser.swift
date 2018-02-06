@@ -26,7 +26,9 @@ public class AttributedStringParser {
     
     /// Converts an attributed string containing markdown attributes into a
     /// plain text string containing markdown syntax.
-    public func parse(attributedString input: NSAttributedString) -> String {
+    public func parse(attributedString attrStr: NSAttributedString) -> String {
+        
+        let input = prepare(input: attrStr)
         
         // fill stream with ranges for each atomic markdown
         var stream = [MarkdownRange]()
@@ -142,9 +144,57 @@ public class AttributedStringParser {
         }
     }
     
-        
+    /// Scans the bold, italic and code attributes of the given input and removes
+    /// the corresponding markdown ID from any any whitespace prefixes or suffixes.
+    /// This is important b/c bold, italic and code require the syntax to not
+    /// preceed or suceed whitespace.
+    private func prepare(input: NSAttributedString) -> NSAttributedString {
+        let attrStr = NSMutableAttributedString(attributedString: input)
+
+        for markdown in [Markdown.bold, .italic, .code] {
+            
+            let removeMarkdown: (Markdown) -> (Markdown) = {
+                return $0.subtracting(markdown)
+            }
+            
+            // for each range where this markdown is present
+            for range in attrStr.ranges(containing: markdown) {
+                // inspect the string at this range
+                let str = attrStr.attributedSubstring(from: range).string
+                // remove this markdown ID from whitespace prefix
+                let prefixLen = lengthOfWhitespacePrefix(of: str)
+                let prefixRange = NSMakeRange(range.location, prefixLen)
+                attrStr.map(overKey: MarkdownIDAttributeName, inRange: prefixRange, using: removeMarkdown)
+                // remove this markdown ID from whitespace suffix
+                let suffixLen = lengthOfWhitespaceSuffix(of: str)
+                let suffixRange = NSMakeRange(range.upperBound - suffixLen, suffixLen)
+                attrStr.map(overKey: MarkdownIDAttributeName, inRange: suffixRange, using: removeMarkdown)
             }
         }
+            
+        return attrStr
+    }
+    
+    /// Returns the length of leading whitespace for the given string. This
+    /// will be 0 if there is none, or the length of the string if the string
+    /// contains only whitespace.
+    private func lengthOfWhitespacePrefix(of str: String) -> Int {
+        let set = CharacterSet.whitespaces.inverted
+        if let loc = str.rangeOfCharacter(from: set)?.lowerBound {
+            return str.distance(from: str.startIndex, to: loc)
+        }
+        return str.distance(from: str.startIndex, to: str.endIndex)
+    }
+    
+    /// Returns the length of trailing whitespace for the given string. This
+    /// will be 0 if there is none, or the length of the string if the string
+    /// contains only whitespace.
+    private func lengthOfWhitespaceSuffix(of str: String) -> Int {
+        let set = CharacterSet.whitespaces.inverted
+        if let loc = str.rangeOfCharacter(from: set, options: .backwards, range: nil)?.upperBound {
+            return str.distance(from: loc, to: str.endIndex)
+        }
+        return str.distance(from: str.startIndex, to: str.endIndex)
     }
     
     /// Returns the syntax prefix for the given markdown. Note, this will
