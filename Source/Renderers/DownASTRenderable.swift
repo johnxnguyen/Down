@@ -57,7 +57,7 @@ public extension DownASTRenderable {
      
      - parameter options: `DownOptions` to modify parsing or rendering
      
-     - parameter style: `Style` instance to use when applying attributes
+     - parameter style: `DownStyle` instance to use when applying attributes
      
      - throws: `DownErrors` depending on the scenario
      
