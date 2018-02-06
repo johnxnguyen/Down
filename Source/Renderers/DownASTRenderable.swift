@@ -69,7 +69,11 @@ public extension DownASTRenderable {
         let root = Node(node: ast)
         let document = Block(root)
         // FIXME: Clean this up
-        return document.render(with: style)! as NSAttributedString
+        let result = document.render(with: style)!
+        if result.string.last == "\n" {
+            result.deleteCharacters(in: NSMakeRange(result.length - 1, 1))
+        }
+        return result as NSAttributedString
     }
 }
 
