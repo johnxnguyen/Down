@@ -55,10 +55,10 @@ public struct Markdown: OptionSet, CustomStringConvertible {
     }
     
     public var headerValue: Markdown? {
-        guard isHeader else { return nil }
-        if self.contains(.h1) { return .h1 }
+        if      self.contains(.h1) { return .h1 }
         else if self.contains(.h2) { return .h2 }
-        else { return .h3 }
+        else if self.contains(.h3) { return .h3 }
+        return nil
     }
     
     /// Used when parsing attributed strings to determine which atomic markdown
