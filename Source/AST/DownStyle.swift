@@ -19,18 +19,11 @@
 import Foundation
 import UIKit
 
-// TODO: check that code font is actually rendering
-// what happens with code in header?
-
 
 @objc public class DownStyle: NSObject {
     
     public typealias Attributes = [String : Any]
     
-    // base attributes - these will be used for normal text and will be manipulated
-    // for bold, italic and code etc.
-    
-    // change this to system font size
     @objc public var baseFont = UIFont.systemFont(ofSize: 17)
     @objc public var baseFontColor = UIColor.black
     @objc public var baseParagraphStyle = NSParagraphStyle.default.with(topSpacing: 8, bottomSpacing: 8)
@@ -205,7 +198,6 @@ import UIKit
 }
 
 
-
 extension NSParagraphStyle {
     
     func with(topSpacing: CGFloat, bottomSpacing: CGFloat) -> NSParagraphStyle {
@@ -236,22 +228,16 @@ extension NSParagraphStyle {
 }
 
 
-// TODO: check whether just adding traits works for all fonts?
-
-extension UIFont {
+public extension UIFont {
     
     // MARK: - Trait Querying
     
-    var isBold: Bool {
+    public var isBold: Bool {
         return contains(.traitBold)
     }
     
-    var isItalic: Bool {
+    public var isItalic: Bool {
         return contains(.traitItalic)
-    }
-    
-    var isMonospace: Bool {
-        return contains(.traitMonoSpace)
     }
     
     private func contains(_ trait: UIFontDescriptorSymbolicTraits) -> Bool {
@@ -260,16 +246,12 @@ extension UIFont {
     
     // MARK: - Set Traits
     
-    var bold: UIFont {
+    public var bold: UIFont {
         return self.with(.traitBold)
     }
     
-    var italic: UIFont {
+    public var italic: UIFont {
         return self.with(.traitItalic)
-    }
-    
-    var monospace: UIFont {
-        return self.with(.traitMonoSpace)
     }
     
     /// Returns a copy of the font with the added symbolic trait.
