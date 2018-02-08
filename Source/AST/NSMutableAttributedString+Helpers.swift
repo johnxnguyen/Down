@@ -110,18 +110,36 @@ extension NSMutableAttributedString {
     }
 }
 
-extension NSAttributedString {
+public extension NSAttributedString {
     
-    var wholeRange: NSRange {
+    public var wholeRange: NSRange {
         return NSMakeRange(0, length)
     }
     
-    /// Returns an array of ranges where the given markdown ID is present in
-    /// the given attributed string.
-    func ranges(containing markdown: Markdown) -> [NSRange] {
+    /// Returns an array of ranges where the given markdown ID is exactly present in
+    /// over the given range.
+    public func ranges(of markdown: Markdown, inRange range: NSRange) -> [NSRange] {
         var result = [NSRange]()
         
-        enumerateAttribute(MarkdownIDAttributeName, in: wholeRange, options: []) { val, range, _ in
+        enumerateAttribute(MarkdownIDAttributeName, in: range, options: []) { val, range, _ in
+            let currentMarkdown = (val as? Markdown) ?? .none
+            if currentMarkdown == markdown { result.append(range) }
+        }
+        
+        return result.unified
+    }
+    
+    /// Returns an array of ranges where the given markdown ID is exactly present.
+    public func ranges(of markdown: Markdown) -> [NSRange] {
+        return ranges(containing: markdown, inRange: wholeRange)
+    }
+    
+    /// Returns an array of ranges where the given markdown ID is partially present in
+    /// over the given range.
+    public func ranges(containing markdown: Markdown, inRange range: NSRange) -> [NSRange] {
+        var result = [NSRange]()
+        
+        enumerateAttribute(MarkdownIDAttributeName, in: range, options: []) { val, range, _ in
             let currentMarkdown = (val as? Markdown) ?? .none
             
             // special case, b/c all markdown contains .none
@@ -136,5 +154,10 @@ extension NSAttributedString {
         // combine any adjacent ranges that can be expressed as a single range
         // eg: {0,1},{1,1} -> {0,2}
         return result.unified
+    }
+    
+    /// Returns an array of ranges where the given markdown ID is partially present.
+    public func ranges(containing markdown: Markdown) -> [NSRange] {
+        return ranges(containing: markdown, inRange: wholeRange)
     }
 }
