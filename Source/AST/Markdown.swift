@@ -23,13 +23,15 @@ public let MarkdownIDAttributeName = "MarkdownIDAttributeName"
 
 /// Use as values for `MarkdownIDAttributeName` to be able to easily
 /// identify ranges of markdown in an `NSAttributedString`.
-public struct Markdown: OptionSet, CustomStringConvertible {
+public struct Markdown: OptionSet, Hashable, CustomStringConvertible {
     
     public init(rawValue: Int) {
         self.rawValue = rawValue
+        self.hashValue = rawValue.hashValue
     }
     
     public let rawValue: Int
+    public var hashValue: Int
     
     public static let none     = Markdown(rawValue: 0)
     public static let h1       = Markdown(rawValue: 1 << 0)
