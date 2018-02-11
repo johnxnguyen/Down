@@ -301,7 +301,7 @@ extension Inline : Renderable {
             return NSMutableAttributedString(string: text, attributes: attrs)
             
         case .softBreak:
-            return NSMutableAttributedString(string: " ")
+            return NSMutableAttributedString(string: "\n")
             
         case .lineBreak:
             return NSMutableAttributedString(string: "\n")
