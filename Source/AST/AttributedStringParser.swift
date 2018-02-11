@@ -97,7 +97,28 @@ public class AttributedStringParser {
                     let temp = stream.remove(at: 0)
                     let left = NSRange(from: temp.range.location, to: boundary)
                     let right = NSRange(from: boundary, to: temp.range.upperBound)
-                    stream.insert(MarkdownRange(markdown: temp.markdown, range: right), at: 0)
+                    
+                    // it's possible that after spliting, the right side begins
+                    // with whitespace. This is a problem if the right side
+                    // is inline markdown, because these can't begin with
+                    // whitespace. If necessary, we need to split the right side
+                    // again where the whitespace ends. The range of whitespace
+                    // will be assigned .none markdown.
+                    
+                    let str = attrStr.attributedSubstring(from: right).string
+                    let wsLength = lengthOfWhitespacePrefix(of: str)
+                    
+                    if wsLength > 0 {
+                        // split the right side
+                        let whitespaceRange = NSMakeRange(right.location, wsLength)
+                        let newRight = NSMakeRange(right.location + wsLength, right.length - wsLength)
+                        stream.insert(MarkdownRange(markdown: temp.markdown, range: newRight), at: 0)
+                        stream.insert(MarkdownRange(markdown: .none, range: whitespaceRange), at: 0)
+                    }
+                    else {
+                        stream.insert(MarkdownRange(markdown: temp.markdown, range: right), at: 0)
+                    }
+                    
                     stream.insert(MarkdownRange(markdown: temp.markdown, range: left), at: 0)
                     continue
                 }
