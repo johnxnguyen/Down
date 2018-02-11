@@ -190,6 +190,14 @@ public class AttributedStringParser {
                 let suffixLen = lengthOfWhitespaceSuffix(of: str)
                 let suffixRange = NSMakeRange(range.upperBound - suffixLen, suffixLen)
                 attrStr.map(overKey: MarkdownIDAttributeName, inRange: suffixRange, using: removeMarkdown)
+    
+                // finally, remove this markdown ID from any newlines
+                let regex = try! NSRegularExpression(pattern: "[\\n\\r]", options: [])
+                regex.enumerateMatches(in: attrStr.string, options: [], range: range) { match, _, _ in
+                    if let range = match?.range, range.location != NSNotFound {
+                        attrStr.map(overKey: MarkdownIDAttributeName, inRange: range, using: removeMarkdown)
+                    }
+                }
             }
         }
             
