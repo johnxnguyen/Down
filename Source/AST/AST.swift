@@ -330,7 +330,7 @@ extension Inline : Renderable {
         case .link(let children, title: _, let url):
             let content = children.render(with: style)
             if let url = url {
-                content.addAttribute(MarkdownIDAttributeName, value: Markdown.list, range: content.wholeRange)
+                content.addAttribute(MarkdownIDAttributeName, value: Markdown.link, range: content.wholeRange)
                 content.addAttribute(NSLinkAttributeName, value: url, range: content.wholeRange)
             }
             return content
