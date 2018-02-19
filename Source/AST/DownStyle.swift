@@ -82,8 +82,12 @@ import UIKit
         ]
     }
     
-    var listAttributes: Attributes {
-        return [MarkdownIDAttributeName: Markdown.list]
+    var oListAttributes: Attributes {
+        return [MarkdownIDAttributeName: Markdown.oList]
+    }
+    
+    var uListAttributes: Attributes {
+        return [MarkdownIDAttributeName: Markdown.uList]
     }
     
     var h1Attributes: Attributes {
@@ -149,8 +153,11 @@ import UIKit
         case .blockQuote(_):
             return quoteAttributes
             
-        case .list(_, _):
-            return listAttributes
+        case .list(_, let type):
+            switch type {
+            case .ordered(_):   return oListAttributes
+            case .unordered:    return uListAttributes
+            }
             
         case .listItem(_, _):
             return nil

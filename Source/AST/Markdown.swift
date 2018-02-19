@@ -40,12 +40,13 @@ public struct Markdown: OptionSet, Hashable, CustomStringConvertible {
     public static let bold     = Markdown(rawValue: 1 << 3)
     public static let italic   = Markdown(rawValue: 1 << 4)
     public static let code     = Markdown(rawValue: 1 << 5)
-    public static let list     = Markdown(rawValue: 1 << 6)
-    public static let quote    = Markdown(rawValue: 1 << 7)
-    public static let link     = Markdown(rawValue: 1 << 8)
+    public static let oList    = Markdown(rawValue: 1 << 6)
+    public static let uList    = Markdown(rawValue: 1 << 7)
+    public static let quote    = Markdown(rawValue: 1 << 8)
+    public static let link     = Markdown(rawValue: 1 << 9)
     
     public static var atomicValues: Array<Markdown> = [
-        .h1, .h2, .h3, .bold, .italic, .code, .list, .quote, .link
+        .h1, .h2, .h3, .bold, .italic, .code, .oList, .uList, .quote, .link
     ]
     
     public var isHeader: Bool {
@@ -63,6 +64,10 @@ public struct Markdown: OptionSet, Hashable, CustomStringConvertible {
         return nil
     }
     
+    public var containsList: Bool {
+        return self.contains(.oList) || self.contains(.uList)
+    }
+    
     /// Used when parsing attributed strings to determine which atomic markdown
     /// should be processed first. For example, if "hello" contains both
     /// h1 and italic, then the parser should return `# *hello*` instead of
@@ -71,7 +76,7 @@ public struct Markdown: OptionSet, Hashable, CustomStringConvertible {
         switch self {
         case .quote:            return 0
         case .h1, .h2, .h3:     return 1
-        case .list:             return 2
+        case .oList, .uList:    return 2
         case .bold, .italic:    return 3
         case .code, .link:      return 4
         default:                return 5
@@ -87,7 +92,8 @@ public struct Markdown: OptionSet, Hashable, CustomStringConvertible {
         case .bold:     return "Bold"
         case .italic:   return "Italic"
         case .code:     return "Code"
-        case .list:     return "List"
+        case .oList:    return "Ordered List"
+        case .uList:    return "Unordered List"
         case .quote:    return "Quote"
         case .link:     return "Link"
         default:        return "Combined Markdown"

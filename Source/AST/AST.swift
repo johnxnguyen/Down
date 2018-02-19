@@ -216,7 +216,7 @@ extension Block : Renderable {
             let content = items.render(with: style)
             // find ranges of existing nested lists (we must do this before
             // applying new attributes)
-            let ranges = content.ranges(containing: .list)
+            let ranges = content.ranges(containing: .oList) + content.ranges(containing: .uList)
             
             content.addAttributes(attrs)
             
