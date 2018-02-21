@@ -168,10 +168,31 @@ public class AttributedStringParser {
     /// Scans the bold, italic and code attributes of the given input and removes
     /// the corresponding markdown ID from any any whitespace prefixes or suffixes.
     /// This is important b/c bold, italic and code require the syntax to not
-    /// preceed or suceed whitespace.
+    /// preceed or succeed whitespace.
     private func prepare(input: NSAttributedString) -> NSAttributedString {
         let attrStr = NSMutableAttributedString(attributedString: input)
-
+        
+        // first check that there is a newline after every header, insert
+        // one if needed
+        for header in [Markdown.h1, .h2, .h3] {
+            var locationsToInsertNewlines = [Int]()
+            for range in attrStr.ranges(containing: header) {
+                // check the last char of header possibly the char after
+                let len = range.upperBound == attrStr.length ? 1 : 2
+                let chars = attrStr.attributedSubstring(from: NSMakeRange(range.upperBound - 1, len)).string
+                // if neither are newline
+                if !(chars.contains("\n") || chars.contains("\r")) {
+                    locationsToInsertNewlines.append(range.upperBound)
+                }
+            }
+            
+            // insert newlines in reverse order to maintain string location integrity
+            locationsToInsertNewlines.sorted(by: >).forEach {
+                attrStr.insert(NSAttributedString(string: "\n"), at: $0)
+            }
+        }
+        
+        
         for markdown in [Markdown.bold, .italic, .code] {
             
             let removeMarkdown: (Markdown) -> (Markdown) = {
@@ -244,7 +265,7 @@ public class AttributedStringParser {
     /// return suffixes for atomic markdown values only.
     private func suffix(for markdown: Markdown) -> String {
         switch markdown {
-        case .h1, .h2, .h3:     return "\n"
+        case .h1, .h2, .h3:     return ""   // trailing newline is already ensured in string preparation
         case .code:             return "`"
         case .bold:             return "**"
         case .italic:           return "_"
