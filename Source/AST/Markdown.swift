@@ -77,9 +77,10 @@ public struct Markdown: OptionSet, Hashable, CustomStringConvertible {
         case .quote:            return 0
         case .h1, .h2, .h3:     return 1
         case .oList, .uList:    return 2
-        case .bold, .italic:    return 3
-        case .code, .link:      return 4
-        default:                return 5
+        case .bold:             return 3
+        case .italic:           return 4
+        case .code, .link:      return 5
+        default:                return 6
         }
     }
     
