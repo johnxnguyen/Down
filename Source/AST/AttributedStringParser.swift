@@ -105,7 +105,7 @@ public class AttributedStringParser {
                     // again where the whitespace ends. The range of whitespace
                     // will be assigned .none markdown.
                     
-                    let str = attrStr.attributedSubstring(from: right).string
+                    let str = input.attributedSubstring(from: right).string
                     let wsLength = lengthOfWhitespacePrefix(of: str)
                     
                     if wsLength > 0 {
