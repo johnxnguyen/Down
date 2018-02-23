@@ -27,14 +27,14 @@ public extension DownHTMLRenderable {
     /**
      Generates an HTML string from the `markdownString` property
 
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
 
      - throws: `DownErrors` depending on the scenario
 
      - returns: HTML string
      */
     
-    public func toHTML(_ options: DownOptions = .Default) throws -> String {
+    public func toHTML(_ options: DownOptions = .default) throws -> String {
         return try markdownString.toHTML(options)
     }
 }
@@ -45,14 +45,14 @@ public struct DownHTMLRenderer {
 
      **Note:** caller is responsible for calling `cmark_node_free(ast)` after this returns
 
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
 
      - throws: `ASTRenderingError` if the AST could not be converted
 
      - returns: HTML string
      */
     
-    public static func astToHTML(_ ast: UnsafeMutablePointer<cmark_node>, options: DownOptions = .Default) throws -> String {
+    public static func astToHTML(_ ast: UnsafeMutablePointer<cmark_node>, options: DownOptions = .default) throws -> String {
         guard let cHTMLString = cmark_render_html(ast, options.rawValue) else {
             throw DownErrors.astRenderingError
         }

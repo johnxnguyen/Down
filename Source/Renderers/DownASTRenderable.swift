@@ -27,14 +27,14 @@ public extension DownASTRenderable {
     /**
      Generates an abstract syntax tree from the `markdownString` property
 
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
 
      - throws: `MarkdownToASTError` if conversion fails
 
      - returns: An abstract syntax tree representation of the Markdown input
      */
     
-    public func toAST(_ options: DownOptions = .Default) throws -> UnsafeMutablePointer<cmark_node> {
+    public func toAST(_ options: DownOptions = .default) throws -> UnsafeMutablePointer<cmark_node> {
         return try DownASTRenderer.stringToAST(markdownString, options: options)
     }
 }
@@ -45,14 +45,14 @@ public struct DownASTRenderer {
      
      **Important:** It is the caller's responsibility to call `cmark_node_free(ast)` on the returned value
 
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
 
      - throws: `MarkdownToASTError` if conversion fails
 
      - returns: An abstract syntax tree representation of the Markdown input
      */
     
-    public static func stringToAST(_ string: String, options: DownOptions = .Default) throws -> UnsafeMutablePointer<cmark_node> {
+    public static func stringToAST(_ string: String, options: DownOptions = .default) throws -> UnsafeMutablePointer<cmark_node> {
         var tree: UnsafeMutablePointer<cmark_node>?
         string.withCString {
             let stringLength = Int(strlen($0))
