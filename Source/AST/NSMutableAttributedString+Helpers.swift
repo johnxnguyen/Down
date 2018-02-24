@@ -132,7 +132,7 @@ public extension NSAttributedString {
     
     /// Returns an array of ranges where the given markdown ID is exactly present.
     public func ranges(of markdown: Markdown) -> [NSRange] {
-        return ranges(containing: markdown, inRange: wholeRange)
+        return ranges(of: markdown, inRange: wholeRange)
     }
     
     /// Returns an array of ranges where the given markdown ID is partially present in
