@@ -100,7 +100,7 @@ extension Block {
         case CMARK_NODE_LIST:
             let listType = ListType(node: node) ?? .ordered(start: 0)
             
-            // we process the lists items here so that we can append their prefixes
+            // we process the lists items here so that we can prepend their prefixes
             var items = [Block]()
             for (idx, item) in node.children.enumerated() {
                 items.append(.listItem(children: item.children.map(Block.init), prefix: listType.prefix(itemIndex: idx)))
@@ -285,7 +285,6 @@ extension Block : Renderable {
             return content
             
         case .thematicBreak:
-            // TODO: should this be nil?
             return nil
         }
     }

@@ -526,7 +526,7 @@ class AttributedStringParserTests: XCTestCase {
     
 }
 
-private extension NSAttributedStringKey {
+extension NSAttributedStringKey {
     static let markdown = NSAttributedStringKey(rawValue: MarkdownIDAttributeName)
 }
 

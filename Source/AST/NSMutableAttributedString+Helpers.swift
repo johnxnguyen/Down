@@ -37,6 +37,7 @@ extension NSMutableAttributedString {
     func prependBreak() {
         prepend("\n")
     }
+    
     func appendBreak() {
         append("\n")
     }
