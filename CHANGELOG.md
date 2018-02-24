@@ -1,19 +1,53 @@
 # Change Log
 
-## [v0.4.2](https://github.com/iwasrobbed/Down/tree/v0.4.2) (2017-10-21)
-[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.4.1...v0.4.2)
+## [v0.5.0](https://github.com/iwasrobbed/Down/tree/v0.5.0) (2018-02-24)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.4.2...v0.5.0)
+
+**Implemented enhancements:**
+
+- Fix/update example app [\#58](https://github.com/iwasrobbed/Down/pull/58) ([iwasrobbed](https://github.com/iwasrobbed))
 
 **Fixed bugs:**
 
 - Building for tvOS fails [\#49](https://github.com/iwasrobbed/Down/issues/49)
+- Fix Carthage builds [\#72](https://github.com/iwasrobbed/Down/pull/72) ([tonyarnold](https://github.com/tonyarnold))
+- Fix/update example app [\#58](https://github.com/iwasrobbed/Down/pull/58) ([iwasrobbed](https://github.com/iwasrobbed))
+
+**Closed issues:**
+
+- Swift 3+ convention for capitalization [\#74](https://github.com/iwasrobbed/Down/issues/74)
+- macOS 10.11 support? [\#73](https://github.com/iwasrobbed/Down/issues/73)
+- Installing with Carthage for Mac fails [\#70](https://github.com/iwasrobbed/Down/issues/70)
+- Error building/installing Down [\#69](https://github.com/iwasrobbed/Down/issues/69)
+- get heigth when add downview to other view? [\#67](https://github.com/iwasrobbed/Down/issues/67)
+- iOS8 crash [\#66](https://github.com/iwasrobbed/Down/issues/66)
+- Image caching [\#65](https://github.com/iwasrobbed/Down/issues/65)
+- Some warnings to fix [\#64](https://github.com/iwasrobbed/Down/issues/64)
+- build error [\#63](https://github.com/iwasrobbed/Down/issues/63)
+- Lists and paragraph spacing [\#62](https://github.com/iwasrobbed/Down/issues/62)
+- Converting Markdown string to HTML with emojis [\#60](https://github.com/iwasrobbed/Down/issues/60)
+- Syntax highlighting themes [\#59](https://github.com/iwasrobbed/Down/issues/59)
+- Compiling error on example project [\#57](https://github.com/iwasrobbed/Down/issues/57)
+- Compilation error using Carthage [\#54](https://github.com/iwasrobbed/Down/issues/54)
 
 **Merged pull requests:**
 
-- \[tvOS\] Conditionally compile DownView [\#52](https://github.com/iwasrobbed/Down/pull/52) ([iwasrobbed](https://github.com/iwasrobbed))
+- Use lower-case Swift 3 convention for DownOptions [\#76](https://github.com/iwasrobbed/Down/pull/76) ([kengruven](https://github.com/kengruven))
+- Lower MACOSX\_DEPLOYMENT\_TARGET to include El Capitan [\#75](https://github.com/iwasrobbed/Down/pull/75) ([kengruven](https://github.com/kengruven))
+- WebKit not available on watchOS. [\#56](https://github.com/iwasrobbed/Down/pull/56) ([128keaton](https://github.com/128keaton))
+- Update README.md [\#55](https://github.com/iwasrobbed/Down/pull/55) ([128keaton](https://github.com/128keaton))
+- Updated Copyright year in ReadMe file [\#53](https://github.com/iwasrobbed/Down/pull/53) ([jobinsjohn](https://github.com/jobinsjohn))
+
+## [v0.4.2](https://github.com/iwasrobbed/Down/tree/v0.4.2) (2017-10-21)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.4.1...v0.4.2)
 
 **Closed issues:**
 
 - Push v0.4.1 to cocoapods  [\#51](https://github.com/iwasrobbed/Down/issues/51)
+
+**Merged pull requests:**
+
+- \[tvOS\] Conditionally compile DownView [\#52](https://github.com/iwasrobbed/Down/pull/52) ([iwasrobbed](https://github.com/iwasrobbed))
 
 ## [v0.4.1](https://github.com/iwasrobbed/Down/tree/v0.4.1) (2017-10-04)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.4.0...v0.4.1)
