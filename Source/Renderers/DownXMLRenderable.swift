@@ -27,14 +27,14 @@ public extension DownXMLRenderable {
     /**
      Generates an XML string from the `markdownString` property
 
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
 
      - throws: `DownErrors` depending on the scenario
 
      - returns: XML string
      */
     
-    public func toXML(_ options: DownOptions = .Default) throws -> String {
+    public func toXML(_ options: DownOptions = .default) throws -> String {
         let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
         let xml = try DownXMLRenderer.astToXML(ast, options: options)
         cmark_node_free(ast)
@@ -48,14 +48,14 @@ public struct DownXMLRenderer {
 
      **Note:** caller is responsible for calling `cmark_node_free(ast)` after this returns
 
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
 
      - throws: `ASTRenderingError` if the AST could not be converted
 
      - returns: XML string
      */
     
-    public static func astToXML(_ ast: UnsafeMutablePointer<cmark_node>, options: DownOptions = .Default) throws -> String {
+    public static func astToXML(_ ast: UnsafeMutablePointer<cmark_node>, options: DownOptions = .default) throws -> String {
         guard let cXMLString = cmark_render_xml(ast, options.rawValue) else {
             throw DownErrors.astRenderingError
         }
