@@ -68,6 +68,8 @@
 		907C64651EC133780095FEE1 /* TestDownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 907C64621EC120530095FEE1 /* TestDownView.bundle */; };
 		90A40A9C1EC03292004F2E91 /* Down.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE061A47203D5A940084EFED /* AttributedStringParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE061A46203D5A940084EFED /* AttributedStringParserTests.swift */; };
+		EE0936EC2041CAF300EC017A /* NSMutableAttributedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0936EB2041CAF300EC017A /* NSMutableAttributedStringTests.swift */; };
+		EE0936EE2041D68A00EC017A /* Sequence+NSMutableAttributedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0936ED2041D68A00EC017A /* Sequence+NSMutableAttributedStringTests.swift */; };
 		EE129A202028498800E50449 /* Markdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE129A1F2028498800E50449 /* Markdown.swift */; };
 		EE6CBE0A2021C03600AD9E30 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE092021C03600AD9E30 /* Node.swift */; };
 		EE6CBE102021C42D00AD9E30 /* AST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE0F2021C42D00AD9E30 /* AST.swift */; };
@@ -201,6 +203,8 @@
 		D4DC91131CFDED4B0091CE09 /* DownCommonMarkRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownCommonMarkRenderable.swift; sourceTree = "<group>"; };
 		D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
 		EE061A46203D5A940084EFED /* AttributedStringParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringParserTests.swift; sourceTree = "<group>"; };
+		EE0936EB2041CAF300EC017A /* NSMutableAttributedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedStringTests.swift; sourceTree = "<group>"; };
+		EE0936ED2041D68A00EC017A /* Sequence+NSMutableAttributedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+NSMutableAttributedStringTests.swift"; sourceTree = "<group>"; };
 		EE129A1F2028498800E50449 /* Markdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Markdown.swift; sourceTree = "<group>"; };
 		EE6CBE092021C03600AD9E30 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		EE6CBE0F2021C42D00AD9E30 /* AST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AST.swift; sourceTree = "<group>"; };
@@ -290,6 +294,8 @@
 			isa = PBXGroup;
 			children = (
 				EE061A46203D5A940084EFED /* AttributedStringParserTests.swift */,
+				EE0936ED2041D68A00EC017A /* Sequence+NSMutableAttributedStringTests.swift */,
+				EE0936EB2041CAF300EC017A /* NSMutableAttributedStringTests.swift */,
 				D4201EC51CFA59A5008EEC6E /* BindingTests.swift */,
 				D41689B21CFFE28200E5802B /* DownViewTests.swift */,
 				907C64611EC120530095FEE1 /* Fixtures */,
@@ -579,7 +585,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE0936EC2041CAF300EC017A /* NSMutableAttributedStringTests.swift in Sources */,
 				8AFAEB091E6E331700E09B68 /* StringTests.swift in Sources */,
+				EE0936EE2041D68A00EC017A /* Sequence+NSMutableAttributedStringTests.swift in Sources */,
 				8AFAEB071E6E331700E09B68 /* DownViewTests.swift in Sources */,
 				8AFAEB061E6E331700E09B68 /* BindingTests.swift in Sources */,
 				EE061A47203D5A940084EFED /* AttributedStringParserTests.swift in Sources */,
