@@ -28,7 +28,7 @@ public extension DownCommonMarkRenderable {
     /**
      Generates a CommonMark Markdown string from the `markdownString` property
 
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
      - parameter width:   The width to break on, defaulting to 0
 
      - throws: `DownErrors` depending on the scenario
@@ -36,7 +36,7 @@ public extension DownCommonMarkRenderable {
      - returns: CommonMark Markdown string
      */
     
-    public func toCommonMark(_ options: DownOptions = .Default, width: Int32 = 0) throws -> String {
+    public func toCommonMark(_ options: DownOptions = .default, width: Int32 = 0) throws -> String {
         let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
         let commonMark = try DownCommonMarkRenderer.astToCommonMark(ast, options: options, width: width)
         cmark_node_free(ast)
@@ -50,7 +50,7 @@ public struct DownCommonMarkRenderer {
      
      **Note:** caller is responsible for calling `cmark_node_free(ast)` after this returns
 
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
      - parameter width:   The width to break on, defaulting to 0
 
      - throws: `ASTRenderingError` if the AST could not be converted
@@ -59,7 +59,7 @@ public struct DownCommonMarkRenderer {
      */
     
     public static func astToCommonMark(_ ast: UnsafeMutablePointer<cmark_node>,
-                                       options: DownOptions = .Default,
+                                       options: DownOptions = .default,
                                        width: Int32 = 0) throws -> String {
         guard let cCommonMarkString = cmark_render_commonmark(ast, options.rawValue, width) else {
             throw DownErrors.astRenderingError

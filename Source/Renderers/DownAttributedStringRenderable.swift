@@ -27,14 +27,14 @@ public extension DownAttributedStringRenderable {
     /**
      Generates an `NSAttributedString` from the `markdownString` property
 
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
 
      - throws: `DownErrors` depending on the scenario
 
      - returns: An `NSAttributedString`
      */
     
-    public func toAttributedString(_ options: DownOptions = .Default) throws -> NSAttributedString {
+    public func toAttributedString(_ options: DownOptions = .default) throws -> NSAttributedString {
         let html = try self.toHTML(options)
         return try NSAttributedString(htmlString: html)
     }
