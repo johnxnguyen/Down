@@ -14,13 +14,13 @@ extension String {
     /**
      Generates an HTML string from the contents of the string (self), which should contain CommonMark Markdown
 
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
 
      - throws: `DownErrors` depending on the scenario
 
      - returns: HTML string
      */
-    public func toHTML(_ options: DownOptions = .Default) throws -> String {
+    public func toHTML(_ options: DownOptions = .default) throws -> String {
         let ast = try DownASTRenderer.stringToAST(self, options: options)
         let html = try DownHTMLRenderer.astToHTML(ast, options: options)
         cmark_node_free(ast)

@@ -16,19 +16,19 @@ public struct DownOptions: OptionSet {
     /**
      Default options
     */
-    public static let Default = DownOptions(rawValue: CMARK_OPT_DEFAULT)
+    public static let `default` = DownOptions(rawValue: CMARK_OPT_DEFAULT)
 
     // MARK: - Rendering Options
 
     /**
      Include a `data-sourcepos` attribute on all block elements
     */
-    public static let SourcePos = DownOptions(rawValue: CMARK_OPT_SOURCEPOS)
+    public static let sourcePos = DownOptions(rawValue: CMARK_OPT_SOURCEPOS)
 
     /**
      Render `softbreak` elements as hard line breaks.
     */
-    public static let HardBreaks = DownOptions(rawValue: CMARK_OPT_HARDBREAKS)
+    public static let hardBreaks = DownOptions(rawValue: CMARK_OPT_HARDBREAKS)
 
     /**
      Suppress raw HTML and unsafe links (`javascript:`, `vbscript:`,
@@ -37,24 +37,24 @@ public struct DownOptions: OptionSet {
      by a placeholder HTML comment. Unsafe links are replaced by
      empty strings.
     */
-    public static let Safe = DownOptions(rawValue: CMARK_OPT_SAFE)
+    public static let safe = DownOptions(rawValue: CMARK_OPT_SAFE)
 
     // MARK: - Parsing Options
 
     /**
      Normalize tree by consolidating adjacent text nodes.
     */
-    public static let Normalize = DownOptions(rawValue: CMARK_OPT_NORMALIZE)
+    public static let normalize = DownOptions(rawValue: CMARK_OPT_NORMALIZE)
 
     /**
      Validate UTF-8 in the input before parsing, replacing illegal
      sequences with the replacement character U+FFFD.
     */
-    public static let ValidateUTF8 = DownOptions(rawValue: CMARK_OPT_VALIDATE_UTF8)
+    public static let validateUTF8 = DownOptions(rawValue: CMARK_OPT_VALIDATE_UTF8)
 
     /**
      Convert straight quotes to curly, --- to em dashes, -- to en dashes.
     */
-    public static let Smart = DownOptions(rawValue: CMARK_OPT_SMART)
+    public static let smart = DownOptions(rawValue: CMARK_OPT_SMART)
 
 }

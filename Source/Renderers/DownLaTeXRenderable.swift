@@ -28,7 +28,7 @@ public extension DownLaTeXRenderable {
     /**
      Generates a LaTeX string from the `markdownString` property
 
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
      - parameter width:   The width to break on, defaulting to 0
 
      - throws: `DownErrors` depending on the scenario
@@ -36,7 +36,7 @@ public extension DownLaTeXRenderable {
      - returns: LaTeX string
      */
     
-    public func toLaTeX(_ options: DownOptions = .Default, width: Int32 = 0) throws -> String {
+    public func toLaTeX(_ options: DownOptions = .default, width: Int32 = 0) throws -> String {
         let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
         let latex = try DownLaTeXRenderer.astToLaTeX(ast, options: options, width: width)
         cmark_node_free(ast)
@@ -50,7 +50,7 @@ public struct DownLaTeXRenderer {
 
      **Note:** caller is responsible for calling `cmark_node_free(ast)` after this returns
 
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.Default`
+     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
      - parameter width:   The width to break on, defaulting to 0
 
      - throws: `ASTRenderingError` if the AST could not be converted
@@ -59,7 +59,7 @@ public struct DownLaTeXRenderer {
      */
     
     public static func astToLaTeX(_ ast: UnsafeMutablePointer<cmark_node>,
-                                  options: DownOptions = .Default,
+                                  options: DownOptions = .default,
                                   width: Int32 = 0) throws -> String {
         guard let cLatexString = cmark_render_latex(ast, options.rawValue, width) else {
             throw DownErrors.astRenderingError
