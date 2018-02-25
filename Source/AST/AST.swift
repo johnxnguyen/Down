@@ -204,13 +204,7 @@ extension Block : Renderable {
         
         switch self {
         case .document(let children):
-            let content = children.render(with: style)
-            
-            if content.string.last == "\n" {
-                content.deleteCharacters(in: NSMakeRange(content.length - 1, 1))
-            }
-            
-            return content
+            return children.render(with: style)
             
         case .blockQuote(let items):
             let content = items.render(with: style)
