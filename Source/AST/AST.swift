@@ -260,7 +260,7 @@ extension Block : Renderable {
             
         case .listItem(let children, let prefix):
             let content = children.render(with: style)
-            let attrPrefix = NSMutableAttributedString(string: prefix)
+            let attrPrefix = NSMutableAttributedString(string: prefix, attributes: style.defaultAttributes)
             return [attrPrefix, content].join()
             
         case .codeBlock(let text):
