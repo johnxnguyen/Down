@@ -28,11 +28,9 @@ import UIKit
     @objc public var baseFontColor = UIColor.black
     @objc public var baseParagraphStyle = NSParagraphStyle.default.with(topSpacing: 8, bottomSpacing: 8)
     
-    // code attributes
     public var codeFont = UIFont(name: "Menlo", size: 17) ?? UIFont.systemFont(ofSize: 17)
     public var codeColor: UIColor? = UIColor.darkGray
     
-    // header attributes
     public var h1Color: UIColor?
     public var h1Size: CGFloat = 27
     
@@ -42,14 +40,13 @@ import UIKit
     public var h3Color: UIColor?
     public var h3Size: CGFloat = 20
     
-    // quote attributes
     public var quoteColor: UIColor? = .gray
     public var quoteParagraphStyle: NSParagraphStyle? = NSParagraphStyle.default.indentedBy(points: 24)
     
-    // list attributes
     /// The amount the list is indented from the leading margin
     public var listIndentation: CGFloat = 16
-    /// the amount of space between the prefix and content of a list item
+    
+    /// The amount of space between the prefix and content of a list item
     public var listItemPrefixSpacing: CGFloat = 8
     
     var defaultAttributes: Attributes {
@@ -266,7 +263,6 @@ public extension UIFont {
         guard !contains(trait) else { return self }
         var traits = fontDescriptor.symbolicTraits
         traits.insert(trait)
-        // FIXME: perhaps no good!
         guard let newDescriptor = fontDescriptor.withSymbolicTraits(traits) else { return self }
         // size 0 means the size remains the same as before
         return UIFont(descriptor: newDescriptor, size: 0)

@@ -211,8 +211,7 @@ extension Block : Renderable {
             content.addAttributes(attrs)
             return content
             
-        case .list(let items, type: let type):
-            // TODO: general tidy up
+        case .list(let items, type: _):
             let content = items.render(with: style)
             // find ranges of existing nested lists (we must do this before
             // applying new attributes)
@@ -222,14 +221,15 @@ extension Block : Renderable {
             
             // calculate size of prefix in points
             var prefixWidth: CGFloat?
+            // last item will be the largest
             if let lastItem = items.last {
-                // last item will be the largest (if it's ordered)
                 switch lastItem {
                 case .listItem(_, let prefix):
                     let trimmed = prefix.trimmingCharacters(in: .whitespaces)
                     let size = trimmed.size(attributes: style.codeAttributes)
                     prefixWidth = ceil(size.width)
-                default: break
+                default:
+                    break
                 }
             }
             
@@ -336,7 +336,6 @@ extension Inline : Renderable {
             
         case .image(let children, title: _, url: _):
             let content = children.render(with: style)
-            // TODO: attributes
             return content
         }
     }
