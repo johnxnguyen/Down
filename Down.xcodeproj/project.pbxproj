@@ -71,6 +71,7 @@
 		EE0936EC2041CAF300EC017A /* NSMutableAttributedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0936EB2041CAF300EC017A /* NSMutableAttributedStringTests.swift */; };
 		EE0936EE2041D68A00EC017A /* Sequence+NSMutableAttributedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0936ED2041D68A00EC017A /* Sequence+NSMutableAttributedStringTests.swift */; };
 		EE129A202028498800E50449 /* Markdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE129A1F2028498800E50449 /* Markdown.swift */; };
+		EE25C37E20444CF70025546A /* NSAttributedString+MarkdownCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE25C37D20444CF70025546A /* NSAttributedString+MarkdownCoding.swift */; };
 		EE6CBE0A2021C03600AD9E30 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE092021C03600AD9E30 /* Node.swift */; };
 		EE6CBE102021C42D00AD9E30 /* AST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE0F2021C42D00AD9E30 /* AST.swift */; };
 		EE6CBE122021C47D00AD9E30 /* DownStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE112021C47D00AD9E30 /* DownStyle.swift */; };
@@ -206,6 +207,7 @@
 		EE0936EB2041CAF300EC017A /* NSMutableAttributedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedStringTests.swift; sourceTree = "<group>"; };
 		EE0936ED2041D68A00EC017A /* Sequence+NSMutableAttributedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+NSMutableAttributedStringTests.swift"; sourceTree = "<group>"; };
 		EE129A1F2028498800E50449 /* Markdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Markdown.swift; sourceTree = "<group>"; };
+		EE25C37D20444CF70025546A /* NSAttributedString+MarkdownCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+MarkdownCoding.swift"; sourceTree = "<group>"; };
 		EE6CBE092021C03600AD9E30 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		EE6CBE0F2021C42D00AD9E30 /* AST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AST.swift; sourceTree = "<group>"; };
 		EE6CBE112021C47D00AD9E30 /* DownStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownStyle.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				EE6CBE132021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift */,
+				EE25C37D20444CF70025546A /* NSAttributedString+MarkdownCoding.swift */,
 				D43AE5C91CFFAE4D006E1522 /* NSAttributedString+HTML.swift */,
 				D43AE5DB1CFFD473006E1522 /* String+ToHTML.swift */,
 			);
@@ -567,6 +570,7 @@
 				EE6CBE102021C42D00AD9E30 /* AST.swift in Sources */,
 				8A569F721E6B3EDE008BE2AC /* DownHTMLRenderable.swift in Sources */,
 				8A569F581E6B3ED9008BE2AC /* houdini_html_e.c in Sources */,
+				EE25C37E20444CF70025546A /* NSAttributedString+MarkdownCoding.swift in Sources */,
 				8A569F531E6B3ED9008BE2AC /* commonmark.c in Sources */,
 				EE129A202028498800E50449 /* Markdown.swift in Sources */,
 				8A569F4A1E6B3ED9008BE2AC /* buffer.c in Sources */,
