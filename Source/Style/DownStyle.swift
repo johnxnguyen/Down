@@ -31,6 +31,8 @@ import UIKit
     public var codeFont = UIFont(name: "Menlo", size: 17) ?? UIFont.systemFont(ofSize: 17)
     public var codeColor: UIColor? = UIColor.darkGray
     
+    public var headerParagraphStyle = NSParagraphStyle.default.with(topSpacing: 8, bottomSpacing: 8)
+    
     public var h1Color: UIColor?
     public var h1Size: CGFloat = 27
     
@@ -44,10 +46,10 @@ import UIKit
     public var quoteParagraphStyle: NSParagraphStyle? = NSParagraphStyle.default.indentedBy(points: 24)
     
     /// The amount the list is indented from the leading margin
-    public var listIndentation: CGFloat = 16
+    public var listIndentation: CGFloat = 0
     
     /// The amount of space between the prefix and content of a list item
-    public var listItemPrefixSpacing: CGFloat = 8
+    public var listItemPrefixSpacing: CGFloat = 4
     
     var defaultAttributes: Attributes {
         return [MarkdownIDAttributeName: Markdown.none,
@@ -89,19 +91,22 @@ import UIKit
     
     var h1Attributes: Attributes {
         return [MarkdownIDAttributeName: Markdown.h1,
-                NSForegroundColorAttributeName: h1Color ?? baseFontColor
+                NSForegroundColorAttributeName: h1Color ?? baseFontColor,
+                NSParagraphStyleAttributeName: headerParagraphStyle
         ]
     }
     
     var h2Attributes: Attributes {
         return [MarkdownIDAttributeName: Markdown.h2,
-                NSForegroundColorAttributeName: h2Color ?? baseFontColor
+                NSForegroundColorAttributeName: h2Color ?? baseFontColor,
+                NSParagraphStyleAttributeName: headerParagraphStyle
         ]
     }
     
     var h3Attributes: Attributes {
         return [MarkdownIDAttributeName: Markdown.h3,
-                NSForegroundColorAttributeName: h3Color ?? baseFontColor
+                NSForegroundColorAttributeName: h3Color ?? baseFontColor,
+                NSParagraphStyleAttributeName: headerParagraphStyle
         ]
     }
     
