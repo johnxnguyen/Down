@@ -285,6 +285,8 @@
 				D44875E21CFA6B120037A624 /* Renderers */,
 				D43AE5CB1CFFD068006E1522 /* Views */,
 				D4201EF61CFA5D63008EEC6E /* cmark */,
+				EE0936F02043F35500EC017A /* AttributeParser */,
+				EE0936EF2043F31100EC017A /* Style */,
 				EE6CBE082021C01100AD9E30 /* AST */,
 			);
 			path = Source;
@@ -353,6 +355,7 @@
 		D43AE5C81CFFAE39006E1522 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EE6CBE132021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift */,
 				D43AE5C91CFFAE4D006E1522 /* NSAttributedString+HTML.swift */,
 				D43AE5DB1CFFD473006E1522 /* String+ToHTML.swift */,
 			);
@@ -391,15 +394,28 @@
 			path = "Enums & Options";
 			sourceTree = "<group>";
 		};
+		EE0936EF2043F31100EC017A /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				EE6CBE112021C47D00AD9E30 /* DownStyle.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		EE0936F02043F35500EC017A /* AttributeParser */ = {
+			isa = PBXGroup;
+			children = (
+				EE129A1F2028498800E50449 /* Markdown.swift */,
+				EE932D032025F55E004CAB91 /* AttributedStringParser.swift */,
+			);
+			path = AttributeParser;
+			sourceTree = "<group>";
+		};
 		EE6CBE082021C01100AD9E30 /* AST */ = {
 			isa = PBXGroup;
 			children = (
 				EE6CBE092021C03600AD9E30 /* Node.swift */,
 				EE6CBE0F2021C42D00AD9E30 /* AST.swift */,
-				EE129A1F2028498800E50449 /* Markdown.swift */,
-				EE6CBE112021C47D00AD9E30 /* DownStyle.swift */,
-				EE932D032025F55E004CAB91 /* AttributedStringParser.swift */,
-				EE6CBE132021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift */,
 			);
 			path = AST;
 			sourceTree = "<group>";
