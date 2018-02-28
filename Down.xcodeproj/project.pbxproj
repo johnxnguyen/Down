@@ -76,7 +76,9 @@
 		EE6CBE102021C42D00AD9E30 /* AST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE0F2021C42D00AD9E30 /* AST.swift */; };
 		EE6CBE122021C47D00AD9E30 /* DownStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE112021C47D00AD9E30 /* DownStyle.swift */; };
 		EE6CBE142021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CBE132021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift */; };
+		EE84583F2046DF3E003BEAF0 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE84583E2046DF3E003BEAF0 /* Application.swift */; };
 		EE932D042025F55E004CAB91 /* AttributedStringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE932D032025F55E004CAB91 /* AttributedStringParser.swift */; };
+		EEA223042046D35000E3AF18 /* ASTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA223032046D35000E3AF18 /* ASTTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -212,7 +214,9 @@
 		EE6CBE0F2021C42D00AD9E30 /* AST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AST.swift; sourceTree = "<group>"; };
 		EE6CBE112021C47D00AD9E30 /* DownStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownStyle.swift; sourceTree = "<group>"; };
 		EE6CBE132021C52C00AD9E30 /* NSMutableAttributedString+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Helpers.swift"; sourceTree = "<group>"; };
+		EE84583E2046DF3E003BEAF0 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		EE932D032025F55E004CAB91 /* AttributedStringParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringParser.swift; sourceTree = "<group>"; };
+		EEA223032046D35000E3AF18 /* ASTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASTTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +301,7 @@
 		D4201EC41CFA59A5008EEC6E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				EEA223032046D35000E3AF18 /* ASTTests.swift */,
 				EE061A46203D5A940084EFED /* AttributedStringParserTests.swift */,
 				EE0936ED2041D68A00EC017A /* Sequence+NSMutableAttributedStringTests.swift */,
 				EE0936EB2041CAF300EC017A /* NSMutableAttributedStringTests.swift */,
@@ -419,6 +424,7 @@
 			children = (
 				EE6CBE092021C03600AD9E30 /* Node.swift */,
 				EE6CBE0F2021C42D00AD9E30 /* AST.swift */,
+				EE84583E2046DF3E003BEAF0 /* Application.swift */,
 			);
 			path = AST;
 			sourceTree = "<group>";
@@ -597,6 +603,7 @@
 				8A569F491E6B3ED9008BE2AC /* blocks.c in Sources */,
 				8A569F4F1E6B3ED9008BE2AC /* cmark_ctype.c in Sources */,
 				8A569F671E6B3ED9008BE2AC /* render.c in Sources */,
+				EE84583F2046DF3E003BEAF0 /* Application.swift in Sources */,
 				8A569F651E6B3ED9008BE2AC /* references.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -609,6 +616,7 @@
 				8AFAEB091E6E331700E09B68 /* StringTests.swift in Sources */,
 				EE0936EE2041D68A00EC017A /* Sequence+NSMutableAttributedStringTests.swift in Sources */,
 				8AFAEB071E6E331700E09B68 /* DownViewTests.swift in Sources */,
+				EEA223042046D35000E3AF18 /* ASTTests.swift in Sources */,
 				8AFAEB061E6E331700E09B68 /* BindingTests.swift in Sources */,
 				EE061A47203D5A940084EFED /* AttributedStringParserTests.swift in Sources */,
 				8AFAEB081E6E331700E09B68 /* NSAttributedStringTests.swift in Sources */,
@@ -735,7 +743,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.glazeddonut.$(TARGET_NAME:c99-identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -794,7 +802,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.glazeddonut.$(TARGET_NAME:c99-identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
