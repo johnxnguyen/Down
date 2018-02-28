@@ -28,10 +28,10 @@ extension NSAttributedString {
         guard let data = htmlString.data(using: String.Encoding.utf8) else {
             throw DownErrors.htmlDataConversionError
         }
-
-        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
-            .documentType: NSAttributedString.DocumentType.html,
-            .characterEncoding: NSNumber(value: String.Encoding.utf8.rawValue)
+        
+        let options: [String: Any] = [
+            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+            NSCharacterEncodingDocumentAttribute: NSNumber(value: String.Encoding.utf8.rawValue)
         ]
         try self.init(data: data, options: options, documentAttributes: nil)
     }

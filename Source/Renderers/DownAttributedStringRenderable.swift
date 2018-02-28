@@ -21,6 +21,18 @@ public protocol DownAttributedStringRenderable: DownHTMLRenderable {
      */
     
     func toAttributedString(_ options: DownOptions) throws -> NSAttributedString
+    
+    /**
+     Generates an `NSAttributedString` from the `markdownString` property
+     
+     - parameter style: `DownStyle` instance to use when applying attributes
+     
+     - throws: `DownErrors` depending on the scenario
+     
+     - returns: An `NSAttributedString`
+     */
+    
+    func toAttributedString(using style: DownStyle) throws -> NSAttributedString
 }
 
 public extension DownAttributedStringRenderable {
@@ -37,5 +49,22 @@ public extension DownAttributedStringRenderable {
     public func toAttributedString(_ options: DownOptions = .Default) throws -> NSAttributedString {
         let html = try self.toHTML(options)
         return try NSAttributedString(htmlString: html)
+    }
+    
+    /**
+     Generates an `NSAttributedString` from the `markdownString` property
+     
+     - parameter style: `DownStyle` instance to use when applying attributes
+     
+     - throws: `DownErrors` depending on the scenario
+     
+     - returns: An `NSAttributedString`
+     */
+    
+    public func toAttributedString(using style: DownStyle) throws -> NSAttributedString {
+        let ast = try DownASTRenderer.stringToAST(markdownString)
+        let root = Node(node: ast)
+        let document = Block(root)
+        return document.render(with: style) ?? NSAttributedString(string: markdownString)
     }
 }
