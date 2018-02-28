@@ -219,22 +219,22 @@ extension Block : Renderable {
             
             content.addAttributes(attrs)
             
-            // calculate size of prefix in points
-            var prefixWidth: CGFloat?
+            // standard prefix width
+            var prefixWidth: CGFloat = ceil("99.".size(attributes: style.listPrefixAttributes).width)
             // last item will be the largest
             if let lastItem = items.last {
                 switch lastItem {
                 case .listItem(_, let prefix):
                     let trimmed = prefix.trimmingCharacters(in: .whitespaces)
-                    let size = trimmed.size(attributes: style.codeAttributes)
-                    prefixWidth = ceil(size.width)
+                    let width = ceil(trimmed.size(attributes: style.listPrefixAttributes).width)
+                    prefixWidth = max(prefixWidth, width)
                 default:
                     break
                 }
             }
             
             // the style for this outer list
-            let paragraphStyle = style.listParagraphStyle(with: prefixWidth!)
+            let paragraphStyle = style.listParagraphStyle(with: prefixWidth)
             // the indentation of the list item content (after the prefix)
             let indentation = paragraphStyle.headIndent
             
@@ -260,7 +260,7 @@ extension Block : Renderable {
             
         case .listItem(let children, let prefix):
             let content = children.render(with: style)
-            let attrPrefix = NSMutableAttributedString(string: prefix, attributes: style.defaultAttributes)
+            let attrPrefix = NSMutableAttributedString(string: prefix, attributes: style.listPrefixAttributes)
             return [attrPrefix, content].join()
             
         case .codeBlock(let text):
