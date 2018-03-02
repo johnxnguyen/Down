@@ -114,7 +114,9 @@ let commonMark = try? down.toCommonMark()
 
 // Convert to an attributed string
 let attributedString = try? down.toAttributedString()
-// NSAttributedString representation of the rendered HTML
+// NSAttributedString representation of the rendered HTML;
+// by default, uses a stylesheet that matches NSAttributedString's default font,
+// but you can override this by passing in your own, using the 'stylesheet:' parameter.
 
 // Convert to abstract syntax tree
 let ast = try? down.toAST()

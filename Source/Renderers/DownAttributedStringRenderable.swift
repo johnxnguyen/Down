@@ -15,6 +15,8 @@ public protocol DownAttributedStringRenderable: DownHTMLRenderable {
 
      - parameter options: `DownOptions` to modify parsing or rendering
 
+     - parameter stylesheet: a `String` to use as a CSS stylesheet when rendering
+
      - throws: `DownErrors` depending on the scenario
 
      - returns: An `NSAttributedString`
@@ -28,6 +30,8 @@ public extension DownAttributedStringRenderable {
      Generates an `NSAttributedString` from the `markdownString` property
 
      - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
+
+     - parameter stylesheet: a `String` to use as the CSS stylesheet when rendering, defaulting to a style that uses the `NSAttributedString` default font
 
      - throws: `DownErrors` depending on the scenario
 
