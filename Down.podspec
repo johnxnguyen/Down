@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.name         = "Down"
   spec.summary      = "Blazing fast Markdown rendering in Swift, built upon cmark."
-  spec.version      = "0.5.0"
+  spec.version      = "0.5.1"
   spec.homepage     = "https://github.com/iwasrobbed/Down"
   spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.authors      = { "Rob Phillips" => "rob@robphillips.me" }
@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.ios.source_files = "Source/Views/**"
   spec.osx.source_files = "Source/Views/**"
   spec.public_header_files = "Source/*.h"
-  spec.ios.deployment_target = "8.0"
+  spec.ios.deployment_target = "9.0"
   spec.tvos.deployment_target = "9.0"
   spec.osx.deployment_target = "10.11"
   spec.requires_arc = true
