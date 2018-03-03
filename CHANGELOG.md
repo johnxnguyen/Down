@@ -1,5 +1,18 @@
 # Change Log
 
+## [v0.5.1](https://github.com/iwasrobbed/Down/tree/v0.5.1) (2018-03-03)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.5.0...v0.5.1)
+
+**Closed issues:**
+
+- `DocumentReadingOptionKey` Error via pod [\#80](https://github.com/iwasrobbed/Down/issues/80)
+
+**Merged pull requests:**
+
+- Add optional stylesheet argument for NSAttributedString renderer [\#79](https://github.com/iwasrobbed/Down/pull/79) ([kengruven](https://github.com/kengruven))
+- Roll up cmark's COPYING sections into the top-level LICENSE file [\#78](https://github.com/iwasrobbed/Down/pull/78) ([kengruven](https://github.com/kengruven))
+- Update supported versions in README [\#77](https://github.com/iwasrobbed/Down/pull/77) ([kengruven](https://github.com/kengruven))
+
 ## [v0.5.0](https://github.com/iwasrobbed/Down/tree/v0.5.0) (2018-02-24)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.4.2...v0.5.0)
 
