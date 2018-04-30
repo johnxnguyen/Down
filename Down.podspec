@@ -15,7 +15,7 @@ Pod::Spec.new do |spec|
   spec.osx.deployment_target = "10.11"
   spec.requires_arc = true
   spec.module_name = "Down"
-  spec.preserve_paths = "Source/cmark/module.modulemap", "Source/cmark/*.inc"
+  spec.preserve_paths = "Source/cmark/module.modulemap", "Source/cmark/*.inc", "Source/cmark/COPYING"
   spec.pod_target_xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/Down/Source/cmark/**' }
   spec.ios.resource = 'Resources/DownView.bundle'
   spec.osx.resource = 'Resources/DownView.bundle'
