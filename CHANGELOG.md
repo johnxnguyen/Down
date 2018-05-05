@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.5.2](https://github.com/iwasrobbed/Down/tree/v0.5.2) (2018-05-05)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.5.1...v0.5.2)
+
+**Merged pull requests:**
+
+- \[Pods\] Only include files in source\_files that can be compiled [\#86](https://github.com/iwasrobbed/Down/pull/86) ([njdehoog](https://github.com/njdehoog))
+
 ## [v0.5.1](https://github.com/iwasrobbed/Down/tree/v0.5.1) (2018-03-03)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.5.0...v0.5.1)
 
