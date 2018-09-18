@@ -59,7 +59,6 @@
 		8A569F791E6B3EE7008BE2AC /* DownOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E91CFA6CF30037A624 /* DownOptions.swift */; };
 		8A569F7A1E6B3EEA008BE2AC /* Down.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF01CFA59F2008EEC6E /* Down.swift */; };
 		8A569F7B1E6B3EEE008BE2AC /* DownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D41689B51CFFE6BB00E5802B /* DownView.bundle */; };
-		8AC25A091F82A6F300AD22A9 /* module.modulemap in Resources */ = {isa = PBXBuildFile; fileRef = D42869501CFF501200FACB4C /* module.modulemap */; };
 		8AFAEB001E6E32E900E09B68 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; };
 		8AFAEB061E6E331700E09B68 /* BindingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4201EC51CFA59A5008EEC6E /* BindingTests.swift */; };
 		8AFAEB071E6E331700E09B68 /* DownViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41689B21CFFE28200E5802B /* DownViewTests.swift */; };
@@ -484,7 +483,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AC25A091F82A6F300AD22A9 /* module.modulemap in Resources */,
 				8A569F7B1E6B3EEE008BE2AC /* DownView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
