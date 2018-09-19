@@ -1,3 +1,9 @@
+---
+name: Bug report
+about: Help isolate and fix bugs
+
+---
+
 Please help prevent duplicate issues before submitting a new one:
 
 * [ ] I've searched other open/closed issues for duplicates before opening up this new issue.
@@ -15,5 +21,3 @@ Please help prevent duplicate issues before submitting a new one:
 ## What happened instead?
 
 ℹ Please replace this with what happened instead (e.g. the issue).  
-
-
