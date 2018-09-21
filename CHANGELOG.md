@@ -1,5 +1,34 @@
 # Change Log
 
+## [v0.5.3](https://github.com/iwasrobbed/Down/tree/v0.5.3) (2018-09-19)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.5.2...v0.5.3)
+
+**Implemented enhancements:**
+
+- Update issue templates [\#101](https://github.com/iwasrobbed/Down/pull/101) ([iwasrobbed](https://github.com/iwasrobbed))
+
+**Fixed bugs:**
+
+- \[Xcode 10\] Crash in XCBuildService; need to use old build system [\#91](https://github.com/iwasrobbed/Down/issues/91)
+
+**Closed issues:**
+
+- DownView font size on iPad is huge [\#102](https://github.com/iwasrobbed/Down/issues/102)
+- Is there a way to convert NSAttributedString back to markdown? [\#98](https://github.com/iwasrobbed/Down/issues/98)
+- Back Gesture [\#96](https://github.com/iwasrobbed/Down/issues/96)
+- &rdquo; not being rendered [\#95](https://github.com/iwasrobbed/Down/issues/95)
+- Access for  [\#92](https://github.com/iwasrobbed/Down/issues/92)
+- Image size NSAttributedString [\#89](https://github.com/iwasrobbed/Down/issues/89)
+- Dependency analysis warnings with Cocoapods [\#88](https://github.com/iwasrobbed/Down/issues/88)
+- WatchKit Support [\#71](https://github.com/iwasrobbed/Down/issues/71)
+- Installation via Swift Package Manager [\#61](https://github.com/iwasrobbed/Down/issues/61)
+
+**Merged pull requests:**
+
+- \[Xcode 10\]\[Carthage\] Use new build system [\#104](https://github.com/iwasrobbed/Down/pull/104) ([torokzsolt](https://github.com/torokzsolt))
+- Updates the project settings to use the Legacy Build System. [\#97](https://github.com/iwasrobbed/Down/pull/97) ([pieromattos](https://github.com/pieromattos))
+- \[Release\] v0.5.2 [\#87](https://github.com/iwasrobbed/Down/pull/87) ([iwasrobbed](https://github.com/iwasrobbed))
+
 ## [v0.5.2](https://github.com/iwasrobbed/Down/tree/v0.5.2) (2018-05-05)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.5.1...v0.5.2)
 
