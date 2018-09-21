@@ -8,7 +8,7 @@
 [![tvOS](https://img.shields.io/badge/OS-tvOS-orange.svg)](https://developer.apple.com/tvos/)
 [![Coverage Status](https://coveralls.io/repos/github/iwasrobbed/Down/badge.svg?branch=master)](https://coveralls.io/github/iwasrobbed/Down?branch=master)
 
-Blazing fast Markdown rendering in Swift, built upon [cmark](https://github.com/jgm/cmark).
+Blazing fast Markdown (CommonMark) rendering in Swift, built upon [cmark](https://github.com/jgm/cmark).
 
 Is your app using it? [Let us know!](mailto:rob@robphillips.me)
 
