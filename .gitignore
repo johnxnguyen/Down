@@ -1,6 +1,7 @@
 Pods/
 .DS_Store
 xcuserdata
+.build
 
 # additional ignores that will save us time
 build/

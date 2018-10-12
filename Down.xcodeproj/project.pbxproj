@@ -206,6 +206,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DE7425E2170F6DC00AA9B46 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D4201F141CFA5D63008EEC6E /* node.h */,
+				D4201EFD1CFA5D63008EEC6E /* cmark.h */,
+				D4201EF91CFA5D63008EEC6E /* buffer.h */,
+				D4201EFB1CFA5D63008EEC6E /* chunk.h */,
+				D4201F001CFA5D63008EEC6E /* cmark_export.h */,
+				D4201F011CFA5D63008EEC6E /* cmark_version.h */,
+				D4201F031CFA5D63008EEC6E /* config.h */,
+				D4201EFF1CFA5D63008EEC6E /* cmark_ctype.h */,
+				D42869501CFF501200FACB4C /* module.modulemap */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		0DE7425F2170F72000AA9B46 /* Down */ = {
+			isa = PBXGroup;
+			children = (
+				D4CF88961CFF94B300F07FD1 /* Down.h */,
+				D4201EF01CFA59F2008EEC6E /* Down.swift */,
+				D44875E71CFA6CF30037A624 /* Enums & Options */,
+				D43AE5C81CFFAE39006E1522 /* Extensions */,
+				D44875E21CFA6B120037A624 /* Renderers */,
+				D43AE5CB1CFFD068006E1522 /* Views */,
+			);
+			path = Down;
+			sourceTree = "<group>";
+		};
 		907C64611EC120530095FEE1 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,7 +267,7 @@
 		D4201E761CFA5151008EEC6E = {
 			isa = PBXGroup;
 			children = (
-				D4201E9B1CFA59A5008EEC6E /* Source */,
+				D4201E9B1CFA59A5008EEC6E /* Sources */,
 				D41689B41CFFE6BB00E5802B /* Resources */,
 				D4201EC41CFA59A5008EEC6E /* Tests */,
 				D4201E811CFA5151008EEC6E /* Products */,
@@ -256,18 +285,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D4201E9B1CFA59A5008EEC6E /* Source */ = {
+		D4201E9B1CFA59A5008EEC6E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				D4CF88961CFF94B300F07FD1 /* Down.h */,
-				D4201EF01CFA59F2008EEC6E /* Down.swift */,
-				D44875E71CFA6CF30037A624 /* Enums & Options */,
-				D43AE5C81CFFAE39006E1522 /* Extensions */,
-				D44875E21CFA6B120037A624 /* Renderers */,
-				D43AE5CB1CFFD068006E1522 /* Views */,
+				0DE7425F2170F72000AA9B46 /* Down */,
 				D4201EF61CFA5D63008EEC6E /* cmark */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		D4201EC41CFA59A5008EEC6E /* Tests */ = {
@@ -285,18 +309,12 @@
 		D4201EF61CFA5D63008EEC6E /* cmark */ = {
 			isa = PBXGroup;
 			children = (
+				0DE7425E2170F6DC00AA9B46 /* include */,
 				D4201EF71CFA5D63008EEC6E /* blocks.c */,
 				D4201EF81CFA5D63008EEC6E /* buffer.c */,
-				D4201EF91CFA5D63008EEC6E /* buffer.h */,
-				D4201EFB1CFA5D63008EEC6E /* chunk.h */,
 				D4201EFC1CFA5D63008EEC6E /* cmark.c */,
-				D4201EFD1CFA5D63008EEC6E /* cmark.h */,
 				D4201EFE1CFA5D63008EEC6E /* cmark_ctype.c */,
-				D4201EFF1CFA5D63008EEC6E /* cmark_ctype.h */,
-				D4201F001CFA5D63008EEC6E /* cmark_export.h */,
-				D4201F011CFA5D63008EEC6E /* cmark_version.h */,
 				D4201F021CFA5D63008EEC6E /* commonmark.c */,
-				D4201F031CFA5D63008EEC6E /* config.h */,
 				D4201F041CFA5D63008EEC6E /* debug.h */,
 				D4201F061CFA5D63008EEC6E /* houdini.h */,
 				D4201F071CFA5D63008EEC6E /* houdini_href_e.c */,
@@ -310,9 +328,7 @@
 				D4201F0F1CFA5D63008EEC6E /* iterator.h */,
 				D4201F101CFA5D63008EEC6E /* latex.c */,
 				D4201F111CFA5D63008EEC6E /* man.c */,
-				D42869501CFF501200FACB4C /* module.modulemap */,
 				D4201F131CFA5D63008EEC6E /* node.c */,
-				D4201F141CFA5D63008EEC6E /* node.h */,
 				D4201F151CFA5D63008EEC6E /* parser.h */,
 				D4201F161CFA5D63008EEC6E /* references.c */,
 				D4201F171CFA5D63008EEC6E /* references.h */,
@@ -572,7 +588,7 @@
 				INFOPLIST_FILE = "Resources/Down-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Source/cmark";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Sources/cmark";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 			};
@@ -590,7 +606,7 @@
 				INFOPLIST_FILE = "Resources/Down-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Source/cmark";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Sources/cmark";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 			};
