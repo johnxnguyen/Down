@@ -29,6 +29,7 @@ open class DownView: WKWebView {
      - returns: An instance of Self
      */
     public init(frame: CGRect, markdownString: String, openLinksInBrowser: Bool = true, templateBundle: Bundle? = nil, didLoadSuccessfully: DownViewClosure? = nil) throws {
+        self.markdownString = markdownString
         self.didLoadSuccessfully = didLoadSuccessfully
 
         if let templateBundle = templateBundle {
@@ -41,13 +42,23 @@ open class DownView: WKWebView {
 
         super.init(frame: frame, configuration: WKWebViewConfiguration())
 
+        #if os(macOS)
+            setupMacEnvironment()
+        #endif
+
         if openLinksInBrowser || didLoadSuccessfully != nil { navigationDelegate = self }
-        try loadHTMLView(markdownString)
+        try loadHTMLView()
     }
 
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    #if os(macOS)
+    deinit {
+        clearTemporaryDirectory()
+    }
+    #endif
     
     // MARK: - API
     
@@ -65,9 +76,14 @@ open class DownView: WKWebView {
         if let didLoadSuccessfully = didLoadSuccessfully {
             self.didLoadSuccessfully = didLoadSuccessfully
         }
-        
-        try loadHTMLView(markdownString)
+
+        self.markdownString = markdownString
+        try loadHTMLView()
     }
+
+    // MARK: - Public Properties
+
+    public var markdownString: String
 
     // MARK: - Private Properties
 
@@ -76,6 +92,15 @@ open class DownView: WKWebView {
     fileprivate lazy var baseURL: URL = {
         return self.bundle.url(forResource: "index", withExtension: "html")!
     }()
+
+    #if os(macOS)
+    fileprivate lazy var temporaryDirectoryURL: URL = {
+        return try! FileManager.default.url(for: .itemReplacementDirectory,
+                                            in: .userDomainMask,
+                                            appropriateFor: URL(fileURLWithPath: "/"),
+                                            create: true).appendingPathComponent("Down", isDirectory: true)
+    }()
+    #endif
     
     fileprivate var didLoadSuccessfully: DownViewClosure?
 }
@@ -84,32 +109,71 @@ open class DownView: WKWebView {
 
 private extension DownView {
 
-    func loadHTMLView(_ markdownString: String) throws {
+    func loadHTMLView() throws {
         let htmlString = try markdownString.toHTML()
         let pageHTMLString = try htmlFromTemplate(htmlString)
-        loadHTMLString(pageHTMLString, baseURL: baseURL)
+
+        #if os(iOS)
+            loadHTMLString(pageHTMLString, baseURL: baseURL)
+        #elseif os(macOS)
+            let indexURL = try createTemporaryBundle(pageHTMLString: pageHTMLString)
+            loadFileURL(indexURL, allowingReadAccessTo: indexURL.deletingLastPathComponent())
+        #endif
     }
 
     func htmlFromTemplate(_ htmlString: String) throws -> String {
-        let template = try NSString(contentsOf: baseURL, encoding: String.Encoding.utf8.rawValue)
+        let template = try String(contentsOf: baseURL, encoding: .utf8)
         return template.replacingOccurrences(of: "DOWN_HTML", with: htmlString)
     }
+
+    #if os(macOS)
+    func createTemporaryBundle(pageHTMLString: String) throws -> URL {
+        let bundleResourceURL = self.bundle.resourceURL!
+        let indexURL = temporaryDirectoryURL.appendingPathComponent("index.html", isDirectory: false)
+
+        // If updating markdown contents, no need to re-copy bundle.
+        if !FileManager.default.fileExists(atPath: indexURL.path) {
+            // Copy bundle resources to temporary location.
+            try FileManager.default.copyItem(at: bundleResourceURL, to: temporaryDirectoryURL)
+        }
+
+        // Write generated index.html to temporary location.
+        try pageHTMLString.write(to: indexURL, atomically: true, encoding: .utf8)
+
+        return indexURL
+    }
+
+    func setupMacEnvironment() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(clearTemporaryDirectory),
+                                               name: NSApplication.willTerminateNotification,
+                                               object: nil)
+    }
+
+    @objc
+    func clearTemporaryDirectory() {
+        try? FileManager.default.removeItem(at: temporaryDirectoryURL)
+    }
+    #endif
 
 }
 
 // MARK: - WKNavigationDelegate
 
 extension DownView: WKNavigationDelegate {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        decisionHandler(.allow)
+    }
 
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        guard let url = navigationAction.request.url else { return }
+        guard let url = navigationAction.request.url else { return decisionHandler(.allow) }
 
         switch navigationAction.navigationType {
         case .linkActivated:
             decisionHandler(.cancel)
             #if os(iOS)
                 UIApplication.shared.openURL(url)
-            #elseif os(OSX)
+            #elseif os(macOS)
                 NSWorkspace.shared.open(url)
             #endif
         default:

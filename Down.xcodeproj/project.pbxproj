@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14C5E33521877CE900D5380C /* DownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D41689B51CFFE6BB00E5802B /* DownView.bundle */; };
 		8A569F481E6B3ED2008BE2AC /* DownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AE5D91CFFD0D0006E1522 /* DownView.swift */; };
 		8A569F491E6B3ED9008BE2AC /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF71CFA5D63008EEC6E /* blocks.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8A569F4A1E6B3ED9008BE2AC /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF81CFA5D63008EEC6E /* buffer.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -58,7 +59,6 @@
 		8A569F781E6B3EE7008BE2AC /* DownErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E81CFA6CF30037A624 /* DownErrors.swift */; };
 		8A569F791E6B3EE7008BE2AC /* DownOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E91CFA6CF30037A624 /* DownOptions.swift */; };
 		8A569F7A1E6B3EEA008BE2AC /* Down.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF01CFA59F2008EEC6E /* Down.swift */; };
-		8A569F7B1E6B3EEE008BE2AC /* DownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D41689B51CFFE6BB00E5802B /* DownView.bundle */; };
 		8AFAEB001E6E32E900E09B68 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; };
 		8AFAEB061E6E331700E09B68 /* BindingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4201EC51CFA59A5008EEC6E /* BindingTests.swift */; };
 		8AFAEB071E6E331700E09B68 /* DownViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41689B21CFFE28200E5802B /* DownViewTests.swift */; };
@@ -126,6 +126,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		14C5E33621877FCD00D5380C /* DownView (macOS).bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "DownView (macOS).bundle"; sourceTree = "<group>"; };
 		8A569F401E6B3E50008BE2AC /* Down.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Down.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AFAEAFB1E6E32E900E09B68 /* DownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		907C64621EC120530095FEE1 /* TestDownView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TestDownView.bundle; sourceTree = "<group>"; };
@@ -231,6 +232,7 @@
 				90A40A951EC02FF6004F2E91 /* Down-Info.plist */,
 				90A40A961EC02FF6004F2E91 /* DownTests-Info.plist */,
 				D41689B51CFFE6BB00E5802B /* DownView.bundle */,
+				14C5E33621877FCD00D5380C /* DownView (macOS).bundle */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -405,7 +407,8 @@
 			buildPhases = (
 				8A569F3B1E6B3E50008BE2AC /* Sources */,
 				8A569F3D1E6B3E50008BE2AC /* Headers */,
-				8A569F3E1E6B3E50008BE2AC /* Resources */,
+				14C5E33421877CDC00D5380C /* Resources */,
+				14CEAC38218774BC00039EDF /* Replace Bundle for macOS Platform */,
 			);
 			buildRules = (
 				8AE66BE41F848C3900ED4C98 /* PBXBuildRule */,
@@ -479,11 +482,11 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8A569F3E1E6B3E50008BE2AC /* Resources */ = {
+		14C5E33421877CDC00D5380C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A569F7B1E6B3EEE008BE2AC /* DownView.bundle in Resources */,
+				14C5E33521877CE900D5380C /* DownView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +499,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		14CEAC38218774BC00039EDF /* Replace Bundle for macOS Platform */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Replace Bundle for macOS Platform";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nRESOURCE_PATH=$SRCROOT/Resources\n\nFILENAME_IN_BUNDLE=DownView.bundle\n\nBUILD_APP_DIR=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Resources\n\necho \"$RESOURCE_PATH\"\necho \"$BUILD_APP_DIR\"\n\nif [ \"$PLATFORM_NAME\" == \"macosx\" ]; then\n    echo $BUILD_APP_DIR\n    rm -r \"$BUILD_APP_DIR/$FILENAME_IN_BUNDLE/\"\n    cp -R \"$RESOURCE_PATH/DownView (macOS).bundle\" \"$BUILD_APP_DIR/$FILENAME_IN_BUNDLE/\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8A569F3B1E6B3E50008BE2AC /* Sources */ = {
