@@ -29,7 +29,6 @@ open class DownView: WKWebView {
      - returns: An instance of Self
      */
     public init(frame: CGRect, markdownString: String, openLinksInBrowser: Bool = true, templateBundle: Bundle? = nil, didLoadSuccessfully: DownViewClosure? = nil) throws {
-        self.markdownString = markdownString
         self.didLoadSuccessfully = didLoadSuccessfully
 
         if let templateBundle = templateBundle {
@@ -47,7 +46,7 @@ open class DownView: WKWebView {
         #endif
 
         if openLinksInBrowser || didLoadSuccessfully != nil { navigationDelegate = self }
-        try loadHTMLView()
+        try loadHTMLView(markdownString)
     }
 
     required public init?(coder: NSCoder) {
@@ -77,13 +76,8 @@ open class DownView: WKWebView {
             self.didLoadSuccessfully = didLoadSuccessfully
         }
 
-        self.markdownString = markdownString
-        try loadHTMLView()
+        try loadHTMLView(markdownString)
     }
-
-    // MARK: - Public Properties
-
-    public var markdownString: String
 
     // MARK: - Private Properties
 
@@ -109,7 +103,7 @@ open class DownView: WKWebView {
 
 private extension DownView {
 
-    func loadHTMLView() throws {
+    func loadHTMLView(_ markdownString: String) throws {
         let htmlString = try markdownString.toHTML()
         let pageHTMLString = try htmlFromTemplate(htmlString)
 
