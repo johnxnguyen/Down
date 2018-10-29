@@ -28,7 +28,7 @@ open class DownView: WKWebView {
 
      - returns: An instance of Self
      */
-    public init(frame: CGRect, markdownString: String, openLinksInBrowser: Bool = true, templateBundle: Bundle? = nil, didLoadSuccessfully: DownViewClosure? = nil) throws {
+    public init(frame: CGRect, markdownString: String, openLinksInBrowser: Bool = true, templateBundle: Bundle? = nil, didLoadSuccessfully: DownViewClosure? = nil, configuration: WKWebViewConfiguration? = nil) throws {
         self.didLoadSuccessfully = didLoadSuccessfully
 
         if let templateBundle = templateBundle {
@@ -39,7 +39,7 @@ open class DownView: WKWebView {
             self.bundle = Bundle(url: url)!
         }
 
-        super.init(frame: frame, configuration: WKWebViewConfiguration())
+        super.init(frame: frame, configuration: configuration ?? WKWebViewConfiguration())
 
         #if os(macOS)
             setupMacEnvironment()
