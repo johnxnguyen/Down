@@ -164,6 +164,13 @@ extension DownView: WKNavigationDelegate {
 
         switch navigationAction.navigationType {
         case .linkActivated:
+            if #available(iOS 11.0, macOS 10.13, *) {
+                if let scheme = url.scheme, configuration.urlSchemeHandler(forURLScheme: scheme) != nil {
+                    decisionHandler(.allow)
+                    return
+                }
+            }
+
             decisionHandler(.cancel)
             #if os(iOS)
                 UIApplication.shared.openURL(url)
