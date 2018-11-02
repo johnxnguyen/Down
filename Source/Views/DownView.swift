@@ -28,7 +28,7 @@ open class DownView: WKWebView {
 
      - returns: An instance of Self
      */
-    public init(frame: CGRect, markdownString: String, openLinksInBrowser: Bool = true, templateBundle: Bundle? = nil, didLoadSuccessfully: DownViewClosure? = nil, configuration: WKWebViewConfiguration? = nil) throws {
+    public init(frame: CGRect, markdownString: String, openLinksInBrowser: Bool = true, templateBundle: Bundle? = nil, configuration: WKWebViewConfiguration? = nil, didLoadSuccessfully: DownViewClosure? = nil) throws {
         self.didLoadSuccessfully = didLoadSuccessfully
 
         if let templateBundle = templateBundle {
