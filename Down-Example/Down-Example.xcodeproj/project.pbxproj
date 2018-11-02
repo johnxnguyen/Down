@@ -13,6 +13,7 @@
 		14090A532185411A00503C06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14090A512185411A00503C06 /* Main.storyboard */; };
 		14090A592185414B00503C06 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; };
 		14090A5A2185414B00503C06 /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1483520B218CFE7B00C5CA95 /* README-11:2:18.md in Resources */ = {isa = PBXBuildFile; fileRef = 14835209218CFE7A00C5CA95 /* README-11:2:18.md */; };
 		8A07D7D31F085EC6004D7141 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A07D7D21F085EC6004D7141 /* AppDelegate.swift */; };
 		8A07D7D51F085EC6004D7141 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A07D7D41F085EC6004D7141 /* ViewController.swift */; };
 		8A07D7D81F085EC6004D7141 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A07D7D61F085EC6004D7141 /* Main.storyboard */; };
@@ -86,6 +87,7 @@
 		14090A522185411A00503C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14090A542185411A00503C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14090A5E2185443800503C06 /* macOS Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "macOS Demo.entitlements"; sourceTree = "<group>"; };
+		14835209218CFE7A00C5CA95 /* README-11:2:18.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "README-11:2:18.md"; sourceTree = "<group>"; };
 		8A07D7CF1F085EC6004D7141 /* Down-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Down-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A07D7D21F085EC6004D7141 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A07D7D41F085EC6004D7141 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		14090A4A2185411800503C06 /* macOS Demo */ = {
 			isa = PBXGroup;
 			children = (
+				14835209218CFE7A00C5CA95 /* README-11:2:18.md */,
 				14090A5E2185443800503C06 /* macOS Demo.entitlements */,
 				14090A4B2185411800503C06 /* AppDelegate.swift */,
 				14090A4D2185411800503C06 /* ViewController.swift */,
@@ -286,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1483520B218CFE7B00C5CA95 /* README-11:2:18.md in Resources */,
 				14090A502185411A00503C06 /* Assets.xcassets in Resources */,
 				14090A532185411A00503C06 /* Main.storyboard in Resources */,
 			);
