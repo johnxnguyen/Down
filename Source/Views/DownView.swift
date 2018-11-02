@@ -24,6 +24,7 @@ open class DownView: WKWebView {
      - parameter markdownString:      A string containing CommonMark Markdown
      - parameter openLinksInBrowser:  Whether or not to open links using an external browser
      - parameter templateBundle:      Optional custom template bundle. Leaving this as `nil` will use the bundle included with Down.
+     - parameter configuration:       Optional custom web view configuration.
      - parameter didLoadSuccessfully: Optional callback for when the web content has loaded successfully
 
      - returns: An instance of Self
