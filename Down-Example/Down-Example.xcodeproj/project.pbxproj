@@ -13,18 +13,25 @@
 		14090A532185411A00503C06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14090A512185411A00503C06 /* Main.storyboard */; };
 		14090A592185414B00503C06 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; };
 		14090A5A2185414B00503C06 /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1466417E218D2A18009627F9 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; };
+		1466417F218D2A18009627F9 /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1483520B218CFE7B00C5CA95 /* README-11:2:18.md in Resources */ = {isa = PBXBuildFile; fileRef = 14835209218CFE7A00C5CA95 /* README-11:2:18.md */; };
 		8A07D7D31F085EC6004D7141 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A07D7D21F085EC6004D7141 /* AppDelegate.swift */; };
 		8A07D7D51F085EC6004D7141 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A07D7D41F085EC6004D7141 /* ViewController.swift */; };
 		8A07D7D81F085EC6004D7141 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A07D7D61F085EC6004D7141 /* Main.storyboard */; };
 		8A07D7DA1F085EC6004D7141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A07D7D91F085EC6004D7141 /* Assets.xcassets */; };
 		8A07D7DD1F085EC6004D7141 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A07D7DB1F085EC6004D7141 /* LaunchScreen.storyboard */; };
-		D49980B81FA560FF004EE42E /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; };
-		D49980B91FA560FF004EE42E /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		14090A5B2185414B00503C06 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D49980AF1FA560F8004EE42E /* Down.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A569F3F1E6B3E50008BE2AC;
+			remoteInfo = Down;
+		};
+		14664180218D2A18009627F9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D49980AF1FA560F8004EE42E /* Down.xcodeproj */;
 			proxyType = 1;
@@ -45,13 +52,6 @@
 			remoteGlobalIDString = 8AFAEAFB1E6E32E900E09B68;
 			remoteInfo = DownTests;
 		};
-		D49980BA1FA560FF004EE42E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D49980AF1FA560F8004EE42E /* Down.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8A569F3F1E6B3E50008BE2AC;
-			remoteInfo = Down;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,13 +66,13 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D49980AD1FA5605D004EE42E /* Embed Frameworks */ = {
+		14664182218D2A18009627F9 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D49980B91FA560FF004EE42E /* Down.framework in Embed Frameworks */,
+				1466417F218D2A18009627F9 /* Down.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,7 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D49980B81FA560FF004EE42E /* Down.framework in Frameworks */,
+				1466417E218D2A18009627F9 /* Down.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +132,13 @@
 			path = "macOS Demo";
 			sourceTree = "<group>";
 		};
+		14664175218D264A009627F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8A07D7C61F085EC6004D7141 = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +146,7 @@
 				8A07D7D11F085EC6004D7141 /* Down-Example */,
 				14090A4A2185411800503C06 /* macOS Demo */,
 				8A07D7D01F085EC6004D7141 /* Products */,
+				14664175218D264A009627F9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,12 +210,12 @@
 				8A07D7CB1F085EC6004D7141 /* Sources */,
 				8A07D7CC1F085EC6004D7141 /* Frameworks */,
 				8A07D7CD1F085EC6004D7141 /* Resources */,
-				D49980AD1FA5605D004EE42E /* Embed Frameworks */,
+				14664182218D2A18009627F9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D49980BB1FA560FF004EE42E /* PBXTargetDependency */,
+				14664181218D2A18009627F9 /* PBXTargetDependency */,
 			);
 			name = "Down-Example";
 			productName = "Down-Example";
@@ -238,7 +246,6 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 9V456WSURS;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -334,10 +341,10 @@
 			name = Down;
 			targetProxy = 14090A5B2185414B00503C06 /* PBXContainerItemProxy */;
 		};
-		D49980BB1FA560FF004EE42E /* PBXTargetDependency */ = {
+		14664181218D2A18009627F9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Down;
-			targetProxy = D49980BA1FA560FF004EE42E /* PBXContainerItemProxy */;
+			targetProxy = 14664180218D2A18009627F9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -450,7 +457,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -510,7 +517,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -538,7 +545,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = 9V456WSURS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -547,7 +553,7 @@
 				INFOPLIST_FILE = "Down-Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.down.Down-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bigzlabs.Down-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -560,7 +566,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = 9V456WSURS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -569,7 +574,7 @@
 				INFOPLIST_FILE = "Down-Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.down.Down-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bigzlabs.Down-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
