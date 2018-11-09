@@ -40,3 +40,5 @@ int cmark_isalnum(char c) {
 }
 
 int cmark_isdigit(char c) { return cmark_ctype_class[(uint8_t)c] == 3; }
+
+int cmark_isalpha(char c) { return cmark_ctype_class[(uint8_t)c] == 4; }

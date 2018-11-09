@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 #include <assert.h>
-#include <ctype.h>
 
 #include "config.h"
 #include "cmark.h"
@@ -12,7 +12,6 @@
 #include "scanners.h"
 #include "render.h"
 
-#define safe_strlen(s) cmark_strbuf_safe_strlen(s)
 #define OUT(s, wrap, escaping) renderer->out(renderer, s, wrap, escaping)
 #define LIT(s) renderer->out(renderer, s, false, LITERAL)
 #define CR() renderer->cr(renderer)
@@ -23,7 +22,7 @@
 // Functions to convert cmark_nodes to commonmark strings.
 
 static CMARK_INLINE void outc(cmark_renderer *renderer, cmark_escaping escape,
-                        int32_t c, unsigned char nextc) {
+                              int32_t c, unsigned char nextc) {
   bool needs_escaping = false;
   bool follows_digit =
       renderer->buffer->size > 0 &&
@@ -31,24 +30,25 @@ static CMARK_INLINE void outc(cmark_renderer *renderer, cmark_escaping escape,
   char encoded[ENCODED_SIZE];
 
   needs_escaping =
-      escape != LITERAL &&
+      c < 0x80 && escape != LITERAL &&
       ((escape == NORMAL &&
         (c == '*' || c == '_' || c == '[' || c == ']' || c == '#' || c == '<' ||
          c == '>' || c == '\\' || c == '`' || c == '!' ||
-         (c == '&' && isalpha(nextc)) || (c == '!' && nextc == '[') ||
+         (c == '&' && cmark_isalpha(nextc)) || (c == '!' && nextc == '[') ||
          (renderer->begin_content && (c == '-' || c == '+' || c == '=') &&
           // begin_content doesn't get set to false til we've passed digits
           // at the beginning of line, so...
           !follows_digit) ||
          (renderer->begin_content && (c == '.' || c == ')') && follows_digit &&
           (nextc == 0 || cmark_isspace(nextc))))) ||
-       (escape == URL && (c == '`' || c == '<' || c == '>' || isspace(c) ||
-                          c == '\\' || c == ')' || c == '(')) ||
+       (escape == URL &&
+        (c == '`' || c == '<' || c == '>' || cmark_isspace(c) || c == '\\' ||
+         c == ')' || c == '(')) ||
        (escape == TITLE &&
         (c == '`' || c == '<' || c == '>' || c == '"' || c == '\\')));
 
   if (needs_escaping) {
-    if (isspace(c)) {
+    if (cmark_isspace(c)) {
       // use percent encoding for spaces
       snprintf(encoded, ENCODED_SIZE, "%%%2x", c);
       cmark_strbuf_puts(renderer->buffer, encoded);
@@ -66,7 +66,7 @@ static int longest_backtick_sequence(const char *code) {
   int longest = 0;
   int current = 0;
   size_t i = 0;
-  size_t code_len = safe_strlen(code);
+  size_t code_len = strlen(code);
   while (i <= code_len) {
     if (code[i] == '`') {
       current++;
@@ -82,16 +82,18 @@ static int longest_backtick_sequence(const char *code) {
 }
 
 static int shortest_unused_backtick_sequence(const char *code) {
-  int32_t used = 1;
+  // note: if the shortest sequence is >= 32, this returns 32
+  // so as not to overflow the bit array.
+  uint32_t used = 1;
   int current = 0;
   size_t i = 0;
-  size_t code_len = safe_strlen(code);
+  size_t code_len = strlen(code);
   while (i <= code_len) {
     if (code[i] == '`') {
       current++;
     } else {
-      if (current) {
-        used |= (1 << current);
+      if (current > 0 && current < 32) {
+        used |= (1U << current);
       }
       current = 0;
     }
@@ -99,7 +101,7 @@ static int shortest_unused_backtick_sequence(const char *code) {
   }
   // return number of first bit that is 0:
   i = 0;
-  while (used & 1) {
+  while (i < 32 && used & 1) {
     used = used >> 1;
     i++;
   }
@@ -171,7 +173,10 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
   size_t info_len, code_len;
   char listmarker[LISTMARKER_SIZE];
   char *emph_delim;
+  bool first_in_list_item;
   bufsize_t marker_width;
+  bool allow_wrap = renderer->width > 0 && !(CMARK_OPT_NOBREAKS & options) &&
+                    !(CMARK_OPT_HARDBREAKS & options);
 
   // Don't adjust tight list status til we've started the list.
   // Otherwise we loose the blank line between a paragraph and
@@ -204,7 +209,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
   case CMARK_NODE_LIST:
     if (!entering && node->next && (node->next->type == CMARK_NODE_CODE_BLOCK ||
                                     node->next->type == CMARK_NODE_LIST)) {
-      // this ensures that a following code block or list will be
+      // this ensures that a following indented code block or list will be
       // inteprereted correctly.
       CR();
       LIT("<!-- end list -->");
@@ -229,7 +234,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
       snprintf(listmarker, LISTMARKER_SIZE, "%d%s%s", list_number,
                list_delim == CMARK_PAREN_DELIM ? ")" : ".",
                list_number < 10 ? "  " : " ");
-      marker_width = safe_strlen(listmarker);
+      marker_width = strlen(listmarker);
     }
     if (entering) {
       if (cmark_node_get_list_type(node->parent) == CMARK_BULLET_LIST) {
@@ -256,27 +261,31 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
       }
       LIT(" ");
       renderer->begin_content = true;
-      renderer->no_wrap = true;
+      renderer->no_linebreaks = true;
     } else {
-      renderer->no_wrap = false;
+      renderer->no_linebreaks = false;
       BLANKLINE();
     }
     break;
 
   case CMARK_NODE_CODE_BLOCK:
-    BLANKLINE();
+    first_in_list_item = node->prev == NULL && node->parent &&
+                         node->parent->type == CMARK_NODE_ITEM;
+
+    if (!first_in_list_item) {
+      BLANKLINE();
+    }
     info = cmark_node_get_fence_info(node);
-    info_len = safe_strlen(info);
+    info_len = strlen(info);
     code = cmark_node_get_literal(node);
-    code_len = safe_strlen(code);
+    code_len = strlen(code);
     // use indented form if no info, and code doesn't
     // begin or end with a blank line, and code isn't
     // first thing in a list item
-    if (info_len == 0 &&
-        (code_len > 2 && !isspace((unsigned char)code[0]) &&
-         !(isspace((unsigned char)code[code_len - 1]) && isspace((unsigned char)code[code_len - 2]))) &&
-        !(node->prev == NULL && node->parent &&
-          node->parent->type == CMARK_NODE_ITEM)) {
+    if (info_len == 0 && (code_len > 2 && !cmark_isspace(code[0]) &&
+                          !(cmark_isspace(code[code_len - 1]) &&
+                            cmark_isspace(code[code_len - 2]))) &&
+        !first_in_list_item) {
       LIT("    ");
       cmark_strbuf_puts(renderer->prefix, "    ");
       OUT(cmark_node_get_literal(node), false, LITERAL);
@@ -327,7 +336,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     break;
 
   case CMARK_NODE_TEXT:
-    OUT(cmark_node_get_literal(node), true, NORMAL);
+    OUT(cmark_node_get_literal(node), allow_wrap, NORMAL);
     break;
 
   case CMARK_NODE_LINEBREAK:
@@ -338,16 +347,21 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     break;
 
   case CMARK_NODE_SOFTBREAK:
-    if (renderer->width == 0 && !(CMARK_OPT_HARDBREAKS & options)) {
+    if (CMARK_OPT_HARDBREAKS & options) {
+      LIT("  ");
+      CR();
+    } else if (!renderer->no_linebreaks && renderer->width == 0 &&
+               !(CMARK_OPT_HARDBREAKS & options) &&
+               !(CMARK_OPT_NOBREAKS & options)) {
       CR();
     } else {
-      OUT(" ", true, LITERAL);
+      OUT(" ", allow_wrap, LITERAL);
     }
     break;
 
   case CMARK_NODE_CODE:
     code = cmark_node_get_literal(node);
-    code_len = safe_strlen(code);
+    code_len = strlen(code);
     numticks = shortest_unused_backtick_sequence(code);
     for (i = 0; i < numticks; i++) {
       LIT("`");
@@ -355,7 +369,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     if (code_len == 0 || code[0] == '`') {
       LIT(" ");
     }
-    OUT(cmark_node_get_literal(node), true, LITERAL);
+    OUT(cmark_node_get_literal(node), allow_wrap, LITERAL);
     if (code_len == 0 || code[code_len - 1] == '`') {
       LIT(" ");
     }
@@ -417,7 +431,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
         LIT("](");
         OUT(cmark_node_get_url(node), false, URL);
         title = cmark_node_get_title(node);
-        if (safe_strlen(title) > 0) {
+        if (strlen(title) > 0) {
           LIT(" \"");
           OUT(title, false, TITLE);
           LIT("\"");
@@ -434,8 +448,8 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
       LIT("](");
       OUT(cmark_node_get_url(node), false, URL);
       title = cmark_node_get_title(node);
-      if (safe_strlen(title) > 0) {
-        OUT(" \"", true, LITERAL);
+      if (strlen(title) > 0) {
+        OUT(" \"", allow_wrap, LITERAL);
         OUT(title, false, TITLE);
         LIT("\"");
       }

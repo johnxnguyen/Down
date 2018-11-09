@@ -17,6 +17,8 @@ int cmark_isalnum(char c);
 
 int cmark_isdigit(char c);
 
+int cmark_isalpha(char c);
+
 #ifdef __cplusplus
 }
 #endif

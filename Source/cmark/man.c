@@ -75,6 +75,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
   cmark_node *tmp;
   int list_number;
   bool entering = (ev_type == CMARK_EVENT_ENTER);
+  bool allow_wrap = renderer->width > 0 && !(CMARK_OPT_NOBREAKS & options);
 
   // avoid unused parameter error:
   (void)(options);
@@ -173,7 +174,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     break;
 
   case CMARK_NODE_TEXT:
-    OUT(cmark_node_get_literal(node), true, NORMAL);
+    OUT(cmark_node_get_literal(node), allow_wrap, NORMAL);
     break;
 
   case CMARK_NODE_LINEBREAK:
@@ -182,16 +183,19 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     break;
 
   case CMARK_NODE_SOFTBREAK:
-    if (renderer->width == 0) {
+    if (options & CMARK_OPT_HARDBREAKS) {
+      LIT(".PD 0\n.P\n.PD");
+      CR();
+    } else if (renderer->width == 0 && !(CMARK_OPT_NOBREAKS & options)) {
       CR();
     } else {
-      OUT(" ", true, LITERAL);
+      OUT(" ", allow_wrap, LITERAL);
     }
     break;
 
   case CMARK_NODE_CODE:
     LIT("\\f[C]");
-    OUT(cmark_node_get_literal(node), true, NORMAL);
+    OUT(cmark_node_get_literal(node), allow_wrap, NORMAL);
     LIT("\\f[]");
     break;
 
@@ -222,7 +226,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
   case CMARK_NODE_LINK:
     if (!entering) {
       LIT(" (");
-      OUT(cmark_node_get_url(node), true, URL);
+      OUT(cmark_node_get_url(node), allow_wrap, URL);
       LIT(")");
     }
     break;

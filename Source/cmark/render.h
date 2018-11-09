@@ -8,10 +8,12 @@ extern "C" {
 #include <stdlib.h>
 #include "buffer.h"
 #include "chunk.h"
+#include "memory.h"
 
 typedef enum { LITERAL, NORMAL, TITLE, URL } cmark_escaping;
 
 struct cmark_renderer {
+  cmark_mem *mem;
   cmark_strbuf *buffer;
   cmark_strbuf *prefix;
   int column;
@@ -20,7 +22,7 @@ struct cmark_renderer {
   bufsize_t last_breakable;
   bool begin_line;
   bool begin_content;
-  bool no_wrap;
+  bool no_linebreaks;
   bool in_tight_list_item;
   void (*outc)(struct cmark_renderer *, cmark_escaping, int32_t, unsigned char);
   void (*cr)(struct cmark_renderer *);
