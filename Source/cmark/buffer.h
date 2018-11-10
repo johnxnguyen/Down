@@ -5,32 +5,35 @@
 #include <stdarg.h>
 #include <string.h>
 #include <limits.h>
+#include <stdint.h>
 #include "config.h"
+#include "cmark.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef int bufsize_t;
+typedef int32_t bufsize_t;
 
 typedef struct {
+  cmark_mem *mem;
   unsigned char *ptr;
   bufsize_t asize, size;
 } cmark_strbuf;
 
 extern unsigned char cmark_strbuf__initbuf[];
 
-#define GH_BUF_INIT                                                            \
-  { cmark_strbuf__initbuf, 0, 0 }
-#define BUFSIZE_MAX INT_MAX
+#define CMARK_BUF_INIT(mem)                                                    \
+  { mem, cmark_strbuf__initbuf, 0, 0 }
 
 /**
  * Initialize a cmark_strbuf structure.
  *
- * For the cases where GH_BUF_INIT cannot be used to do static
+ * For the cases where CMARK_BUF_INIT cannot be used to do static
  * initialization.
  */
-void cmark_strbuf_init(cmark_strbuf *buf, bufsize_t initial_size);
+void cmark_strbuf_init(cmark_mem *mem, cmark_strbuf *buf,
+                       bufsize_t initial_size);
 
 /**
  * Grow the buffer to hold at least `target_size` bytes.
@@ -71,20 +74,6 @@ void cmark_strbuf_rtrim(cmark_strbuf *buf);
 void cmark_strbuf_trim(cmark_strbuf *buf);
 void cmark_strbuf_normalize_whitespace(cmark_strbuf *s);
 void cmark_strbuf_unescape(cmark_strbuf *s);
-
-/* Print error and abort. */
-void cmark_strbuf_overflow_err(void);
-
-static CMARK_INLINE bufsize_t cmark_strbuf_check_bufsize(size_t size) {
-  if (size > BUFSIZE_MAX) {
-    cmark_strbuf_overflow_err();
-  }
-  return (bufsize_t)size;
-}
-
-static CMARK_INLINE bufsize_t cmark_strbuf_safe_strlen(const char *str) {
-  return cmark_strbuf_check_bufsize(strlen(str));
-}
 
 #ifdef __cplusplus
 }
