@@ -1,10 +1,31 @@
 # Change Log
 
+## [v0.6.0](https://github.com/iwasrobbed/Down/tree/v0.6.0) (2018-11-10)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.5.3...v0.6.0)
+
+**Implemented enhancements:**
+
+- \[iOS 10+\] Warnings for WebKit signal service and latex.c [\#94](https://github.com/iwasrobbed/Down/issues/94)
+- Update cmark version to latest stable release [\#84](https://github.com/iwasrobbed/Down/issues/84)
+
+**Closed issues:**
+
+- HTML to Markdowndow? [\#107](https://github.com/iwasrobbed/Down/issues/107)
+- Blockquote does not work in NSAttributedString [\#106](https://github.com/iwasrobbed/Down/issues/106)
+- Support for Dynamic Type [\#90](https://github.com/iwasrobbed/Down/issues/90)
+
+**Merged pull requests:**
+
+- \[Down\] Bump to v0.6.0 [\#113](https://github.com/iwasrobbed/Down/pull/113) ([iwasrobbed](https://github.com/iwasrobbed))
+- \[cmark\] Update lib to v0.28.3 [\#112](https://github.com/iwasrobbed/Down/pull/112) ([phoney](https://github.com/phoney))
+- Update project to Xcode 10 [\#109](https://github.com/iwasrobbed/Down/pull/109) ([funkyboy](https://github.com/funkyboy))
+
 ## [v0.5.3](https://github.com/iwasrobbed/Down/tree/v0.5.3) (2018-09-19)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.5.2...v0.5.3)
 
 **Implemented enhancements:**
 
+- &rdquo; not being rendered [\#95](https://github.com/iwasrobbed/Down/issues/95)
 - Update issue templates [\#101](https://github.com/iwasrobbed/Down/pull/101) ([iwasrobbed](https://github.com/iwasrobbed))
 
 **Fixed bugs:**
@@ -16,7 +37,6 @@
 - DownView font size on iPad is huge [\#102](https://github.com/iwasrobbed/Down/issues/102)
 - Is there a way to convert NSAttributedString back to markdown? [\#98](https://github.com/iwasrobbed/Down/issues/98)
 - Back Gesture [\#96](https://github.com/iwasrobbed/Down/issues/96)
-- &rdquo; not being rendered [\#95](https://github.com/iwasrobbed/Down/issues/95)
 - Access for  [\#92](https://github.com/iwasrobbed/Down/issues/92)
 - Image size NSAttributedString [\#89](https://github.com/iwasrobbed/Down/issues/89)
 - Dependency analysis warnings with Cocoapods [\#88](https://github.com/iwasrobbed/Down/issues/88)
