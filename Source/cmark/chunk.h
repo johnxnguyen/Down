@@ -4,8 +4,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "cmark_ctype.h"
+#include "cmark.h"
 #include "buffer.h"
+#include "memory.h"
+#include "cmark_ctype.h"
 
 #define CMARK_CHUNK_EMPTY                                                      \
   { NULL, 0, 0 }
@@ -16,9 +18,9 @@ typedef struct {
   bufsize_t alloc; // also implies a NULL-terminated string
 } cmark_chunk;
 
-static CMARK_INLINE void cmark_chunk_free(cmark_chunk *c) {
+static CMARK_INLINE void cmark_chunk_free(cmark_mem *mem, cmark_chunk *c) {
   if (c->alloc)
-    free(c->data);
+    mem->free(c->data);
 
   c->data = NULL;
   c->alloc = 0;
@@ -35,6 +37,8 @@ static CMARK_INLINE void cmark_chunk_ltrim(cmark_chunk *c) {
 }
 
 static CMARK_INLINE void cmark_chunk_rtrim(cmark_chunk *c) {
+  assert(!c->alloc);
+
   while (c->len > 0) {
     if (!cmark_isspace(c->data[c->len - 1]))
       break;
@@ -55,43 +59,44 @@ static CMARK_INLINE bufsize_t cmark_chunk_strchr(cmark_chunk *ch, int c,
   return p ? (bufsize_t)(p - ch->data) : ch->len;
 }
 
-static CMARK_INLINE const char *cmark_chunk_to_cstr(cmark_chunk *c) {
+static CMARK_INLINE const char *cmark_chunk_to_cstr(cmark_mem *mem,
+                                                    cmark_chunk *c) {
   unsigned char *str;
 
   if (c->alloc) {
     return (char *)c->data;
   }
-  str = (unsigned char *)malloc(c->len + 1);
-  if (str != NULL) {
-    if (c->len > 0) {
-      memcpy(str, c->data, c->len);
-    }
-    str[c->len] = 0;
+  str = (unsigned char *)mem->calloc(c->len + 1, 1);
+  if (c->len > 0) {
+    memcpy(str, c->data, c->len);
   }
+  str[c->len] = 0;
   c->data = str;
   c->alloc = 1;
 
   return (char *)str;
 }
 
-static CMARK_INLINE void cmark_chunk_set_cstr(cmark_chunk *c, const char *str) {
-  if (c->alloc) {
-    free(c->data);
-  }
+static CMARK_INLINE void cmark_chunk_set_cstr(cmark_mem *mem, cmark_chunk *c,
+                                              const char *str) {
+  unsigned char *old = c->alloc ? c->data : NULL;
   if (str == NULL) {
     c->len = 0;
     c->data = NULL;
     c->alloc = 0;
   } else {
-    c->len = cmark_strbuf_safe_strlen(str);
-    c->data = (unsigned char *)malloc(c->len + 1);
+    c->len = (bufsize_t)strlen(str);
+    c->data = (unsigned char *)mem->calloc(c->len + 1, 1);
     c->alloc = 1;
     memcpy(c->data, str, c->len + 1);
+  }
+  if (old != NULL) {
+    mem->free(old);
   }
 }
 
 static CMARK_INLINE cmark_chunk cmark_chunk_literal(const char *data) {
-  bufsize_t len = data ? cmark_strbuf_safe_strlen(data) : 0;
+  bufsize_t len = data ? (bufsize_t)strlen(data) : 0;
   cmark_chunk c = {(unsigned char *)data, len, 0};
   return c;
 }

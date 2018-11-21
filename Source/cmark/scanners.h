@@ -18,7 +18,6 @@ bufsize_t _scan_html_block_end_2(const unsigned char *p);
 bufsize_t _scan_html_block_end_3(const unsigned char *p);
 bufsize_t _scan_html_block_end_4(const unsigned char *p);
 bufsize_t _scan_html_block_end_5(const unsigned char *p);
-bufsize_t _scan_link_url(const unsigned char *p);
 bufsize_t _scan_link_title(const unsigned char *p);
 bufsize_t _scan_spacechars(const unsigned char *p);
 bufsize_t _scan_atx_heading_start(const unsigned char *p);
@@ -40,7 +39,6 @@ bufsize_t _scan_dangerous_url(const unsigned char *p);
 #define scan_html_block_end_3(c, n) _scan_at(&_scan_html_block_end_3, c, n)
 #define scan_html_block_end_4(c, n) _scan_at(&_scan_html_block_end_4, c, n)
 #define scan_html_block_end_5(c, n) _scan_at(&_scan_html_block_end_5, c, n)
-#define scan_link_url(c, n) _scan_at(&_scan_link_url, c, n)
 #define scan_link_title(c, n) _scan_at(&_scan_link_title, c, n)
 #define scan_spacechars(c, n) _scan_at(&_scan_spacechars, c, n)
 #define scan_atx_heading_start(c, n) _scan_at(&_scan_atx_heading_start, c, n)

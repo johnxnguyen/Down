@@ -16,7 +16,7 @@ static const unsigned char *S_lookup(int i, int low, int hi,
       strncmp((const char *)s, (const char *)cmark_entities[i].entity, len);
   if (cmp == 0 && cmark_entities[i].entity[len] == 0) {
     return (const unsigned char *)cmark_entities[i].bytes;
-  } else if (cmp < 0 && i > low) {
+  } else if (cmp <= 0 && i > low) {
     j = i - ((i - low) / 2);
     if (j == i)
       j -= 1;

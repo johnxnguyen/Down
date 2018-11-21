@@ -228,6 +228,8 @@ static int S_render_node(cmark_node *node, cmark_event_type ev_type,
   case CMARK_NODE_SOFTBREAK:
     if (options & CMARK_OPT_HARDBREAKS) {
       cmark_strbuf_puts(html, "<br />\n");
+    } else if (options & CMARK_OPT_NOBREAKS) {
+      cmark_strbuf_putc(html, ' ');
     } else {
       cmark_strbuf_putc(html, '\n');
     }
@@ -322,7 +324,7 @@ static int S_render_node(cmark_node *node, cmark_event_type ev_type,
 
 char *cmark_render_html(cmark_node *root, int options) {
   char *result;
-  cmark_strbuf html = GH_BUF_INIT;
+  cmark_strbuf html = CMARK_BUF_INIT(cmark_node_mem(root));
   cmark_event_type ev_type;
   cmark_node *cur;
   struct render_state state = {&html, NULL};
