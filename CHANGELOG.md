@@ -1,5 +1,18 @@
 # Change Log
 
+## [v0.6.1](https://github.com/iwasrobbed/Down/tree/v0.6.1) (2018-11-23)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.0...v0.6.1)
+
+**Closed issues:**
+
+- 2 Swift Compiler Errors when installing Down on iOS [\#117](https://github.com/iwasrobbed/Down/issues/117)
+- How to update to the latest version of the cmark library [\#115](https://github.com/iwasrobbed/Down/issues/115)
+
+**Merged pull requests:**
+
+- \[travis\] Update to retry [\#114](https://github.com/iwasrobbed/Down/pull/114) ([iwasrobbed](https://github.com/iwasrobbed))
+- Fix macOS Platform, Custom URL Scheme Handler, Polish Demos. [\#110](https://github.com/iwasrobbed/Down/pull/110) ([chriszielinski](https://github.com/chriszielinski))
+
 ## [v0.6.0](https://github.com/iwasrobbed/Down/tree/v0.6.0) (2018-11-10)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.5.3...v0.6.0)
 
