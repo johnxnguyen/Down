@@ -123,7 +123,8 @@ private extension DownView {
 
     #if os(macOS)
     func createTemporaryBundle(pageHTMLString: String) throws -> URL {
-        let bundleResourceURL = self.bundle.resourceURL!
+        guard let bundleResourceURL = bundle.resourceURL
+            else { throw DownErrors.nonStandardBundleFormatError }
         let indexURL = temporaryDirectoryURL.appendingPathComponent("index.html", isDirectory: false)
 
         // If updating markdown contents, no need to re-copy bundle.
