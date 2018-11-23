@@ -10,6 +10,7 @@
     // Sorry, not available for tvOS
 #else
 import XCTest
+import WebKit
 @testable import Down
 
 class DownViewTests: XCTestCase {
@@ -88,6 +89,53 @@ class DownViewTests: XCTestCase {
                 expect1.fulfill()
             }
         })
+
+        waitForExpectations(timeout: 10) { (error: Error?) in
+            if let error = error {
+                XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+            }
+        }
+    }
+
+    @available(iOS 11.0, macOS 10.13, *)
+    func testCustomURLSchemeHandler() {
+        let mockURLScheme = "down"
+        let mockURL = URL(string: "down://test")!
+        let expectation = self.expectation(description: "DownView supports custom URL handlers.")
+        var downView: DownView?
+
+        class MockURLSchemeHandler: NSObject, WKURLSchemeHandler {
+            var mockURL: URL!
+            var testExpectation: XCTestExpectation!
+
+            func webView(_ webView: WKWebView, start urlSchemeTask: WKURLSchemeTask) {
+                guard urlSchemeTask.request.url == mockURL else {
+                    XCTFail("URL scheme task request has invalid URL.")
+                    return
+                }
+
+                testExpectation.fulfill()
+            }
+
+            func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {}
+        }
+
+        func didLoadSuccessfully() {
+            downView?.evaluateJavaScript("document.links[0].click();", completionHandler: { (_, error) in
+                if let error = error {
+                    XCTFail("JavaScript evaluation error: '\(error.localizedDescription)'")
+                }
+            })
+        }
+
+        let mockURLSchemeHandler = MockURLSchemeHandler()
+        mockURLSchemeHandler.mockURL = mockURL
+        mockURLSchemeHandler.testExpectation = expectation
+
+        let configuration = WKWebViewConfiguration()
+        configuration.setURLSchemeHandler(mockURLSchemeHandler, forURLScheme: mockURLScheme)
+
+        downView = try? DownView(frame: .zero, markdownString: "[Link](\(mockURL.absoluteString))", openLinksInBrowser: true, configuration: configuration, didLoadSuccessfully: didLoadSuccessfully)
 
         waitForExpectations(timeout: 10) { (error: Error?) in
             if let error = error {

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Glazed Donut, LLC. All rights reserved.
 //
 
-#if os(OSX)
+#if os(macOS)
     import AppKit
 #else
     import UIKit
