@@ -684,8 +684,8 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="DownView" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                    <window key="window" title="DownView" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
@@ -708,25 +708,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="900" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView appearanceType="inheritedVibrantLight" blendingMode="behindWindow" material="underWindowBackground" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="IWA-fs-syF">
-                                <rect key="frame" x="0.0" y="0.0" width="900" height="600"/>
+                            <visualEffectView appearanceType="inheritedVibrantLight" blendingMode="withinWindow" material="titlebar" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="mkd-yO-PAt">
+                                <rect key="frame" x="0.0" y="578" width="900" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="KaJ-za-bSI"/>
+                                </constraints>
                             </visualEffectView>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ZLD-1l-Xdj">
-                                <rect key="frame" x="434" y="284" width="32" height="32"/>
-                            </progressIndicator>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="ZLD-1l-Xdj" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="1SI-sr-I4U"/>
-                            <constraint firstAttribute="bottom" secondItem="IWA-fs-syF" secondAttribute="bottom" id="9jZ-l7-Jnj"/>
-                            <constraint firstItem="IWA-fs-syF" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Brc-J3-UBX"/>
-                            <constraint firstAttribute="trailing" secondItem="IWA-fs-syF" secondAttribute="trailing" id="LE8-iH-jsL"/>
-                            <constraint firstItem="ZLD-1l-Xdj" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="iaR-8y-rjx"/>
-                            <constraint firstItem="IWA-fs-syF" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="z8r-1w-FMP"/>
+                            <constraint firstAttribute="trailing" secondItem="mkd-yO-PAt" secondAttribute="trailing" id="ETW-Wk-5Bo"/>
+                            <constraint firstItem="mkd-yO-PAt" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Shf-qK-e0N"/>
+                            <constraint firstItem="mkd-yO-PAt" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Th9-5p-z2m"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="progressIndicator" destination="ZLD-1l-Xdj" id="t8X-jH-BFf"/>
-                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

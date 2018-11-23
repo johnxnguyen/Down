@@ -20,41 +20,8 @@
                     <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyj-cy-K1t">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dPn-tk-syb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="fYQ-Zr-WUg">
-                                            <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="VwG-xW-3nh"/>
-                                                <constraint firstAttribute="height" constant="20" id="hzb-hk-1GB"/>
-                                            </constraints>
-                                        </activityIndicatorView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="fYQ-Zr-WUg" firstAttribute="centerY" secondItem="dPn-tk-syb" secondAttribute="centerY" id="aml-Sx-knu"/>
-                                        <constraint firstItem="fYQ-Zr-WUg" firstAttribute="centerX" secondItem="dPn-tk-syb" secondAttribute="centerX" id="h7x-Vi-WuJ"/>
-                                    </constraints>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Hyj-cy-K1t" secondAttribute="bottom" id="2Hy-fL-sXg"/>
-                            <constraint firstItem="Hyj-cy-K1t" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="KVW-qV-FVd"/>
-                            <constraint firstItem="Hyj-cy-K1t" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="icV-NM-Mxc"/>
-                            <constraint firstAttribute="trailing" secondItem="Hyj-cy-K1t" secondAttribute="trailing" id="q4C-ZP-Nvw"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="activityIndicatorView" destination="fYQ-Zr-WUg" id="SzF-Co-ZmG"/>
-                        <outlet property="visualEffectContentView" destination="dPn-tk-syb" id="fEP-Ct-eic"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

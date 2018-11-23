@@ -82,7 +82,7 @@ try? downView?.update(markdownString:  "## [Google](https://google.com)") {
 
 Meta example of rendering this README:
 
-![Example gif](Images/ohhai.gif)
+![Example gif](https://raw.githubusercontent.com/iwasrobbed/Down/master/Images/ohhai.gif)
 
 ##### Prevent zoom
 The default implementation of the `DownView` allows for zooming in the rendered content. If you want to disable this, then you’ll need to instantiate the `DownView` with a custom bundle where the `viewport` in `index.html` has been assigned `user-scalable=no`. More info can be found [here](https://github.com/iwasrobbed/Down/pull/30).

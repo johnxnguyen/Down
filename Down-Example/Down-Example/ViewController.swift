@@ -11,56 +11,32 @@ import Down
 
 class ViewController: UIViewController {
 
-    @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
-    @IBOutlet var visualEffectContentView: UIView!
     var downView: DownView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Note: No errors will be thrown here as we're loading an empty Markdown string.
-        downView = try! DownView(frame: view.bounds, markdownString: "")
-        downView.isHidden = true
-        visualEffectContentView.addSubview(downView)
-
-        createStatusBarBackgrounds()
-
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.loadReadMe()
-        }
-    }
-
-    func loadReadMe() {
-        var readMeContents: String
+        let readMeURL = Bundle.main.url(forResource: nil, withExtension: "md")!
+        let readMeContents = try! String(contentsOf: readMeURL)
 
         do {
-            let readMeURL = URL(string: "https://raw.githubusercontent.com/iwasrobbed/Down/master/README.md")!
-            readMeContents = try String(contentsOf: readMeURL)
+            downView = try DownView(frame: view.bounds, markdownString: readMeContents, didLoadSuccessfully: {
+                print("Markdown was rendered.")
+            })
         } catch {
-            print(error)
-
-            let localReadMeURL = Bundle.main.url(forResource: nil, withExtension: "md")!
-            readMeContents = try! String(contentsOf: localReadMeURL)
+            let alertController = UIAlertController(title: "DownView Render Error",
+                                                    message: error.localizedDescription,
+                                                    preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
         }
 
-        DispatchQueue.main.async {
-            do {
-                try self.downView.update(markdownString: readMeContents, didLoadSuccessfully: {
-                    print("Markdown was rendered.")
-                    self.activityIndicatorView.stopAnimating()
-                    self.downView.isHidden = false
-                })
-            } catch {
-                let alertController = UIAlertController(title: "DownView Render Error",
-                                                        message: error.localizedDescription,
-                                                        preferredStyle: UIAlertControllerStyle.alert)
-                self.present(alertController, animated: true, completion: nil)
-            }
-        }
+        view.addSubview(downView)
+
+        createStatusBarBackgrounds()
     }
 
     func createStatusBarBackgrounds() {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.prominent)
+        let blurEffect = UIBlurEffect(style: .prominent)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.translatesAutoresizingMaskIntoConstraints = false
         view.insertSubview(blurEffectView, aboveSubview: downView)
