@@ -19,6 +19,7 @@ Is your app using it? [Let us know!](mailto:rob@robphillips.me)
 - [phoney](https://github.com/phoney)
 - [Tony Arnold](https://github.com/tonyarnold)
 - [Ken Harris](https://github.com/kengruven)
+- [Chris Zielinski](https://github.com/chriszielinski)
 - [Other contributors](https://github.com/iwasrobbed/Down/graphs/contributors) 🙌
 
 ### Installation
