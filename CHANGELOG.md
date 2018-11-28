@@ -1,5 +1,20 @@
 # Change Log
 
+## [v0.6.2](https://github.com/iwasrobbed/Down/tree/v0.6.2) (2018-11-28)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.1...v0.6.2)
+
+**Implemented enhancements:**
+
+- \[cmark\] Some characters are escaped twice [\#99](https://github.com/iwasrobbed/Down/issues/99)
+
+**Fixed bugs:**
+
+- \\[cmark\\] Some characters are escaped twice [\#99](https://github.com/iwasrobbed/Down/issues/99)
+
+**Merged pull requests:**
+
+- Add compiler flag to suppress implicit conversion warnings [\#118](https://github.com/iwasrobbed/Down/pull/118) ([phoney](https://github.com/phoney))
+
 ## [v0.6.1](https://github.com/iwasrobbed/Down/tree/v0.6.1) (2018-11-23)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.0...v0.6.1)
 
