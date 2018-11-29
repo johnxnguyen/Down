@@ -37,7 +37,7 @@ public struct DownOptions: OptionSet {
      by a placeholder HTML comment. Unsafe links are replaced by
      empty strings.
     */
-    public static let safe = DownOptions(rawValue: CMARK_OPT_SAFE)
+    public static let unsafe = DownOptions(rawValue: CMARK_OPT_UNSAFE)
 
     // MARK: - Parsing Options
 
