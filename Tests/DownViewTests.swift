@@ -131,9 +131,11 @@ class DownViewTests: XCTestCase {
         let mockURLSchemeHandler = MockURLSchemeHandler()
         mockURLSchemeHandler.mockURL = mockURL
         mockURLSchemeHandler.testExpectation = expectation
-
         let configuration = WKWebViewConfiguration()
-        configuration.setURLSchemeHandler(mockURLSchemeHandler, forURLScheme: mockURLScheme)
+
+        if #available(iOS 11.0, *) {
+            configuration.setURLSchemeHandler(mockURLSchemeHandler, forURLScheme: mockURLScheme)
+        }
 
         downView = try? DownView(frame: .zero, markdownString: "[Link](\(mockURL.absoluteString))", openLinksInBrowser: true, configuration: configuration, didLoadSuccessfully: didLoadSuccessfully)
 
