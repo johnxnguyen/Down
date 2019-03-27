@@ -2,6 +2,7 @@
 #define CMARK_AST_H
 
 #include <stdio.h>
+#include "references.h"
 #include "node.h"
 #include "buffer.h"
 #include "memory.h"
