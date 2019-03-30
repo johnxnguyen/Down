@@ -30,7 +30,15 @@ class ViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
         }
 
+        downView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(downView)
+
+        NSLayoutConstraint.activate([
+            downView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            downView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            downView.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor),
+            downView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.bottomAnchor)
+            ])
 
         createStatusBarBackgrounds()
     }
@@ -50,4 +58,3 @@ class ViewController: UIViewController {
     }
 
 }
-

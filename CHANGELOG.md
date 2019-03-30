@@ -1,5 +1,28 @@
 # Change Log
 
+## [v0.6.3](https://github.com/iwasrobbed/Down/tree/v0.6.3) (2019-03-27)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.2...v0.6.3)
+
+**Implemented enhancements:**
+
+- \[DownView\] Doesn't reflow text on orientation change [\#111](https://github.com/iwasrobbed/Down/issues/111)
+
+**Fixed bugs:**
+
+- Crash rendering markdown [\#126](https://github.com/iwasrobbed/Down/issues/126)
+
+**Closed issues:**
+
+- Cocoapods: libcmark [\#124](https://github.com/iwasrobbed/Down/issues/124)
+- Use with storyboards [\#123](https://github.com/iwasrobbed/Down/issues/123)
+- support for audio markdown? [\#122](https://github.com/iwasrobbed/Down/issues/122)
+- \[Down\] Can't render toAttributedString while app is in background [\#116](https://github.com/iwasrobbed/Down/issues/116)
+
+**Merged pull requests:**
+
+- Fix crash from missing parser.h include [\#129](https://github.com/iwasrobbed/Down/pull/129) ([phoney](https://github.com/phoney))
+- Make the DownView reflow text on device rotation [\#127](https://github.com/iwasrobbed/Down/pull/127) ([phoney](https://github.com/phoney))
+
 ## [v0.6.2](https://github.com/iwasrobbed/Down/tree/v0.6.2) (2018-11-28)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.1...v0.6.2)
 
