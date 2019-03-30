@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.6.4](https://github.com/iwasrobbed/Down/tree/v0.6.4) (2019-03-30)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.3...v0.6.4)
+
+**Closed issues:**
+
+- Support SwiftPM [\#128](https://github.com/iwasrobbed/Down/issues/128)
+- \[DownView\] Load multiple .md files \(link support\) [\#68](https://github.com/iwasrobbed/Down/issues/68)
+
+**Merged pull requests:**
+
+- Fix Swift module errors when used alongside Firestore [\#125](https://github.com/iwasrobbed/Down/pull/125) ([vzsg](https://github.com/vzsg))
+
 ## [v0.6.3](https://github.com/iwasrobbed/Down/tree/v0.6.3) (2019-03-27)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.2...v0.6.3)
 
