@@ -1,7 +1,6 @@
 #ifndef CMARK_REFERENCES_H
 #define CMARK_REFERENCES_H
 
-#include "memory.h"
 #include "chunk.h"
 
 #ifdef __cplusplus
