@@ -24,7 +24,7 @@ public protocol DownCommonMarkRenderable: DownRenderable {
     func toCommonMark(_ options: DownOptions, width: Int32) throws -> String
 }
 
-public extension DownCommonMarkRenderable {
+extension DownCommonMarkRenderable {
     /**
      Generates a CommonMark Markdown string from the `markdownString` property
 

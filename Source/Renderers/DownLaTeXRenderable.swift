@@ -24,7 +24,7 @@ public protocol DownLaTeXRenderable: DownRenderable {
     func toLaTeX(_ options: DownOptions, width: Int32) throws -> String
 }
 
-public extension DownLaTeXRenderable {
+extension DownLaTeXRenderable {
     /**
      Generates a LaTeX string from the `markdownString` property
 

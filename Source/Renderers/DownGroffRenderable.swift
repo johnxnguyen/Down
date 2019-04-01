@@ -24,7 +24,7 @@ public protocol DownGroffRenderable: DownRenderable {
     func toGroff(_ options: DownOptions, width: Int32) throws -> String
 }
 
-public extension DownGroffRenderable {
+extension DownGroffRenderable {
     /**
      Generates a groff man string from the `markdownString` property
 
