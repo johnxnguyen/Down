@@ -23,7 +23,7 @@ public protocol DownASTRenderable: DownRenderable {
     func toAST(_ options: DownOptions) throws -> UnsafeMutablePointer<cmark_node>
 }
 
-public extension DownASTRenderable {
+extension DownASTRenderable {
     /**
      Generates an abstract syntax tree from the `markdownString` property
 

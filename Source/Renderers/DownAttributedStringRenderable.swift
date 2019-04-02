@@ -25,7 +25,7 @@ public protocol DownAttributedStringRenderable: DownHTMLRenderable {
     func toAttributedString(_ options: DownOptions, stylesheet: String?) throws -> NSAttributedString
 }
 
-public extension DownAttributedStringRenderable {
+extension DownAttributedStringRenderable {
     /**
      Generates an `NSAttributedString` from the `markdownString` property
 

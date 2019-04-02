@@ -23,7 +23,7 @@ public protocol DownHTMLRenderable: DownRenderable {
     func toHTML(_ options: DownOptions) throws -> String
 }
 
-public extension DownHTMLRenderable {
+extension DownHTMLRenderable {
     /**
      Generates an HTML string from the `markdownString` property
 

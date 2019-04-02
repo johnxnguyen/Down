@@ -23,7 +23,7 @@ public protocol DownXMLRenderable: DownRenderable {
     func toXML(_ options: DownOptions) throws -> String
 }
 
-public extension DownXMLRenderable {
+extension DownXMLRenderable {
     /**
      Generates an XML string from the `markdownString` property
 
