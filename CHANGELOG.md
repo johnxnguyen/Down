@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.6.5](https://github.com/iwasrobbed/Down/tree/v0.6.5) (2019-04-02)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.4...v0.6.5)
+
+**Merged pull requests:**
+
+- Fix Xcode 10.2 warnings [\#130](https://github.com/iwasrobbed/Down/pull/130) ([mdiep](https://github.com/mdiep))
+
 ## [v0.6.4](https://github.com/iwasrobbed/Down/tree/v0.6.4) (2019-03-30)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.3...v0.6.4)
 
