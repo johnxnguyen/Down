@@ -14,7 +14,7 @@ extension UnsafeMutablePointer where Pointee == cmark_node {
     var type: cmark_node_type { return cmark_node_get_type(self) }
 }
 
-public protocol Node {
+public protocol Node: CustomDebugStringConvertible {
     var cmarkNode: CMarkNode { get }
     var childen: [Node] { get }
 }
@@ -66,6 +66,8 @@ public class Document: Node {
     
     public var cmarkNode: CMarkNode
     
+    public var debugDescription: String { return "Document" }
+    
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_DOCUMENT else { return nil }
         self.cmarkNode = cmarkNode
@@ -79,6 +81,8 @@ public class BlockQuote: Node {
     
     public var cmarkNode: CMarkNode
     
+    public var debugDescription: String { return "Block Quote" }
+    
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_BLOCK_QUOTE else { return nil }
         self.cmarkNode = cmarkNode
@@ -87,10 +91,33 @@ public class BlockQuote: Node {
 
 public class List: Node {
     
+    enum ListType: CustomDebugStringConvertible {
+        case bullet, ordered
+        
+        public var debugDescription: String {
+            switch self {
+            case .bullet: return "Bullet"
+            case .ordered: return "Ordered"
+            }
+        }
+        
+        init?(type: cmark_list_type) {
+            switch type {
+            case CMARK_BULLET_LIST: self = .bullet
+            case CMARK_ORDERED_LIST: self = .ordered
+            default: return nil
+            }
+        }
+    }
+    
     public var cmarkNode: CMarkNode
     
-    var listType: cmark_list_type {
-        return cmark_node_get_list_type(cmarkNode)
+    public var debugDescription: String { return "\(listType) List - start: \(listStart)" }
+    
+    var listType: ListType {
+        // TODO: handle
+        guard let type = ListType(type: cmark_node_get_list_type(cmarkNode)) else { fatalError() }
+        return type
     }
     
     var listStart: Int {
@@ -107,6 +134,8 @@ public class Item: Node {
     
     public var cmarkNode: CMarkNode
     
+    public var debugDescription: String { return "Item" }
+    
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_ITEM else { return nil }
         self.cmarkNode = cmarkNode
@@ -116,6 +145,8 @@ public class Item: Node {
 public class CodeBlock: Node {
     
     public var cmarkNode: CMarkNode
+    
+    public var debugDescription: String { return "Code Block" }
     
     var fenceInfo: String? {
         guard let cString = cmark_node_get_fence_info(cmarkNode) else { return nil }
@@ -132,6 +163,8 @@ public class HtmlBlock: Node {
     
     public var cmarkNode: CMarkNode
     
+    public var debugDescription: String { return "Html Block" }
+    
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_HTML_BLOCK else { return nil }
         self.cmarkNode = cmarkNode
@@ -141,6 +174,8 @@ public class HtmlBlock: Node {
 public class CustomBlock: Node {
     
     public var cmarkNode: CMarkNode
+    
+    public var debugDescription: String { return "Custom Block" }
     
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_CUSTOM_BLOCK else { return nil }
@@ -152,6 +187,8 @@ public class Paragraph: Node {
     
     public var cmarkNode: CMarkNode
     
+    public var debugDescription: String { return "Paragraph" }
+    
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_PARAGRAPH else { return nil }
         self.cmarkNode = cmarkNode
@@ -161,6 +198,8 @@ public class Paragraph: Node {
 public class Heading: Node {
     
     public var cmarkNode: CMarkNode
+    
+    public var debugDescription: String { return "Heading - level: \(headerLevel)" }
     
     var headerLevel: Int {
         return Int(cmark_node_get_heading_level(cmarkNode))
@@ -176,6 +215,8 @@ public class ThematicBreak: Node {
     
     public var cmarkNode: CMarkNode
     
+    public var debugDescription: String { return "Thematic Break" }
+    
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_THEMATIC_BREAK else { return nil }
         self.cmarkNode = cmarkNode
@@ -185,6 +226,8 @@ public class ThematicBreak: Node {
 public class Text: Node {
     
     public var cmarkNode: CMarkNode
+    
+    public var debugDescription: String { return "Text - \(literal)" }
     
     var literal: String {
         // TODO: is it expected that there is a literal?
@@ -202,6 +245,8 @@ public class SoftBreak: Node {
     
     public var cmarkNode: CMarkNode
     
+    public var debugDescription: String { return "Soft Break" }
+    
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_SOFTBREAK else { return nil }
         self.cmarkNode = cmarkNode
@@ -212,6 +257,8 @@ public class LineBreak: Node {
     
     public var cmarkNode: CMarkNode
     
+    public var debugDescription: String { return "Line Break" }
+    
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_LINEBREAK else { return nil }
         self.cmarkNode = cmarkNode
@@ -221,6 +268,8 @@ public class LineBreak: Node {
 public class Code: Node {
     
     public var cmarkNode: CMarkNode
+    
+    public var debugDescription: String { return "Code - \(literal)" }
     
     var literal: String {
         // TODO: is it expected that there is a literal?
@@ -238,6 +287,8 @@ public class HtmlInline: Node {
     
     public var cmarkNode: CMarkNode
     
+    public var debugDescription: String { return "Html Inline" }
+    
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_HTML_INLINE else { return nil }
         self.cmarkNode = cmarkNode
@@ -247,6 +298,8 @@ public class HtmlInline: Node {
 public class CustomInline: Node {
     
     public var cmarkNode: CMarkNode
+    
+    public var debugDescription: String { return "Custom Inline" }
     
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_CUSTOM_INLINE else { return nil }
@@ -258,6 +311,8 @@ public class Emphasis: Node {
     
     public var cmarkNode: CMarkNode
     
+    public var debugDescription: String { return "Emphasis" }
+    
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_EMPH else { return nil }
         self.cmarkNode = cmarkNode
@@ -268,6 +323,8 @@ public class Strong: Node {
     
     public var cmarkNode: CMarkNode
     
+    public var debugDescription: String { return "Strong" }
+    
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_STRONG else { return nil }
         self.cmarkNode = cmarkNode
@@ -277,6 +334,10 @@ public class Strong: Node {
 public class Link: Node {
     
     public var cmarkNode: CMarkNode
+    
+    public var debugDescription: String {
+        return "Link - title: \(title ?? "None"), url: \(url ?? "None")"
+    }
     
     var title: String? {
         guard let cString = cmark_node_get_title(cmarkNode) else { return nil }
@@ -298,6 +359,10 @@ public class Link: Node {
 public class Image: Node {
     
     public var cmarkNode: CMarkNode
+    
+    public var debugDescription: String {
+        return "Image - title: \(title ?? "None"), url: \(url ?? "None")"
+    }
     
     var title: String? {
         guard let cString = cmark_node_get_title(cmarkNode) else { return nil }
