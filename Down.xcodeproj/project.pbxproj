@@ -66,6 +66,7 @@
 		8AFAEB091E6E331700E09B68 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438696B1D00D27700E95A1F /* StringTests.swift */; };
 		907C64651EC133780095FEE1 /* TestDownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 907C64621EC120530095FEE1 /* TestDownView.bundle */; };
 		90A40A9C1EC03292004F2E91 /* Down.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EE64FEF0225BEB3900A35B34 /* VisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */; };
 		EEF1376F2259E53400D7DDE0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF1376E2259E53400D7DDE0 /* Node.swift */; };
 		EEF137712259E7E700D7DDE0 /* Vistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF137702259E7E700D7DDE0 /* Vistor.swift */; };
 /* End PBXBuildFile section */
@@ -195,6 +196,7 @@
 		D4CF88971CFFAC2C00F07FD1 /* DownAttributedStringRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownAttributedStringRenderable.swift; sourceTree = "<group>"; };
 		D4DC91131CFDED4B0091CE09 /* DownCommonMarkRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownCommonMarkRenderable.swift; sourceTree = "<group>"; };
 		D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
+		EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorTests.swift; sourceTree = "<group>"; };
 		EEF1376E2259E53400D7DDE0 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		EEF137702259E7E700D7DDE0 /* Vistor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vistor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -285,6 +287,7 @@
 				907C64611EC120530095FEE1 /* Fixtures */,
 				D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */,
 				D438696B1D00D27700E95A1F /* StringTests.swift */,
+				EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AFAEB091E6E331700E09B68 /* StringTests.swift in Sources */,
+				EE64FEF0225BEB3900A35B34 /* VisitorTests.swift in Sources */,
 				8AFAEB071E6E331700E09B68 /* DownViewTests.swift in Sources */,
 				8AFAEB061E6E331700E09B68 /* BindingTests.swift in Sources */,
 				8AFAEB081E6E331700E09B68 /* NSAttributedStringTests.swift in Sources */,

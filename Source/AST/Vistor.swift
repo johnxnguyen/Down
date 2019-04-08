@@ -67,12 +67,23 @@ extension Visitor {
 public class DebugVisitor: Visitor {
     typealias Result = String
     
+    weak var document: Document?
+    
+    var result: Result? {
+        guard let document = document else { return nil }
+        return visit(document: document)
+    }
+    
+    init(document: Document) {
+        self.document = document
+    }
+    
     private func report(_ node: Node) -> String {
         return String(reflecting: node)
     }
     
     private func reportWithChildren(_ node: Node) -> String {
-        return "\(node)\n\t\(visitChildren(of: node).joined(separator: "\n\t"))"
+        return "\(node) -> [\(visitChildren(of: node).joined(separator: ", "))]"
     }
     
     func visit(document node: Document) -> String {

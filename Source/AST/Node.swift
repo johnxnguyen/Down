@@ -199,7 +199,7 @@ public class Heading: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Heading - level: \(headerLevel)" }
+    public var debugDescription: String { return "Heading: L\(headerLevel)" }
     
     var headerLevel: Int {
         return Int(cmark_node_get_heading_level(cmarkNode))
@@ -227,7 +227,7 @@ public class Text: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Text - \(literal)" }
+    public var debugDescription: String { return "Text: '\(literal)'" }
     
     var literal: String {
         // TODO: is it expected that there is a literal?
@@ -269,7 +269,7 @@ public class Code: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Code - \(literal)" }
+    public var debugDescription: String { return "Code: '\(literal)'" }
     
     var literal: String {
         // TODO: is it expected that there is a literal?
