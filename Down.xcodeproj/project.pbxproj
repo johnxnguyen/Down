@@ -87,6 +87,7 @@
 		EEEBEE69225D2B1200AE438D /* Strong.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBEE68225D2B1200AE438D /* Strong.swift */; };
 		EEEBEE6B225D2B2200AE438D /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBEE6A225D2B2200AE438D /* Link.swift */; };
 		EEEBEE6D225D2B3200AE438D /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBEE6C225D2B3200AE438D /* Image.swift */; };
+		EEEBEE70225D2B9D00AE438D /* DebugVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBEE6F225D2B9D00AE438D /* DebugVisitor.swift */; };
 		EEF1376F2259E53400D7DDE0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF1376E2259E53400D7DDE0 /* Node.swift */; };
 		EEF137712259E7E700D7DDE0 /* Vistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF137702259E7E700D7DDE0 /* Vistor.swift */; };
 /* End PBXBuildFile section */
@@ -237,6 +238,7 @@
 		EEEBEE68225D2B1200AE438D /* Strong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strong.swift; sourceTree = "<group>"; };
 		EEEBEE6A225D2B2200AE438D /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		EEEBEE6C225D2B3200AE438D /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		EEEBEE6F225D2B9D00AE438D /* DebugVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugVisitor.swift; sourceTree = "<group>"; };
 		EEF1376E2259E53400D7DDE0 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		EEF137702259E7E700D7DDE0 /* Vistor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vistor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -446,11 +448,20 @@
 			path = Nodes;
 			sourceTree = "<group>";
 		};
+		EEEBEE6E225D2B8200AE438D /* Visitors */ = {
+			isa = PBXGroup;
+			children = (
+				EEF137702259E7E700D7DDE0 /* Vistor.swift */,
+				EEEBEE6F225D2B9D00AE438D /* DebugVisitor.swift */,
+			);
+			path = Visitors;
+			sourceTree = "<group>";
+		};
 		EEF1376D2259E4BA00D7DDE0 /* AST */ = {
 			isa = PBXGroup;
 			children = (
 				EEEBEE45225D297700AE438D /* Nodes */,
-				EEF137702259E7E700D7DDE0 /* Vistor.swift */,
+				EEEBEE6E225D2B8200AE438D /* Visitors */,
 			);
 			path = AST;
 			sourceTree = "<group>";
@@ -617,6 +628,7 @@
 				8A569F761E6B3EE3008BE2AC /* NSAttributedString+HTML.swift in Sources */,
 				8A569F5A1E6B3ED9008BE2AC /* html.c in Sources */,
 				8A569F5E1E6B3ED9008BE2AC /* iterator.c in Sources */,
+				EEEBEE70225D2B9D00AE438D /* DebugVisitor.swift in Sources */,
 				EEEBEE59225D2A7000AE438D /* ThematicBreak.swift in Sources */,
 				8A569F481E6B3ED2008BE2AC /* DownView.swift in Sources */,
 				8A569F591E6B3ED9008BE2AC /* houdini_html_u.c in Sources */,
