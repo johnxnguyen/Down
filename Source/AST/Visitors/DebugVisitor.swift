@@ -9,106 +9,97 @@ import Foundation
 
 public class DebugVisitor {
     
-    weak var document: Document?
-    
-    var result: Result? {
-        guard let document = document else { return nil }
-        return visit(document: document)
-    }
-    
-    init(document: Document) {
-        self.document = document
-    }
-    
+    /// Debug representation of node.
     private func report(_ node: Node) -> String {
         return String(reflecting: node)
     }
     
+    /// Debug representation of node including all children.
     private func reportWithChildren(_ node: Node) -> String {
         return "\(node) -> [\(visitChildren(of: node).joined(separator: ", "))]"
     }
 }
 
 extension DebugVisitor: Visitor {
-    typealias Result = String
+    public typealias Result = String
     
-    func visit(document node: Document) -> String {
+    public func visit(document node: Document) -> String {
         return reportWithChildren(node)
     }
     
-    func visit(blockQuote node: BlockQuote) -> String {
+    public func visit(blockQuote node: BlockQuote) -> String {
         return reportWithChildren(node)
     }
     
-    func visit(list node: List) -> String {
+    public func visit(list node: List) -> String {
         return reportWithChildren(node)
     }
     
-    func visit(item node: Item) -> String {
+    public func visit(item node: Item) -> String {
         return reportWithChildren(node)
     }
     
-    func visit(codeBlock node: CodeBlock) -> String {
+    public func visit(codeBlock node: CodeBlock) -> String {
         return reportWithChildren(node)
     }
     
-    func visit(htmlBlock node: HtmlBlock) -> String {
+    public func visit(htmlBlock node: HtmlBlock) -> String {
         return reportWithChildren(node)
     }
     
-    func visit(customBlock node: CustomBlock) -> String {
+    public func visit(customBlock node: CustomBlock) -> String {
         return reportWithChildren(node)
     }
     
-    func visit(paragraph node: Paragraph) -> String {
+    public func visit(paragraph node: Paragraph) -> String {
         return reportWithChildren(node)
     }
     
-    func visit(heading node: Heading) -> String {
+    public func visit(heading node: Heading) -> String {
         return report(node)
     }
     
-    func visit(thematicBreak node: ThematicBreak) -> String {
+    public func visit(thematicBreak node: ThematicBreak) -> String {
         return report(node)
     }
     
-    func visit(text node: Text) -> String {
+    public func visit(text node: Text) -> String {
         return report(node)
     }
     
-    func visit(softBreak node: SoftBreak) -> String {
+    public func visit(softBreak node: SoftBreak) -> String {
         return report(node)
     }
     
-    func visit(lineBreak node: LineBreak) -> String {
+    public func visit(lineBreak node: LineBreak) -> String {
         return report(node)
     }
     
-    func visit(code node: Code) -> String {
+    public func visit(code node: Code) -> String {
         return report(node)
     }
     
-    func visit(htmlInline node: HtmlInline) -> String {
+    public func visit(htmlInline node: HtmlInline) -> String {
         return report(node)
     }
     
-    func visit(customInline node: CustomInline) -> String {
+    public func visit(customInline node: CustomInline) -> String {
         return report(node)
     }
     
-    func visit(emphasis node: Emphasis) -> String {
+    public func visit(emphasis node: Emphasis) -> String {
         return reportWithChildren(node)
     }
     
-    func visit(strong node: Strong) -> String {
+    public func visit(strong node: Strong) -> String {
         return reportWithChildren(node)
     }
     
-    func visit(link node: Link) -> String {
+    public func visit(link node: Link) -> String {
         return reportWithChildren(node)
     }
     
-    func visit(image node: Image) -> String {
+    public func visit(image node: Image) -> String {
         return reportWithChildren(node)
     }
 }

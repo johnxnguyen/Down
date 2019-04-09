@@ -7,9 +7,8 @@
 
 import Foundation
 
-protocol Visitor {
+public protocol Visitor {
     associatedtype Result
-    
     func visit(document node: Document) -> Result
     func visit(blockQuote node: BlockQuote) -> Result
     func visit(list node: List) -> Result
@@ -34,7 +33,7 @@ protocol Visitor {
 }
 
 extension Visitor {
-    func visitChildren(of node: Node) -> [Result] {
+    public func visitChildren(of node: Node) -> [Result] {
         return node.childen.map { child in
             switch child {
             case is Document:       return visit(document: child as! Document)
