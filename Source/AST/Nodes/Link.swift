@@ -22,7 +22,6 @@ public class Link: Node {
     }
     
     var url: String? {
-        // TODO: check if we can make this non optional
         guard let cString = cmark_node_get_url(cmarkNode) else { return nil }
         return String(cString: cString)
     }
