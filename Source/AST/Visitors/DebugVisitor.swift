@@ -7,8 +7,7 @@
 
 import Foundation
 
-public class DebugVisitor: Visitor {
-    typealias Result = String
+public class DebugVisitor {
     
     weak var document: Document?
     
@@ -28,6 +27,10 @@ public class DebugVisitor: Visitor {
     private func reportWithChildren(_ node: Node) -> String {
         return "\(node) -> [\(visitChildren(of: node).joined(separator: ", "))]"
     }
+}
+
+extension DebugVisitor: Visitor {
+    typealias Result = String
     
     func visit(document node: Document) -> String {
         return reportWithChildren(node)
@@ -108,5 +111,4 @@ public class DebugVisitor: Visitor {
     func visit(image node: Image) -> String {
         return reportWithChildren(node)
     }
-    
 }
