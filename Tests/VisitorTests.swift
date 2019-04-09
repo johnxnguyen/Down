@@ -16,10 +16,9 @@ class VisitorTests: XCTestCase {
         let down = Down(markdownString: markdown)
         let ast = try down.toAST()
         let document = Document(cmarkNode: ast)!
-        let sut = DebugVisitor(document: document)
         
         // When
-        let result = sut.result!
+        let result = document.accept(visitor: DebugVisitor())
         
         // Then
         let expected = "Document -> [Heading: L1, Paragraph -> [Text: 'This is a ', Strong -> [Text: 'test!']]]"

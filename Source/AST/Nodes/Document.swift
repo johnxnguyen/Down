@@ -21,4 +21,8 @@ public class Document: Node {
     
     // TODO: confirm this will release all children.
     deinit { cmark_node_free(cmarkNode) }
+    
+    public func accept<T: Visitor>(visitor: T) -> T.Result {
+        return visitor.visit(document: self)
+    }
 }
