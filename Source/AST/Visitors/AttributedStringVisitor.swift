@@ -30,7 +30,7 @@ extension AttributedStringVisitor: Visitor {
     
     public func visit(blockQuote node: BlockQuote) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
-        s.append(.blankLine)
+        if !node.isLast { s.append(.blankLine) }
         styler.style(blockQuote: s)
         return s
     }
@@ -43,16 +43,15 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(item node: Item) -> NSMutableAttributedString {
-        // TODO: Prefixes
         let s = visitChildren(of: node).joined
-        s.append(.blankLine)
+        if !node.isLast { s.append(.blankLine) }
         styler.style(item: s)
         return s
     }
     
     public func visit(codeBlock node: CodeBlock) -> NSMutableAttributedString {
         let s = node.literal.attributed
-        s.append(.blankLine)
+        if !node.isLast { s.append(.blankLine) }
         styler.style(codeBlock: s)
         return s
     }
@@ -60,7 +59,7 @@ extension AttributedStringVisitor: Visitor {
     public func visit(htmlBlock node: HtmlBlock) -> NSMutableAttributedString {
         let s = node.literal.attributed
         s.insert(.blankLine, at: 0)
-        s.append(.blankLine)
+        if !node.isLast { s.append(.blankLine) }
         styler.style(htmlBlock: s)
         return s
     }
@@ -68,21 +67,21 @@ extension AttributedStringVisitor: Visitor {
     public func visit(customBlock node: CustomBlock) -> NSMutableAttributedString {
         let s = node.literal.attributed
         s.insert(.blankLine, at: 0)
-        s.append(.blankLine)
+        if !node.isLast { s.append(.blankLine) }
         styler.style(customBlock: s)
         return s
     }
     
     public func visit(paragraph node: Paragraph) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
-        s.append(.blankLine)
+        if !node.isLast { s.append(.blankLine) }
         styler.style(paragraph: s)
         return s
     }
     
     public func visit(heading node: Heading) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
-        s.append(.blankLine)
+        if !node.isLast { s.append(.blankLine) }
         styler.style(heading: s, level: node.headerLevel)
         return s
     }

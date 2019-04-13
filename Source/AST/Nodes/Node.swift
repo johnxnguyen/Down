@@ -21,6 +21,10 @@ public protocol Node: CustomDebugStringConvertible {
 
 extension Node {
     
+    public var isLast: Bool {
+        return cmark_node_next(cmarkNode) == nil
+    }
+    
     public var childen: [Node] {
         var result: [Node] = []
         var child = cmark_node_first_child(cmarkNode)
