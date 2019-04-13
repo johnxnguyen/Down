@@ -7,35 +7,13 @@
 
 import Foundation
 
-protocol Styler {
-    func style(document str: NSMutableAttributedString)
-    func style(blockQuote str: NSMutableAttributedString)
-    func style(list str: NSMutableAttributedString)
-    func style(item str: NSMutableAttributedString)
-    func style(codeBlock str: NSMutableAttributedString)
-    func style(htmlBlock str: NSMutableAttributedString)
-    func style(customBlock str: NSMutableAttributedString)
-    func style(paragraph str: NSMutableAttributedString)
-    func style(heading str: NSMutableAttributedString, level: Int)
-    func style(thematicBreak str: NSMutableAttributedString)
-    func style(text str: NSMutableAttributedString)
-    func style(softBreak str: NSMutableAttributedString)
-    func style(lineBreak str: NSMutableAttributedString)
-    func style(code str: NSMutableAttributedString)
-    func style(htmlInline str: NSMutableAttributedString)
-    func style(customInline str: NSMutableAttributedString)
-    func style(emphasis str: NSMutableAttributedString)
-    func style(strong str: NSMutableAttributedString)
-    func style(link str: NSMutableAttributedString)
-    func style(image str: NSMutableAttributedString)
-}
 
 public class AttributedStringVisitor {
     
     private let styler: Styler
     private let options: DownOptions
     
-    init(styler: Styler, options: DownOptions = .default) {
+    public init(styler: Styler, options: DownOptions = .default) {
         self.styler = styler
         self.options = options
     }
