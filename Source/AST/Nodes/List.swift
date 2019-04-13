@@ -43,6 +43,10 @@ public class List: Node {
         return Int(cmark_node_get_list_start(cmarkNode))
     }
     
+    lazy var numberOfItems: Int = {
+        return childen.count
+    }()
+    
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_LIST else { return nil }
         self.cmarkNode = cmarkNode

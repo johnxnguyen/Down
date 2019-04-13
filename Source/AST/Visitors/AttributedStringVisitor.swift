@@ -36,8 +36,17 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(list node: List) -> NSMutableAttributedString {
-        let s = visitChildren(of: node).joined
-        s.append(.blankLine)
+        let items = visitChildren(of: node)
+        items.enumerated().forEach { index, item in
+            // TODO: attributes for prefixes
+            switch node.listType {
+            case .bullet: item.insert("•\t".attributed, at: 0)
+            case .ordered: item.insert("\(node.listStart + index).\t".attributed, at: 0)
+            }
+        }
+        
+        let s = items.joined
+        if !node.isLast { s.append(.blankLine) }
         styler.style(list: s)
         return s
     }
