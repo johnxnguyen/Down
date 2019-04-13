@@ -16,7 +16,7 @@ protocol Styler {
     func style(htmlBlock str: NSMutableAttributedString)
     func style(customBlock str: NSMutableAttributedString)
     func style(paragraph str: NSMutableAttributedString)
-    func style(heading str: NSMutableAttributedString)
+    func style(heading str: NSMutableAttributedString, level: Int)
     func style(thematicBreak str: NSMutableAttributedString)
     func style(text str: NSMutableAttributedString)
     func style(softBreak str: NSMutableAttributedString)
@@ -51,41 +51,68 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(blockQuote node: BlockQuote) -> NSMutableAttributedString {
-        fatalError("unimplemented")
+        let s = visitChildren(of: node).joined
+        s.append(.blankLine)
+        styler.style(blockQuote: s)
+        return s
     }
     
     public func visit(list node: List) -> NSMutableAttributedString {
-        fatalError("unimplemented")
+        let s = visitChildren(of: node).joined
+        s.append(.blankLine)
+        styler.style(list: s)
+        return s
     }
     
     public func visit(item node: Item) -> NSMutableAttributedString {
-        fatalError("unimplemented")
+        // TODO: Prefixes
+        let s = visitChildren(of: node).joined
+        s.append(.blankLine)
+        styler.style(item: s)
+        return s
     }
     
     public func visit(codeBlock node: CodeBlock) -> NSMutableAttributedString {
-        fatalError("unimplemented")
+        let s = node.literal.attributed
+        s.append(.blankLine)
+        styler.style(codeBlock: s)
+        return s
     }
     
     public func visit(htmlBlock node: HtmlBlock) -> NSMutableAttributedString {
-        fatalError("unimplemented")
+        let s = node.literal.attributed
+        s.insert(.blankLine, at: 0)
+        s.append(.blankLine)
+        styler.style(htmlBlock: s)
+        return s
     }
     
     public func visit(customBlock node: CustomBlock) -> NSMutableAttributedString {
-        fatalError("unimplemented")
+        let s = node.literal.attributed
+        s.insert(.blankLine, at: 0)
+        s.append(.blankLine)
+        styler.style(customBlock: s)
+        return s
     }
     
     public func visit(paragraph node: Paragraph) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
+        s.append(.blankLine)
         styler.style(paragraph: s)
         return s
     }
     
     public func visit(heading node: Heading) -> NSMutableAttributedString {
-        fatalError("unimplemented")
+        let s = visitChildren(of: node).joined
+        s.append(.blankLine)
+        styler.style(heading: s, level: node.headerLevel)
+        return s
     }
     
     public func visit(thematicBreak node: ThematicBreak) -> NSMutableAttributedString {
-        fatalError("unimplemented")
+        let s = "-----".attributed // TODO: allow this to be configurable.
+        styler.style(thematicBreak: s)
+        return s
     }
     
     public func visit(text node: Text) -> NSMutableAttributedString {
@@ -113,11 +140,15 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(htmlInline node: HtmlInline) -> NSMutableAttributedString {
-        fatalError("unimplemented")
+        let s = node.literal.attributed
+        styler.style(htmlInline: s)
+        return s
     }
     
     public func visit(customInline node: CustomInline) -> NSMutableAttributedString {
-        fatalError("unimplemented")
+        let s = node.literal.attributed
+        styler.style(customInline: s)
+        return s
     }
     
     public func visit(emphasis node: Emphasis) -> NSMutableAttributedString {
@@ -145,16 +176,23 @@ extension AttributedStringVisitor: Visitor {
     }
 }
 
+
 private extension String {
     var attributed: NSMutableAttributedString {
         return NSMutableAttributedString(string: self)
     }
 }
 
+
 private extension Sequence where Iterator.Element == NSMutableAttributedString {
     var joined: NSMutableAttributedString {
-        return reduce(into: NSMutableAttributedString()) { (acc, next) in
-            acc.append(next)
-        }
+        return reduce(into: NSMutableAttributedString()) { $0.append($1) }
+    }
+}
+
+
+private extension NSAttributedString {
+    static var blankLine: NSAttributedString {
+        return "\n".attributed
     }
 }

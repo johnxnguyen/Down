@@ -12,7 +12,7 @@ public class Text: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Text: '\(literal)'" }
+    public var debugDescription: String { return "Text - '\(literal)'" }
     
     var literal: String {
         // TODO: is it expected that there is a literal?

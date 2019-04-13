@@ -12,7 +12,7 @@ public class Heading: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Heading: L\(headerLevel)" }
+    public var debugDescription: String { return "Heading - L\(headerLevel)" }
     
     var headerLevel: Int {
         return Int(cmark_node_get_heading_level(cmarkNode))
