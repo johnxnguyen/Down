@@ -29,4 +29,6 @@ public protocol Styler {
     func style(strong str: NSMutableAttributedString)
     func style(link str: NSMutableAttributedString)
     func style(image str: NSMutableAttributedString)
+    
+    var listPrefixAttributes: [NSAttributedStringKey: Any] { get }
 }

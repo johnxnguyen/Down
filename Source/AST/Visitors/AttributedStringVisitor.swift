@@ -38,11 +38,13 @@ extension AttributedStringVisitor: Visitor {
     public func visit(list node: List) -> NSMutableAttributedString {
         let items = visitChildren(of: node)
         items.enumerated().forEach { index, item in
-            // TODO: attributes for prefixes
+            let prefix: String
             switch node.listType {
-            case .bullet: item.insert("•\t".attributed, at: 0)
-            case .ordered: item.insert("\(node.listStart + index).\t".attributed, at: 0)
+            case .bullet: prefix = "•\t"
+            case .ordered: prefix = "\(node.listStart + index).\t"
             }
+            
+            item.insert(prefix.attributed(with: styler.listPrefixAttributes), at: 0)
         }
         
         let s = items.joined
@@ -166,6 +168,10 @@ extension AttributedStringVisitor: Visitor {
 private extension String {
     var attributed: NSMutableAttributedString {
         return NSMutableAttributedString(string: self)
+    }
+    
+    func attributed(with attributes: [NSAttributedStringKey: Any]) -> NSAttributedString {
+        return NSAttributedString(string: self, attributes: attributes)
     }
 }
 
