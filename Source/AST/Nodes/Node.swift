@@ -21,8 +21,8 @@ public protocol Node: CustomDebugStringConvertible {
 
 extension Node {
     
-    public var isLast: Bool {
-        return cmark_node_next(cmarkNode) == nil
+    public var hasSuccessor: Bool {
+        return cmark_node_next(cmarkNode) != nil
     }
     
     public var childen: [Node] {
