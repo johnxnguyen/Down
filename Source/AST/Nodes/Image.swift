@@ -13,7 +13,7 @@ public class Image: Node {
     public var cmarkNode: CMarkNode
     
     public var debugDescription: String {
-        return "Image - title: \(title ?? "None"), url: \(url ?? "None")"
+        return "Image - title: \(title ?? "None"), url: \(url)"
     }
     
     var title: String? {
@@ -21,8 +21,9 @@ public class Image: Node {
         return String(cString: cString)
     }
     
-    var url: String? {
-        guard let cString = cmark_node_get_url(cmarkNode) else { return nil }
+    var url: String {
+        // TODO: Handle this
+        guard let cString = cmark_node_get_url(cmarkNode) else { fatalError() }
         return String(cString: cString)
     }
     
