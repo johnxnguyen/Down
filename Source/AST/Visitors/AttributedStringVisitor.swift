@@ -7,7 +7,11 @@
 
 import Foundation
 
-
+/// This class is used to generated an `NSMutableAttributedString` from the abstract syntax
+/// tree produced by a markdown string. It traverses the tree to construct substrings
+/// represented at each node and uses an instance of `Styler` to apply the visual attributes.
+/// These substrings are joined together to produce the final result.
+///
 public class AttributedStringVisitor {
     
     private let styler: Styler

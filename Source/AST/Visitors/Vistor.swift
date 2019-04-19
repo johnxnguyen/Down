@@ -7,6 +7,11 @@
 
 import Foundation
 
+/// Visitor describes a type that is able to traverse the abstract syntax tree. It visits
+/// each node of the tree and produces some result for that node. A visitor is "accepted" by
+/// the root node (of type `Document`), which will start the traversal by first invoking
+/// `visit(document:)`.
+///
 public protocol Visitor {
     associatedtype Result
     func visit(document node: Document) -> Result
