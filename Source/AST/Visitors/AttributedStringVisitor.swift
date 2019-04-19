@@ -32,7 +32,7 @@ extension AttributedStringVisitor: Visitor {
         let s = visitChildren(of: node).joined
         if node.hasSuccessor { s.append(.blankLine) }
         
-        // TODO: we will need to provide the list nest depth.
+        // TODO: we will need to provide the quote nest depth.
         styler.style(blockQuote: s)
         return s
     }
@@ -46,7 +46,8 @@ extension AttributedStringVisitor: Visitor {
             case .ordered(let start): prefix = "\(start + index).\t"
             }
             
-            item.insert(prefix.attributed(with: styler.listPrefixAttributes), at: 0)
+            let attrPrefix = NSAttributedString(string: prefix, attributes: styler.listPrefixAttributes)
+            item.insert(attrPrefix, at: 0)
         }
         
         let s = items.joined
@@ -102,7 +103,7 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(thematicBreak node: ThematicBreak) -> NSMutableAttributedString {
-        let s = "-----".attributed // TODO: allow this to be configurable.
+        let s = "\n".attributed
         styler.style(thematicBreak: s)
         return s
     }
@@ -172,10 +173,6 @@ extension AttributedStringVisitor: Visitor {
 private extension String {
     var attributed: NSMutableAttributedString {
         return NSMutableAttributedString(string: self)
-    }
-    
-    func attributed(with attributes: [NSAttributedStringKey: Any]) -> NSAttributedString {
-        return NSAttributedString(string: self, attributes: attributes)
     }
 }
 
