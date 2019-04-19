@@ -37,7 +37,7 @@ public class List: Node {
     public var debugDescription: String { return "List - type: \(listType)" }
     
     /// The type of the list, either bullet or ordered.
-    lazy var listType: ListType = {
+    public lazy var listType: ListType = {
         guard let type = ListType(cmarkNode: cmarkNode) else {
             fatalError("List node should have list type.")
         }
@@ -46,13 +46,13 @@ public class List: Node {
     }()
     
     /// The number of items in the list.
-    lazy var numberOfItems: Int = childen.count
+    public lazy var numberOfItems: Int = childen.count
     
     /// Attempts to wrap the given `CMarkNode`.
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_LIST`
     ///
-    init?(cmarkNode: CMarkNode) {
+    public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_LIST else { return nil }
         self.cmarkNode = cmarkNode
     }

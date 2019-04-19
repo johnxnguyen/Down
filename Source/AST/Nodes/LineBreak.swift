@@ -18,7 +18,7 @@ public class LineBreak: Node {
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_LINE_BREAK`
     ///
-    init?(cmarkNode: CMarkNode) {
+    public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_LINEBREAK else { return nil }
         self.cmarkNode = cmarkNode
     }

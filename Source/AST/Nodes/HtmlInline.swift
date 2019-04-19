@@ -16,13 +16,13 @@ public class HtmlInline: Node {
     
     // TODO: be more secific here.
     /// The html content, if present.
-    lazy var literal: String? = cmarkNode.literal
+    public lazy var literal: String? = cmarkNode.literal
     
     /// Attempts to wrap the given `CMarkNode`.
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_HTML_INLINE`
     ///
-    init?(cmarkNode: CMarkNode) {
+    public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_HTML_INLINE else { return nil }
         self.cmarkNode = cmarkNode
     }

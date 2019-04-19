@@ -18,7 +18,7 @@ public class Strong: Node {
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_STRONG`
     ///
-    init?(cmarkNode: CMarkNode) {
+    public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_STRONG else { return nil }
         self.cmarkNode = cmarkNode
     }
