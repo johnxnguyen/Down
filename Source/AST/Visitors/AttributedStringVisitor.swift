@@ -31,14 +31,14 @@ extension AttributedStringVisitor: Visitor {
     public func visit(blockQuote node: BlockQuote) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
         if node.hasSuccessor { s.append(.blankLine) }
-        
-        // TODO: we will need to provide the quote nest depth.
         styler.style(blockQuote: s)
         return s
     }
     
     public func visit(list node: List) -> NSMutableAttributedString {
         let items = visitChildren(of: node)
+        
+        // Prepend prefixes to each item.
         items.enumerated().forEach { index, item in
             let prefix: String
             switch node.listType {
@@ -52,8 +52,6 @@ extension AttributedStringVisitor: Visitor {
         
         let s = items.joined
         if node.hasSuccessor { s.append(.blankLine) }
-        
-        // TODO: we will need to provide the list nest depth.
         styler.style(list: s)
         return s
     }
@@ -169,13 +167,7 @@ extension AttributedStringVisitor: Visitor {
     }
 }
 
-
-private extension String {
-    var attributed: NSMutableAttributedString {
-        return NSMutableAttributedString(string: self)
-    }
-}
-
+// MARK: - Helper extentions
 
 private extension Sequence where Iterator.Element == NSMutableAttributedString {
     var joined: NSMutableAttributedString {
@@ -183,6 +175,11 @@ private extension Sequence where Iterator.Element == NSMutableAttributedString {
     }
 }
 
+private extension String {
+    var attributed: NSMutableAttributedString {
+        return NSMutableAttributedString(string: self)
+    }
+}
 
 private extension NSAttributedString {
     static var blankLine: NSAttributedString {
