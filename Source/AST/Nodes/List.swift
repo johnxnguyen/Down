@@ -30,6 +30,8 @@ public class List: Node {
         }
     }
     
+    ///////////////////////////////////////////////////////////////////////////
+    
     public var cmarkNode: CMarkNode
     
     public var debugDescription: String { return "List - type: \(listType)" }
@@ -39,13 +41,12 @@ public class List: Node {
         guard let type = ListType(cmarkNode: cmarkNode) else {
             fatalError("List node should have list type.")
         }
+        
         return type
     }()
     
-    
     /// The number of items in the list.
     lazy var numberOfItems: Int = childen.count
-    
     
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_LIST else { return nil }
