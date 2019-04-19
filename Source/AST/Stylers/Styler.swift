@@ -13,7 +13,7 @@ public protocol Styler {
     func style(blockQuote str: NSMutableAttributedString)
     func style(list str: NSMutableAttributedString)
     func style(item str: NSMutableAttributedString)
-    func style(codeBlock str: NSMutableAttributedString)
+    func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?)
     func style(htmlBlock str: NSMutableAttributedString)
     func style(customBlock str: NSMutableAttributedString)
     func style(paragraph str: NSMutableAttributedString)

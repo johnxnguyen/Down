@@ -12,7 +12,7 @@ public class CodeBlock: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Code Block - '\(literal)'" }
+    public var debugDescription: String { return "Code Block - literal: '\(literal)', fenceInfo: \(fenceInfo ?? "None")" }
     
     var literal: String {
         // TODO: is it expected that there is a literal?
@@ -22,7 +22,8 @@ public class CodeBlock: Node {
     
     var fenceInfo: String? {
         guard let cString = cmark_node_get_fence_info(cmarkNode) else { return nil }
-        return String(cString: cString)
+        let result = String(cString: cString)
+        return result.isEmpty ? nil : result
     }
     
     init?(cmarkNode: CMarkNode) {

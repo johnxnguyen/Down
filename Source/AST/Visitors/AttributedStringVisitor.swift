@@ -67,7 +67,7 @@ extension AttributedStringVisitor: Visitor {
     public func visit(codeBlock node: CodeBlock) -> NSMutableAttributedString {
         let s = node.literal.attributed
         if node.hasSuccessor { s.append(.blankLine) }
-        styler.style(codeBlock: s)
+        styler.style(codeBlock: s, fenceInfo: node.fenceInfo)
         return s
     }
     
