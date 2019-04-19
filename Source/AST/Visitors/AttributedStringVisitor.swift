@@ -31,6 +31,8 @@ extension AttributedStringVisitor: Visitor {
     public func visit(blockQuote node: BlockQuote) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
         if node.hasSuccessor { s.append(.blankLine) }
+        
+        // TODO: we will need to provide the list nest depth.
         styler.style(blockQuote: s)
         return s
     }
@@ -49,6 +51,8 @@ extension AttributedStringVisitor: Visitor {
         
         let s = items.joined
         if node.hasSuccessor { s.append(.blankLine) }
+        
+        // TODO: we will need to provide the list nest depth.
         styler.style(list: s)
         return s
     }
@@ -153,13 +157,13 @@ extension AttributedStringVisitor: Visitor {
     
     public func visit(link node: Link) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
-        styler.style(link: s)
+        styler.style(link: s, url: node.url)
         return s
     }
     
     public func visit(image node: Image) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
-        styler.style(image: s)
+        styler.style(image: s, url: node.url)
         return s
     }
 }
