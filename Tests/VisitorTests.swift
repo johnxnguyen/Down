@@ -18,7 +18,7 @@ class VisitorTests: XCTestCase {
         let document = Document(cmarkNode: ast)!
         
         // When
-        let result = document.accept(visitor: DebugVisitor())
+        let result = document.accept(DebugVisitor())
         
         // Then
         let expected = "Document -> [Heading: L1, Paragraph -> [Text: 'This is a ', Strong -> [Text: 'test!']]]"
