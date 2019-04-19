@@ -16,6 +16,8 @@ public class SoftBreak: Node {
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_SOFT_BREAK`
     ///
+    /// - parameter cmarkNode: the node to wrap.
+    ///
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_SOFTBREAK else { return nil }
         self.cmarkNode = cmarkNode

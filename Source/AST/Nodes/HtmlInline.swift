@@ -20,6 +20,8 @@ public class HtmlInline: Node {
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_HTML_INLINE`
     ///
+    /// - parameter cmarkNode: the node to wrap.
+    ///
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_HTML_INLINE else { return nil }
         self.cmarkNode = cmarkNode

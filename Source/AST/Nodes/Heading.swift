@@ -19,6 +19,8 @@ public class Heading: Node {
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_HEADING`
     ///
+    /// - parameter cmarkNode: the node to wrap.
+    ///
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_HEADING else { return nil }
         self.cmarkNode = cmarkNode

@@ -32,6 +32,8 @@ public class CodeBlock: Node {
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NOD_CODE_BLOCK`
     ///
+    /// - parameter cmarkNode: the node to wrap.
+    ///
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_CODE_BLOCK else { return nil }
         self.cmarkNode = cmarkNode

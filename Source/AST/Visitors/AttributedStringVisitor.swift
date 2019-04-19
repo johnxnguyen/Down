@@ -17,6 +17,12 @@ public class AttributedStringVisitor {
     private let styler: Styler
     private let options: DownOptions
     
+    /// Creates a new instance with the given styler and options.
+    ///
+    /// - parameters:
+    ///     - styler: used to style the markdown elements.
+    ///     - options: may be used to modify rendering.
+    ///
     public init(styler: Styler, options: DownOptions = .default) {
         self.styler = styler
         self.options = options

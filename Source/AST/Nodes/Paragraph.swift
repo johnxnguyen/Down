@@ -16,6 +16,8 @@ public class Paragraph: Node {
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_PARAGRAPH`
     ///
+    /// - parameter cmarkNode: the node to wrap.
+    ///
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_PARAGRAPH else { return nil }
         self.cmarkNode = cmarkNode

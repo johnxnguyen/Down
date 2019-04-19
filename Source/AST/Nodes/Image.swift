@@ -40,6 +40,8 @@ public class Image: Node {
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_IMAGE`
     ///
+    /// - parameter cmarkNode: the node to wrap.
+    ///
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_IMAGE else { return nil }
         self.cmarkNode = cmarkNode
