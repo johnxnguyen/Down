@@ -9,14 +9,26 @@ import Foundation
 
 public class DebugVisitor {
     
+    /// Current depth in the tree.
+    private var depth = 0
+    
+    /// The amount of indent for the current depth.
+    private var indent: String {
+        return String(repeating: "    ", count: depth)
+    }
+    
     /// Debug representation of node.
     private func report(_ node: Node) -> String {
-        return String(reflecting: node)
+        return "\(indent)\(node is Document ? "" : "↳ ")\(String(reflecting: node))\n"
     }
     
     /// Debug representation of node including all children.
     private func reportWithChildren(_ node: Node) -> String {
-        return "\(node) -> [\(visitChildren(of: node).joined(separator: ", "))]"
+        let thisNode = report(node)
+        depth += 1
+        let children = visitChildren(of: node).joined()
+        depth -= 1
+        return "\(thisNode)\(children)"
     }
 }
 
@@ -56,7 +68,7 @@ extension DebugVisitor: Visitor {
     }
     
     public func visit(heading node: Heading) -> String {
-        return report(node)
+        return reportWithChildren(node)
     }
     
     public func visit(thematicBreak node: ThematicBreak) -> String {
