@@ -157,13 +157,13 @@ extension AttributedStringVisitor: Visitor {
     
     public func visit(link node: Link) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
-        styler.style(link: s, url: node.url)
+        styler.style(link: s, title: node.title, url: node.url)
         return s
     }
     
     public func visit(image node: Image) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
-        styler.style(image: s, url: node.url)
+        styler.style(image: s, title: node.title, url: node.url)
         return s
     }
 }

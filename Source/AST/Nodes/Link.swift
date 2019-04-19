@@ -13,18 +13,19 @@ public class Link: Node {
     public var cmarkNode: CMarkNode
     
     public var debugDescription: String {
-        return "Link - title: \(title ?? "None"), url: \(url)"
+        return "Link - title: \(title ?? "None"), url: \(url ?? "None")"
     }
     
     var title: String? {
         guard let cString = cmark_node_get_title(cmarkNode) else { return nil }
-        return String(cString: cString)
+        let result = String(cString: cString)
+        return result.isEmpty ? nil : result
     }
     
-    var url: String {
-        // TODO: Handle this
-        guard let cString = cmark_node_get_url(cmarkNode) else { fatalError() }
-        return String(cString: cString)
+    var url: String? {
+        guard let cString = cmark_node_get_url(cmarkNode) else { return nil }
+        let result = String(cString: cString)
+        return result.isEmpty ? nil : result
     }
     
     init?(cmarkNode: CMarkNode) {
