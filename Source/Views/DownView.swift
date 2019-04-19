@@ -174,14 +174,19 @@ extension DownView: WKNavigationDelegate {
             }
 
             decisionHandler(.cancel)
-            #if os(iOS)
-                UIApplication.shared.openURL(url)
-            #elseif os(macOS)
-                NSWorkspace.shared.open(url)
-            #endif
+            openURL(url: url)
         default:
             decisionHandler(.allow)
         }
+    }
+
+    @available(iOSApplicationExtension, unavailable)
+    func openURL(url: URL) {
+        #if os(iOS)
+            UIApplication.shared.openURL(url)
+        #elseif os(macOS)
+            NSWorkspace.shared.open(url)
+        #endif
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -189,4 +194,11 @@ extension DownView: WKNavigationDelegate {
     }
     
 }
+
+fileprivate extension WKNavigationDelegate {
+    /// A wrapper for `UIApplication.shared.openURL` so that an empty default
+    /// implementation is available in app extensions
+    public func openURL(url: URL) {}
+}
+
 #endif

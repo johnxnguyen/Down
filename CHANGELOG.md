@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.6.6](https://github.com/iwasrobbed/Down/tree/v0.6.6) (2019-04-11)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.5...v0.6.6)
+
+**Closed issues:**
+
+- Swift 4/5 compatibility [\#131](https://github.com/iwasrobbed/Down/issues/131)
+
+**Merged pull requests:**
+
+- Wrap openURL so that Down compiles in app extensions [\#133](https://github.com/iwasrobbed/Down/pull/133) ([nheagy](https://github.com/nheagy))
+
 ## [v0.6.5](https://github.com/iwasrobbed/Down/tree/v0.6.5) (2019-04-02)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.4...v0.6.5)
 
