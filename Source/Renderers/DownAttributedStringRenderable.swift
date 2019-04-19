@@ -9,7 +9,7 @@
 import Foundation
 import libcmark
 
-public protocol DownAttributedStringRenderable: DownHTMLRenderable {
+public protocol DownAttributedStringRenderable: DownHTMLRenderable, DownASTRenderable {
     /**
      Generates an `NSAttributedString` from the `markdownString` property
 
@@ -23,6 +23,20 @@ public protocol DownAttributedStringRenderable: DownHTMLRenderable {
      */
     
     func toAttributedString(_ options: DownOptions, stylesheet: String?) throws -> NSAttributedString
+    
+    /**
+     Generates an `NSAttributedString` from the `markdownString` property
+     
+     - parameter options: `DownOptions` to modify parsing or rendering
+     
+     - parameter styler: a `Styler` to use when rendering
+     
+     - throws: `DownErrors` depending on the scenario
+     
+     - returns: An `NSAttributedString`
+     */
+    
+    func toAttributedString(_ options: DownOptions, styler: Styler) throws -> NSAttributedString
 }
 
 extension DownAttributedStringRenderable {
@@ -42,5 +56,24 @@ extension DownAttributedStringRenderable {
         let html = try self.toHTML(options)
         let defaultStylesheet = "* {font-family: Helvetica } code, pre { font-family: Menlo }"
         return try NSAttributedString(htmlString: "<style>" + (stylesheet ?? defaultStylesheet) + "</style>" + html)
+    }
+    
+    /**
+     Generates an `NSAttributedString` from the `markdownString` property
+     
+     - parameter options: `DownOptions` to modify parsing or rendering
+     
+     - parameter styler: a `Styler` to use when rendering
+     
+     - throws: `DownErrors` depending on the scenario
+     
+     - returns: An `NSAttributedString`
+     */
+    
+    public func toAttributedString(_ options: DownOptions = .default, styler: Styler) throws -> NSAttributedString {
+        let tree = try self.toAST(options)
+        guard let document = Document(cmarkNode: tree) else { throw DownErrors.astRenderingError }
+        let visitor = AttributedStringVisitor(styler: styler, options: options)
+        return document.accept(visitor)
     }
 }
