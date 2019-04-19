@@ -74,7 +74,7 @@ extension Node {
 
 // MARK: - Helper extensions
 
-extension CMarkNode {
+extension UnsafeMutablePointer where Pointee == cmark_node {
     
     var type: cmark_node_type {
         return cmark_node_get_type(self)
