@@ -32,6 +32,10 @@ public class CodeBlock: Node {
     ///
     lazy var fenceInfo: String? = cmarkNode.fenceInfo
     
+    /// Attempts to wrap the given `CMarkNode`.
+    ///
+    /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NOD_CODE_BLOCK`
+    ///
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_CODE_BLOCK else { return nil }
         self.cmarkNode = cmarkNode

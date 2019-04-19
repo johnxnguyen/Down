@@ -17,6 +17,10 @@ public class Heading: Node {
     /// The level of the heading, a value between 1 and 6.
     lazy var headingLevel: Int = cmarkNode.headingLevel
     
+    /// Attempts to wrap the given `CMarkNode`.
+    ///
+    /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_HEADING`
+    ///
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_HEADING else { return nil }
         self.cmarkNode = cmarkNode

@@ -17,6 +17,10 @@ public class CustomInline: Node {
     /// The custom content, if present.
     lazy var literal: String? = cmarkNode.literal
     
+    /// Attempts to wrap the given `CMarkNode`.
+    ///
+    /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_CUSTOM_INLINE`
+    ///
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_CUSTOM_INLINE else { return nil }
         self.cmarkNode = cmarkNode

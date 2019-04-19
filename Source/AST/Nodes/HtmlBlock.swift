@@ -17,6 +17,10 @@ public class HtmlBlock: Node {
     /// The html content, if present.
     lazy var literal: String? = cmarkNode.literal
     
+    /// Attempts to wrap the given `CMarkNode`.
+    ///
+    /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_HTML_BLOCK`
+    ///
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_HTML_BLOCK else { return nil }
         self.cmarkNode = cmarkNode

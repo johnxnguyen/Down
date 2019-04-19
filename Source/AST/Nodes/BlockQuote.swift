@@ -14,6 +14,10 @@ public class BlockQuote: Node {
     
     public var debugDescription: String { return "Block Quote" }
     
+    /// Attempts to wrap the given `CMarkNode`.
+    ///
+    /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_BLOCK_QUOTE`
+    ///
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_BLOCK_QUOTE else { return nil }
         self.cmarkNode = cmarkNode

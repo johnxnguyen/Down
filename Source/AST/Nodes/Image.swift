@@ -40,6 +40,10 @@ public class Image: Node {
     ///
     lazy var url: String? = cmarkNode.url
     
+    /// Attempts to wrap the given `CMarkNode`.
+    ///
+    /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_IMAGE`
+    ///
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_IMAGE else { return nil }
         self.cmarkNode = cmarkNode

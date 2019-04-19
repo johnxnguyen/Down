@@ -14,6 +14,10 @@ public class Emphasis: Node {
     
     public var debugDescription: String { return "Emphasis" }
     
+    /// Attempts to wrap the given `CMarkNode`.
+    ///
+    /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_EMPH`
+    ///
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_EMPH else { return nil }
         self.cmarkNode = cmarkNode
