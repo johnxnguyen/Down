@@ -12,8 +12,6 @@ public class Item: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Item" }
-    
     /// Attempts to wrap the given `CMarkNode`.
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_ITEM`
@@ -21,5 +19,15 @@ public class Item: Node {
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_ITEM else { return nil }
         self.cmarkNode = cmarkNode
+    }
+}
+
+
+// MARK: - Debug
+
+extension Item: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "Item"
     }
 }

@@ -12,8 +12,6 @@ public class Code: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Code - \(literal ?? "nil")" }
-    
     /// The code content, if present.
     public lazy var literal: String? = cmarkNode.literal
     
@@ -24,5 +22,15 @@ public class Code: Node {
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_CODE else { return nil }
         self.cmarkNode = cmarkNode
+    }
+}
+
+
+// MARK: - Debug
+
+extension Code: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "Code - \(literal ?? "nil")"
     }
 }

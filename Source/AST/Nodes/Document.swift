@@ -12,8 +12,6 @@ public class Document: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Document" }
-    
     /// Attempts to wrap the given `CMarkNode`.
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_DOCUMENT`
@@ -31,5 +29,15 @@ public class Document: Node {
     /// Accepts the given visitor and return its result.
     public func accept<T: Visitor>(_ visitor: T) -> T.Result {
         return visitor.visit(document: self)
+    }
+}
+
+
+// MARK: - Debug
+
+extension Document: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "Document"
     }
 }

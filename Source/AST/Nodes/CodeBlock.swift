@@ -12,10 +12,6 @@ public class CodeBlock: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String {
-        return "Code Block - \(literal ?? "nil"), fenceInfo: \(fenceInfo ?? "nil")"
-    }
-    
     /// The code content, if present.
     public lazy var literal: String? = cmarkNode.literal
     
@@ -39,5 +35,15 @@ public class CodeBlock: Node {
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_CODE_BLOCK else { return nil }
         self.cmarkNode = cmarkNode
+    }
+}
+
+
+// MARK: - Debug
+
+extension CodeBlock: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "Code Block - \(literal ?? "nil"), fenceInfo: \(fenceInfo ?? "nil")"
     }
 }

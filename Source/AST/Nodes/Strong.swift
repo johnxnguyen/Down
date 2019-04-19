@@ -12,8 +12,6 @@ public class Strong: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Strong" }
-    
     /// Attempts to wrap the given `CMarkNode`.
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_STRONG`
@@ -21,5 +19,15 @@ public class Strong: Node {
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_STRONG else { return nil }
         self.cmarkNode = cmarkNode
+    }
+}
+
+
+// MARK: - Debug
+
+extension Strong: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "Strong"
     }
 }

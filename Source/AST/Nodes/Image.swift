@@ -12,10 +12,6 @@ public class Image: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String {
-        return "Image - title: \(title ?? "nil"), url: \(url ?? "nil"))"
-    }
-    
     /// The title of the image, if present.
     ///
     /// In the example below, the first line is a reference link, with the reference at the
@@ -47,5 +43,15 @@ public class Image: Node {
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_IMAGE else { return nil }
         self.cmarkNode = cmarkNode
+    }
+}
+
+
+// MARK: - Debug
+
+extension Image: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "Image - title: \(title ?? "nil"), url: \(url ?? "nil"))"
     }
 }

@@ -12,8 +12,6 @@ public class CustomInline: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Custom Inline - \(literal ?? "nil")" }
-    
     /// The custom content, if present.
     public lazy var literal: String? = cmarkNode.literal
     
@@ -24,5 +22,15 @@ public class CustomInline: Node {
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_CUSTOM_INLINE else { return nil }
         self.cmarkNode = cmarkNode
+    }
+}
+
+
+// MARK: - Debug
+
+extension CustomInline: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "Custom Inline - \(literal ?? "nil")"
     }
 }

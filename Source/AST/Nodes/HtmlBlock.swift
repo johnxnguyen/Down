@@ -12,8 +12,6 @@ public class HtmlBlock: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Html Block - \(literal ?? "nil")" }
-    
     /// The html content, if present.
     public lazy var literal: String? = cmarkNode.literal
     
@@ -24,5 +22,15 @@ public class HtmlBlock: Node {
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_HTML_BLOCK else { return nil }
         self.cmarkNode = cmarkNode
+    }
+}
+
+
+// MARK: - Debug
+
+extension HtmlBlock: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "Html Block - \(literal ?? "nil")"
     }
 }

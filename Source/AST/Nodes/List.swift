@@ -10,7 +10,7 @@ import libcmark
 
 public class List: Node {
     
-    enum ListType: CustomDebugStringConvertible {
+    public enum ListType: CustomDebugStringConvertible {
         case bullet
         case ordered(start: Int)
         
@@ -34,8 +34,6 @@ public class List: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "List - type: \(listType)" }
-    
     /// The type of the list, either bullet or ordered.
     public lazy var listType: ListType = {
         guard let type = ListType(cmarkNode: cmarkNode) else {
@@ -55,5 +53,15 @@ public class List: Node {
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_LIST else { return nil }
         self.cmarkNode = cmarkNode
+    }
+}
+
+
+// MARK: - Debug
+
+extension List: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "List - type: \(listType)"
     }
 }

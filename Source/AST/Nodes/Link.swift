@@ -12,10 +12,6 @@ public class Link: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String {
-        return "Link - title: \(title ?? "nil"), url: \(url ?? "nil"))"
-    }
-    
     /// The title of the link, if present.
     ///
     /// In the example below, the first line is a reference link, with the reference at the
@@ -50,3 +46,12 @@ public class Link: Node {
     }
 }
 
+
+// MARK: - Debug
+
+extension Link: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "Link - title: \(title ?? "nil"), url: \(url ?? "nil"))"
+    }
+}

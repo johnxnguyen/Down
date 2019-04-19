@@ -12,8 +12,6 @@ public class Heading: Node {
     
     public var cmarkNode: CMarkNode
         
-    public var debugDescription: String { return "Heading - L\(headingLevel)" }
-
     /// The level of the heading, a value between 1 and 6.
     public lazy var headingLevel: Int = cmarkNode.headingLevel
     
@@ -24,5 +22,15 @@ public class Heading: Node {
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_HEADING else { return nil }
         self.cmarkNode = cmarkNode
+    }
+}
+
+
+// MARK: - Debug
+
+extension Heading: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "Heading - L\(headingLevel)"
     }
 }

@@ -12,8 +12,6 @@ public class CustomBlock: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Custom Block - \(literal ?? "nil")" }
-    
     /// The custom content, if present.
     public lazy var literal: String? = cmarkNode.literal
     
@@ -24,5 +22,15 @@ public class CustomBlock: Node {
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_CUSTOM_BLOCK else { return nil }
         self.cmarkNode = cmarkNode
+    }
+}
+
+
+// MARK: - Debug
+
+extension CustomBlock: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "Custom Block - \(literal ?? "nil")"
     }
 }

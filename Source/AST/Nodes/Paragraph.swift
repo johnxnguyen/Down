@@ -12,8 +12,6 @@ public class Paragraph: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Paragraph" }
-    
     /// Attempts to wrap the given `CMarkNode`.
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_PARAGRAPH`
@@ -21,5 +19,15 @@ public class Paragraph: Node {
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_PARAGRAPH else { return nil }
         self.cmarkNode = cmarkNode
+    }
+}
+
+
+// MARK: - Debug
+
+extension Paragraph: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "Paragraph"
     }
 }

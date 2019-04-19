@@ -12,8 +12,6 @@ public class BlockQuote: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Block Quote" }
-    
     /// Attempts to wrap the given `CMarkNode`.
     ///
     /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_BLOCK_QUOTE`
@@ -21,5 +19,15 @@ public class BlockQuote: Node {
     public init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_BLOCK_QUOTE else { return nil }
         self.cmarkNode = cmarkNode
+    }
+}
+
+
+// MARK: - Debug
+
+extension BlockQuote: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        return "Block Quote"
     }
 }
