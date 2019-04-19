@@ -12,13 +12,10 @@ public class Code: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Code - '\(literal)'" }
+    public var debugDescription: String { return "Code - \(literal ?? "nil")" }
     
-    var literal: String {
-        // TODO: is it expected that there is a literal?
-        guard let cString = cmark_node_get_literal(cmarkNode) else { fatalError() }
-        return String(cString: cString)
-    }
+    /// The code content, if present.
+    lazy var literal: String? = cmarkNode.literal
     
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_CODE else { return nil }

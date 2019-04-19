@@ -10,9 +10,50 @@ import libcmark
 
 public typealias CMarkNode = UnsafeMutablePointer<cmark_node>
 
-extension UnsafeMutablePointer where Pointee == cmark_node {
-    var type: cmark_node_type { return cmark_node_get_type(self) }
+extension CMarkNode {
+    var type: cmark_node_type {
+        return cmark_node_get_type(self)
+    }
+    
+    var literal: String? {
+        return String(cString: cmark_node_get_literal(self))
+    }
+    
+    var fenceInfo: String? {
+        return String(cString: cmark_node_get_fence_info(self))
+    }
+    
+    var headingLevel: Int {
+        return Int(cmark_node_get_heading_level(self))
+    }
+    
+    var url: String? {
+        return String(cString: cmark_node_get_url(self))
+    }
+    
+    var title: String? {
+        return String(cString: cmark_node_get_title(self))
+    }
+    
+    var listType: cmark_list_type {
+        return cmark_node_get_list_type(self)
+    }
+    
+    var listStart: Int {
+        return Int(cmark_node_get_list_start(self))
+    }
 }
+
+private extension String {
+    init?(cString: UnsafePointer<Int8>?) {
+        guard let unwrapped = cString else { return nil }
+        let result = String(cString: unwrapped)
+        guard !result.isEmpty else { return nil }
+        self = result
+        
+    }
+}
+
 
 public protocol Node: CustomDebugStringConvertible {
     var cmarkNode: CMarkNode { get }

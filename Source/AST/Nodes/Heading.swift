@@ -11,12 +11,11 @@ import libcmark
 public class Heading: Node {
     
     public var cmarkNode: CMarkNode
-    
-    public var debugDescription: String { return "Heading - L\(headerLevel)" }
-    
-    var headerLevel: Int {
-        return Int(cmark_node_get_heading_level(cmarkNode))
-    }
+        
+    public var debugDescription: String { return "Heading - L\(headingLevel)" }
+
+    /// The level of the heading, a value between 1 and 6.
+    lazy var headingLevel: Int = cmarkNode.headingLevel
     
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_HEADING else { return nil }

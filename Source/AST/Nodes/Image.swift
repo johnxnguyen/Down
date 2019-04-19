@@ -13,20 +13,32 @@ public class Image: Node {
     public var cmarkNode: CMarkNode
     
     public var debugDescription: String {
-        return "Image - title: \(title ?? "None"), url: \(url ?? "None")"
+        return "Image - title: \(title ?? "nil"), url: \(url ?? "nil"))"
     }
     
-    var title: String? {
-        guard let cString = cmark_node_get_title(cmarkNode) else { return nil }
-        let result = String(cString: cString)
-        return result.isEmpty ? nil : result
-    }
+    /// The title of the image, if present.
+    ///
+    /// In the example below, the first line is a reference link, with the reference at the
+    /// bottom. `<text>` is literal text belonging to children nodes. The title occurs
+    /// after the url and is optional.
+    ///
+    /// ```
+    /// ![<text>][<id>]
+    /// ...
+    /// [<id>]: <url> "<title>"
+    /// ```
+    ///
+    lazy var title: String? = cmarkNode.title
     
-    var url: String? {
-        guard let cString = cmark_node_get_url(cmarkNode) else { return nil }
-        let result = String(cString: cString)
-        return result.isEmpty ? nil : result
-    }
+    /// The url of the image, if present.
+    ///
+    /// For example:
+    ///
+    /// ```
+    /// ![<text>](<url>)
+    /// ```
+    ///
+    lazy var url: String? = cmarkNode.url
     
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_IMAGE else { return nil }

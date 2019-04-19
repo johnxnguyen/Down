@@ -11,19 +11,20 @@ import libcmark
 public class List: Node {
     
     enum ListType: CustomDebugStringConvertible {
-        case bullet, ordered
+        case bullet
+        case ordered(start: Int)
         
         public var debugDescription: String {
             switch self {
             case .bullet: return "Bullet"
-            case .ordered: return "Ordered"
+            case .ordered(let start): return "Ordered (start: \(start)"
             }
         }
         
-        init?(type: cmark_list_type) {
-            switch type {
+        init?(cmarkNode: CMarkNode) {
+            switch cmarkNode.listType {
             case CMARK_BULLET_LIST: self = .bullet
-            case CMARK_ORDERED_LIST: self = .ordered
+            case CMARK_ORDERED_LIST: self = .ordered(start: cmarkNode.listStart)
             default: return nil
             }
         }
@@ -31,21 +32,20 @@ public class List: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "\(listType) List - start: \(listStart)" }
+    public var debugDescription: String { return "List - type: \(listType)" }
     
-    var listType: ListType {
-        // TODO: handle
-        guard let type = ListType(type: cmark_node_get_list_type(cmarkNode)) else { fatalError() }
+    /// The type of the list, either bullet or ordered.
+    lazy var listType: ListType = {
+        guard let type = ListType(cmarkNode: cmarkNode) else {
+            fatalError("List node should have list type.")
+        }
         return type
-    }
-    
-    var listStart: Int {
-        return Int(cmark_node_get_list_start(cmarkNode))
-    }
-    
-    lazy var numberOfItems: Int = {
-        return childen.count
     }()
+    
+    
+    /// The number of items in the list.
+    lazy var numberOfItems: Int = childen.count
+    
     
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_LIST else { return nil }

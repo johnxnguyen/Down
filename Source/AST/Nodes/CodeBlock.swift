@@ -12,23 +12,28 @@ public class CodeBlock: Node {
     
     public var cmarkNode: CMarkNode
     
-    public var debugDescription: String { return "Code Block - literal: '\(literal)', fenceInfo: \(fenceInfo ?? "None")" }
-    
-    var literal: String {
-        // TODO: is it expected that there is a literal?
-        guard let cString = cmark_node_get_literal(cmarkNode) else { fatalError() }
-        return String(cString: cString)
+    public var debugDescription: String {
+        return "Code Block - \(literal ?? "nil"), fenceInfo: \(fenceInfo ?? "nil")"
     }
     
-    var fenceInfo: String? {
-        guard let cString = cmark_node_get_fence_info(cmarkNode) else { return nil }
-        let result = String(cString: cString)
-        return result.isEmpty ? nil : result
-    }
+    /// The code content, if present.
+    lazy var literal: String? = cmarkNode.literal
+    
+    /// The fence info is an optional string that trails the opening sequence of backticks.
+    /// It can be used to provide some contextual information about the block, such as
+    /// the name of a programming language.
+    ///
+    /// For example:
+    /// ```
+    /// '''<fence info>
+    /// <literal>
+    /// '''
+    /// ```
+    ///
+    lazy var fenceInfo: String? = cmarkNode.fenceInfo
     
     init?(cmarkNode: CMarkNode) {
         guard cmarkNode.type == CMARK_NODE_CODE_BLOCK else { return nil }
         self.cmarkNode = cmarkNode
     }
 }
-

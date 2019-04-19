@@ -43,7 +43,7 @@ extension AttributedStringVisitor: Visitor {
             let prefix: String
             switch node.listType {
             case .bullet: prefix = "•\t"
-            case .ordered: prefix = "\(node.listStart + index).\t"
+            case .ordered(let start): prefix = "\(start + index).\t"
             }
             
             item.insert(prefix.attributed(with: styler.listPrefixAttributes), at: 0)
@@ -65,14 +65,14 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(codeBlock node: CodeBlock) -> NSMutableAttributedString {
-        let s = node.literal.attributed
+        guard let s = node.literal?.attributed else { return .empty }
         if node.hasSuccessor { s.append(.blankLine) }
         styler.style(codeBlock: s, fenceInfo: node.fenceInfo)
         return s
     }
     
     public func visit(htmlBlock node: HtmlBlock) -> NSMutableAttributedString {
-        let s = node.literal.attributed
+        guard let s = node.literal?.attributed else { return .empty }
         s.insert(.blankLine, at: 0)
         if node.hasSuccessor { s.append(.blankLine) }
         styler.style(htmlBlock: s)
@@ -80,7 +80,7 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(customBlock node: CustomBlock) -> NSMutableAttributedString {
-        let s = node.literal.attributed
+        guard let s = node.literal?.attributed else { return .empty }
         s.insert(.blankLine, at: 0)
         if node.hasSuccessor { s.append(.blankLine) }
         styler.style(customBlock: s)
@@ -97,7 +97,7 @@ extension AttributedStringVisitor: Visitor {
     public func visit(heading node: Heading) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
         if node.hasSuccessor { s.append(.blankLine) }
-        styler.style(heading: s, level: node.headerLevel)
+        styler.style(heading: s, level: node.headingLevel)
         return s
     }
     
@@ -108,7 +108,7 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(text node: Text) -> NSMutableAttributedString {
-        let s = node.literal.attributed
+        guard let s = node.literal?.attributed else { return .empty }
         styler.style(text: s)
         return s
     }
@@ -126,19 +126,19 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(code node: Code) -> NSMutableAttributedString {
-        let s = node.literal.attributed
+        guard let s = node.literal?.attributed else { return .empty }
         styler.style(code: s)
         return s
     }
     
     public func visit(htmlInline node: HtmlInline) -> NSMutableAttributedString {
-        let s = node.literal.attributed
+        guard let s = node.literal?.attributed else { return .empty }
         styler.style(htmlInline: s)
         return s
     }
     
     public func visit(customInline node: CustomInline) -> NSMutableAttributedString {
-        let s = node.literal.attributed
+        guard let s = node.literal?.attributed else { return .empty }
         styler.style(customInline: s)
         return s
     }
@@ -190,5 +190,11 @@ private extension Sequence where Iterator.Element == NSMutableAttributedString {
 private extension NSAttributedString {
     static var blankLine: NSAttributedString {
         return "\n".attributed
+    }
+}
+
+private extension NSMutableAttributedString {
+    static var empty: NSMutableAttributedString {
+        return "".attributed
     }
 }
