@@ -39,122 +39,88 @@ class VisitorTests: XCTestCase {
         XCTAssertEqual(result, expected)
     }
     
-    func testTraversal() throws {
+    func testAttributedStringVisitor() throws {
         // Given
         let markdown = """
-        # Text
-
-        text **text** text *text* text `text`
-        text <text>text</text>
-
-        text\("  ")
-        text
-
+        # Heading
+        
+        This **is** a *paragraph* with `inline`
+        elements <p></p>
+        
+        This is followed by a hard linebreak\("  ")
+        This is after the linebreak
+        
         ---
-
-        [text](www.text.com)
-        ![text](www.text.com)
-
-        > text
-
+        
+        [this is a link](www.text.com)
+        ![this is an image](www.text.com)
+        
+        > this is a quote
+        
         ```
-        text
+        code block
+        code block
         ```
         
-        <text>
-            text
-        </text>
-
-        1. text
-        2. text
+        <html>
+            block
+        </html>
+        
+        1. first item
+        2. second item
         """
         
         let down = Down(markdownString: markdown)
         let ast = try down.toAST()
-        let document = Document(cmarkNode: ast)!
-        let visitor = TestVisitor()
+        print(Document(cmarkNode: ast)!.accept(DebugVisitor()))
         
         // When
-        _ = document.accept(visitor)
+        let result = try down.toAttributedString(styler: EmptyStyler()).string
         
         // Then
-        let expected = [
-            "Document",
-                "Heading",
-                    "Text",
-                "Paragraph",
-                    "Text",
-                    "Strong",
-                        "Text",
-                    "Text",
-                    "Emphasis",
-                        "Text",
-                    "Text",
-                    "Code",
-                    "SoftBreak",
-                    "Text",
-                    "HtmlInline",
-                    "Text",
-                    "HtmlInline",
-                "Paragraph",
-                    "Text",
-                    "LineBreak",
-                    "Text",
-                "ThematicBreak",
-                "Paragraph",
-                    "Link",
-                        "Text",
-                    "SoftBreak",
-                    "Image",
-                        "Text",
-                "BlockQuote",
-                    "Paragraph",
-                        "Text",
-                "CodeBlock",
-                "HtmlBlock",
-                "List",
-                    "Item",
-                        "Paragraph",
-                            "Text",
-                    "Item",
-                        "Paragraph",
-                            "Text"
-        ]
+        let expected = """
+        Heading
+        This is a paragraph with inline elements <p></p>
+        This is followed by a hard linebreak
+        This is after the linebreak
+
+        this is a link this is an image
+        this is a quote
+        code block
+        code block
+        <html>
+            block
+        </html>
+        1.\tfirst item
+        2.\tsecond item
+        """
         
-        XCTAssertEqual(visitor.sequence, expected)
+        XCTAssertEqual(result, expected)
     }
 
 }
 
-private class TestVisitor: Visitor {
-    
-    typealias Result = ()
-    
-    var sequence = [String]()
-    
-    func visit(document node: Document)             { record(node) }
-    func visit(blockQuote node: BlockQuote)         { record(node) }
-    func visit(list node: List)                     { record(node) }
-    func visit(item node: Item)                     { record(node) }
-    func visit(codeBlock node: CodeBlock)           { record(node) }
-    func visit(htmlBlock node: HtmlBlock)           { record(node) }
-    func visit(customBlock node: CustomBlock)       { record(node) }
-    func visit(paragraph node: Paragraph)           { record(node) }
-    func visit(heading node: Heading)               { record(node) }
-    func visit(thematicBreak node: ThematicBreak)   { record(node) }
-    func visit(text node: Text)                     { record(node) }
-    func visit(softBreak node: SoftBreak)           { record(node) }
-    func visit(lineBreak node: LineBreak)           { record(node) }
-    func visit(code node: Code)                     { record(node) }
-    func visit(htmlInline node: HtmlInline)         { record(node) }
-    func visit(customInline node: CustomInline)     { record(node) }
-    func visit(emphasis node: Emphasis)             { record(node) }
-    func visit(strong node: Strong)                 { record(node) }
-    func visit(link node: Link)                     { record(node) }
-    func visit(image node: Image)                   { record(node) }
-    
-    func record(_ node: Node) {
-        sequence.append(String(describing: type(of: node)))
-        _ = visitChildren(of: node)
-    }
+private class EmptyStyler: Styler {
+    var listPrefixAttributes: [NSAttributedStringKey : Any] = [:]
+    func style(document str: NSMutableAttributedString) {}
+    func style(blockQuote str: NSMutableAttributedString) {}
+    func style(list str: NSMutableAttributedString) {}
+    func style(item str: NSMutableAttributedString) {}
+    func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?) {}
+    func style(htmlBlock str: NSMutableAttributedString) {}
+    func style(customBlock str: NSMutableAttributedString) {}
+    func style(paragraph str: NSMutableAttributedString) {}
+    func style(heading str: NSMutableAttributedString, level: Int) {}
+    func style(thematicBreak str: NSMutableAttributedString) {}
+    func style(text str: NSMutableAttributedString) {}
+    func style(softBreak str: NSMutableAttributedString) {}
+    func style(lineBreak str: NSMutableAttributedString) {}
+    func style(code str: NSMutableAttributedString) {}
+    func style(htmlInline str: NSMutableAttributedString) {}
+    func style(customInline str: NSMutableAttributedString) {}
+    func style(emphasis str: NSMutableAttributedString) {}
+    func style(strong str: NSMutableAttributedString) {}
+    func style(link str: NSMutableAttributedString, title: String?, url: String?) {}
+    func style(image str: NSMutableAttributedString, title: String?, url: String?) {}
 }
+
