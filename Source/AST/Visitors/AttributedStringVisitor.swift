@@ -75,23 +75,18 @@ extension AttributedStringVisitor: Visitor {
     
     public func visit(codeBlock node: CodeBlock) -> NSMutableAttributedString {
         guard let s = node.literal?.attributed else { return .empty }
-        if node.hasSuccessor { s.append(.blankLine) }
         styler.style(codeBlock: s, fenceInfo: node.fenceInfo)
         return s
     }
     
     public func visit(htmlBlock node: HtmlBlock) -> NSMutableAttributedString {
         guard let s = node.literal?.attributed else { return .empty }
-        s.insert(.blankLine, at: 0)
-        if node.hasSuccessor { s.append(.blankLine) }
         styler.style(htmlBlock: s)
         return s
     }
     
     public func visit(customBlock node: CustomBlock) -> NSMutableAttributedString {
         guard let s = node.literal?.attributed else { return .empty }
-        s.insert(.blankLine, at: 0)
-        if node.hasSuccessor { s.append(.blankLine) }
         styler.style(customBlock: s)
         return s
     }
