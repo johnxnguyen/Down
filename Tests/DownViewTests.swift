@@ -145,7 +145,7 @@ class DownViewTests: XCTestCase {
     }
 }
 
-fileprivate extension DownViewTests {
+private extension DownViewTests {
     
     func _pageContents(for downView: DownView, completion: @escaping (_ htmlString: String?) -> ()) {
         downView.evaluateJavaScript("document.documentElement.outerHTML.toString()") { (html: Any?, _) in

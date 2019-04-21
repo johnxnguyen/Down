@@ -84,12 +84,12 @@ open class DownView: WKWebView {
 
     let bundle: Bundle
 
-    fileprivate lazy var baseURL: URL = {
+    private lazy var baseURL: URL = {
         return self.bundle.url(forResource: "index", withExtension: "html")!
     }()
 
     #if os(macOS)
-    fileprivate lazy var temporaryDirectoryURL: URL = {
+    private lazy var temporaryDirectoryURL: URL = {
         return try! FileManager.default.url(for: .itemReplacementDirectory,
                                             in: .userDomainMask,
                                             appropriateFor: URL(fileURLWithPath: "/"),
@@ -97,7 +97,7 @@ open class DownView: WKWebView {
     }()
     #endif
     
-    fileprivate var didLoadSuccessfully: DownViewClosure?
+    private var didLoadSuccessfully: DownViewClosure?
 }
 
 // MARK: - Private API
@@ -195,7 +195,7 @@ extension DownView: WKNavigationDelegate {
     
 }
 
-fileprivate extension WKNavigationDelegate {
+private extension WKNavigationDelegate {
     /// A wrapper for `UIApplication.shared.openURL` so that an empty default
     /// implementation is available in app extensions
     func openURL(url: URL) {}
