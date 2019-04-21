@@ -13,7 +13,7 @@ public class CodeBlock: Node {
     public var cmarkNode: CMarkNode
     
     /// The code content, if present.
-    public lazy var literal: String? = cmarkNode.literal
+    public private(set) lazy var literal: String? = cmarkNode.literal
     
     /// The fence info is an optional string that trails the opening sequence of backticks.
     /// It can be used to provide some contextual information about the block, such as
@@ -26,7 +26,7 @@ public class CodeBlock: Node {
     /// '''
     /// ```
     ///
-    public lazy var fenceInfo: String? = cmarkNode.fenceInfo
+    public private(set) lazy var fenceInfo: String? = cmarkNode.fenceInfo
     
     /// Attempts to wrap the given `CMarkNode`.
     ///

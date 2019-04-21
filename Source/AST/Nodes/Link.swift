@@ -24,7 +24,7 @@ public class Link: Node {
     /// [<id>]: <url> "<title>"
     /// ```
     ///
-    public lazy var title: String? = cmarkNode.title
+    public private(set) lazy var title: String? = cmarkNode.title
     
     /// The url of the link, if present.
     ///
@@ -34,7 +34,7 @@ public class Link: Node {
     /// [<text>](<url>)
     /// ```
     ///
-    public lazy var url: String? = cmarkNode.url
+    public private(set) lazy var url: String? = cmarkNode.url
     
     /// Attempts to wrap the given `CMarkNode`.
     ///

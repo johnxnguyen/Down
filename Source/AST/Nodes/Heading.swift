@@ -13,7 +13,7 @@ public class Heading: Node {
     public var cmarkNode: CMarkNode
         
     /// The level of the heading, a value between 1 and 6.
-    public lazy var headingLevel: Int = cmarkNode.headingLevel
+    public private(set) lazy var headingLevel: Int = cmarkNode.headingLevel
     
     /// Attempts to wrap the given `CMarkNode`.
     ///

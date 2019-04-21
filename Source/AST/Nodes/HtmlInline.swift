@@ -14,7 +14,7 @@ public class HtmlInline: Node {
     
     // TODO: be more secific here.
     /// The html content, if present.
-    public lazy var literal: String? = cmarkNode.literal
+    public private(set) lazy var literal: String? = cmarkNode.literal
     
     /// Attempts to wrap the given `CMarkNode`.
     ///

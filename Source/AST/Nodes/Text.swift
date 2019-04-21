@@ -13,7 +13,7 @@ public class Text: Node {
     public var cmarkNode: CMarkNode
     
     /// The text content, if present.
-    public lazy var literal: String? = cmarkNode.literal
+    public private(set) lazy var literal: String? = cmarkNode.literal
     
     /// Attempts to wrap the given `CMarkNode`.
     ///
