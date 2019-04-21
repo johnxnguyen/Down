@@ -8,9 +8,7 @@
 import Foundation
 import libcmark
 
-public class Image: Node {
-    
-    public let cmarkNode: CMarkNode
+public class Image: BaseNode {
     
     /// The title of the image, if present.
     ///
@@ -35,17 +33,6 @@ public class Image: Node {
     /// ```
     ///
     public private(set) lazy var url: String? = cmarkNode.url
-    
-    /// Attempts to wrap the given `CMarkNode`.
-    ///
-    /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_IMAGE`
-    ///
-    /// - parameter cmarkNode: the node to wrap.
-    ///
-    public init?(cmarkNode: CMarkNode) {
-        guard cmarkNode.type == CMARK_NODE_IMAGE else { return nil }
-        self.cmarkNode = cmarkNode
-    }
 }
 
 

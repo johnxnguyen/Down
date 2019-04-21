@@ -8,21 +8,7 @@
 import Foundation
 import libcmark
 
-public class LineBreak: Node {
-    
-    public let cmarkNode: CMarkNode
-    
-    /// Attempts to wrap the given `CMarkNode`.
-    ///
-    /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_LINE_BREAK`
-    ///
-    /// - parameter cmarkNode: the node to wrap.
-    ///
-    public init?(cmarkNode: CMarkNode) {
-        guard cmarkNode.type == CMARK_NODE_LINEBREAK else { return nil }
-        self.cmarkNode = cmarkNode
-    }
-}
+public class LineBreak: BaseNode {}
 
 
 // MARK: - Debug

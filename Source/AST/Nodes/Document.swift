@@ -8,20 +8,7 @@
 import Foundation
 import libcmark
 
-public class Document: Node {
-    
-    public let cmarkNode: CMarkNode
-    
-    /// Attempts to wrap the given `CMarkNode`.
-    ///
-    /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_DOCUMENT`
-    ///
-    /// - parameter cmarkNode: the node to wrap.
-    ///
-    public init?(cmarkNode: CMarkNode) {
-        guard cmarkNode.type == CMARK_NODE_DOCUMENT else { return nil }
-        self.cmarkNode = cmarkNode
-    }
+public class Document: BaseNode {
     
     deinit {
         // Frees the node and all its children.

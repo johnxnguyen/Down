@@ -8,7 +8,7 @@
 import Foundation
 import libcmark
 
-public class List: Node {
+public class List: BaseNode {
     
     public enum ListType: CustomDebugStringConvertible {
         case bullet
@@ -32,8 +32,6 @@ public class List: Node {
     
     ///////////////////////////////////////////////////////////////////////////
     
-    public let cmarkNode: CMarkNode
-    
     /// The type of the list, either bullet or ordered.
     public lazy var listType: ListType = {
         guard let type = ListType(cmarkNode: cmarkNode) else {
@@ -46,17 +44,6 @@ public class List: Node {
     
     /// The number of items in the list.
     public lazy var numberOfItems: Int = childen.count
-    
-    /// Attempts to wrap the given `CMarkNode`.
-    ///
-    /// This will fail if `cmark_node_get_type(cmarkNode) != CMARK_NODE_LIST`
-    ///
-    /// - parameter cmarkNode: the node to wrap.
-    ///
-    public init?(cmarkNode: CMarkNode) {
-        guard cmarkNode.type == CMARK_NODE_LIST else { return nil }
-        self.cmarkNode = cmarkNode
-    }
 }
 
 

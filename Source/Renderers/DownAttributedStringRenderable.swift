@@ -78,7 +78,12 @@ extension DownAttributedStringRenderable {
      */
     public func toAttributedString(_ options: DownOptions = .default, styler: Styler) throws -> NSAttributedString {
         let tree = try self.toAST(options)
-        guard let document = Document(cmarkNode: tree) else { throw DownErrors.astRenderingError }
+        
+        guard tree.type == CMARK_NODE_DOCUMENT else {
+            throw DownErrors.astRenderingError
+        }
+        
+        let document = Document(cmarkNode: tree)
         let visitor = AttributedStringVisitor(styler: styler, options: options)
         return document.accept(visitor)
     }
