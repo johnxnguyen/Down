@@ -21,7 +21,6 @@ public protocol DownAttributedStringRenderable: DownHTMLRenderable, DownASTRende
 
      - returns: An `NSAttributedString`
      */
-    
     func toAttributedString(_ options: DownOptions, stylesheet: String?) throws -> NSAttributedString
     
     /**
@@ -35,7 +34,6 @@ public protocol DownAttributedStringRenderable: DownHTMLRenderable, DownASTRende
      
      - returns: An `NSAttributedString`
      */
-    
     func toAttributedString(_ options: DownOptions, styler: Styler) throws -> NSAttributedString
 }
 
@@ -51,7 +49,6 @@ extension DownAttributedStringRenderable {
 
      - returns: An `NSAttributedString`
      */
-    
     public func toAttributedString(_ options: DownOptions = .default, stylesheet: String? = nil) throws -> NSAttributedString {
         let html = try self.toHTML(options)
         let defaultStylesheet = "* {font-family: Helvetica } code, pre { font-family: Menlo }"
@@ -69,7 +66,6 @@ extension DownAttributedStringRenderable {
      
      - returns: An `NSAttributedString`
      */
-    
     public func toAttributedString(_ options: DownOptions = .default, styler: Styler) throws -> NSAttributedString {
         let tree = try self.toAST(options)
         guard let document = Document(cmarkNode: tree) else { throw DownErrors.astRenderingError }

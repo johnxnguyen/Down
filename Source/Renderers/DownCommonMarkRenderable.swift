@@ -20,7 +20,6 @@ public protocol DownCommonMarkRenderable: DownRenderable {
 
      - returns: CommonMark Markdown string
      */
-    
     func toCommonMark(_ options: DownOptions, width: Int32) throws -> String
 }
 
@@ -35,7 +34,6 @@ extension DownCommonMarkRenderable {
 
      - returns: CommonMark Markdown string
      */
-    
     public func toCommonMark(_ options: DownOptions = .default, width: Int32 = 0) throws -> String {
         let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
         let commonMark = try DownCommonMarkRenderer.astToCommonMark(ast, options: options, width: width)
@@ -57,7 +55,6 @@ public struct DownCommonMarkRenderer {
 
      - returns: CommonMark Markdown string
      */
-    
     public static func astToCommonMark(_ ast: UnsafeMutablePointer<cmark_node>,
                                        options: DownOptions = .default,
                                        width: Int32 = 0) throws -> String {
