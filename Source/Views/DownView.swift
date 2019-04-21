@@ -198,7 +198,7 @@ extension DownView: WKNavigationDelegate {
 fileprivate extension WKNavigationDelegate {
     /// A wrapper for `UIApplication.shared.openURL` so that an empty default
     /// implementation is available in app extensions
-    public func openURL(url: URL) {}
+    func openURL(url: URL) {}
 }
 
 #endif

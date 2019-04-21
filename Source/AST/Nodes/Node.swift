@@ -53,7 +53,7 @@ extension Node {
 public extension UnsafeMutablePointer where Pointee == cmark_node {
     
     /// Wraps the cmark node referred to by this pointer.
-    public func wrap() -> Node? {
+    func wrap() -> Node? {
         switch type {
         case CMARK_NODE_DOCUMENT:       return Document(cmarkNode: self)
         case CMARK_NODE_BLOCK_QUOTE:    return BlockQuote(cmarkNode: self)
