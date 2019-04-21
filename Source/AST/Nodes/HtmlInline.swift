@@ -12,8 +12,7 @@ public class HtmlInline: Node {
     
     public var cmarkNode: CMarkNode
     
-    // TODO: be more secific here.
-    /// The html content, if present.
+    /// The html tag, if present.
     public private(set) lazy var literal: String? = cmarkNode.literal
     
     /// Attempts to wrap the given `CMarkNode`.
