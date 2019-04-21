@@ -15,6 +15,7 @@ Is your app using it? [Let us know!](mailto:rob@robphillips.me)
 #### Maintainers
 
 - [Rob Phillips](https://github.com/iwasrobbed)
+- [John Nguyen](https://github.com/johnxnguyen)
 - [Keaton Burleson](https://github.com/128keaton)
 - [phoney](https://github.com/phoney)
 - [Tony Arnold](https://github.com/tonyarnold)
