@@ -37,7 +37,8 @@ public class List: Node {
     /// The type of the list, either bullet or ordered.
     public lazy var listType: ListType = {
         guard let type = ListType(cmarkNode: cmarkNode) else {
-            fatalError("List node should have list type.")
+            assertionFailure("Unsupported or missing list type. Defaulting to .bullet.")
+            return .bullet
         }
         
         return type
