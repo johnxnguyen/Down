@@ -10,11 +10,9 @@ import libcmark
 
 public class Emphasis: BaseNode {}
 
-
 // MARK: - Debug
 
 extension Emphasis: CustomDebugStringConvertible {
-    
     public var debugDescription: String {
         return "Emphasis"
     }

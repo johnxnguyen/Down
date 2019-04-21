@@ -10,11 +10,9 @@ import libcmark
 
 public class BlockQuote: BaseNode {}
 
-
 // MARK: - Debug
 
 extension BlockQuote: CustomDebugStringConvertible {
-    
     public var debugDescription: String {
         return "Block Quote"
     }

@@ -330,9 +330,9 @@
 		D4201EC41CFA59A5008EEC6E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				907C64611EC120530095FEE1 /* Fixtures */,
 				D4201EC51CFA59A5008EEC6E /* BindingTests.swift */,
 				D41689B21CFFE28200E5802B /* DownViewTests.swift */,
-				907C64611EC120530095FEE1 /* Fixtures */,
 				D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */,
 				D438696B1D00D27700E95A1F /* StringTests.swift */,
 				EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */,
@@ -411,8 +411,8 @@
 				D486E9991CFDE28B0059FD7C /* DownGroffRenderable.swift */,
 				D44875E51CFA6B660037A624 /* DownHTMLRenderable.swift */,
 				D486E9971CFDE2730059FD7C /* DownLaTeXRenderable.swift */,
-				D486E9931CFDD33C0059FD7C /* DownXMLRenderable.swift */,
 				D44875E31CFA6B200037A624 /* DownRenderable.swift */,
+				D486E9931CFDD33C0059FD7C /* DownXMLRenderable.swift */,
 			);
 			path = Renderers;
 			sourceTree = "<group>";
@@ -437,28 +437,28 @@
 		EEEBEE45225D297700AE438D /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				EEF1376E2259E53400D7DDE0 /* Node.swift */,
 				EE469B10226CF3B500C0655D /* BaseNode.swift */,
-				EEEBEE46225D298D00AE438D /* Document.swift */,
 				EEEBEE48225D29C200AE438D /* BlockQuote.swift */,
-				EEEBEE4A225D29D800AE438D /* List.swift */,
-				EEEBEE4C225D2A0200AE438D /* Item.swift */,
-				EEEBEE4E225D2A1400AE438D /* CodeBlock.swift */,
-				EEEBEE50225D2A2900AE438D /* HtmlBlock.swift */,
-				EEEBEE52225D2A3C00AE438D /* CustomBlock.swift */,
-				EEEBEE54225D2A4E00AE438D /* Paragraph.swift */,
-				EEEBEE56225D2A6200AE438D /* Heading.swift */,
-				EEEBEE58225D2A7000AE438D /* ThematicBreak.swift */,
-				EEEBEE5A225D2A7E00AE438D /* Text.swift */,
-				EEEBEE5C225D2A8F00AE438D /* SoftBreak.swift */,
-				EEEBEE5E225D2AA700AE438D /* LineBreak.swift */,
 				EEEBEE60225D2AC000AE438D /* Code.swift */,
-				EEEBEE62225D2AD400AE438D /* HtmlInline.swift */,
+				EEEBEE4E225D2A1400AE438D /* CodeBlock.swift */,
+				EEEBEE52225D2A3C00AE438D /* CustomBlock.swift */,
 				EEEBEE64225D2AE800AE438D /* CustomInline.swift */,
+				EEEBEE46225D298D00AE438D /* Document.swift */,
 				EEEBEE66225D2AF900AE438D /* Emphasis.swift */,
-				EEEBEE68225D2B1200AE438D /* Strong.swift */,
-				EEEBEE6A225D2B2200AE438D /* Link.swift */,
+				EEEBEE56225D2A6200AE438D /* Heading.swift */,
+				EEEBEE50225D2A2900AE438D /* HtmlBlock.swift */,
+				EEEBEE62225D2AD400AE438D /* HtmlInline.swift */,
 				EEEBEE6C225D2B3200AE438D /* Image.swift */,
+				EEEBEE4C225D2A0200AE438D /* Item.swift */,
+				EEEBEE5E225D2AA700AE438D /* LineBreak.swift */,
+				EEEBEE6A225D2B2200AE438D /* Link.swift */,
+				EEEBEE4A225D29D800AE438D /* List.swift */,
+				EEF1376E2259E53400D7DDE0 /* Node.swift */,
+				EEEBEE54225D2A4E00AE438D /* Paragraph.swift */,
+				EEEBEE5C225D2A8F00AE438D /* SoftBreak.swift */,
+				EEEBEE68225D2B1200AE438D /* Strong.swift */,
+				EEEBEE5A225D2A7E00AE438D /* Text.swift */,
+				EEEBEE58225D2A7000AE438D /* ThematicBreak.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -466,9 +466,9 @@
 		EEEBEE6E225D2B8200AE438D /* Visitors */ = {
 			isa = PBXGroup;
 			children = (
-				EEF137702259E7E700D7DDE0 /* Vistor.swift */,
-				EEEBEE6F225D2B9D00AE438D /* DebugVisitor.swift */,
 				EEEBEE71225D2F9200AE438D /* AttributedStringVisitor.swift */,
+				EEEBEE6F225D2B9D00AE438D /* DebugVisitor.swift */,
+				EEF137702259E7E700D7DDE0 /* Vistor.swift */,
 			);
 			path = Visitors;
 			sourceTree = "<group>";

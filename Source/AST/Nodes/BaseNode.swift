@@ -34,4 +34,5 @@ public class BaseNode: Node {
     init(cmarkNode: CMarkNode) {
         self.cmarkNode = cmarkNode
     }
+    
 }

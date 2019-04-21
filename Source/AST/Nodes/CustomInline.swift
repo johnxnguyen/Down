@@ -14,11 +14,9 @@ public class CustomInline: BaseNode {
     public private(set) lazy var literal: String? = cmarkNode.literal
 }
 
-
 // MARK: - Debug
 
 extension CustomInline: CustomDebugStringConvertible {
-    
     public var debugDescription: String {
         return "Custom Inline - \(literal ?? "nil")"
     }

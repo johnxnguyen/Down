@@ -33,13 +33,12 @@ public class Image: BaseNode {
     /// ```
     ///
     public private(set) lazy var url: String? = cmarkNode.url
+    
 }
-
 
 // MARK: - Debug
 
 extension Image: CustomDebugStringConvertible {
-    
     public var debugDescription: String {
         return "Image - title: \(title ?? "nil"), url: \(url ?? "nil"))"
     }

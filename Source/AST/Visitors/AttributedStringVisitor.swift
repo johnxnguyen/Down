@@ -11,7 +11,6 @@ import Foundation
 /// tree produced by a markdown string. It traverses the tree to construct substrings
 /// represented at each node and uses an instance of `Styler` to apply the visual attributes.
 /// These substrings are joined together to produce the final result.
-///
 public class AttributedStringVisitor {
     
     private let styler: Styler
@@ -22,7 +21,6 @@ public class AttributedStringVisitor {
     /// - parameters:
     ///     - styler: used to style the markdown elements.
     ///     - options: may be used to modify rendering.
-    ///
     public init(styler: Styler, options: DownOptions = .default) {
         self.styler = styler
         self.options = options

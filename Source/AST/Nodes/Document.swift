@@ -19,13 +19,13 @@ public class Document: BaseNode {
     public func accept<T: Visitor>(_ visitor: T) -> T.Result {
         return visitor.visit(document: self)
     }
+    
 }
 
 
 // MARK: - Debug
 
 extension Document: CustomDebugStringConvertible {
-    
     public var debugDescription: String {
         return "Document"
     }

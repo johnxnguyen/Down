@@ -12,13 +12,12 @@ public class HtmlBlock: BaseNode {
     
     /// The html content, if present.
     public private(set) lazy var literal: String? = cmarkNode.literal
+    
 }
-
 
 // MARK: - Debug
 
 extension HtmlBlock: CustomDebugStringConvertible {
-    
     public var debugDescription: String {
         return "Html Block - \(literal ?? "nil")"
     }
