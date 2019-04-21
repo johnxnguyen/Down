@@ -16,7 +16,7 @@ public protocol Node {
     var cmarkNode: CMarkNode { get }
     
     /// The wrapped child nodes.
-    var childen: [Node] { get }
+    var children: [Node] { get }
 }
 
 public extension Node {

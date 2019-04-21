@@ -43,7 +43,7 @@ public class List: BaseNode {
     }()
     
     /// The number of items in the list.
-    public lazy var numberOfItems: Int = childen.count
+    public lazy var numberOfItems: Int = children.count
 }
 
 

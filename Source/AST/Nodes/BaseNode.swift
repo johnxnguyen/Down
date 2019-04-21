@@ -13,7 +13,7 @@ public class BaseNode: Node {
     
     public let cmarkNode: CMarkNode
     
-    public private(set) lazy var childen: [Node] = {
+    public private(set) lazy var children: [Node] = {
         var result: [Node] = []
         var child = cmark_node_first_child(cmarkNode)
         

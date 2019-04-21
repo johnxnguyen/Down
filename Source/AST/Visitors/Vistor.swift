@@ -39,7 +39,7 @@ public protocol Visitor {
 
 extension Visitor {
     public func visitChildren(of node: Node) -> [Result] {
-        return node.childen.compactMap { child in
+        return node.children.compactMap { child in
             switch child {
             case is Document:       return visit(document: child as! Document)
             case is BlockQuote:     return visit(blockQuote: child as! BlockQuote)
