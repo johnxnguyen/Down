@@ -117,6 +117,5 @@ private extension String {
         let result = String(cString: unwrapped)
         guard !result.isEmpty else { return nil }
         self = result
-        
     }
 }
