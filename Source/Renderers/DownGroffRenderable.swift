@@ -20,7 +20,6 @@ public protocol DownGroffRenderable: DownRenderable {
 
      - returns: groff man string
      */
-    
     func toGroff(_ options: DownOptions, width: Int32) throws -> String
 }
 
@@ -35,7 +34,6 @@ extension DownGroffRenderable {
 
      - returns: groff man string
      */
-    
     public func toGroff(_ options: DownOptions = .default, width: Int32 = 0) throws -> String {
         let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
         let groff = try DownGroffRenderer.astToGroff(ast, options: options, width: width)
@@ -57,7 +55,6 @@ public struct DownGroffRenderer {
 
      - returns: groff man string
      */
-    
     public static func astToGroff(_ ast: UnsafeMutablePointer<cmark_node>,
                                   options: DownOptions = .default,
                                   width: Int32 = 0) throws -> String {

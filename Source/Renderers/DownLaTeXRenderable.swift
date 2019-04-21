@@ -20,7 +20,6 @@ public protocol DownLaTeXRenderable: DownRenderable {
 
      - returns: LaTeX string
      */
-    
     func toLaTeX(_ options: DownOptions, width: Int32) throws -> String
 }
 
@@ -35,7 +34,6 @@ extension DownLaTeXRenderable {
 
      - returns: LaTeX string
      */
-    
     public func toLaTeX(_ options: DownOptions = .default, width: Int32 = 0) throws -> String {
         let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
         let latex = try DownLaTeXRenderer.astToLaTeX(ast, options: options, width: width)
@@ -57,7 +55,6 @@ public struct DownLaTeXRenderer {
 
      - returns: LaTeX string
      */
-    
     public static func astToLaTeX(_ ast: UnsafeMutablePointer<cmark_node>,
                                   options: DownOptions = .default,
                                   width: Int32 = 0) throws -> String {

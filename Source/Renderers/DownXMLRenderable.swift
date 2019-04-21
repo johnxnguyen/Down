@@ -19,7 +19,6 @@ public protocol DownXMLRenderable: DownRenderable {
 
      - returns: XML string
      */
-    
     func toXML(_ options: DownOptions) throws -> String
 }
 
@@ -33,7 +32,6 @@ extension DownXMLRenderable {
 
      - returns: XML string
      */
-    
     public func toXML(_ options: DownOptions = .default) throws -> String {
         let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
         let xml = try DownXMLRenderer.astToXML(ast, options: options)
@@ -54,7 +52,6 @@ public struct DownXMLRenderer {
 
      - returns: XML string
      */
-    
     public static func astToXML(_ ast: UnsafeMutablePointer<cmark_node>, options: DownOptions = .default) throws -> String {
         guard let cXMLString = cmark_render_xml(ast, options.rawValue) else {
             throw DownErrors.astRenderingError
