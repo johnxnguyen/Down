@@ -10,7 +10,7 @@ import libcmark
 
 public class Document: Node {
     
-    public var cmarkNode: CMarkNode
+    public let cmarkNode: CMarkNode
     
     /// Attempts to wrap the given `CMarkNode`.
     ///

@@ -10,7 +10,7 @@ import libcmark
 
 public class CustomBlock: Node {
     
-    public var cmarkNode: CMarkNode
+    public let cmarkNode: CMarkNode
     
     /// The custom content, if present.
     public private(set) lazy var literal: String? = cmarkNode.literal

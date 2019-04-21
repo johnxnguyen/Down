@@ -32,7 +32,7 @@ public class List: Node {
     
     ///////////////////////////////////////////////////////////////////////////
     
-    public var cmarkNode: CMarkNode
+    public let cmarkNode: CMarkNode
     
     /// The type of the list, either bullet or ordered.
     public lazy var listType: ListType = {

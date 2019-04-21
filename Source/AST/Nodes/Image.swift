@@ -10,7 +10,7 @@ import libcmark
 
 public class Image: Node {
     
-    public var cmarkNode: CMarkNode
+    public let cmarkNode: CMarkNode
     
     /// The title of the image, if present.
     ///

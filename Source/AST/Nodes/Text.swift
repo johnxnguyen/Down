@@ -10,7 +10,7 @@ import libcmark
 
 public class Text: Node {
     
-    public var cmarkNode: CMarkNode
+    public let cmarkNode: CMarkNode
     
     /// The text content, if present.
     public private(set) lazy var literal: String? = cmarkNode.literal

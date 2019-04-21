@@ -10,7 +10,7 @@ import libcmark
 
 public class HtmlBlock: Node {
     
-    public var cmarkNode: CMarkNode
+    public let cmarkNode: CMarkNode
     
     /// The html content, if present.
     public private(set) lazy var literal: String? = cmarkNode.literal

@@ -10,7 +10,7 @@ import libcmark
 
 public class Link: Node {
     
-    public var cmarkNode: CMarkNode
+    public let cmarkNode: CMarkNode
     
     /// The title of the link, if present.
     ///

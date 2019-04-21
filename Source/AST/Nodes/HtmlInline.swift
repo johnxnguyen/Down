@@ -10,7 +10,7 @@ import libcmark
 
 public class HtmlInline: Node {
     
-    public var cmarkNode: CMarkNode
+    public let cmarkNode: CMarkNode
     
     /// The html tag, if present.
     public private(set) lazy var literal: String? = cmarkNode.literal
