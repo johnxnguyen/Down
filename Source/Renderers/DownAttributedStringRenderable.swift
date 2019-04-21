@@ -40,10 +40,16 @@ public protocol DownAttributedStringRenderable: DownHTMLRenderable, DownASTRende
 extension DownAttributedStringRenderable {
     /**
      Generates an `NSAttributedString` from the `markdownString` property
+     
+     The attributed string is constructed and rendered via WebKit from html generated from the
+     abstract syntax tree. This process is not background safe and must be executed on the main
+     thread. Additionally, it may be slow to render. For an efficient background safe render,
+     use the `toAttributedString(options: styler:)` method.
 
      - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
 
-     - parameter stylesheet: a `String` to use as the CSS stylesheet when rendering, defaulting to a style that uses the `NSAttributedString` default font
+     - parameter stylesheet: a `String` to use as the CSS stylesheet when rendering, defaulting
+                             to a style that uses the `NSAttributedString` default font
 
      - throws: `DownErrors` depending on the scenario
 
@@ -57,6 +63,10 @@ extension DownAttributedStringRenderable {
     
     /**
      Generates an `NSAttributedString` from the `markdownString` property
+     
+     The attributed string is constructed directly by traversing the abstract syntax tree. It is
+     much faster than the `toAttributedString(options: stylesheet)` method and it can be also be
+     rendered in a background thread.
      
      - parameter options: `DownOptions` to modify parsing or rendering
      
