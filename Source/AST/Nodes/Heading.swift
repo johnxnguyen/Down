@@ -14,11 +14,9 @@ public class Heading: BaseNode {
     public private(set) lazy var headingLevel: Int = cmarkNode.headingLevel
 }
 
-
 // MARK: - Debug
 
 extension Heading: CustomDebugStringConvertible {
-    
     public var debugDescription: String {
         return "Heading - L\(headingLevel)"
     }

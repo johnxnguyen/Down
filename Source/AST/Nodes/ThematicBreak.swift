@@ -10,11 +10,9 @@ import libcmark
 
 public class ThematicBreak: BaseNode {}
 
-
 // MARK: - Debug
 
 extension ThematicBreak: CustomDebugStringConvertible {
-    
     public var debugDescription: String {
         return "Thematic Break"
     }

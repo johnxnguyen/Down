@@ -9,26 +9,31 @@
 import Cocoa
 import Down
 
-class ViewController: NSViewController {
-
-    var downView: DownView!
+final class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        renderDownInWebView()
+    }
+    
+}
+
+private extension ViewController {
+    
+    func renderDownInWebView() {
         let readMeURL = Bundle.main.url(forResource: nil, withExtension: "md")!
         let readMeContents = try! String(contentsOf: readMeURL)
-
+        
         do {
-            downView = try DownView(frame: view.bounds, markdownString: readMeContents, didLoadSuccessfully: {
+            let downView = try DownView(frame: view.bounds, markdownString: readMeContents, didLoadSuccessfully: {
                 print("Markdown was rendered.")
             })
+            downView.autoresizingMask = [.width, .height]
+            view.addSubview(downView, positioned: .below, relativeTo: nil)
         } catch {
             NSApp.presentError(error)
         }
-
-        downView.autoresizingMask = [.width, .height]
-        view.addSubview(downView, positioned: .below, relativeTo: nil)
     }
 }
 

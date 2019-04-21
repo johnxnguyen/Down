@@ -10,11 +10,9 @@ import libcmark
 
 public class LineBreak: BaseNode {}
 
-
 // MARK: - Debug
 
 extension LineBreak: CustomDebugStringConvertible {
-    
     public var debugDescription: String {
         return "Line Break"
     }

@@ -3,7 +3,7 @@
 //  Down
 //
 //  Created by Rob Phillips on 6/1/16.
-//  Copyright © 2016 Glazed Donut, LLC. All rights reserved.
+//  Copyright © 2016-2019 Glazed Donut, LLC. All rights reserved.
 //
 
 #if os(tvOS)
@@ -145,7 +145,7 @@ class DownViewTests: XCTestCase {
     }
 }
 
-fileprivate extension DownViewTests {
+private extension DownViewTests {
     
     func _pageContents(for downView: DownView, completion: @escaping (_ htmlString: String?) -> ()) {
         downView.evaluateJavaScript("document.documentElement.outerHTML.toString()") { (html: Any?, _) in

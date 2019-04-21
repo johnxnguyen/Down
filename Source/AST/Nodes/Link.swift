@@ -33,13 +33,12 @@ public class Link: BaseNode {
     /// ```
     ///
     public private(set) lazy var url: String? = cmarkNode.url
+    
 }
-
 
 // MARK: - Debug
 
 extension Link: CustomDebugStringConvertible {
-    
     public var debugDescription: String {
         return "Link - title: \(title ?? "nil"), url: \(url ?? "nil"))"
     }

@@ -3,7 +3,7 @@
 //  Down
 //
 //  Created by Rob Phillips on 6/1/16.
-//  Copyright © 2016 Glazed Donut, LLC. All rights reserved.
+//  Copyright © 2016-2019 Glazed Donut, LLC. All rights reserved.
 //
 
 #if os(macOS)
@@ -15,15 +15,10 @@
 
 extension NSAttributedString {
 
-    /**
-     Instantiates an attributed string with the given HTML string
-
-     - parameter htmlString: An HTML string
-
-     - throws: `HTMLDataConversionError` or an instantiation error
-
-     - returns: An attributed string
-     */
+    /// Instantiates an attributed string with the given HTML string
+    ///
+    /// - Parameter htmlString: An HTML string
+    /// - Throws: `HTMLDataConversionError` or an instantiation error
     convenience init(htmlString: String) throws {
         guard let data = htmlString.data(using: String.Encoding.utf8) else {
             throw DownErrors.htmlDataConversionError

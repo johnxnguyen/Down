@@ -14,7 +14,6 @@ import Foundation
 ///
 /// A styler is used in conjunction with an instance of `AttributedStringVisitor` in order
 /// to generate an NSAttributedString from an abstract syntax tree.
-///
 public protocol Styler {
     func style(document str: NSMutableAttributedString)
     func style(blockQuote str: NSMutableAttributedString)

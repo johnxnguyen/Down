@@ -25,13 +25,12 @@ public class CodeBlock: BaseNode {
     /// ```
     ///
     public private(set) lazy var fenceInfo: String? = cmarkNode.fenceInfo
+    
 }
-
 
 // MARK: - Debug
 
 extension CodeBlock: CustomDebugStringConvertible {
-    
     public var debugDescription: String {
         return "Code Block - \(literal ?? "nil"), fenceInfo: \(fenceInfo ?? "nil")"
     }

@@ -44,13 +44,13 @@ public class List: BaseNode {
     
     /// The number of items in the list.
     public lazy var numberOfItems: Int = children.count
+    
 }
 
 
 // MARK: - Debug
 
 extension List: CustomDebugStringConvertible {
-    
     public var debugDescription: String {
         return "List - type: \(listType)"
     }

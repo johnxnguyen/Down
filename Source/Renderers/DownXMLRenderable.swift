@@ -3,35 +3,22 @@
 //  Down
 //
 //  Created by Rob Phillips on 5/31/16.
-//  Copyright © 2016 Glazed Donut, LLC. All rights reserved.
+//  Copyright © 2016-2019 Glazed Donut, LLC. All rights reserved.
 //
 
 import Foundation
 import libcmark
 
 public protocol DownXMLRenderable: DownRenderable {
-    /**
-     Generates an XML string from the `markdownString` property
-
-     - parameter options: `DownOptions` to modify parsing or rendering
-
-     - throws: `DownErrors` depending on the scenario
-
-     - returns: XML string
-     */
     func toXML(_ options: DownOptions) throws -> String
 }
 
 extension DownXMLRenderable {
-    /**
-     Generates an XML string from the `markdownString` property
-
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
-
-     - throws: `DownErrors` depending on the scenario
-
-     - returns: XML string
-     */
+    /// Generates an XML string from the `markdownString` property
+    ///
+    /// - Parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
+    /// - Returns: XML string
+    /// - Throws: `DownErrors` depending on the scenario
     public func toXML(_ options: DownOptions = .default) throws -> String {
         let ast = try DownASTRenderer.stringToAST(markdownString, options: options)
         let xml = try DownXMLRenderer.astToXML(ast, options: options)
@@ -41,17 +28,15 @@ extension DownXMLRenderable {
 }
 
 public struct DownXMLRenderer {
-    /**
-     Generates an XML string from the given abstract syntax tree
-
-     **Note:** caller is responsible for calling `cmark_node_free(ast)` after this returns
-
-     - parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
-
-     - throws: `ASTRenderingError` if the AST could not be converted
-
-     - returns: XML string
-     */
+    /// Generates an XML string from the given abstract syntax tree
+    ///
+    /// **Note:** caller is responsible for calling `cmark_node_free(ast)` after this returns
+    ///
+    /// - Parameters:
+    ///   - ast: The `cmark_node` representing the abstract syntax tree
+    ///   - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
+    /// - Returns: XML string
+    /// - Throws: `ASTRenderingError` if the AST could not be converted
     public static func astToXML(_ ast: UnsafeMutablePointer<cmark_node>, options: DownOptions = .default) throws -> String {
         guard let cXMLString = cmark_render_xml(ast, options.rawValue) else {
             throw DownErrors.astRenderingError
