@@ -438,6 +438,7 @@
 			isa = PBXGroup;
 			children = (
 				EEF1376E2259E53400D7DDE0 /* Node.swift */,
+				EE469B10226CF3B500C0655D /* BaseNode.swift */,
 				EEEBEE46225D298D00AE438D /* Document.swift */,
 				EEEBEE48225D29C200AE438D /* BlockQuote.swift */,
 				EEEBEE4A225D29D800AE438D /* List.swift */,
@@ -458,7 +459,6 @@
 				EEEBEE68225D2B1200AE438D /* Strong.swift */,
 				EEEBEE6A225D2B2200AE438D /* Link.swift */,
 				EEEBEE6C225D2B3200AE438D /* Image.swift */,
-				EE469B10226CF3B500C0655D /* BaseNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
