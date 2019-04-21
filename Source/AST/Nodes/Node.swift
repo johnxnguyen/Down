@@ -57,11 +57,12 @@ extension Node {
             case CMARK_NODE_STRONG:         wrapped = Strong(cmarkNode: raw)
             case CMARK_NODE_LINK:           wrapped = Link(cmarkNode: raw)
             case CMARK_NODE_IMAGE:          wrapped = Image(cmarkNode: raw)
-            default:                        fatalError("Unexpected node type: \(type)")
+            default:                        wrapped = nil
             }
             
             guard let node = wrapped else {
-                fatalError("Couldn't wrap node of type: \(type)")
+                assertionFailure("Couldn't wrap node of type: \(type)")
+                continue
             }
             
             result.append(node)
