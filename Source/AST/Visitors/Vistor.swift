@@ -39,7 +39,7 @@ public protocol Visitor {
 
 extension Visitor {
     public func visitChildren(of node: Node) -> [Result] {
-        return node.childen.map { child in
+        return node.childen.compactMap { child in
             switch child {
             case is Document:       return visit(document: child as! Document)
             case is BlockQuote:     return visit(blockQuote: child as! BlockQuote)
@@ -61,7 +61,9 @@ extension Visitor {
             case is Strong:         return visit(strong: child as! Strong)
             case is Link:           return visit(link: child as! Link)
             case is Image:          return visit(image: child as! Image)
-            default:                fatalError("Unexpected child")
+            default:
+                assertionFailure("Unexpected child")
+                return nil
             }
         }
     }
