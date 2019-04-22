@@ -1,12 +1,12 @@
 Pod::Spec.new do |spec|
   spec.name         = "Down"
   spec.summary      = "Blazing fast Markdown rendering in Swift, built upon cmark."
-  spec.version      = "0.6.6"
+  spec.version      = "0.7.0"
   spec.homepage     = "https://github.com/iwasrobbed/Down"
   spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.authors      = { "Rob Phillips" => "rob@robphillips.me" }
   spec.source       = { :git => "https://github.com/iwasrobbed/Down.git", :tag => "v" + spec.version.to_s }
-  spec.source_files = "Source/{cmark,Enums & Options,Extensions,Renderers}/**/*.{h,c,swift}", "Source/*"
+  spec.source_files = "Source/{AST,cmark,Enums & Options,Extensions,Renderers}/**/*.{h,c,swift}", "Source/*"
   spec.ios.source_files = "Source/Views/**"
   spec.osx.source_files = "Source/Views/**"
   spec.public_header_files = "Source/*.h"
