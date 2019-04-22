@@ -1,5 +1,19 @@
 # Change Log
 
+## [v0.7.0](https://github.com/iwasrobbed/Down/tree/v0.7.0) (2019-04-22)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.6...v0.7.0)
+
+**Implemented enhancements:**
+
+- \[Documentation\] AST API [\#134](https://github.com/iwasrobbed/Down/issues/134)
+- \[Attributed Strings\] Line spacing more than expected [\#121](https://github.com/iwasrobbed/Down/issues/121)
+- \[Down\] Rendering to attributed string is really slow, requires main thread [\#100](https://github.com/iwasrobbed/Down/issues/100)
+
+**Merged pull requests:**
+
+- \[Cleanup\] Comment docs, example apps, and whitespace [\#136](https://github.com/iwasrobbed/Down/pull/136) ([iwasrobbed](https://github.com/iwasrobbed))
+- \[Feature\] Create API for parsing to AST and NSAttributedString [\#132](https://github.com/iwasrobbed/Down/pull/132) ([johnxnguyen](https://github.com/johnxnguyen))
+
 ## [v0.6.6](https://github.com/iwasrobbed/Down/tree/v0.6.6) (2019-04-11)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.5...v0.6.6)
 
