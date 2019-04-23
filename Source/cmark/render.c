@@ -45,6 +45,7 @@ static void S_out(cmark_renderer *renderer, const char *source, bool wrap,
       }
     }
     renderer->column = 0;
+    renderer->last_breakable = 0;
     renderer->begin_line = true;
     renderer->begin_content = true;
     renderer->need_cr -= 1;
@@ -81,21 +82,23 @@ static void S_out(cmark_renderer *renderer, const char *source, bool wrap,
         }
       }
 
-    } else if (c == 10) {
-      cmark_strbuf_putc(renderer->buffer, '\n');
-      renderer->column = 0;
-      renderer->begin_line = true;
-      renderer->begin_content = true;
-      renderer->last_breakable = 0;
     } else if (escape == LITERAL) {
-      cmark_render_code_point(renderer, c);
-      renderer->begin_line = false;
-      // we don't set 'begin_content' to false til we've
-      // finished parsing a digit.  Reason:  in commonmark
-      // we need to escape a potential list marker after
-      // a digit:
-      renderer->begin_content =
-          renderer->begin_content && cmark_isdigit(c) == 1;
+      if (c == 10) {
+        cmark_strbuf_putc(renderer->buffer, '\n');
+        renderer->column = 0;
+        renderer->begin_line = true;
+        renderer->begin_content = true;
+        renderer->last_breakable = 0;
+      } else {
+        cmark_render_code_point(renderer, c);
+        renderer->begin_line = false;
+        // we don't set 'begin_content' to false til we've
+        // finished parsing a digit.  Reason:  in commonmark
+        // we need to escape a potential list marker after
+        // a digit:
+        renderer->begin_content =
+            renderer->begin_content && cmark_isdigit(c) == 1;
+      }
     } else {
       (renderer->outc)(renderer, escape, c, nextc);
       renderer->begin_line = false;
@@ -171,7 +174,7 @@ char *cmark_render(cmark_node *root, int options, int width,
   }
 
   // ensure final newline
-  if (renderer.buffer->ptr[renderer.buffer->size - 1] != '\n') {
+  if (renderer.buffer->size == 0 || renderer.buffer->ptr[renderer.buffer->size - 1] != '\n') {
     cmark_strbuf_putc(renderer.buffer, '\n');
   }
 
