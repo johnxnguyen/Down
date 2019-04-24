@@ -1,6 +1,18 @@
 # Change Log
 
-## [v0.7.0](https://github.com/iwasrobbed/Down/tree/v0.7.0) (2019-04-22)
+## [v0.8.0](https://github.com/iwasrobbed/Down/tree/v0.8.0) (2019-04-24)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.7.0...v0.8.0)
+
+**Closed issues:**
+
+- 0.7.0 problems with NSAttributedString.Key [\#139](https://github.com/iwasrobbed/Down/issues/139)
+
+**Merged pull requests:**
+
+- \[Down\] Add new `unsafe` option [\#143](https://github.com/iwasrobbed/Down/pull/143) ([iwasrobbed](https://github.com/iwasrobbed))
+- Bump cmark to 0.29.0 [\#142](https://github.com/iwasrobbed/Down/pull/142) ([larryonoff](https://github.com/larryonoff))
+
+## [v0.7.0](https://github.com/iwasrobbed/Down/tree/v0.7.0) (2019-04-24)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.6...v0.7.0)
 
 **Implemented enhancements:**
@@ -11,6 +23,7 @@
 
 **Merged pull requests:**
 
+- Set Swift version 4.0 in podspec [\#140](https://github.com/iwasrobbed/Down/pull/140) ([larryonoff](https://github.com/larryonoff))
 - \[Cleanup\] Comment docs, example apps, and whitespace [\#136](https://github.com/iwasrobbed/Down/pull/136) ([iwasrobbed](https://github.com/iwasrobbed))
 - \[Feature\] Create API for parsing to AST and NSAttributedString [\#132](https://github.com/iwasrobbed/Down/pull/132) ([johnxnguyen](https://github.com/johnxnguyen))
 
