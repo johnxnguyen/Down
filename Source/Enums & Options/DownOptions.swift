@@ -29,7 +29,19 @@ public struct DownOptions: OptionSet {
     /// `image/jpeg`, or `image/webp` mime types).  Raw HTML is replaced
     /// by a placeholder HTML comment. Unsafe links are replaced by
     /// empty strings.
+    ///
+    /// Note: this is the default option as of cmark v0.29.0. Use `unsafe`
+    ///       to disable this behavior.
     public static let safe = DownOptions(rawValue: CMARK_OPT_SAFE)
+    
+    /// Render raw HTML and unsafe links (`javascript:`, `vbscript:`,
+    /// `file:`, and `data:`, except for `image/png`, `image/gif`,
+    /// `image/jpeg`, or `image/webp` mime types).  By default,
+    /// raw HTML is replaced by a placeholder HTML comment. Unsafe
+    /// links are replaced by empty strings.
+    ///
+    /// Note: `safe` is the default as of cmark v0.29.0
+    public static let unsafe = DownOptions(rawValue: CMARK_OPT_UNSAFE)
 
     // MARK: - Parsing Options
 
