@@ -21,13 +21,11 @@
 		8A569F521E6B3ED9008BE2AC /* cmark_version.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F011CFA5D63008EEC6E /* cmark_version.h */; };
 		8A569F531E6B3ED9008BE2AC /* commonmark.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F021CFA5D63008EEC6E /* commonmark.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8A569F541E6B3ED9008BE2AC /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F031CFA5D63008EEC6E /* config.h */; };
-		8A569F551E6B3ED9008BE2AC /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F041CFA5D63008EEC6E /* debug.h */; };
 		8A569F561E6B3ED9008BE2AC /* houdini.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F061CFA5D63008EEC6E /* houdini.h */; };
 		8A569F571E6B3ED9008BE2AC /* houdini_href_e.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F071CFA5D63008EEC6E /* houdini_href_e.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8A569F581E6B3ED9008BE2AC /* houdini_html_e.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F081CFA5D63008EEC6E /* houdini_html_e.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8A569F591E6B3ED9008BE2AC /* houdini_html_u.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F091CFA5D63008EEC6E /* houdini_html_u.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8A569F5A1E6B3ED9008BE2AC /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F0A1CFA5D63008EEC6E /* html.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A569F5B1E6B3ED9008BE2AC /* html_unescape.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F0B1CFA5D63008EEC6E /* html_unescape.h */; };
 		8A569F5C1E6B3ED9008BE2AC /* inlines.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F0C1CFA5D63008EEC6E /* inlines.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8A569F5D1E6B3ED9008BE2AC /* inlines.h in Headers */ = {isa = PBXBuildFile; fileRef = D4201F0D1CFA5D63008EEC6E /* inlines.h */; };
 		8A569F5E1E6B3ED9008BE2AC /* iterator.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201F0E1CFA5D63008EEC6E /* iterator.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -178,13 +176,11 @@
 		D4201F011CFA5D63008EEC6E /* cmark_version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmark_version.h; sourceTree = "<group>"; };
 		D4201F021CFA5D63008EEC6E /* commonmark.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = commonmark.c; sourceTree = "<group>"; };
 		D4201F031CFA5D63008EEC6E /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
-		D4201F041CFA5D63008EEC6E /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
 		D4201F061CFA5D63008EEC6E /* houdini.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houdini.h; sourceTree = "<group>"; };
 		D4201F071CFA5D63008EEC6E /* houdini_href_e.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = houdini_href_e.c; sourceTree = "<group>"; };
 		D4201F081CFA5D63008EEC6E /* houdini_html_e.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = houdini_html_e.c; sourceTree = "<group>"; };
 		D4201F091CFA5D63008EEC6E /* houdini_html_u.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = houdini_html_u.c; sourceTree = "<group>"; };
 		D4201F0A1CFA5D63008EEC6E /* html.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = html.c; sourceTree = "<group>"; };
-		D4201F0B1CFA5D63008EEC6E /* html_unescape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_unescape.h; sourceTree = "<group>"; };
 		D4201F0C1CFA5D63008EEC6E /* inlines.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inlines.c; sourceTree = "<group>"; };
 		D4201F0D1CFA5D63008EEC6E /* inlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inlines.h; sourceTree = "<group>"; };
 		D4201F0E1CFA5D63008EEC6E /* iterator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iterator.c; sourceTree = "<group>"; };
@@ -355,13 +351,11 @@
 				D4201F011CFA5D63008EEC6E /* cmark_version.h */,
 				D4201F021CFA5D63008EEC6E /* commonmark.c */,
 				D4201F031CFA5D63008EEC6E /* config.h */,
-				D4201F041CFA5D63008EEC6E /* debug.h */,
 				D4201F061CFA5D63008EEC6E /* houdini.h */,
 				D4201F071CFA5D63008EEC6E /* houdini_href_e.c */,
 				D4201F081CFA5D63008EEC6E /* houdini_html_e.c */,
 				D4201F091CFA5D63008EEC6E /* houdini_html_u.c */,
 				D4201F0A1CFA5D63008EEC6E /* html.c */,
-				D4201F0B1CFA5D63008EEC6E /* html_unescape.h */,
 				D4201F0C1CFA5D63008EEC6E /* inlines.c */,
 				D4201F0D1CFA5D63008EEC6E /* inlines.h */,
 				D4201F0E1CFA5D63008EEC6E /* iterator.c */,
@@ -490,7 +484,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A569F551E6B3ED9008BE2AC /* debug.h in Headers */,
 				8A569F4C1E6B3ED9008BE2AC /* chunk.h in Headers */,
 				8A569F631E6B3ED9008BE2AC /* node.h in Headers */,
 				8A569F521E6B3ED9008BE2AC /* cmark_version.h in Headers */,
@@ -507,7 +500,6 @@
 				8A569F511E6B3ED9008BE2AC /* cmark_export.h in Headers */,
 				8A569F4E1E6B3ED9008BE2AC /* cmark.h in Headers */,
 				8A569F501E6B3ED9008BE2AC /* cmark_ctype.h in Headers */,
-				8A569F5B1E6B3ED9008BE2AC /* html_unescape.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

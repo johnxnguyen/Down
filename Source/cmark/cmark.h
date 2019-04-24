@@ -552,13 +552,19 @@ char *cmark_render_latex(cmark_node *root, int options, int width);
  */
 #define CMARK_OPT_HARDBREAKS (1 << 2)
 
-/** Suppress raw HTML and unsafe links (`javascript:`, `vbscript:`,
- * `file:`, and `data:`, except for `image/png`, `image/gif`,
- * `image/jpeg`, or `image/webp` mime types).  Raw HTML is replaced
- * by a placeholder HTML comment. Unsafe links are replaced by
- * empty strings.
+/** `CMARK_OPT_SAFE` is defined here for API compatibility,
+    but it no longer has any effect. "Safe" mode is now the default:
+    set `CMARK_OPT_UNSAFE` to disable it.
  */
 #define CMARK_OPT_SAFE (1 << 3)
+
+/** Render raw HTML and unsafe links (`javascript:`, `vbscript:`,
+ * `file:`, and `data:`, except for `image/png`, `image/gif`,
+ * `image/jpeg`, or `image/webp` mime types).  By default,
+ * raw HTML is replaced by a placeholder HTML comment. Unsafe
+ * links are replaced by empty strings.
+ */
+#define CMARK_OPT_UNSAFE (1 << 17)
 
 /** Render `softbreak` elements as spaces.
  */

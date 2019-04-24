@@ -27,7 +27,7 @@ class BindingTests: XCTestCase {
     func testXMLBindingsWork() {
         let xml = try? down.toXML()
         XCTAssertNotNil(xml)
-        XCTAssertTrue(xml == "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE document SYSTEM \"CommonMark.dtd\">\n<document xmlns=\"http://commonmark.org/xml/1.0\">\n  <heading level=\"2\">\n    <link destination=\"https://github.com/iwasrobbed/Down\" title=\"\">\n      <text>Down</text>\n    </link>\n  </heading>\n</document>\n")
+        XCTAssertTrue(xml == "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE document SYSTEM \"CommonMark.dtd\">\n<document xmlns=\"http://commonmark.org/xml/1.0\">\n  <heading level=\"2\">\n    <link destination=\"https://github.com/iwasrobbed/Down\" title=\"\">\n      <text xml:space=\"preserve\">Down</text>\n    </link>\n  </heading>\n</document>\n")
     }
 
     func testGroffBindingsWork() {

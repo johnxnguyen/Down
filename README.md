@@ -8,7 +8,7 @@
 [![tvOS](https://img.shields.io/badge/OS-tvOS-orange.svg)](https://developer.apple.com/tvos/)
 [![Coverage Status](https://coveralls.io/repos/github/iwasrobbed/Down/badge.svg?branch=master)](https://coveralls.io/github/iwasrobbed/Down?branch=master)
 
-Blazing fast Markdown (CommonMark) rendering in Swift, built upon [cmark v0.28.3](https://github.com/commonmark/cmark).
+Blazing fast Markdown (CommonMark) rendering in Swift, built upon [cmark v0.29.0](https://github.com/commonmark/cmark).
 
 Is your app using it? [Let us know!](mailto:rob@robphillips.me)
 
@@ -235,4 +235,4 @@ Please feel free to fork and create a pull request for bug fixes or improvements
 ### Credit
 This library is a wrapper around [cmark](https://github.com/commonmark/cmark), which is built upon the [CommonMark](http://commonmark.org) Markdown specification.
 
-[cmark](https://github.com/commonmark/cmark) is Copyright (c) 2014 - 2017, John MacFarlane. View [full license](https://github.com/commonmark/cmark/blob/master/COPYING).
+[cmark](https://github.com/commonmark/cmark) is Copyright (c) 2014, John MacFarlane. View [full license](https://github.com/commonmark/cmark/blob/master/COPYING).
