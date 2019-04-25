@@ -20,5 +20,4 @@ Pod::Spec.new do |spec|
   spec.compiler_flags = '-Wno-shorten-64-to-32'
   spec.ios.resource = 'Resources/DownView.bundle'
   spec.osx.resource = 'Resources/DownView.bundle'
-  spec.swift_version = "4.0"
 end
