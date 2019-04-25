@@ -64,6 +64,7 @@
 		8AFAEB091E6E331700E09B68 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438696B1D00D27700E95A1F /* StringTests.swift */; };
 		907C64651EC133780095FEE1 /* TestDownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 907C64621EC120530095FEE1 /* TestDownView.bundle */; };
 		90A40A9C1EC03292004F2E91 /* Down.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CC3E572B22717FA00091983C /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E572A22717FA00091983C /* Compatibility.swift */; };
 		EE469B11226CF3B500C0655D /* BaseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE469B10226CF3B500C0655D /* BaseNode.swift */; };
 		EE5F2BA42262564A00B7C0F3 /* Styler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5F2BA32262564A00B7C0F3 /* Styler.swift */; };
 		EE64FEF0225BEB3900A35B34 /* VisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */; };
@@ -160,6 +161,7 @@
 		90A40A981EC0309A004F2E91 /* Deployment-Targets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Deployment-Targets.xcconfig"; sourceTree = "<group>"; };
 		90A40A991EC0309A004F2E91 /* Universal-Framework-Target.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Universal-Framework-Target.xcconfig"; sourceTree = "<group>"; };
 		90A40A9A1EC0309A004F2E91 /* Universal-Target-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Universal-Target-Base.xcconfig"; sourceTree = "<group>"; };
+		CC3E572A22717FA00091983C /* Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compatibility.swift; sourceTree = "<group>"; };
 		D41689B21CFFE28200E5802B /* DownViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownViewTests.swift; sourceTree = "<group>"; };
 		D41689B51CFFE6BB00E5802B /* DownView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DownView.bundle; sourceTree = "<group>"; };
 		D4201EC51CFA59A5008EEC6E /* BindingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindingTests.swift; sourceTree = "<group>"; };
@@ -275,6 +277,14 @@
 			path = Configurations;
 			sourceTree = "<group>";
 		};
+		CC3E572922717F910091983C /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				CC3E572A22717FA00091983C /* Compatibility.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		D41689B41CFFE6BB00E5802B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +327,7 @@
 				D44875E71CFA6CF30037A624 /* Enums & Options */,
 				D43AE5C81CFFAE39006E1522 /* Extensions */,
 				D44875E21CFA6B120037A624 /* Renderers */,
+				CC3E572922717F910091983C /* Support */,
 				D43AE5CB1CFFD068006E1522 /* Views */,
 				D4201EF61CFA5D63008EEC6E /* cmark */,
 			);
@@ -677,6 +688,7 @@
 				EEF1376F2259E53400D7DDE0 /* Node.swift in Sources */,
 				8A569F6D1E6B3ED9008BE2AC /* xml.c in Sources */,
 				8A569F6E1E6B3EDE008BE2AC /* DownASTRenderable.swift in Sources */,
+				CC3E572B22717FA00091983C /* Compatibility.swift in Sources */,
 				EEEBEE5B225D2A7E00AE438D /* Text.swift in Sources */,
 				EEEBEE4F225D2A1400AE438D /* CodeBlock.swift in Sources */,
 				EEEBEE5F225D2AA700AE438D /* LineBreak.swift in Sources */,
