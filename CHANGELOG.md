@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.8.1](https://github.com/iwasrobbed/Down/tree/v0.8.1) (2019-04-26)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.0...v0.8.1)
+
+**Merged pull requests:**
+
+- \[Swift\] Update to Swift 5.0 [\#145](https://github.com/iwasrobbed/Down/pull/145) ([iwasrobbed](https://github.com/iwasrobbed))
+
 ## [v0.8.0](https://github.com/iwasrobbed/Down/tree/v0.8.0) (2019-04-24)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.7.0...v0.8.0)
 
