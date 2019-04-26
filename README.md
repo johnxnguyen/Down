@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/iwasrobbed/Down.svg?branch=master)](https://travis-ci.org/iwasrobbed/Down)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/iwasrobbed/Down/blob/master/LICENSE)
 [![CocoaPods](https://img.shields.io/cocoapods/v/Down.svg?maxAge=10800)]()
-[![Swift 4](https://img.shields.io/badge/language-Swift-blue.svg)](https://swift.org)
+[![Swift 5](https://img.shields.io/badge/language-Swift-blue.svg)](https://swift.org)
 [![macOS](https://img.shields.io/badge/OS-macOS-orange.svg)](https://developer.apple.com/macos/)
 [![iOS](https://img.shields.io/badge/OS-iOS-orange.svg)](https://developer.apple.com/ios/)
 [![tvOS](https://img.shields.io/badge/OS-tvOS-orange.svg)](https://developer.apple.com/tvos/)
@@ -25,7 +25,7 @@ Is your app using it? [Let us know!](mailto:rob@robphillips.me)
 
 ### Installation
 
-Note: Swift 4 support is now on the `master` branch and any tag >= 0.4.x (Swift 3 is 0.3.x)
+Note: Swift 5 support is now on the `master` branch and any tag >= 0.8.1 (Swift 4 is >= 0.4.x, Swift 3 is 0.3.x)
 
 Quickly install using [CocoaPods](https://cocoapods.org):
 
