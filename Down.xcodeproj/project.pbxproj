@@ -769,6 +769,8 @@
 				INFOPLIST_FILE = "Resources/DownTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.glazeddonut.DownTests;
 				SWIFT_VERSION = 5.0;
+				"TARGETED_DEVICE_FAMILY[sdk=appletvos*]" = 3;
+				"TARGETED_DEVICE_FAMILY[sdk=appletvsimulator*]" = 3;
 			};
 			name = Debug;
 		};
@@ -779,6 +781,8 @@
 				INFOPLIST_FILE = "Resources/DownTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.glazeddonut.DownTests;
 				SWIFT_VERSION = 5.0;
+				"TARGETED_DEVICE_FAMILY[sdk=appletvos*]" = 3;
+				"TARGETED_DEVICE_FAMILY[sdk=appletvsimulator*]" = 3;
 			};
 			name = Release;
 		};
