@@ -179,7 +179,7 @@ extension DownView: WKNavigationDelegate {
     @available(iOSApplicationExtension, unavailable)
     func openURL(url: URL) {
         #if os(iOS)
-            UIApplication.shared.openURL(url)
+            _ = UIApplication.shared.openURL(url)
         #elseif os(macOS)
             NSWorkspace.shared.open(url)
         #endif
