@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.8.2](https://github.com/iwasrobbed/Down/tree/v0.8.2) (2019-05-10)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.1...v0.8.2)
+
+**Merged pull requests:**
+
+- Mark as safe for app extension use. [\#146](https://github.com/iwasrobbed/Down/pull/146) ([sgoodwin](https://github.com/sgoodwin))
+
 ## [v0.8.1](https://github.com/iwasrobbed/Down/tree/v0.8.1) (2019-04-26)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.0...v0.8.1)
 
