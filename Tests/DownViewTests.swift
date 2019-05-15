@@ -97,6 +97,94 @@ class DownViewTests: XCTestCase {
         }
     }
 
+	func testInstantiationWithDownOptionsDefault() {
+		let expect1 = expectation(description: "DownView sets the html and validates the html is correct")
+		var downView: DownView?
+		downView = try? DownView(frame: .zero, markdownString: "## [Down](https://github.com/iwasrobbed/Down)\n\n<strong>I'm strong!</strong>", didLoadSuccessfully: {
+			self._pageContents(for: downView!) { (htmlString) in
+				XCTAssertTrue(htmlString!.contains("css/down.min.css"))
+				XCTAssertTrue(htmlString!.contains("https://github.com/iwasrobbed/Down"))
+				XCTAssertFalse(htmlString!.contains("<strong>I'm strong!</strong>"))
+
+				expect1.fulfill()
+			}
+			XCTAssertTrue(downView?.options == .default)
+		})
+
+		waitForExpectations(timeout: 10) { (error: Error?) in
+			if let error = error {
+				XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+			}
+		}
+	}
+
+	func testInstantiationWithDownOptionsUnsafe() {
+		let expect1 = expectation(description: "DownView sets the html and validates the html is correct")
+		var downView: DownView?
+		downView = try? DownView(frame: .zero, markdownString: "## [Down](https://github.com/iwasrobbed/Down)\n\n<strong>I'm strong!</strong>", options: .unsafe, didLoadSuccessfully: {
+			self._pageContents(for: downView!) { (htmlString) in
+				XCTAssertTrue(htmlString!.contains("css/down.min.css"))
+				XCTAssertTrue(htmlString!.contains("https://github.com/iwasrobbed/Down"))
+				XCTAssertTrue(htmlString!.contains("<strong>I'm strong!</strong>"))
+
+				expect1.fulfill()
+			}
+			XCTAssertTrue(downView?.options == .unsafe)
+		})
+
+		waitForExpectations(timeout: 10) { (error: Error?) in
+			if let error = error {
+				XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+			}
+		}
+	}
+
+	func testUpdateMarkdownStringWithDownOptionsDefault() {
+		let expect1 = expectation(description: "DownView sets the html and validates the html is correct")
+		var downView: DownView?
+		downView = try? DownView(frame: .zero, markdownString: "")
+
+		try? downView?.update(markdownString: "## [Down](https://github.com/iwasrobbed/Down)\n\n<strong>I'm strong!</strong>", didLoadSuccessfully: {
+			self._pageContents(for: downView!) { (htmlString) in
+				XCTAssertTrue(htmlString!.contains("css/down.min.css"))
+				XCTAssertTrue(htmlString!.contains("https://github.com/iwasrobbed/Down"))
+				XCTAssertFalse(htmlString!.contains("<strong>I'm strong!</strong>"))
+
+				expect1.fulfill()
+			}
+			XCTAssertTrue(downView?.options == .default)
+		})
+
+		waitForExpectations(timeout: 10) { (error: Error?) in
+			if let error = error {
+				XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+			}
+		}
+	}
+
+	func testUpdateMarkdownStringWithDownOptionsUnsafe() {
+		let expect1 = expectation(description: "DownView sets the html and validates the html is correct")
+		var downView: DownView?
+		downView = try? DownView(frame: .zero, markdownString: "")
+
+		try? downView?.update(markdownString: "## [Down](https://github.com/iwasrobbed/Down)\n\n<strong>I'm strong!</strong>", options: .unsafe, didLoadSuccessfully: {
+			self._pageContents(for: downView!) { (htmlString) in
+				XCTAssertTrue(htmlString!.contains("css/down.min.css"))
+				XCTAssertTrue(htmlString!.contains("https://github.com/iwasrobbed/Down"))
+				XCTAssertTrue(htmlString!.contains("<strong>I'm strong!</strong>"))
+
+				expect1.fulfill()
+			}
+			XCTAssertTrue(downView?.options == .default)
+		})
+
+		waitForExpectations(timeout: 10) { (error: Error?) in
+			if let error = error {
+				XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+			}
+		}
+	}
+
     @available(iOS 11.0, macOS 10.13, *)
     func testCustomURLSchemeHandler() {
         let mockURLScheme = "down"
