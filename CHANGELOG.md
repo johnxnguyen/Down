@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.8.3](https://github.com/iwasrobbed/Down/tree/v0.8.3) (2019-05-15)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.2...v0.8.3)
+
+**Closed issues:**
+
+- Pass DownOptions to DownView [\#147](https://github.com/iwasrobbed/Down/issues/147)
+
+**Merged pull requests:**
+
+- Feature - pass DownOptions to init and update [\#148](https://github.com/iwasrobbed/Down/pull/148) ([ladislas](https://github.com/ladislas))
+
 ## [v0.8.2](https://github.com/iwasrobbed/Down/tree/v0.8.2) (2019-05-10)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.1...v0.8.2)
 
