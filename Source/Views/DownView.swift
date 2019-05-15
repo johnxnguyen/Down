@@ -85,7 +85,7 @@ open class DownView: WKWebView {
     // MARK: - Private Properties
 
     let bundle: Bundle
-	var options: DownOptions
+    var options: DownOptions
 
     private lazy var baseURL: URL = {
         return self.bundle.url(forResource: "index", withExtension: "html")!
