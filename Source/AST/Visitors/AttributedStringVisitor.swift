@@ -38,7 +38,7 @@ extension AttributedStringVisitor: Visitor {
     
     public func visit(blockQuote node: BlockQuote) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
-        if node.hasSuccessor { s.append(.blankLine) }
+        if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(blockQuote: s)
         return s
     }
@@ -59,14 +59,14 @@ extension AttributedStringVisitor: Visitor {
         }
         
         let s = items.joined
-        if node.hasSuccessor { s.append(.blankLine) }
+        if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(list: s)
         return s
     }
     
     public func visit(item node: Item) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
-        if node.hasSuccessor { s.append(.blankLine) }
+        if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(item: s)
         return s
     }
@@ -91,20 +91,20 @@ extension AttributedStringVisitor: Visitor {
     
     public func visit(paragraph node: Paragraph) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
-        if node.hasSuccessor { s.append(.blankLine) }
+        if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(paragraph: s)
         return s
     }
     
     public func visit(heading node: Heading) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
-        if node.hasSuccessor { s.append(.blankLine) }
+        if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(heading: s, level: node.headingLevel)
         return s
     }
     
     public func visit(thematicBreak node: ThematicBreak) -> NSMutableAttributedString {
-        let s = "\n".attributed
+        let s = String.lineSeparator.attributed
         styler.style(thematicBreak: s)
         return s
     }
@@ -116,13 +116,13 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(softBreak node: SoftBreak) -> NSMutableAttributedString {
-        let s = (options.contains(.hardBreaks) ? "\n" : " ").attributed
+        let s = (options.contains(.hardBreaks) ? String.lineSeparator : " ").attributed
         styler.style(softBreak: s)
         return s
     }
     
     public func visit(lineBreak node: LineBreak) -> NSMutableAttributedString {
-        let s = "\n".attributed
+        let s = String.lineSeparator.attributed
         styler.style(lineBreak: s)
         return s
     }
@@ -185,7 +185,7 @@ private extension String {
 }
 
 private extension NSAttributedString {
-    static var blankLine: NSAttributedString {
+    static var paragraphSeparator: NSAttributedString {
         return "\n".attributed
     }
 }
@@ -193,5 +193,11 @@ private extension NSAttributedString {
 private extension NSMutableAttributedString {
     static var empty: NSMutableAttributedString {
         return "".attributed
+    }
+}
+private extension String {
+    // https://lists.apple.com/archives/Cocoa-dev/2010/Dec/msg00347.html
+    static var lineSeparator: String {
+        return "\u{2028}"
     }
 }
