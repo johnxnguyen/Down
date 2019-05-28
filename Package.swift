@@ -26,5 +26,10 @@ let package = Package(
             dependencies: ["libcmark"],
             path: "Source/",
             exclude: ["cmark", "Down.h"]),
+        .testTarget(
+            name: "DownTests",
+            dependencies: ["Down"],
+            path: "Tests/",
+            exclude: ["Fixtures", "DownViewTests.swift"]),
     ]
 )
