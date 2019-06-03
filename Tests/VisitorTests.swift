@@ -81,10 +81,8 @@ class VisitorTests: XCTestCase {
         let expected = """
         Heading
         This is a paragraph with inline elements <p></p>
-        This is followed by a hard linebreak
-        This is after the linebreak
-
-        this is a link this is an image
+        This is followed by a hard linebreak\u{2028}This is after the linebreak
+        \u{2028}this is a link this is an image
         this is a quote
         code block
         code block
