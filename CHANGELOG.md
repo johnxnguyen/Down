@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.8.4](https://github.com/iwasrobbed/Down/tree/v0.8.4) (2019-06-04)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.3...v0.8.4)
+
+**Closed issues:**
+
+- \[Carthage\] Missing required module 'libcmark' [\#120](https://github.com/iwasrobbed/Down/issues/120)
+
+**Merged pull requests:**
+
+- Add Swift Package Manager support [\#150](https://github.com/iwasrobbed/Down/pull/150) ([aasimk2000](https://github.com/aasimk2000))
+- \[AST\] Replace line separator with paragraph separator. [\#149](https://github.com/iwasrobbed/Down/pull/149) ([fgulan](https://github.com/fgulan))
+
 ## [v0.8.3](https://github.com/iwasrobbed/Down/tree/v0.8.3) (2019-05-15)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.2...v0.8.3)
 
