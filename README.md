@@ -47,8 +47,8 @@ e.g.
 Or manually install:
 
 1. Clone this repository
-2. Build the Down project
-3. Add the resulting framework file to your project
+2. Drag and drop the Down project into your workspace file, adding the framework in the embedded framework section
+2. Build and run your app
 4. ?
 5. Profit
 
