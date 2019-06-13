@@ -1,5 +1,18 @@
 # Change Log
 
+## [v0.8.5](https://github.com/iwasrobbed/Down/tree/v0.8.5) (2019-06-13)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.4...v0.8.5)
+
+**Closed issues:**
+
+- DebugVisitor is missing a public initializer [\#152](https://github.com/iwasrobbed/Down/issues/152)
+- Can't build with Swift 5.1 with SwiftPM [\#151](https://github.com/iwasrobbed/Down/issues/151)
+
+**Merged pull requests:**
+
+- \[SPM\] Fixes error with missing headers [\#154](https://github.com/iwasrobbed/Down/pull/154) ([aasimk2000](https://github.com/aasimk2000))
+- Create Public Initializer for DebugVisitor [\#153](https://github.com/iwasrobbed/Down/pull/153) ([mfcollins3](https://github.com/mfcollins3))
+
 ## [v0.8.4](https://github.com/iwasrobbed/Down/tree/v0.8.4) (2019-06-04)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.3...v0.8.4)
 
