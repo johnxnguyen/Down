@@ -18,6 +18,8 @@ public class DebugVisitor {
     private var indent: String {
         return String(repeating: "    ", count: depth)
     }
+
+    public init() {}
     
     /// Debug representation of node.
     private func report(_ node: Node) -> String {
