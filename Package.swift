@@ -20,7 +20,9 @@ let package = Package(
         .target(
             name: "libcmark",
             dependencies: [],
-            path: "Source/cmark"),
+            path: "Source/cmark",
+            exclude: ["include"],
+            publicHeadersPath: "./"),
         .target(
             name: "Down",
             dependencies: ["libcmark"],
