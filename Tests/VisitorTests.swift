@@ -89,8 +89,8 @@ class VisitorTests: XCTestCase {
         <html>
             block
         </html>
-        1.\tfirst item
-        2.\tsecond item
+        \t1.\tfirst item
+        \t2.\tsecond item
         """
         
         XCTAssertEqual(result, expected)
