@@ -69,7 +69,7 @@ extension AttributedStringVisitor: Visitor {
         } else {
             list = NSTextList()
         }
-        list.startingItemNumber = node.listType.startIndex
+        list.startingItemNumber = node.listType.startIndex + 1
         #endif
         
         // Prepend prefixes to each item.
