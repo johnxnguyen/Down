@@ -96,17 +96,28 @@ extension AttributedStringVisitor: Visitor {
         let s = items.joined
 
         #if os(macOS)
-        // The entire list must be wrapped in a paragraph style.
+        // Prepend the list object to the paragraph style of every character.
+        // Add new paragraph styles where necessary.
         // Sources:
         // - https://developer.apple.com/documentation/appkit/nstextlist
         // - https://stackoverflow.com/questions/7164059/simple-nstextlist-question
         // - https://www.meandmark.com/blog/2016/12/adding-markers-to-text-lists-when-pressing-the-return-key/#comment-433
-        let oldParagraphStyle = s.attribute(.paragraphStyle, at: 0, effectiveRange: nil) as? NSParagraphStyle
-        let newParagraphStyle = (oldParagraphStyle?.mutableCopy() as? NSMutableParagraphStyle) ?? NSMutableParagraphStyle()
-        newParagraphStyle.textLists = [list]
-        s.addAttributes(
-            [.paragraphStyle: newParagraphStyle],
-            range: NSRange(location: 0, length: s.length))
+        s.enumerateAttribute(
+            .paragraphStyle,
+            in: NSRange(location: 0, length: s.length),
+            options: [],
+            using: { value, range, stop in
+                guard let oldStyle = value as? NSParagraphStyle else {
+                    let newStyle = NSMutableParagraphStyle()
+                    newStyle.textLists = [list]
+                    s.addAttribute(.paragraphStyle, value: newStyle, range: range)
+                    return
+                }
+
+                let newStyle = (oldStyle.mutableCopy() as? NSMutableParagraphStyle) ?? NSMutableParagraphStyle()
+                newStyle.textLists = [list] + newStyle.textLists
+                s.addAttribute(.paragraphStyle, value: newStyle, range: range)
+            })
         #endif
 
         if node.hasSuccessor { s.append(.paragraphSeparator) }
