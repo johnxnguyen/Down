@@ -5,7 +5,11 @@
 //  Created by John Nguyen on 09.04.19.
 //
 
+#if os(macOS)
+import Cocoa
+#else
 import Foundation
+#endif
 import libcmark
 
 public class List: BaseNode {
@@ -13,6 +17,23 @@ public class List: BaseNode {
     public enum ListType: CustomDebugStringConvertible {
         case bullet
         case ordered(start: Int)
+
+        #if os(macOS)
+        @available(OSXApplicationExtension 10.13, OSX 10.13, *)
+        public var markerFormat: NSTextList.MarkerFormat {
+            switch self {
+            case .bullet: return .disc
+            case .ordered: return .decimal
+            }
+        }
+        #endif
+
+        public var startIndex: Int {
+            switch self {
+            case .bullet: return 0
+            case .ordered(start: let start): return start
+            }
+        }
         
         public var debugDescription: String {
             switch self {
