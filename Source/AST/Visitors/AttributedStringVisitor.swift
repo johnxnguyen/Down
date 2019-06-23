@@ -15,6 +15,7 @@ public class AttributedStringVisitor {
     
     private let styler: Styler
     private let options: DownOptions
+    private var listStack = [ListItemPrefixGenerator]()
     
     /// Creates a new instance with the given styler and options.
     ///
@@ -42,22 +43,14 @@ extension AttributedStringVisitor: Visitor {
         styler.style(blockQuote: s)
         return s
     }
-    
+
     public func visit(list node: List) -> NSMutableAttributedString {
+        listStack.append(ListItemPrefixGenerator(list: node))
+
         let items = visitChildren(of: node)
-        
-        // Prepend prefixes to each item.
-        items.enumerated().forEach { index, item in
-            let prefix: String
-            switch node.listType {
-            case .bullet: prefix = "•\t"
-            case .ordered(let start): prefix = "\(start + index).\t"
-            }
-            
-            let attrPrefix = NSAttributedString(string: prefix, attributes: styler.listPrefixAttributes)
-            item.insert(attrPrefix, at: 0)
-        }
-        
+
+        listStack.removeLast()
+
         let s = items.joined
         if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(list: s, nestDepth: node.nestDepth)
@@ -66,8 +59,15 @@ extension AttributedStringVisitor: Visitor {
     
     public func visit(item node: Item) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
+
+        let prefix = listStack.last?.next() ?? "•"
+
+        let attributedPrefix = NSAttributedString(string: "\(prefix)\t", attributes: styler.listPrefixAttributes)
+        s.insert(attributedPrefix, at: 0)
+
         if node.hasSuccessor { s.append(.paragraphSeparator) }
-        styler.style(item: s)
+
+        styler.style(item: s, prefixLength: (prefix as NSString).length, nestDepth: node.nestDepth, containsList: node.containsList)
         return s
     }
     
@@ -170,7 +170,7 @@ extension AttributedStringVisitor: Visitor {
     }
 }
 
-// MARK: - Helper extentions
+// MARK: - Helper extensions
 
 private extension Sequence where Iterator.Element == NSMutableAttributedString {
     var joined: NSMutableAttributedString {

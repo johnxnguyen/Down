@@ -8,7 +8,14 @@
 import Foundation
 import libcmark
 
-public class Item: BaseNode {}
+public class Item: BaseNode {
+
+    lazy var containsList: Bool = {
+        return children.contains { child in
+            child is List
+        }
+    }()
+}
 
 // MARK: - Debug
 
