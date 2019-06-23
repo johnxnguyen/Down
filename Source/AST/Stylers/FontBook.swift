@@ -12,6 +12,7 @@ import Foundation
 import UIKit
 
 protocol FontBook {
+    
     var heading1: UIFont { get }
     var heading2: UIFont { get }
     var heading3: UIFont { get }
@@ -19,13 +20,17 @@ protocol FontBook {
     var code: UIFont { get }
 }
 
+// TODO: Documentation -> When using dynamic fonts, we should make sure the text view property
+// `adjustsFontForContentSizeCategory` is actually false. Instead override `traitCollectionDidChange()` to
+// manually reload the content.
+
 struct DynamicFonts: FontBook {
 
     let heading1: UIFont
     let heading2: UIFont
     let heading3: UIFont
     let body: UIFont
-    var code: UIFont
+    let code: UIFont
 
     init() {
         heading1 = .preferredFont(forTextStyle: .title1)
@@ -33,8 +38,15 @@ struct DynamicFonts: FontBook {
         heading3 = .preferredFont(forTextStyle: .title3)
         body = .preferredFont(forTextStyle: .body)
 
-        // TODO: Get a mono font here.
-        code = .preferredFont(forTextStyle: .body)
+        if let menlo = UIFont(name: "menlo", size: body.pointSize) {
+            if #available(iOSApplicationExtension 11.0, *) {
+                code = UIFontMetrics(forTextStyle: .body).scaledFont(for: menlo)
+            } else {
+                code = menlo
+            }
+        } else {
+            code = .preferredFont(forTextStyle: .body)
+        }
     }
 }
 
