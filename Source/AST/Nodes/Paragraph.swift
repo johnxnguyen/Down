@@ -8,7 +8,12 @@
 import Foundation
 import libcmark
 
-public class Paragraph: BaseNode {}
+public class Paragraph: BaseNode {
+
+    public lazy var isTopLevel: Bool = {
+        cmarkNode.parent?.type == CMARK_NODE_DOCUMENT
+    }()
+}
 
 // MARK: - Debug
 
