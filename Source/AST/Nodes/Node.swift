@@ -57,7 +57,11 @@ public extension UnsafeMutablePointer where Pointee == cmark_node {
         default:                        return nil
         }
     }
-    
+
+    var parent: CMarkNode? {
+        return cmark_node_parent(self)
+    }
+
     var type: cmark_node_type {
         return cmark_node_get_type(self)
     }
