@@ -54,7 +54,8 @@ extension DefaultStyler {
         // Not supported.
     }
 
-    open func style(paragraph str: NSMutableAttributedString) {
+    open func style(paragraph str: NSMutableAttributedString,  isTopLevel: Bool) {
+        guard isTopLevel else { return }
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.paragraphSpacingBefore = 8
         paragraphStyle.paragraphSpacing = 8
