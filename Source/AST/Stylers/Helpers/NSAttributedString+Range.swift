@@ -15,4 +15,13 @@ extension NSAttributedString {
     var wholeRange: NSRange {
         return NSRange(location: 0, length: length)
     }
+
+    func ranges(of name: NSAttributedString.Key) -> [NSRange] {
+        var ranges = [NSRange]()
+        enumerateAttribute(name, in: wholeRange, options: []) { _, range, _ in
+            ranges.append(range)
+        }
+
+        return ranges
+    }
 }

@@ -67,7 +67,8 @@ extension AttributedStringVisitor: Visitor {
 
         if node.hasSuccessor { s.append(.paragraphSeparator) }
 
-        styler.style(item: s, prefixLength: (prefix as NSString).length, nestDepth: node.nestDepth, containsList: node.containsList)
+        styler.style(item: s, prefixLength: (prefix as NSString).length, nestDepth: node.nestDepth)
+
         return s
     }
     

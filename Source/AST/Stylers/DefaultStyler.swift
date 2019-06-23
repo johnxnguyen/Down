@@ -13,12 +13,15 @@ import UIKit
 
 open class DefaultStyler: Styler {
 
-    public var listPrefixAttributes: [NSAttributedString.Key : Any] = [:]
+    public var listPrefixAttributes: [NSAttributedString.Key : Any]
 
     private let fonts: FontBook = DynamicFonts()
 
     public init() {
-
+        listPrefixAttributes = [
+            .font: UIFont.monospacedDigitSystemFont(ofSize: fonts.body.pointSize, weight: .regular),
+            .foregroundColor: UIColor.gray
+        ]
     }
 }
 
@@ -35,10 +38,24 @@ extension DefaultStyler {
     }
 
     open func style(list str: NSMutableAttributedString, nestDepth: Int) {
-        // Apply paragraph styles. Indent these styles depending on the list depth.
+
     }
 
-    open func style(item str: NSMutableAttributedString) {
+    open func style(item str: NSMutableAttributedString, prefixLength: Int, nestDepth: Int) {
+
+        // Things we need to consider.
+        // 1. Don't style ranges that contain lists.
+        // 2. The first paragraph has a different styling than all other paragraphs
+
+        // For debug purposes.
+        guard nestDepth == 1 else { return }
+
+        // Find the first paragraph range.
+        // Find all other paragraph ranges that don't include a list.
+
+        let rangesOfNestedLists = str.ranges(of: .listMarker)
+
+        let attributedPrefix = str.attributedSubstring(from: NSRange(location: 0, length: prefixLength))
 
     }
 

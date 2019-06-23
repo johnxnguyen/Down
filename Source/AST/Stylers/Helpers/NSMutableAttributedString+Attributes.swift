@@ -10,6 +10,11 @@ import Foundation
 
 extension NSMutableAttributedString {
 
+    func replaceAttribute(_ name: NSAttributedString.Key, value: Any) {
+        removeAttribute(name)
+        addAttribute(name, value: value)
+    }
+
     func setAttributes(_ attrs: Attributes) {
         setAttributes(attrs, range: wholeRange)
     }
@@ -20,6 +25,10 @@ extension NSMutableAttributedString {
 
     func addAttribute(_ name: NSAttributedString.Key, value: Any) {
         addAttribute(name, value: value, range: wholeRange)
+    }
+
+    func removeAttribute(_ name: NSAttributedString.Key) {
+        removeAttribute(name, range: wholeRange)
     }
 
     func update<A>(_ key: NSAttributedString.Key, with f: (A) -> A) {
