@@ -9,29 +9,7 @@ import Foundation
 import libcmark
 
 public class List: BaseNode {
-    
-    public enum ListType: CustomDebugStringConvertible {
-        case bullet
-        case ordered(start: Int)
-        
-        public var debugDescription: String {
-            switch self {
-            case .bullet: return "Bullet"
-            case .ordered(let start): return "Ordered (start: \(start)"
-            }
-        }
-        
-        init?(cmarkNode: CMarkNode) {
-            switch cmarkNode.listType {
-            case CMARK_BULLET_LIST: self = .bullet
-            case CMARK_ORDERED_LIST: self = .ordered(start: cmarkNode.listStart)
-            default: return nil
-            }
-        }
-    }
-    
-    ///////////////////////////////////////////////////////////////////////////
-    
+
     /// The type of the list, either bullet or ordered.
     public lazy var listType: ListType = {
         guard let type = ListType(cmarkNode: cmarkNode) else {
@@ -44,9 +22,43 @@ public class List: BaseNode {
     
     /// The number of items in the list.
     public lazy var numberOfItems: Int = children.count
-    
+
+    public lazy var nestDepth: Int = {
+        var depth = 0
+        var next: CMarkNode? = cmark_node_parent(cmarkNode)
+
+        while let current = next {
+            depth += current.type == CMARK_NODE_LIST ? 1 : 0
+            next = cmark_node_parent(current)
+        }
+        return depth
+    }()
 }
 
+// MARK: - List Type
+
+public extension List {
+
+    enum ListType: CustomDebugStringConvertible {
+        case bullet
+        case ordered(start: Int)
+
+        public var debugDescription: String {
+            switch self {
+            case .bullet: return "Bullet"
+            case .ordered(let start): return "Ordered (start: \(start)"
+            }
+        }
+
+        init?(cmarkNode: CMarkNode) {
+            switch cmarkNode.listType {
+            case CMARK_BULLET_LIST: self = .bullet
+            case CMARK_ORDERED_LIST: self = .ordered(start: cmarkNode.listStart)
+            default: return nil
+            }
+        }
+    }
+}
 
 // MARK: - Debug
 

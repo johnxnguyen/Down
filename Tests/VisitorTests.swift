@@ -96,6 +96,31 @@ class VisitorTests: XCTestCase {
         XCTAssertEqual(result, expected)
     }
 
+    func testListDepth() throws {
+        // Given
+        let sut = ListDepthVisitor()
+        let markdown = """
+        1. A1
+        2. B1
+            * A2
+                1. A3
+                2. B3
+            * B2
+        3. C1
+        """
+
+        let down = Down(markdownString: markdown)
+        let ast = try down.toAST()
+        let document = Document(cmarkNode: ast)
+
+        // When
+        _ = document.accept(sut)
+
+        // Then
+        let expected = [0, 1, 2]
+
+        XCTAssertEqual(sut.depths, expected)
+    }
 }
 
 private class EmptyStyler: Styler {
@@ -122,3 +147,11 @@ private class EmptyStyler: Styler {
     func style(image str: NSMutableAttributedString, title: String?, url: String?) {}
 }
 
+private class ListDepthVisitor: DebugVisitor {
+    var  depths = [Int]()
+
+    override func visit(list node: List) -> String {
+        depths.append(node.nestDepth)
+        return super.visit(list: node)
+    }
+}
