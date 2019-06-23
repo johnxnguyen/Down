@@ -6,17 +6,26 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 import Foundation
+import UIKit
 
 open class DefaultStyler: Styler {
 
     public var listPrefixAttributes: [NSAttributedString.Key : Any] = [:]
+
+    private let fonts: FontBook = DynamicFonts()
+
+    public init() {
+
+    }
 }
 
 // MARK: - Styling
 
 extension DefaultStyler {
-    
+
     open func style(document str: NSMutableAttributedString) {
 
     }
@@ -34,23 +43,38 @@ extension DefaultStyler {
     }
 
     open func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?) {
-
+        str.setAttributes([.font: fonts.body])
     }
 
     open func style(htmlBlock str: NSMutableAttributedString) {
-
+        str.setAttributes([.font: fonts.body])
     }
 
     open func style(customBlock str: NSMutableAttributedString) {
-
+        // Not supported.
     }
 
     open func style(paragraph str: NSMutableAttributedString) {
-
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.paragraphSpacingBefore = 8
+        paragraphStyle.paragraphSpacing = 8
+        str.addAttribute(.paragraphStyle, value: paragraphStyle)
     }
 
     open func style(heading str: NSMutableAttributedString, level: Int) {
+        str.update(.font) { (currentFont: UIFont) in
+            var newFont = fonts.heading1
 
+            if (currentFont.isItalic) {
+                newFont = newFont.italic
+            }
+
+            if (currentFont.isBold) {
+                newFont = newFont.bold
+            }
+
+            return newFont
+        }
     }
 
     open func style(thematicBreak str: NSMutableAttributedString) {
@@ -58,7 +82,7 @@ extension DefaultStyler {
     }
 
     open func style(text str: NSMutableAttributedString) {
-
+        str.setAttributes([.font: fonts.body])
     }
 
     open func style(softBreak str: NSMutableAttributedString) {
@@ -70,30 +94,45 @@ extension DefaultStyler {
     }
 
     open func style(code str: NSMutableAttributedString) {
-
+        str.setAttributes([.font: fonts.body])
     }
 
     open func style(htmlInline str: NSMutableAttributedString) {
-
+        str.setAttributes([.font: fonts.body])
     }
 
     open func style(customInline str: NSMutableAttributedString) {
-
+        // Not supported.
     }
 
     open func style(emphasis str: NSMutableAttributedString) {
-
+        str.update(.font) { (font: UIFont) in
+            font.italic
+        }
     }
 
     open func style(strong str: NSMutableAttributedString) {
-
+        str.update(.font) { (font: UIFont) in
+            font.bold
+        }
     }
 
     open func style(link str: NSMutableAttributedString, title: String?, url: String?) {
+        guard let url = url else { return }
+        // TODO: Do we want to normalize the url?
+        // TODO: Use title.
+        // TODO: Link color?
+        str.addAttribute(.link, value: url)
 
     }
 
     open func style(image str: NSMutableAttributedString, title: String?, url: String?) {
-
+        guard let url = url else { return }
+        // TODO: Do we want to normalize the url?
+        // TODO: Use title.
+        // TODO: Link color?
+        str.addAttribute(.link, value: url)
     }
 }
+
+#endif
