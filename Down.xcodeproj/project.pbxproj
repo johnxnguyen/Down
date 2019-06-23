@@ -68,6 +68,7 @@
 		EE5F2BA42262564A00B7C0F3 /* Styler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5F2BA32262564A00B7C0F3 /* Styler.swift */; };
 		EE64FEF0225BEB3900A35B34 /* VisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */; };
 		EE8F38CC22BFB2420056270E /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8F38CB22BFB2420056270E /* NodeTests.swift */; };
+		EE8F38CE22BFEDE50056270E /* ListItemPrefixGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8F38CD22BFEDE50056270E /* ListItemPrefixGenerator.swift */; };
 		EED8DA8E22BE404F00E54492 /* DefaultStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA8D22BE404F00E54492 /* DefaultStyler.swift */; };
 		EED8DA9022BECBAE00E54492 /* NSAttributedString+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA8F22BECBAE00E54492 /* NSAttributedString+Range.swift */; };
 		EED8DA9222BECBF200E54492 /* NSMutableAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */; };
@@ -232,6 +233,7 @@
 		EE5F2BA32262564A00B7C0F3 /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styler.swift; sourceTree = "<group>"; };
 		EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorTests.swift; sourceTree = "<group>"; };
 		EE8F38CB22BFB2420056270E /* NodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
+		EE8F38CD22BFEDE50056270E /* ListItemPrefixGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemPrefixGenerator.swift; sourceTree = "<group>"; };
 		EED8DA8D22BE404F00E54492 /* DefaultStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStyler.swift; sourceTree = "<group>"; };
 		EED8DA8F22BECBAE00E54492 /* NSAttributedString+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Range.swift"; sourceTree = "<group>"; };
 		EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Attributes.swift"; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				EEEBEE71225D2F9200AE438D /* AttributedStringVisitor.swift */,
+				EE8F38CD22BFEDE50056270E /* ListItemPrefixGenerator.swift */,
 				EEEBEE6F225D2B9D00AE438D /* DebugVisitor.swift */,
 				EEF137702259E7E700D7DDE0 /* Vistor.swift */,
 			);
@@ -699,6 +702,7 @@
 				EED8DA9022BECBAE00E54492 /* NSAttributedString+Range.swift in Sources */,
 				8A569F771E6B3EE3008BE2AC /* String+ToHTML.swift in Sources */,
 				8A569F751E6B3EDE008BE2AC /* DownRenderable.swift in Sources */,
+				EE8F38CE22BFEDE50056270E /* ListItemPrefixGenerator.swift in Sources */,
 				8A569F741E6B3EDE008BE2AC /* DownXMLRenderable.swift in Sources */,
 				8A569F6B1E6B3ED9008BE2AC /* utf8.c in Sources */,
 				8A569F791E6B3EE7008BE2AC /* DownOptions.swift in Sources */,
