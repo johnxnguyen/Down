@@ -119,18 +119,12 @@ extension DefaultStyler {
 
     open func style(link str: NSMutableAttributedString, title: String?, url: String?) {
         guard let url = url else { return }
-        // TODO: Do we want to normalize the url?
-        // TODO: Use title.
-        // TODO: Link color?
         str.addAttribute(.link, value: url)
 
     }
 
     open func style(image str: NSMutableAttributedString, title: String?, url: String?) {
         guard let url = url else { return }
-        // TODO: Do we want to normalize the url?
-        // TODO: Use title.
-        // TODO: Link color?
         str.addAttribute(.link, value: url)
     }
 }
