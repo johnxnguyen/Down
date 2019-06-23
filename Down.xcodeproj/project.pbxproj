@@ -68,6 +68,10 @@
 		EE5F2BA42262564A00B7C0F3 /* Styler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5F2BA32262564A00B7C0F3 /* Styler.swift */; };
 		EE64FEF0225BEB3900A35B34 /* VisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */; };
 		EED8DA8E22BE404F00E54492 /* DefaultStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA8D22BE404F00E54492 /* DefaultStyler.swift */; };
+		EED8DA9022BECBAE00E54492 /* NSAttributedString+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA8F22BECBAE00E54492 /* NSAttributedString+Range.swift */; };
+		EED8DA9222BECBF200E54492 /* NSMutableAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */; };
+		EED8DA9422BECC2100E54492 /* UIFont+Traits.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA9322BECC2100E54492 /* UIFont+Traits.swift */; };
+		EED8DA9722BECD7500E54492 /* FontBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA9622BECD7500E54492 /* FontBook.swift */; };
 		EEEBEE47225D298D00AE438D /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBEE46225D298D00AE438D /* Document.swift */; };
 		EEEBEE49225D29C200AE438D /* BlockQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBEE48225D29C200AE438D /* BlockQuote.swift */; };
 		EEEBEE4B225D29D800AE438D /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBEE4A225D29D800AE438D /* List.swift */; };
@@ -100,6 +104,8 @@
 			compilerSpec = com.apple.compilers.pbxcp;
 			filePatterns = "*.inc";
 			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 			);
@@ -110,6 +116,8 @@
 			compilerSpec = com.apple.compilers.pbxcp;
 			filePatterns = "*COPYING";
 			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 			);
@@ -120,6 +128,8 @@
 			compilerSpec = com.apple.compilers.pbxcp;
 			filePatterns = "*.modulemap";
 			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 			);
@@ -221,6 +231,10 @@
 		EE5F2BA32262564A00B7C0F3 /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styler.swift; sourceTree = "<group>"; };
 		EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorTests.swift; sourceTree = "<group>"; };
 		EED8DA8D22BE404F00E54492 /* DefaultStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStyler.swift; sourceTree = "<group>"; };
+		EED8DA8F22BECBAE00E54492 /* NSAttributedString+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Range.swift"; sourceTree = "<group>"; };
+		EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Attributes.swift"; sourceTree = "<group>"; };
+		EED8DA9322BECC2100E54492 /* UIFont+Traits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Traits.swift"; sourceTree = "<group>"; };
+		EED8DA9622BECD7500E54492 /* FontBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontBook.swift; sourceTree = "<group>"; };
 		EEEBEE46225D298D00AE438D /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		EEEBEE48225D29C200AE438D /* BlockQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockQuote.swift; sourceTree = "<group>"; };
 		EEEBEE4A225D29D800AE438D /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
@@ -435,8 +449,20 @@
 			children = (
 				EE5F2BA32262564A00B7C0F3 /* Styler.swift */,
 				EED8DA8D22BE404F00E54492 /* DefaultStyler.swift */,
+				EED8DA9622BECD7500E54492 /* FontBook.swift */,
+				EED8DA9522BECCF000E54492 /* Helpers */,
 			);
 			path = Stylers;
+			sourceTree = "<group>";
+		};
+		EED8DA9522BECCF000E54492 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EED8DA9322BECC2100E54492 /* UIFont+Traits.swift */,
+				EED8DA8F22BECBAE00E54492 /* NSAttributedString+Range.swift */,
+				EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		EEEBEE45225D297700AE438D /* Nodes */ = {
@@ -655,15 +681,19 @@
 				EEEBEE63225D2AD400AE438D /* HtmlInline.swift in Sources */,
 				8A569F621E6B3ED9008BE2AC /* node.c in Sources */,
 				EEEBEE6D225D2B3200AE438D /* Image.swift in Sources */,
+				EED8DA9722BECD7500E54492 /* FontBook.swift in Sources */,
 				EEEBEE4D225D2A0200AE438D /* Item.swift in Sources */,
 				8A569F6F1E6B3EDE008BE2AC /* DownAttributedStringRenderable.swift in Sources */,
 				EEEBEE55225D2A4E00AE438D /* Paragraph.swift in Sources */,
 				8A569F721E6B3EDE008BE2AC /* DownHTMLRenderable.swift in Sources */,
+				EED8DA9422BECC2100E54492 /* UIFont+Traits.swift in Sources */,
 				8A569F581E6B3ED9008BE2AC /* houdini_html_e.c in Sources */,
 				EEEBEE5D225D2A8F00AE438D /* SoftBreak.swift in Sources */,
 				EEEBEE6B225D2B2200AE438D /* Link.swift in Sources */,
 				8A569F531E6B3ED9008BE2AC /* commonmark.c in Sources */,
 				8A569F4A1E6B3ED9008BE2AC /* buffer.c in Sources */,
+				EED8DA9222BECBF200E54492 /* NSMutableAttributedString+Attributes.swift in Sources */,
+				EED8DA9022BECBAE00E54492 /* NSAttributedString+Range.swift in Sources */,
 				8A569F771E6B3EE3008BE2AC /* String+ToHTML.swift in Sources */,
 				8A569F751E6B3EDE008BE2AC /* DownRenderable.swift in Sources */,
 				8A569F741E6B3EDE008BE2AC /* DownXMLRenderable.swift in Sources */,
@@ -850,6 +880,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.glazeddonut.$(TARGET_NAME:c99-identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -909,6 +940,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.glazeddonut.$(TARGET_NAME:c99-identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
