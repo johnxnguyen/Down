@@ -60,7 +60,7 @@ extension AttributedStringVisitor: Visitor {
         
         let s = items.joined
         if node.hasSuccessor { s.append(.paragraphSeparator) }
-        styler.style(list: s)
+        styler.style(list: s, nestDepth: node.nestDepth)
         return s
     }
     

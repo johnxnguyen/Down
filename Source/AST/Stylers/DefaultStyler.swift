@@ -34,8 +34,8 @@ extension DefaultStyler {
 
     }
 
-    open func style(list str: NSMutableAttributedString) {
-
+    open func style(list str: NSMutableAttributedString, nestDepth: Int) {
+        // Apply paragraph styles. Indent these styles depending on the list depth.
     }
 
     open func style(item str: NSMutableAttributedString) {
