@@ -95,7 +95,7 @@ open class DownView: WKWebView {
     private lazy var temporaryDirectoryURL: URL = {
         return try! FileManager.default.url(for: .itemReplacementDirectory,
                                             in: .userDomainMask,
-                                            appropriateFor: URL(fileURLWithPath: "/"),
+                                            appropriateFor: URL(fileURLWithPath: NSTemporaryDirectory()),
                                             create: true).appendingPathComponent("Down", isDirectory: true)
     }()
     #endif
