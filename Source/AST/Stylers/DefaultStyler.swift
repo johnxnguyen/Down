@@ -53,7 +53,7 @@ extension DefaultStyler {
         // Find the first paragraph range.
         // Find all other paragraph ranges that don't include a list.
 
-        let rangesOfNestedLists = str.ranges(of: .listMarker)
+        
 
         let attributedPrefix = str.attributedSubstring(from: NSRange(location: 0, length: prefixLength))
 
