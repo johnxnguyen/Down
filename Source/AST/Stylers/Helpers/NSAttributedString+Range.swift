@@ -30,13 +30,11 @@ extension NSAttributedString {
     func paragraphRanges() -> [NSRange] {
         guard length > 0 else { return [] }
 
-        var result = [NSRange]()
-
         func nextParagraphRange(at location: Int) -> NSRange {
             return NSString(string: string).paragraphRange(for: NSRange(location: location, length: 1))
         }
 
-        result.append(nextParagraphRange(at: 0))
+        var result = [nextParagraphRange(at: 0)]
 
         while let currentLocation = result.last?.upperBound, currentLocation < length {
             result.append(nextParagraphRange(at: currentLocation))
