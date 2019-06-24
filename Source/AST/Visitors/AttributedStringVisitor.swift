@@ -16,7 +16,7 @@ public class AttributedStringVisitor {
     private let styler: Styler
     private let options: DownOptions
     private var listStack = [ListItemPrefixGenerator]()
-    
+
     /// Creates a new instance with the given styler and options.
     ///
     /// - parameters:
@@ -54,6 +54,9 @@ extension AttributedStringVisitor: Visitor {
         let s = items.joined
         if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(list: s, nestDepth: node.nestDepth)
+
+        s.replaceAttribute(.listMarker, value: ())
+
         return s
     }
     
