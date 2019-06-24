@@ -46,17 +46,24 @@ extension DefaultStyler {
         // Things we need to consider.
         // 1. Don't style ranges that contain lists.
         // 2. The first paragraph has a different styling than all other paragraphs
+        // 3. There might be a list immediately after the perfix. If this is the case, then we
+        //    expect there to already be a break after the prefix.
 
         // For debug purposes.
         guard nestDepth == 1 else { return }
 
-        // Find the first paragraph range.
-        // Find all other paragraph ranges that don't include a list.
+        let paragraphRanges = str.paragraphRangesExcludingLists()
 
-        
+        // For simplicity, let's assume that there is no nested list directly after the prefix.
+        // TODO: handle this case.
+        guard let leadingParagraph = paragraphRanges.first else { return }
 
+        // Style the first paragraph
         let attributedPrefix = str.attributedSubstring(from: NSRange(location: 0, length: prefixLength))
 
+        paragraphRanges.dropFirst().forEach { range in
+            // Style the rest
+        }
     }
 
     open func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?) {
