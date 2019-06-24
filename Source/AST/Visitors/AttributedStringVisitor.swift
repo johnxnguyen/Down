@@ -187,7 +187,7 @@ private extension String {
 
 private extension NSAttributedString {
     static var paragraphSeparator: NSAttributedString {
-        return "\n".attributed
+        return "\u{2029}".attributed
     }
 }
 
