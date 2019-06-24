@@ -102,7 +102,7 @@ private class EmptyStyler: Styler {
     func style(document str: NSMutableAttributedString) {}
     func style(blockQuote str: NSMutableAttributedString) {}
     func style(list str: NSMutableAttributedString, nestDepth: Int) {}
-    func style(item str: NSMutableAttributedString) {}
+    func style(item str: NSMutableAttributedString, prefixLength: Int, nestDepth: Int) {}
     func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?) {}
     func style(htmlBlock str: NSMutableAttributedString) {}
     func style(customBlock str: NSMutableAttributedString) {}
