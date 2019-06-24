@@ -176,6 +176,8 @@ extension AttributedStringVisitor: Visitor {
 
 // MARK: - Helper extensions
 
+// TODO: I'd like to move these into separate files.
+
 private extension Sequence where Iterator.Element == NSMutableAttributedString {
     var joined: NSMutableAttributedString {
         return reduce(into: NSMutableAttributedString()) { $0.append($1) }
