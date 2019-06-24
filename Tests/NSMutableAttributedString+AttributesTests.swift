@@ -32,19 +32,16 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         let sut = NSMutableAttributedString(attributedString: hello)
         sut.append(world)
 
-        assertEquals(actual: countAttribute(.foregroundColor, in: sut), expected: 2)
+        // Check
+        XCTAssertEqual(countAttribute(.foregroundColor, in: sut), 2)
 
         // When
         sut.replaceAttribute(.foregroundColor, value: UIColor.yellow)
 
         // Then
-        let colorRanges = ranges(of: .foregroundColor, in: sut)
-        assertEquals(actual: colorRanges.count, expected: 1)
-        assertEquals(actual: colorRanges.first, expected: sut.wholeRange)
+        let ranges = self.ranges(of: .foregroundColor, in: sut)
+        XCTAssertEqual(ranges.count, 1)
+        XCTAssertEqual(ranges.first, NSRange(location: 0, length: 12))
     }
 
-}
-
-func assertEquals<T: Equatable>(actual: T, expected: T) {
-    XCTAssertEqual(actual, expected)
 }

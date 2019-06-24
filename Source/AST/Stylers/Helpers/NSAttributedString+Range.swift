@@ -13,13 +13,15 @@ extension NSAttributedString {
     typealias Attributes = [NSAttributedString.Key: Any]
 
     var wholeRange: NSRange {
-        return NSRange(location: 0, length: length)
+        NSRange(location: 0, length: length)
     }
 
     func ranges(of name: NSAttributedString.Key) -> [NSRange] {
         var ranges = [NSRange]()
-        enumerateAttribute(name, in: wholeRange, options: []) { _, range, _ in
-            ranges.append(range)
+        enumerateAttribute(name, in: wholeRange, options: []) { value, range, _ in
+            if value != nil {
+                ranges.append(range)
+            }
         }
 
         return ranges
@@ -35,7 +37,6 @@ extension NSAttributedString {
         }
 
         result.append(nextParagraphRange(at: 0))
-
 
         while let currentLocation = result.last?.upperBound, currentLocation < length {
             result.append(nextParagraphRange(at: currentLocation))
