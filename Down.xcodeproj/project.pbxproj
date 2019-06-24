@@ -70,6 +70,7 @@
 		EE8F38CC22BFB2420056270E /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8F38CB22BFB2420056270E /* NodeTests.swift */; };
 		EE8F38CE22BFEDE50056270E /* ListItemPrefixGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8F38CD22BFEDE50056270E /* ListItemPrefixGenerator.swift */; };
 		EE97253E22C130D8004D3B3A /* NSMutableAttributedString+AttributesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97253D22C130D8004D3B3A /* NSMutableAttributedString+AttributesTests.swift */; };
+		EE97254022C148A1004D3B3A /* NSAttributedString+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97253F22C148A1004D3B3A /* NSAttributedString+Key.swift */; };
 		EED8DA8E22BE404F00E54492 /* DefaultStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA8D22BE404F00E54492 /* DefaultStyler.swift */; };
 		EED8DA9022BECBAE00E54492 /* NSAttributedString+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA8F22BECBAE00E54492 /* NSAttributedString+Range.swift */; };
 		EED8DA9222BECBF200E54492 /* NSMutableAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */; };
@@ -236,6 +237,7 @@
 		EE8F38CB22BFB2420056270E /* NodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
 		EE8F38CD22BFEDE50056270E /* ListItemPrefixGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemPrefixGenerator.swift; sourceTree = "<group>"; };
 		EE97253D22C130D8004D3B3A /* NSMutableAttributedString+AttributesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+AttributesTests.swift"; sourceTree = "<group>"; };
+		EE97253F22C148A1004D3B3A /* NSAttributedString+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Key.swift"; sourceTree = "<group>"; };
 		EED8DA8D22BE404F00E54492 /* DefaultStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStyler.swift; sourceTree = "<group>"; };
 		EED8DA8F22BECBAE00E54492 /* NSAttributedString+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Range.swift"; sourceTree = "<group>"; };
 		EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Attributes.swift"; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 			children = (
 				EED8DA9322BECC2100E54492 /* UIFont+Traits.swift */,
 				EED8DA8F22BECBAE00E54492 /* NSAttributedString+Range.swift */,
+				EE97253F22C148A1004D3B3A /* NSAttributedString+Key.swift */,
 				EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */,
 			);
 			path = Helpers;
@@ -734,6 +737,7 @@
 				EEEBEE5F225D2AA700AE438D /* LineBreak.swift in Sources */,
 				EEEBEE61225D2AC000AE438D /* Code.swift in Sources */,
 				8A569F491E6B3ED9008BE2AC /* blocks.c in Sources */,
+				EE97254022C148A1004D3B3A /* NSAttributedString+Key.swift in Sources */,
 				EEF137712259E7E700D7DDE0 /* Vistor.swift in Sources */,
 				EEEBEE53225D2A3C00AE438D /* CustomBlock.swift in Sources */,
 				EEEBEE69225D2B1200AE438D /* Strong.swift in Sources */,
