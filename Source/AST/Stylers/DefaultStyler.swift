@@ -49,20 +49,32 @@ extension DefaultStyler {
         // 3. There might be a list immediately after the perfix. If this is the case, then we
         //    expect there to already be a break after the prefix.
 
-        // For debug purposes.
-        guard nestDepth == 1 else { return }
-
         let paragraphRanges = str.paragraphRangesExcludingLists()
 
         // For simplicity, let's assume that there is no nested list directly after the prefix.
         // TODO: handle this case.
-        guard let leadingParagraph = paragraphRanges.first else { return }
+        guard let leadingParagraphRange = paragraphRanges.first else { return }
 
-        // Style the first paragraph
         let attributedPrefix = str.attributedSubstring(from: NSRange(location: 0, length: prefixLength))
+        let prefixWidth = attributedPrefix.size().width
+        let maxPrefixWidth = NSAttributedString(string: "99.", attributes: listPrefixAttributes).size().width
+        let tabWidth: CGFloat = 8
+        let indentationWidth: CGFloat = maxPrefixWidth + tabWidth
+        let indentation = indentationWidth * CGFloat(nestDepth + 1)
 
-        paragraphRanges.dropFirst().forEach { range in
-            // Style the rest
+        let firstParagraphStyle = NSMutableParagraphStyle()
+        firstParagraphStyle.firstLineHeadIndent = indentation - tabWidth - prefixWidth
+        firstParagraphStyle.headIndent = indentation
+        firstParagraphStyle.tabStops = [NSTextTab(textAlignment: .left, location: indentation, options: [:])]
+
+        str.addAttribute(.paragraphStyle, value: firstParagraphStyle, range: leadingParagraphRange)
+
+        for range in paragraphRanges.dropFirst() {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.firstLineHeadIndent = indentation
+            paragraphStyle.headIndent = indentation
+
+            str.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
         }
     }
 
