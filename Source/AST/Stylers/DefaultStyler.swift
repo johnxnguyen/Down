@@ -46,10 +46,10 @@ extension DefaultStyler {
     }
 
     open func style(item str: NSMutableAttributedString, prefixLength: Int, nestDepth: Int) {
-        let paragraphRanges = str.paragraphRangesExcludingLists()
-
         // For simplicity, let's assume that there is no nested list directly after the prefix.
         // TODO: handle this case.
+
+        let paragraphRanges = str.paragraphRangesExcludingLists()
         guard let leadingParagraphRange = paragraphRanges.first else { return }
         
         let attributedPrefix = str.prefix(with: prefixLength)
