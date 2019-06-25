@@ -52,8 +52,7 @@ extension DefaultStyler {
         // TODO: handle this case.
         guard let leadingParagraphRange = paragraphRanges.first else { return }
         
-        guard let attributedPrefix = str.prefix(with: prefixLength) else { return }
-
+        let attributedPrefix = str.prefix(with: prefixLength)
         let prefixWidth = attributedPrefix.size().width
         let leadingParagraphStyle = paragraphStyler.leadingParagraphStyle(nestDepth: nestDepth, prefixWidth: prefixWidth)
         str.addAttribute(.paragraphStyle, value: leadingParagraphStyle, range: leadingParagraphRange)

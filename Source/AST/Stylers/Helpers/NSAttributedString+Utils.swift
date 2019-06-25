@@ -10,8 +10,8 @@ import Foundation
 
 extension NSAttributedString {
 
-    func prefix(with length: Int) -> NSAttributedString? {
-        guard length <= self.length else { return nil }
+    func prefix(with length: Int) -> NSAttributedString {
+        guard length <= self.length else { return self }
         return attributedSubstring(from: NSMakeRange(0, length))
     }
 }
