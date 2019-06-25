@@ -13,15 +13,19 @@ import UIKit
 
 open class DefaultStyler: Styler {
 
-    public var listPrefixAttributes: [NSAttributedString.Key : Any]
+    public let listPrefixAttributes: [NSAttributedString.Key : Any]
 
     private let fonts: FontBook = DynamicFonts()
+
+    private let paragraphStyler: ListItemParagraphStyler
 
     public init() {
         listPrefixAttributes = [
             .font: UIFont.monospacedDigitSystemFont(ofSize: fonts.body.pointSize, weight: .regular),
             .foregroundColor: UIColor.gray
         ]
+
+        paragraphStyler = ListItemParagraphStyler(prefixAttributes: listPrefixAttributes)
     }
 }
 
@@ -42,38 +46,20 @@ extension DefaultStyler {
     }
 
     open func style(item str: NSMutableAttributedString, prefixLength: Int, nestDepth: Int) {
-
-        // Things we need to consider.
-        // 1. Don't style ranges that contain lists.
-        // 2. The first paragraph has a different styling than all other paragraphs
-        // 3. There might be a list immediately after the perfix. If this is the case, then we
-        //    expect there to already be a break after the prefix.
-
         let paragraphRanges = str.paragraphRangesExcludingLists()
 
         // For simplicity, let's assume that there is no nested list directly after the prefix.
         // TODO: handle this case.
         guard let leadingParagraphRange = paragraphRanges.first else { return }
+        
+        guard let attributedPrefix = str.prefix(with: prefixLength) else { return }
 
-        let attributedPrefix = str.attributedSubstring(from: NSRange(location: 0, length: prefixLength))
         let prefixWidth = attributedPrefix.size().width
-        let maxPrefixWidth = NSAttributedString(string: "99.", attributes: listPrefixAttributes).size().width
-        let tabWidth: CGFloat = 8
-        let indentationWidth: CGFloat = maxPrefixWidth + tabWidth
-        let indentation = indentationWidth * CGFloat(nestDepth + 1)
-
-        let firstParagraphStyle = NSMutableParagraphStyle()
-        firstParagraphStyle.firstLineHeadIndent = indentation - tabWidth - prefixWidth
-        firstParagraphStyle.headIndent = indentation
-        firstParagraphStyle.tabStops = [NSTextTab(textAlignment: .left, location: indentation, options: [:])]
-
-        str.addAttribute(.paragraphStyle, value: firstParagraphStyle, range: leadingParagraphRange)
+        let leadingParagraphStyle = paragraphStyler.leadingParagraphStyle(nestDepth: nestDepth, prefixWidth: prefixWidth)
+        str.addAttribute(.paragraphStyle, value: leadingParagraphStyle, range: leadingParagraphRange)
 
         for range in paragraphRanges.dropFirst() {
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.firstLineHeadIndent = indentation
-            paragraphStyle.headIndent = indentation
-
+            let paragraphStyle = paragraphStyler.trailingParagraphStyle(nestDepth: nestDepth)
             str.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
         }
     }

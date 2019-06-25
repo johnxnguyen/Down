@@ -77,6 +77,8 @@
 		EED8DA9222BECBF200E54492 /* NSMutableAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */; };
 		EED8DA9422BECC2100E54492 /* UIFont+Traits.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA9322BECC2100E54492 /* UIFont+Traits.swift */; };
 		EED8DA9722BECD7500E54492 /* FontBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA9622BECD7500E54492 /* FontBook.swift */; };
+		EEE2C7EF22C2A355001B7054 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE2C7EE22C2A355001B7054 /* NSAttributedString+Utils.swift */; };
+		EEE2C7F122C2AFEF001B7054 /* ListItemParagraphStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE2C7F022C2AFEF001B7054 /* ListItemParagraphStyler.swift */; };
 		EEEBEE47225D298D00AE438D /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBEE46225D298D00AE438D /* Document.swift */; };
 		EEEBEE49225D29C200AE438D /* BlockQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBEE48225D29C200AE438D /* BlockQuote.swift */; };
 		EEEBEE4B225D29D800AE438D /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBEE4A225D29D800AE438D /* List.swift */; };
@@ -245,6 +247,8 @@
 		EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Attributes.swift"; sourceTree = "<group>"; };
 		EED8DA9322BECC2100E54492 /* UIFont+Traits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Traits.swift"; sourceTree = "<group>"; };
 		EED8DA9622BECD7500E54492 /* FontBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontBook.swift; sourceTree = "<group>"; };
+		EEE2C7EE22C2A355001B7054 /* NSAttributedString+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Utils.swift"; sourceTree = "<group>"; };
+		EEE2C7F022C2AFEF001B7054 /* ListItemParagraphStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemParagraphStyler.swift; sourceTree = "<group>"; };
 		EEEBEE46225D298D00AE438D /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		EEEBEE48225D29C200AE438D /* BlockQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockQuote.swift; sourceTree = "<group>"; };
 		EEEBEE4A225D29D800AE438D /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
@@ -473,8 +477,10 @@
 			children = (
 				EED8DA9322BECC2100E54492 /* UIFont+Traits.swift */,
 				EED8DA8F22BECBAE00E54492 /* NSAttributedString+Range.swift */,
+				EEE2C7EE22C2A355001B7054 /* NSAttributedString+Utils.swift */,
 				EE97253F22C148A1004D3B3A /* NSAttributedString+Key.swift */,
 				EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */,
+				EEE2C7F022C2AFEF001B7054 /* ListItemParagraphStyler.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -702,11 +708,13 @@
 				EEEBEE55225D2A4E00AE438D /* Paragraph.swift in Sources */,
 				8A569F721E6B3EDE008BE2AC /* DownHTMLRenderable.swift in Sources */,
 				EED8DA9422BECC2100E54492 /* UIFont+Traits.swift in Sources */,
+				EEE2C7F122C2AFEF001B7054 /* ListItemParagraphStyler.swift in Sources */,
 				8A569F581E6B3ED9008BE2AC /* houdini_html_e.c in Sources */,
 				EEEBEE5D225D2A8F00AE438D /* SoftBreak.swift in Sources */,
 				EEEBEE6B225D2B2200AE438D /* Link.swift in Sources */,
 				8A569F531E6B3ED9008BE2AC /* commonmark.c in Sources */,
 				8A569F4A1E6B3ED9008BE2AC /* buffer.c in Sources */,
+				EEE2C7EF22C2A355001B7054 /* NSAttributedString+Utils.swift in Sources */,
 				EED8DA9222BECBF200E54492 /* NSMutableAttributedString+Attributes.swift in Sources */,
 				EED8DA9022BECBAE00E54492 /* NSAttributedString+Range.swift in Sources */,
 				8A569F771E6B3EE3008BE2AC /* String+ToHTML.swift in Sources */,
