@@ -97,6 +97,10 @@ extension DefaultStyler {
 
             return newFont
         }
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.paragraphSpacing = 8
+        str.addAttribute(.paragraphStyle, value: paragraphStyle)
     }
 
     open func style(thematicBreak str: NSMutableAttributedString) {
