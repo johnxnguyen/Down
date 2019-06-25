@@ -15,7 +15,8 @@ public class AttributedStringVisitor {
     
     private let styler: Styler
     private let options: DownOptions
-    
+    private var listLevel: Int = -1
+
     /// Creates a new instance with the given styler and options.
     ///
     /// - parameters:
@@ -44,14 +45,18 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(list node: List) -> NSMutableAttributedString {
+        listLevel += 1
         let items = visitChildren(of: node)
         
         // Prepend prefixes to each item.
         items.enumerated().forEach { index, item in
+            var tabs = ""
+            (0..<listLevel).forEach {_ in tabs.append("\t") }
+
             let prefix: String
             switch node.listType {
-            case .bullet: prefix = "•\t"
-            case .ordered(let start): prefix = "\(start + index).\t"
+            case .bullet: prefix = "\(tabs)•\t"
+            case .ordered(let start): prefix = "\(tabs)\(start + index).\t"
             }
             
             let attrPrefix = NSAttributedString(string: prefix, attributes: styler.listPrefixAttributes)
@@ -61,6 +66,8 @@ extension AttributedStringVisitor: Visitor {
         let s = items.joined
         if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(list: s)
+
+        listLevel -= 1
         return s
     }
     
