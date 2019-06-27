@@ -364,15 +364,13 @@
 		D4201EC41CFA59A5008EEC6E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				EE97254222C14B79004D3B3A /* NSAttributedString+RangeTests.swift */,
-				EE97253D22C130D8004D3B3A /* NSMutableAttributedString+AttributesTests.swift */,
-				EE8F38CB22BFB2420056270E /* NodeTests.swift */,
 				907C64611EC120530095FEE1 /* Fixtures */,
 				D4201EC51CFA59A5008EEC6E /* BindingTests.swift */,
 				D41689B21CFFE28200E5802B /* DownViewTests.swift */,
 				D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */,
 				D438696B1D00D27700E95A1F /* StringTests.swift */,
-				EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */,
+				EEC752BD22C4ADC000EC729C /* NSAttributedStringTests */,
+				EEC752BE22C4AE1300EC729C /* AST */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -470,6 +468,24 @@
 				EED8DA9522BECCF000E54492 /* Helpers */,
 			);
 			path = Stylers;
+			sourceTree = "<group>";
+		};
+		EEC752BD22C4ADC000EC729C /* NSAttributedStringTests */ = {
+			isa = PBXGroup;
+			children = (
+				EE97254222C14B79004D3B3A /* NSAttributedString+RangeTests.swift */,
+				EE97253D22C130D8004D3B3A /* NSMutableAttributedString+AttributesTests.swift */,
+			);
+			path = NSAttributedStringTests;
+			sourceTree = "<group>";
+		};
+		EEC752BE22C4AE1300EC729C /* AST */ = {
+			isa = PBXGroup;
+			children = (
+				EE8F38CB22BFB2420056270E /* NodeTests.swift */,
+				EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */,
+			);
+			path = AST;
 			sourceTree = "<group>";
 		};
 		EED8DA9522BECCF000E54492 /* Helpers */ = {
