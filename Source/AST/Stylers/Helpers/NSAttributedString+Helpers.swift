@@ -1,5 +1,5 @@
 //
-//  NSAttributedString+Range.swift
+//  NSAttributedString+Helpers.swift
 //  Down
 //
 //  Created by John Nguyen on 22.06.19.
@@ -11,6 +11,16 @@ import Foundation
 extension NSAttributedString {
 
     typealias Attributes = [NSAttributedString.Key: Any]
+
+    func prefix(with length: Int) -> NSAttributedString {
+        guard length <= self.length else { return self }
+        return attributedSubstring(from: NSMakeRange(0, length))
+    }
+}
+
+// MARK: - Ranges
+
+extension NSAttributedString {
 
     var wholeRange: NSRange {
         NSRange(location: 0, length: length)

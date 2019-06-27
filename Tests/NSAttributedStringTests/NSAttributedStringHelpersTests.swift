@@ -1,5 +1,5 @@
 //
-//  NSAttributedString+RangeTests.swift
+//  NSAttributedStringHelpersTests.swift
 //  DownTests
 //
 //  Created by John Nguyen on 24.06.19.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import Down
 
-class NSAttributedString_RangeTests: XCTestCase {
+class NSAttributedStringHelpersTests: XCTestCase {
 
     let dummyKey = NSAttributedString.Key(rawValue: "key")
     let dummyValue = "value"
