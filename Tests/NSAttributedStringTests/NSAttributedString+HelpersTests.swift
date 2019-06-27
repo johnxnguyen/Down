@@ -9,7 +9,7 @@
 import XCTest
 @testable import Down
 
-class NSAttributedStringHelpersTests: XCTestCase {
+class NSAttributedString_HelpersTests: XCTestCase {
 
     let dummyKey = NSAttributedString.Key(rawValue: "key")
     let dummyValue = "value"
@@ -17,6 +17,41 @@ class NSAttributedStringHelpersTests: XCTestCase {
     func make(_ str: String, attributed: Bool = false) -> NSAttributedString {
         let attrs = attributed ? [dummyKey: dummyValue] : [:]
         return NSAttributedString(string: str, attributes: attrs)
+    }
+
+    // MARK: - Prefix
+
+    func testPrefixWithLength() {
+        // Given
+        let sut = make("Hello")
+
+        // When
+        let prefix = sut.prefix(with: 3)
+
+        // Then
+        XCTAssertEqual(prefix, make("Hel"))
+    }
+
+    func testPrefixWithLengthOutOfBounds() {
+        // Given
+        let sut = make("Hello")
+
+        // When
+        let prefix = sut.prefix(with: 10)
+
+        // Then
+        XCTAssertEqual(prefix, sut)
+    }
+
+    func testPrefixWithNegativeLength() {
+        // Given
+        let sut = make("Hello")
+
+        // When
+        let prefix = sut.prefix(with: -1)
+
+        // Then
+        XCTAssertEqual(prefix, make(""))
     }
 
     // MARK: - Whole Ranges
