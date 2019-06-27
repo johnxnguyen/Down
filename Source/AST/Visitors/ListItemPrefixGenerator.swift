@@ -12,14 +12,18 @@ class ListItemPrefixGenerator {
 
     private var prefixes: IndexingIterator<[String]>
 
-    init(list: List) {
-        switch list.listType {
+    convenience init(list: List) {
+        self.init(listType: list.listType, numberOfItems: list.numberOfItems)
+    }
+
+    init(listType: List.ListType, numberOfItems: Int) {
+        switch listType {
         case .bullet:
-            prefixes = [String](repeating: "•", count: list.numberOfItems)
+            prefixes = [String](repeating: "•", count: numberOfItems)
                 .makeIterator()
 
         case .ordered(let start):
-            prefixes = (start...(start + list.numberOfItems))
+            prefixes = (start...(start + numberOfItems))
                 .map { "\($0)." }
                 .makeIterator()
         }
