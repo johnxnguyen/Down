@@ -11,20 +11,23 @@ import XCTest
 
 class NSMutableAttributedString_AttributesTests: XCTestCase {
 
-    func countAttribute(_ name: NSAttributedString.Key, in str: NSAttributedString) -> Int {
-        str.ranges(of: name).count
+    func testSettingAttributes() {
+        XCTFail()
     }
 
-    func ranges(of name: NSAttributedString.Key, in str: NSAttributedString) -> [NSRange] {
-        var ranges = [NSRange]()
-        str.enumerateAttribute(name, in: str.wholeRange, options: []) { _, range, _ in
-            ranges.append(range)
-        }
-
-        return ranges
+    func testAddingAttributes() {
+        XCTFail()
     }
 
-    func testReplacingAttributes() {
+    func testAddingAttribute() {
+        XCTFail()
+    }
+
+    func testRemovingAttribute() {
+        XCTFail()
+    }
+
+    func testReplacingAttribute() {
         // Given
         let hello = NSAttributedString(string: "Hello ", attributes: [.foregroundColor: UIColor.black])
         let world = NSAttributedString(string: "world!", attributes: [.foregroundColor: UIColor.white])
@@ -44,4 +47,31 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         XCTAssertEqual(ranges.first, NSRange(location: 0, length: 12))
     }
 
+    func testUpdatingAttribute() {
+        XCTFail()
+    }
+
+    func testAddingAttributeInRange() {
+        XCTFail()
+    }
+
+    func testUpdatingAttributeThatDidNotExistInRange() {
+        XCTFail()
+    }
+}
+
+extension NSMutableAttributedString_AttributesTests {
+
+    func countAttribute(_ name: NSAttributedString.Key, in str: NSAttributedString) -> Int {
+        str.ranges(of: name).count
+    }
+
+    func ranges(of name: NSAttributedString.Key, in str: NSAttributedString) -> [NSRange] {
+        var ranges = [NSRange]()
+        str.enumerateAttribute(name, in: str.wholeRange, options: []) { _, range, _ in
+            ranges.append(range)
+        }
+
+        return ranges
+    }
 }
