@@ -10,11 +10,6 @@ import Foundation
 
 extension NSMutableAttributedString {
 
-    func replaceAttribute(_ name: NSAttributedString.Key, value: Any) {
-        removeAttribute(name)
-        addAttribute(name, value: value)
-    }
-
     func setAttributes(_ attrs: Attributes) {
         setAttributes(attrs, range: wholeRange)
     }
@@ -31,11 +26,16 @@ extension NSMutableAttributedString {
         removeAttribute(name, range: wholeRange)
     }
 
-    func update<A>(_ key: NSAttributedString.Key, with f: (A) -> A) {
-        update(key, inRange: wholeRange, with: f)
+    func replaceAttribute(_ name: NSAttributedString.Key, value: Any) {
+        removeAttribute(name)
+        addAttribute(name, value: value)
     }
 
-    func update<A>(_ key: NSAttributedString.Key, inRange range: NSRange, with f: (A) -> A) {
+    func updateAttribute<A>(_ key: NSAttributedString.Key, with f: (A) -> A) {
+        updateAttribute(key, inRange: wholeRange, with: f)
+    }
+
+    func updateAttribute<A>(_ key: NSAttributedString.Key, inRange range: NSRange, with f: (A) -> A) {
         var exisitngValues = [(value: A, range: NSRange)]()
 
         enumerateAttribute(key, in: range, options: []) { value, range, _ in

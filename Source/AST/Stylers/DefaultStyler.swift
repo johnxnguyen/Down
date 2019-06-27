@@ -84,7 +84,7 @@ extension DefaultStyler {
     }
 
     open func style(heading str: NSMutableAttributedString, level: Int) {
-        str.update(.font) { (currentFont: UIFont) in
+        str.updateAttribute(.font) { (currentFont: UIFont) in
             var newFont = fonts.heading1
 
             if (currentFont.isItalic) {
@@ -132,13 +132,13 @@ extension DefaultStyler {
     }
 
     open func style(emphasis str: NSMutableAttributedString) {
-        str.update(.font) { (font: UIFont) in
+        str.updateAttribute(.font) { (font: UIFont) in
             font.italic
         }
     }
 
     open func style(strong str: NSMutableAttributedString) {
-        str.update(.font) { (font: UIFont) in
+        str.updateAttribute(.font) { (font: UIFont) in
             font.bold
         }
     }
