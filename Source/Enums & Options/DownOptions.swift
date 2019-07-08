@@ -54,5 +54,10 @@ public struct DownOptions: OptionSet {
 
     /// Convert straight quotes to curly, --- to em dashes, -- to en dashes.
     public static let smart = DownOptions(rawValue: CMARK_OPT_SMART)
+    
+    // MARK: - Combo Options
+    
+    /// Combines 'unsafe' and 'smart' to render raw HTML and produce smart typography.
+    public static let smartUnsafe = DownOptions(rawValue: CMARK_OPT_SMART + CMARK_OPT_UNSAFE)
 
 }
