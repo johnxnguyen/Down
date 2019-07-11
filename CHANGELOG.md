@@ -1,5 +1,18 @@
 # Change Log
 
+## [v0.8.6](https://github.com/iwasrobbed/Down/tree/v0.8.6) (2019-07-11)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.5...v0.8.6)
+
+**Closed issues:**
+
+- Update Options to support Unsafe Rendering [\#159](https://github.com/iwasrobbed/Down/issues/159)
+- .toAttributedString stylesheet parameter [\#158](https://github.com/iwasrobbed/Down/issues/158)
+
+**Merged pull requests:**
+
+- Updates for unsafe option [\#160](https://github.com/iwasrobbed/Down/pull/160) ([hbowie](https://github.com/hbowie))
+- Fix permissions error on Catalina beta 2 [\#156](https://github.com/iwasrobbed/Down/pull/156) ([mdiep](https://github.com/mdiep))
+
 ## [v0.8.5](https://github.com/iwasrobbed/Down/tree/v0.8.5) (2019-06-13)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.4...v0.8.5)
 
