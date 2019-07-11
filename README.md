@@ -199,9 +199,17 @@ public static let hardBreaks = DownOptions(rawValue: 1 << 2)
  `file:`, and `data:`, except for `image/png`, `image/gif`,
  `image/jpeg`, or `image/webp` mime types).  Raw HTML is replaced
  by a placeholder HTML comment. Unsafe links are replaced by
- empty strings.
+ empty strings. Note that this option is provided for backwards
+ compatibility, but safe mode is now the default. 
 */
 public static let safe = DownOptions(rawValue: 1 << 3)
+
+/**
+ Allow raw HTML and unsafe links. Note that safe mode is now 
+ the default, and the unsafe option must be used if rendering
+ of raw HTML and unsafe links is desired. 
+*/
+public static let unsafe = DownOptions(rawValue: 1 << 17)
 
 // MARK: - Parsing Options
 
@@ -220,6 +228,11 @@ public static let validateUTF8 = DownOptions(rawValue: 1 << 5)
  Convert straight quotes to curly, --- to em dashes, -- to en dashes.
 */
 public static let smart = DownOptions(rawValue: 1 << 6)
+
+/**
+ Combine smart typography with HTML rendering. 
+*/
+public static let smartUnsaFe = DownOptions(rawValue: (1 << 17) + (1 << 6))
 ```
 
 ### Supports
