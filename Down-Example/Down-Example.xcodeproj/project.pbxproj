@@ -243,7 +243,7 @@
 				TargetAttributes = {
 					14090A482185411800503C06 = {
 						CreatedOnToolsVersion = 10.0;
-						DevelopmentTeam = NWN7H36NTR;
+						DevelopmentTeam = 8TCCDSD8P5;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -398,7 +398,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = NWN7H36NTR;
+				DEVELOPMENT_TEAM = 8TCCDSD8P5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "macOS Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -424,7 +424,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = NWN7H36NTR;
+				DEVELOPMENT_TEAM = 8TCCDSD8P5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "macOS Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
