@@ -8,10 +8,9 @@
 
 #if os(macOS)
     import AppKit
-#else
+#elseif os(iOS) || os(tvOS)
     import UIKit
 #endif
-
 
 extension NSAttributedString {
 
@@ -24,11 +23,16 @@ extension NSAttributedString {
             throw DownErrors.htmlDataConversionError
         }
 
+        #if !os(Linux)
         let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
             .documentType: NSAttributedString.DocumentType.html,
             .characterEncoding: NSNumber(value: String.Encoding.utf8.rawValue)
         ]
         try self.init(data: data, options: options, documentAttributes: nil)
+        #else
+        // NSAttributedString.DocumentReadingOptionKey is not
+        // available in Linux, so throw an error instead.
+        throw DownErrors.htmlDataConversionError
+        #endif
     }
-
 }
