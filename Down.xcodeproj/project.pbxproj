@@ -65,6 +65,9 @@
 		907C64651EC133780095FEE1 /* TestDownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 907C64621EC120530095FEE1 /* TestDownView.bundle */; };
 		90A40A9C1EC03292004F2E91 /* Down.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE469B11226CF3B500C0655D /* BaseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE469B10226CF3B500C0655D /* BaseNode.swift */; };
+		EE54F96C22EB9C9800628683 /* Cartfile.private in Resources */ = {isa = PBXBuildFile; fileRef = EE54F96B22EB9C9800628683 /* Cartfile.private */; };
+		EE54F96F22EB9CE500628683 /* SnapshotTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */; };
+		EE54F97122EB9D0400628683 /* SnapshotTesting.framework in Copy Testing Frameworks */ = {isa = PBXBuildFile; fileRef = EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE5F2BA42262564A00B7C0F3 /* Styler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5F2BA32262564A00B7C0F3 /* Styler.swift */; };
 		EE64FEF0225BEB3900A35B34 /* VisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */; };
 		EE8F38CC22BFB2420056270E /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8F38CB22BFB2420056270E /* NodeTests.swift */; };
@@ -165,6 +168,17 @@
 			name = "Copy Bundled Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EE54F97022EB9CE800628683 /* Copy Testing Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EE54F97122EB9D0400628683 /* SnapshotTesting.framework in Copy Testing Frameworks */,
+			);
+			name = "Copy Testing Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -234,6 +248,8 @@
 		D4DC91131CFDED4B0091CE09 /* DownCommonMarkRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownCommonMarkRenderable.swift; sourceTree = "<group>"; };
 		D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
 		EE469B10226CF3B500C0655D /* BaseNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNode.swift; sourceTree = "<group>"; };
+		EE54F96B22EB9C9800628683 /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
+		EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapshotTesting.framework; path = Carthage/Build/iOS/SnapshotTesting.framework; sourceTree = "<group>"; };
 		EE5F2BA32262564A00B7C0F3 /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styler.swift; sourceTree = "<group>"; };
 		EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorTests.swift; sourceTree = "<group>"; };
 		EE8F38CB22BFB2420056270E /* NodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
@@ -278,6 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE54F96F22EB9CE500628683 /* SnapshotTesting.framework in Frameworks */,
 				8AFAEB001E6E32E900E09B68 /* Down.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,10 +343,12 @@
 		D4201E761CFA5151008EEC6E = {
 			isa = PBXGroup;
 			children = (
+				EE54F96B22EB9C9800628683 /* Cartfile.private */,
 				D4201E9B1CFA59A5008EEC6E /* Source */,
 				D41689B41CFFE6BB00E5802B /* Resources */,
 				D4201EC41CFA59A5008EEC6E /* Tests */,
 				D4201E811CFA5151008EEC6E /* Products */,
+				EE54F96D22EB9CE400628683 /* Frameworks */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -455,6 +474,14 @@
 				D44875E91CFA6CF30037A624 /* DownOptions.swift */,
 			);
 			path = "Enums & Options";
+			sourceTree = "<group>";
+		};
+		EE54F96D22EB9CE400628683 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EE5F2BA22262562F00B7C0F3 /* Stylers */ = {
@@ -606,6 +633,7 @@
 				907C64641EC133740095FEE1 /* Resources */,
 				8AFAEAF81E6E32E900E09B68 /* Frameworks */,
 				90A40A9B1EC03282004F2E91 /* Copy Bundled Frameworks */,
+				EE54F97022EB9CE800628683 /* Copy Testing Frameworks */,
 			);
 			buildRules = (
 			);
@@ -663,6 +691,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE54F96C22EB9C9800628683 /* Cartfile.private in Resources */,
 				14C5E33521877CE900D5380C /* DownView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -848,6 +877,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 90A40A9A1EC0309A004F2E91 /* Universal-Target-Base.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Resources/DownTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.glazeddonut.DownTests;
 				SWIFT_VERSION = 5.0;
@@ -860,6 +893,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 90A40A9A1EC0309A004F2E91 /* Universal-Target-Base.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Resources/DownTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.glazeddonut.DownTests;
 				SWIFT_VERSION = 5.0;
