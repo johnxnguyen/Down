@@ -19,7 +19,7 @@ open class DefaultStyler: Styler {
     private let colors: ColorCollection
     private let paragraphStyles: ParagraphStyleCollection
 
-    private let paragraphStyler: ListItemParagraphStyler
+    private let itemParagraphStyler: ListItemParagraphStyler
 
     public init(fonts: FontCollection = .dynamicFonts,
                 colors: ColorCollection = .init(),
@@ -34,7 +34,7 @@ open class DefaultStyler: Styler {
             .foregroundColor: UIColor.gray
         ]
 
-        paragraphStyler = ListItemParagraphStyler(prefixAttributes: listPrefixAttributes)
+        itemParagraphStyler = ListItemParagraphStyler(prefixAttributes: listPrefixAttributes)
     }
 }
 
@@ -66,11 +66,11 @@ extension DefaultStyler {
         
         let attributedPrefix = str.prefix(with: prefixLength)
         let prefixWidth = attributedPrefix.size().width
-        let leadingParagraphStyle = paragraphStyler.leadingParagraphStyle(nestDepth: nestDepth, prefixWidth: prefixWidth)
+        let leadingParagraphStyle = itemParagraphStyler.leadingParagraphStyle(nestDepth: nestDepth, prefixWidth: prefixWidth)
         str.addAttribute(.paragraphStyle, value: leadingParagraphStyle, range: leadingParagraphRange)
 
         for range in paragraphRanges.dropFirst() {
-            let paragraphStyle = paragraphStyler.trailingParagraphStyle(nestDepth: nestDepth)
+            let paragraphStyle = itemParagraphStyler.trailingParagraphStyle(nestDepth: nestDepth)
             str.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
         }
     }
