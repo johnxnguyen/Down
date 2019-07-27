@@ -15,11 +15,13 @@ open class DefaultStyler: Styler {
 
     public let listPrefixAttributes: [NSAttributedString.Key : Any]
 
-    private let fonts: FontCollection = .dynamicFonts
+    private let fonts: FontCollection
 
     private let paragraphStyler: ListItemParagraphStyler
 
-    public init() {
+    public init(fonts: FontCollection = .dynamicFonts) {
+        self.fonts = fonts
+        
         listPrefixAttributes = [
             .font: UIFont.monospacedDigitSystemFont(ofSize: fonts.body.pointSize, weight: .regular),
             .foregroundColor: UIColor.gray
