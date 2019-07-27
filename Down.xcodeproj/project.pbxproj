@@ -882,6 +882,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Resources/DownTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.glazeddonut.DownTests;
 				SWIFT_VERSION = 5.0;
 				"TARGETED_DEVICE_FAMILY[sdk=appletvos*]" = 3;
@@ -898,6 +899,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Resources/DownTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.glazeddonut.DownTests;
 				SWIFT_VERSION = 5.0;
 				"TARGETED_DEVICE_FAMILY[sdk=appletvos*]" = 3;
