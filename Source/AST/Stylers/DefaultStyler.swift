@@ -76,11 +76,17 @@ extension DefaultStyler {
     }
 
     open func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?) {
-        str.setAttributes([.font: fonts.code])
+        str.setAttributes([
+            .font: fonts.code,
+            .foregroundColor: colors.code,
+            .paragraphStyle: paragraphStyles.code])
     }
 
     open func style(htmlBlock str: NSMutableAttributedString) {
-        str.setAttributes([.font: fonts.code])
+        str.setAttributes([
+            .font: fonts.code,
+            .foregroundColor: colors.code,
+            .paragraphStyle: paragraphStyles.code])
     }
 
     open func style(customBlock str: NSMutableAttributedString) {
