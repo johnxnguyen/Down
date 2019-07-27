@@ -16,12 +16,14 @@ open class DefaultStyler: Styler {
     public let listPrefixAttributes: [NSAttributedString.Key : Any]
 
     private let fonts: FontCollection
+    private let paragraphStyles: ParagraphStyleCollection
 
     private let paragraphStyler: ListItemParagraphStyler
 
-    public init(fonts: FontCollection = .dynamicFonts) {
+    public init(fonts: FontCollection = .dynamicFonts, paragraphStyles: ParagraphStyleCollection = .init()) {
         self.fonts = fonts
-        
+        self.paragraphStyles = paragraphStyles
+
         listPrefixAttributes = [
             .font: UIFont.monospacedDigitSystemFont(ofSize: fonts.body.pointSize, weight: .regular),
             .foregroundColor: UIColor.gray
@@ -79,10 +81,7 @@ extension DefaultStyler {
 
     open func style(paragraph str: NSMutableAttributedString,  isTopLevel: Bool) {
         guard isTopLevel else { return }
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.paragraphSpacingBefore = 8
-        paragraphStyle.paragraphSpacing = 8
-        str.addAttribute(.paragraphStyle, value: paragraphStyle)
+        str.addAttribute(.paragraphStyle, value: paragraphStyles.body)
     }
 
     open func style(heading str: NSMutableAttributedString, level: Int) {
@@ -100,9 +99,8 @@ extension DefaultStyler {
             return newFont
         }
 
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.paragraphSpacing = 8
-        str.addAttribute(.paragraphStyle, value: paragraphStyle)
+        // TODO: Add helper to get the right style for the level
+        str.addAttribute(.paragraphStyle, value: paragraphStyles.heading1)
     }
 
     open func style(thematicBreak str: NSMutableAttributedString) {
