@@ -18,8 +18,6 @@ import UIKit
 
 public struct FontCollection: AttributeCollection {
 
-    public typealias Attribute = UIFont
-
     public var heading1: UIFont
     public var heading2: UIFont
     public var heading3: UIFont

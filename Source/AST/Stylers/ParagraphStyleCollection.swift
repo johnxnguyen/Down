@@ -13,16 +13,18 @@ import UIKit
 
 public struct ParagraphStyleCollection: AttributeCollection {
 
-    public typealias Attribute = NSParagraphStyle
-
     public var heading1: NSParagraphStyle
     public var heading2: NSParagraphStyle
     public var heading3: NSParagraphStyle
     public var body: NSParagraphStyle
     public var quote: NSParagraphStyle
     public var code: NSParagraphStyle
+}
 
-    public init() {
+
+public extension ParagraphStyleCollection {
+
+    init() {
         let headingStyle = NSMutableParagraphStyle()
         headingStyle.paragraphSpacing = 8
 
