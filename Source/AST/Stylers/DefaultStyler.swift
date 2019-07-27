@@ -114,7 +114,9 @@ extension DefaultStyler {
         }
 
         // TODO: Add helper to get the right style for the level
-        str.addAttribute(.paragraphStyle, value: paragraphStyles.heading1)
+        str.addAttributes([
+            .foregroundColor: colors.heading1,
+            .paragraphStyle: paragraphStyles.heading1])
     }
 
     open func style(thematicBreak str: NSMutableAttributedString) {
@@ -122,7 +124,9 @@ extension DefaultStyler {
     }
 
     open func style(text str: NSMutableAttributedString) {
-        str.setAttributes([.font: fonts.body])
+        str.setAttributes([
+            .font: fonts.body,
+            .foregroundColor: colors.body])
     }
 
     open func style(softBreak str: NSMutableAttributedString) {
@@ -134,11 +138,15 @@ extension DefaultStyler {
     }
 
     open func style(code str: NSMutableAttributedString) {
-        str.setAttributes([.font: fonts.code])
+        str.setAttributes([
+            .font: fonts.code,
+            .foregroundColor: colors.code])
     }
 
     open func style(htmlInline str: NSMutableAttributedString) {
-        str.setAttributes([.font: fonts.code])
+        str.setAttributes([
+            .font: fonts.code,
+            .foregroundColor: colors.code])
     }
 
     open func style(customInline str: NSMutableAttributedString) {
