@@ -23,18 +23,20 @@ open class DefaultStyler: Styler {
 
     public init(fonts: FontCollection = .dynamicFonts,
                 colors: ColorCollection = .init(),
-                paragraphStyles: ParagraphStyleCollection = .init()) {
+                paragraphStyles: ParagraphStyleCollection = .init(),
+                listItemOptions: ListItemOptions) {
 
         self.fonts = fonts
         self.colors = colors
         self.paragraphStyles = paragraphStyles
 
         listPrefixAttributes = [
-            .font: UIFont.monospacedDigitSystemFont(ofSize: fonts.body.pointSize, weight: .regular),
-            .foregroundColor: UIColor.gray
+            .font: fonts.listItemPrefix,
+            .foregroundColor: colors.listItemPrefix
         ]
 
-        itemParagraphStyler = ListItemParagraphStyler(prefixAttributes: listPrefixAttributes)
+        let maxPrefixWidth = fonts.listItemPrefix.widthOfLargestDigit * CGFloat(listItemOptions.maxPrefixDigits)
+        itemParagraphStyler = ListItemParagraphStyler(options: listItemOptions, largestPrefixWidth: maxPrefixWidth)
     }
 }
 
@@ -178,6 +180,18 @@ extension DefaultStyler {
     open func style(image str: NSMutableAttributedString, title: String?, url: String?) {
         guard let url = url else { return }
         str.addAttribute(.link, value: url)
+    }
+}
+
+// MARK: - Helper Extensions
+
+private extension UIFont {
+
+    var widthOfLargestDigit: CGFloat {
+        (0...9)
+            .map { NSAttributedString(string: "\($0)", attributes: [.font: self]).size().width }
+            .max()!
+
     }
 }
 

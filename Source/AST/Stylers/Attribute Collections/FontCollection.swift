@@ -24,6 +24,7 @@ public struct FontCollection: AttributeCollection {
     public var body: UIFont
     public var quote: UIFont
     public var code: UIFont
+    public var listItemPrefix: UIFont
 }
 
 public extension FontCollection {
@@ -36,6 +37,7 @@ public extension FontCollection {
         let body = UIFont.preferredFont(forTextStyle: .body)
         let quote = body
         var code = body
+        let listItemPrefix = UIFont.monospacedDigitSystemFont(ofSize: body.pointSize, weight: .regular)
 
         // TODO: Clean this
         if #available(iOS 12, *) {
@@ -55,7 +57,8 @@ public extension FontCollection {
                               heading3: heading3,
                               body: body,
                               quote: quote,
-                              code: code)
+                              code: code,
+                              listItemPrefix: listItemPrefix)
     }()
 }
 
