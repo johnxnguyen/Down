@@ -65,7 +65,8 @@ extension AttributedStringVisitor: Visitor {
 
         let prefix = listStack.last?.next() ?? "•"
 
-        let attributedPrefix = NSAttributedString(string: "\(prefix)\t", attributes: styler.listPrefixAttributes)
+        let attributedPrefix = "\(prefix)\t".attributed
+        styler.style(listItemPrefix: attributedPrefix)
         s.insert(attributedPrefix, at: 0)
 
         if node.hasSuccessor { s.append(.paragraphSeparator) }

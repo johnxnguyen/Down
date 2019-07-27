@@ -57,6 +57,10 @@ extension DefaultStyler {
 
     }
 
+    open func style(listItemPrefix str: NSMutableAttributedString) {
+        str.setAttributes(listPrefixAttributes)
+    }
+
     open func style(item str: NSMutableAttributedString, prefixLength: Int, nestDepth: Int) {
         // For simplicity, let's assume that there is no nested list directly after the prefix.
         // TODO: handle this case.
