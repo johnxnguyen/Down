@@ -15,7 +15,7 @@ open class DefaultStyler: Styler {
 
     public let listPrefixAttributes: [NSAttributedString.Key : Any]
 
-    private let fonts: FontBook = DynamicFonts()
+    private let fonts: FontCollection = .dynamicFonts
 
     private let paragraphStyler: ListItemParagraphStyler
 

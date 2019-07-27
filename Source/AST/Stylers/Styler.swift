@@ -39,3 +39,16 @@ public protocol Styler {
     
     var listPrefixAttributes: [NSAttributedString.Key: Any] { get }
 }
+
+
+public protocol AttributeCollection {
+
+    associatedtype Attribute
+
+    var heading1: Attribute { get }
+    var heading2: Attribute { get }
+    var heading3: Attribute { get }
+    var body: Attribute { get }
+    var quote: Attribute { get }
+    var code: Attribute { get }
+}
