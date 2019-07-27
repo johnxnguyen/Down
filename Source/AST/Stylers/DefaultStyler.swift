@@ -16,12 +16,17 @@ open class DefaultStyler: Styler {
     public let listPrefixAttributes: [NSAttributedString.Key : Any]
 
     private let fonts: FontCollection
+    private let colors: ColorCollection
     private let paragraphStyles: ParagraphStyleCollection
 
     private let paragraphStyler: ListItemParagraphStyler
 
-    public init(fonts: FontCollection = .dynamicFonts, paragraphStyles: ParagraphStyleCollection = .init()) {
+    public init(fonts: FontCollection = .dynamicFonts,
+                colors: ColorCollection = .init(),
+                paragraphStyles: ParagraphStyleCollection = .init()) {
+
         self.fonts = fonts
+        self.colors = colors
         self.paragraphStyles = paragraphStyles
 
         listPrefixAttributes = [
