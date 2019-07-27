@@ -47,7 +47,10 @@ extension DefaultStyler {
     }
 
     open func style(blockQuote str: NSMutableAttributedString) {
-
+        str.setAttributes([
+            .font: fonts.quote,
+            .foregroundColor: colors.quote,
+            .paragraphStyle: paragraphStyles.quote])
     }
 
     open func style(list str: NSMutableAttributedString, nestDepth: Int) {
