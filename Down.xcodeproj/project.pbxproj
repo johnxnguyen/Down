@@ -67,6 +67,7 @@
 		EE469B11226CF3B500C0655D /* BaseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE469B10226CF3B500C0655D /* BaseNode.swift */; };
 		EE48C7D922EC9250004815ED /* ParagraphStyleCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE48C7D822EC9250004815ED /* ParagraphStyleCollection.swift */; };
 		EE48C7DB22EC946F004815ED /* ColorCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE48C7DA22EC946F004815ED /* ColorCollection.swift */; };
+		EE48C7DD22EC99D1004815ED /* AttributeCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE48C7DC22EC99D1004815ED /* AttributeCollection.swift */; };
 		EE54F96C22EB9C9800628683 /* Cartfile.private in Resources */ = {isa = PBXBuildFile; fileRef = EE54F96B22EB9C9800628683 /* Cartfile.private */; };
 		EE54F96F22EB9CE500628683 /* SnapshotTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */; };
 		EE54F97122EB9D0400628683 /* SnapshotTesting.framework in Copy Testing Frameworks */ = {isa = PBXBuildFile; fileRef = EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -252,6 +253,7 @@
 		EE469B10226CF3B500C0655D /* BaseNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNode.swift; sourceTree = "<group>"; };
 		EE48C7D822EC9250004815ED /* ParagraphStyleCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphStyleCollection.swift; sourceTree = "<group>"; };
 		EE48C7DA22EC946F004815ED /* ColorCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollection.swift; sourceTree = "<group>"; };
+		EE48C7DC22EC99D1004815ED /* AttributeCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeCollection.swift; sourceTree = "<group>"; };
 		EE54F96B22EB9C9800628683 /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
 		EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapshotTesting.framework; path = Carthage/Build/iOS/SnapshotTesting.framework; sourceTree = "<group>"; };
 		EE5F2BA32262564A00B7C0F3 /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styler.swift; sourceTree = "<group>"; };
@@ -480,6 +482,17 @@
 			path = "Enums & Options";
 			sourceTree = "<group>";
 		};
+		EE48C7DE22EC99F3004815ED /* Attribute Collections */ = {
+			isa = PBXGroup;
+			children = (
+				EE48C7DC22EC99D1004815ED /* AttributeCollection.swift */,
+				EED8DA9622BECD7500E54492 /* FontCollection.swift */,
+				EE48C7DA22EC946F004815ED /* ColorCollection.swift */,
+				EE48C7D822EC9250004815ED /* ParagraphStyleCollection.swift */,
+			);
+			path = "Attribute Collections";
+			sourceTree = "<group>";
+		};
 		EE54F96D22EB9CE400628683 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,9 +506,7 @@
 			children = (
 				EE5F2BA32262564A00B7C0F3 /* Styler.swift */,
 				EED8DA8D22BE404F00E54492 /* DefaultStyler.swift */,
-				EED8DA9622BECD7500E54492 /* FontCollection.swift */,
-				EE48C7D822EC9250004815ED /* ParagraphStyleCollection.swift */,
-				EE48C7DA22EC946F004815ED /* ColorCollection.swift */,
+				EE48C7DE22EC99F3004815ED /* Attribute Collections */,
 				EED8DA9522BECCF000E54492 /* Helpers */,
 			);
 			path = Stylers;
@@ -787,6 +798,7 @@
 				EE48C7DB22EC946F004815ED /* ColorCollection.swift in Sources */,
 				8A569F571E6B3ED9008BE2AC /* houdini_href_e.c in Sources */,
 				8A569F4D1E6B3ED9008BE2AC /* cmark.c in Sources */,
+				EE48C7DD22EC99D1004815ED /* AttributeCollection.swift in Sources */,
 				EEEBEE65225D2AE800AE438D /* CustomInline.swift in Sources */,
 				EEF1376F2259E53400D7DDE0 /* Node.swift in Sources */,
 				8A569F6D1E6B3ED9008BE2AC /* xml.c in Sources */,
