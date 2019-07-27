@@ -493,6 +493,17 @@
 			path = "Attribute Collections";
 			sourceTree = "<group>";
 		};
+		EE48C7DF22EC9A4D004815ED /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EED8DA9322BECC2100E54492 /* UIFont+Traits.swift */,
+				EED8DA8F22BECBAE00E54492 /* NSAttributedString+Helpers.swift */,
+				EE97253F22C148A1004D3B3A /* NSAttributedString+Key.swift */,
+				EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		EE54F96D22EB9CE400628683 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,11 +544,8 @@
 		EED8DA9522BECCF000E54492 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				EED8DA9322BECC2100E54492 /* UIFont+Traits.swift */,
-				EED8DA8F22BECBAE00E54492 /* NSAttributedString+Helpers.swift */,
-				EE97253F22C148A1004D3B3A /* NSAttributedString+Key.swift */,
-				EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */,
 				EEE2C7F022C2AFEF001B7054 /* ListItemParagraphStyler.swift */,
+				EE48C7DF22EC9A4D004815ED /* Extensions */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
