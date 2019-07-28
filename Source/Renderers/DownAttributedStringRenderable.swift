@@ -42,7 +42,7 @@ extension DownAttributedStringRenderable {
     /// - Parameters:
     ///   - options: `DownOptions` to modify parsing or rendering
     ///   - styler: a class/struct conforming to `Styler` to use when rendering the various elements of the attributed string
-    /// - Returns: `DownErrors` depending on the scenario
+    /// - Returns: An `NSAttributedString`
     /// - Throws: `DownErrors` depending on the scenario
     public func toAttributedString(_ options: DownOptions = .default, styler: Styler) throws -> NSAttributedString {
         let tree = try self.toAST(options)
