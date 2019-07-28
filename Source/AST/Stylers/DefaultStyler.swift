@@ -174,7 +174,6 @@ extension DefaultStyler {
     open func style(link str: NSMutableAttributedString, title: String?, url: String?) {
         guard let url = url else { return }
         str.addAttribute(.link, value: url)
-
     }
 
     open func style(image str: NSMutableAttributedString, title: String?, url: String?) {
@@ -191,7 +190,6 @@ private extension UIFont {
         (0...9)
             .map { NSAttributedString(string: "\($0)", attributes: [.font: self]).size().width }
             .max()!
-
     }
 }
 
