@@ -12,111 +12,82 @@ import SnapshotTesting
 
 class StylerTestSuite: XCTestCase {
 
-    // MARK: - Configurable Properties
+    // MARK: - Properties
 
-    var sut: DefaultStyler!
+    var styler: DefaultStyler!
 
-    var heading1Font = UIFont.systemFont(ofSize: 28)
-    var heading2Font = UIFont.systemFont(ofSize: 24)
-    var heading3Font = UIFont.systemFont(ofSize: 20)
-    var bodyFont = UIFont.systemFont(ofSize: 17)
-    var quoteFont = UIFont.systemFont(ofSize: 17)
-    var codeFont = UIFont(name: "menlo", size: 17)!
-    var listItemPrefixFont = UIFont.monospacedDigitSystemFont(ofSize: 17, weight: .regular)
+    var enableHardBreaks = false
 
-    var heading1Color = UIColor.black
-    var heading2Color = UIColor.black
-    var heading3Color = UIColor.black
-    var bodyColor = UIColor.black
-    var quoteColor = UIColor.lightGray
-    var codeColor = UIColor.darkGray
-    var listItemPrefixColor = UIColor.gray
+    var fonts = FontCollection(
+        heading1: .systemFont(ofSize: 28),
+        heading2: .systemFont(ofSize: 24),
+        heading3: .systemFont(ofSize: 20),
+        body: .systemFont(ofSize: 17),
+        quote: .systemFont(ofSize: 17),
+        code: UIFont(name: "menlo", size: 17)!,
+        listItemPrefix: .monospacedDigitSystemFont(ofSize: 17, weight: .regular))
 
-    var headingParagraphStyle: NSMutableParagraphStyle = {
-        let style = NSMutableParagraphStyle()
-        style.paragraphSpacing = 8
-        return style
-    }()
+    var colors = ColorCollection(
+        heading1: .black,
+        heading2: .black,
+        heading3: .black,
+        body: .black,
+        quote: .lightGray,
+        code: .darkGray,
+        listItemPrefix: .gray)
 
-    var bodyParagraphStyle: NSMutableParagraphStyle = {
-        let style = NSMutableParagraphStyle()
-        style.paragraphSpacingBefore = 8
-        style.paragraphSpacing = 8
-        return style
-    }()
+    var paragraphStyles: ParagraphStyleCollection = {
+        let headingStyle = NSMutableParagraphStyle()
+        headingStyle.paragraphSpacing = 8
 
-    var maxItemPrefixDigits: UInt = 2
-    var spacingAfterItemPrefix: CGFloat = 8
-    var spacingAboveItem: CGFloat = 4
-    var spacingBelowItem: CGFloat = 8
+        let bodyStyle = NSMutableParagraphStyle()
+        bodyStyle.paragraphSpacingBefore = 8
+        bodyStyle.paragraphSpacing = 8
 
-    // MARK: - Computed Properties
-
-    var fonts: FontCollection {
-        FontCollection(
-            heading1: heading1Font,
-            heading2: heading2Font,
-            heading3: heading3Font,
-            body: bodyFont,
-            quote: quoteFont,
-            code: codeFont,
-            listItemPrefix: listItemPrefixFont)
-    }
-
-    var colors: ColorCollection {
-        ColorCollection(
-            heading1: heading1Color,
-            heading2: heading2Color,
-            heading3: heading3Color,
-            body: bodyColor,
-            quote: quoteColor,
-            code: codeColor,
-            listItemPrefix: listItemPrefixColor)
-    }
-
-    var paragraphStyles: ParagraphStyleCollection {
-        ParagraphStyleCollection(
-            heading1: headingParagraphStyle,
-            heading2: headingParagraphStyle,
-            heading3: headingParagraphStyle,
-            body: bodyParagraphStyle,
-            quote: bodyParagraphStyle,
+        return ParagraphStyleCollection(
+            heading1: headingStyle,
+            heading2: headingStyle,
+            heading3: headingStyle,
+            body: bodyStyle,
+            quote: bodyStyle,
             code: NSParagraphStyle())
-    }
+    }()
 
-    var listItemOptions: ListItemOptions {
-        ListItemOptions(
-            maxPrefixDigits: maxItemPrefixDigits,
-            spacingAfterPrefix: spacingAfterItemPrefix,
-            spacingAbove: spacingAboveItem,
-            spacingBelow: spacingBelowItem)
-    }
+    var listItemOptions = ListItemOptions(
+        maxPrefixDigits: 2,
+        spacingAfterPrefix: 8,
+        spacingAbove: 4,
+        spacingBelow: 8)
+
 
     // MARK: - Lifecycle
 
     override func setUp() {
-        sut = DefaultStyler(fonts: fonts, colors: colors, paragraphStyles: paragraphStyles, listItemOptions: listItemOptions)
         super.setUp()
+        styler = DefaultStyler(listItemOptions: listItemOptions)
+        styler.fonts = fonts
+        styler.colors = colors
+        styler.paragraphStyles = paragraphStyles
     }
 
     override func tearDown() {
-        sut = nil
+        styler = nil
         super.tearDown()
     }
 
 
     // MARK: - Helpers
 
-    func view(for markdown: String, width: Width) throws -> UIView {
+    func view(for markdown: String, width: Width) -> UIView {
         let textView = UITextView(width: width)
-        textView.attributedText = try attributedString(for: markdown)
+        textView.attributedText = attributedString(for: markdown)
         textView.resizeToContentSize()
         return textView
     }
 
-    private func attributedString(for markdown: String) throws -> NSAttributedString {
+    private func attributedString(for markdown: String) -> NSAttributedString {
         let down = Down(markdownString: markdown)
-        return try down.toAttributedString(styler: sut)
+        return try! down.toAttributedString(enableHardBreaks ? .hardBreaks : [], styler: styler)
     }
 }
 

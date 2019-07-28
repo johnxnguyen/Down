@@ -13,7 +13,7 @@ class ListItemStyleTests: StylerTestSuite {
 
     // MARK: - Prefix Alignment
 
-    func testThat_DigitPrefixes_UpToMaxPrefixLength_Align() throws {
+    func testThat_DigitPrefixes_UpToMaxPrefixLength_Align() {
         // Given
         let markdown = """
         6. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -26,13 +26,13 @@ class ListItemStyleTests: StylerTestSuite {
         """
 
         // When
-        let result = try view(for: markdown, width: .wide)
+        let result = view(for: markdown, width: .wide)
 
         // Then
         assertSnapshot(matching: result, as: .image)
     }
 
-    func testThat_DigitAndBulletPrefixes_Align() throws {
+    func testThat_DigitAndBulletPrefixes_Align() {
         // Given
         let markdown = """
         10. quis pulvinar libero placerat sit
@@ -45,13 +45,13 @@ class ListItemStyleTests: StylerTestSuite {
         """
 
         // When
-        let result = try view(for: markdown, width: .wide)
+        let result = view(for: markdown, width: .wide)
 
         // Then
         assertSnapshot(matching: result, as: .image)
     }
 
-    func testThat_DigitPrefixes_ExceedingMaxPrefixLength_Push_FirstLine() throws {
+    func testThat_DigitPrefixes_ExceedingMaxPrefixLength_Push_FirstLine() {
         // Given
         let markdown = """
         96. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -64,13 +64,13 @@ class ListItemStyleTests: StylerTestSuite {
         """
 
         // When
-        let result = try view(for: markdown, width: .wide)
+        let result = view(for: markdown, width: .wide)
 
         // Then
         assertSnapshot(matching: result, as: .image)
     }
 
-    func testThat_DigitPrefixes_ExceedingMaxPrefixLength_DontPush_WrappedLines() throws {
+    func testThat_DigitPrefixes_ExceedingMaxPrefixLength_DontPush_WrappedLines() {
         // Given
         let markdown = """
         99. Phasellus facilisis, nulla non tristique tempor, ligula nisi dignissim libero.
@@ -78,7 +78,7 @@ class ListItemStyleTests: StylerTestSuite {
         """
 
         // When
-        let result = try view(for: markdown, width: .narrow)
+        let result = view(for: markdown, width: .narrow)
 
         // Then
         assertSnapshot(matching: result, as: .image)
@@ -86,71 +86,71 @@ class ListItemStyleTests: StylerTestSuite {
 
     // MARK: - Paragraph Alignment
 
-    func testThat_FirstParagraphs_WrappedLines_AlignTo_FirstLine() throws {
+    func testThat_FirstParagraphs_WrappedLines_AlignTo_FirstLine() {
         XCTFail()
     }
 
-    func testThat_TrailingParagraphs_FirstLines_AlignTo_FirstParagraph() throws {
+    func testThat_TrailingParagraphs_FirstLines_AlignTo_FirstParagraph() {
         XCTFail()
     }
 
-    func testThat_TrailingParagraphs_WrappedLines_AlignTo_FirstLines() throws {
+    func testThat_TrailingParagraphs_WrappedLines_AlignTo_FirstLines() {
         XCTFail()
     }
 
     // MARK: - Vertical Spacing
 
-    func testThat_AdjacentLists_Have_VerticalSpacing() throws {
+    func testThat_AdjacentLists_Have_VerticalSpacing() {
         XCTFail()
     }
 
     // MARK: - Configurable Options
 
-    func testThat_MaxPrefixDigits_CanBeAdjusted() throws {
+    func testThat_MaxPrefixDigits_CanBeAdjusted() {
         // Include wrapped lines and paragraphs
         XCTFail()
     }
 
-    func testThat_SpacingAfterPrefix_CanBeAdjusted() throws {
+    func testThat_SpacingAfterPrefix_CanBeAdjusted() {
         // Include wrapped lines and paragraphs
         XCTFail()
     }
 
-    func testThat_SpacingAbove_CanBeAdjusted() throws {
+    func testThat_SpacingAbove_CanBeAdjusted() {
         // Change the above
         XCTFail()
     }
 
-    func testThat_SpacingBelow_CanBeAdjusted() throws {
+    func testThat_SpacingBelow_CanBeAdjusted() {
         // Change the below constants
         XCTFail()
     }
 
     // MARK: - Nested Lists
 
-    func testThat_NestedList_AlignsTo_OuterList() throws {
+    func testThat_NestedList_AlignsTo_OuterList() {
         // Single nested list
         XCTFail()
     }
 
-    func testThat_NestedLists_AlignTo_ParentLists() throws {
+    func testThat_NestedLists_AlignTo_ParentLists() {
         // Multiple nested lists
         XCTFail()
     }
 
-    func testThat_NestedList_InFirstParagraph_StartsOn_NewLine() throws {
+    func testThat_NestedList_InFirstParagraph_StartsOn_NewLine() {
         XCTFail()
     }
 
-    func testThat_NestedList_InMiddleParagraph_AlignsTo_OuterList() throws {
+    func testThat_NestedList_InMiddleParagraph_AlignsTo_OuterList() {
         XCTFail()
     }
 
-    func testThat_NestedList_InTrailingParagraph_AlignsTo_OuterList() throws {
+    func testThat_NestedList_InTrailingParagraph_AlignsTo_OuterList() {
         XCTFail()
     }
 
-    func testThat_NestedList_With_MultipleParagraphs_Align() throws {
+    func testThat_NestedList_With_MultipleParagraphs_Align() {
         XCTFail()
     }
 
