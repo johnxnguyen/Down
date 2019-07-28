@@ -35,8 +35,11 @@ open class DefaultStyler: Styler {
             .foregroundColor: colors.listItemPrefix
         ]
 
+        // TODO: Can we not assume there is a period?
+        let widthOfPeriod = NSAttributedString(string: ".", attributes: listPrefixAttributes).size().width
         let maxPrefixWidth = fonts.listItemPrefix.widthOfLargestDigit * CGFloat(listItemOptions.maxPrefixDigits)
-        itemParagraphStyler = ListItemParagraphStyler(options: listItemOptions, largestPrefixWidth: maxPrefixWidth)
+        let maxPrefixWidthIncludingPeriod = maxPrefixWidth + widthOfPeriod
+        itemParagraphStyler = ListItemParagraphStyler(options: listItemOptions, largestPrefixWidth: maxPrefixWidthIncludingPeriod)
     }
 }
 

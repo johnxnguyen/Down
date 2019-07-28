@@ -28,25 +28,33 @@ public struct ListItemParagraphStyler {
     }
 
     func leadingParagraphStyle(nestDepth: Int, prefixWidth: CGFloat) -> NSParagraphStyle {
-        let indentation = self.indentation(atDepth: nestDepth)
+        let contentIndentation = self.indentation(atDepth: nestDepth)
+        let prefixIndentation: CGFloat = contentIndentation - options.spacingAfterPrefix - prefixWidth
+        let prefixSpill = max(0, prefixWidth - largestPrefixWidth)
+        let firstLineContentIndentation = contentIndentation + prefixSpill
+
         let style = baseStyle
-        style.firstLineHeadIndent = indentation - options.spacingAfterPrefix - prefixWidth
-        style.headIndent = indentation
-        style.tabStops = [NSTextTab(textAlignment: .left, location: indentation, options: [:])]
+        style.firstLineHeadIndent = prefixIndentation
+        style.tabStops = [tabStop(at: firstLineContentIndentation)]
+        style.headIndent = contentIndentation
         return style
     }
 
     func trailingParagraphStyle(nestDepth: Int) -> NSParagraphStyle {
-        let indentation = self.indentation(atDepth: nestDepth)
+        let contentIndentation = self.indentation(atDepth: nestDepth)
         let style = baseStyle
-        style.firstLineHeadIndent = indentation
-        style.headIndent = indentation
+        style.firstLineHeadIndent = contentIndentation
+        style.headIndent = contentIndentation
         return style
     }
 
     private func indentation(atDepth nestDepth: Int) -> CGFloat {
         let indentationWidth: CGFloat = largestPrefixWidth + options.spacingAfterPrefix
         return indentationWidth * CGFloat(nestDepth + 1)
+    }
+
+    private func tabStop(at location: CGFloat) -> NSTextTab {
+        return NSTextTab(textAlignment: .left, location: location, options: [:])
     }
 }
 
