@@ -64,6 +64,7 @@
 		8AFAEB091E6E331700E09B68 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438696B1D00D27700E95A1F /* StringTests.swift */; };
 		907C64651EC133780095FEE1 /* TestDownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 907C64621EC120530095FEE1 /* TestDownView.bundle */; };
 		90A40A9C1EC03292004F2E91 /* Down.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EE335C4A22EDC85900648842 /* ListItemStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE335C4922EDC85900648842 /* ListItemStyleTests.swift */; };
 		EE469B11226CF3B500C0655D /* BaseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE469B10226CF3B500C0655D /* BaseNode.swift */; };
 		EE48C7D922EC9250004815ED /* ParagraphStyleCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE48C7D822EC9250004815ED /* ParagraphStyleCollection.swift */; };
 		EE48C7DB22EC946F004815ED /* ColorCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE48C7DA22EC946F004815ED /* ColorCollection.swift */; };
@@ -251,6 +252,7 @@
 		D4CF88971CFFAC2C00F07FD1 /* DownAttributedStringRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownAttributedStringRenderable.swift; sourceTree = "<group>"; };
 		D4DC91131CFDED4B0091CE09 /* DownCommonMarkRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownCommonMarkRenderable.swift; sourceTree = "<group>"; };
 		D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
+		EE335C4922EDC85900648842 /* ListItemStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListItemStyleTests.swift; path = Styler/ListItemStyleTests.swift; sourceTree = "<group>"; };
 		EE469B10226CF3B500C0655D /* BaseNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNode.swift; sourceTree = "<group>"; };
 		EE48C7D822EC9250004815ED /* ParagraphStyleCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphStyleCollection.swift; sourceTree = "<group>"; };
 		EE48C7DA22EC946F004815ED /* ColorCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollection.swift; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 		D4201EC41CFA59A5008EEC6E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				EE335C4922EDC85900648842 /* ListItemStyleTests.swift */,
 				EE59C30122ECF0BD006EE8A8 /* StylerTestSuite.swift */,
 				EE59C30022ECF08E006EE8A8 /* Styler */,
 				907C64611EC120530095FEE1 /* Fixtures */,
@@ -850,6 +853,7 @@
 				EE97254322C14B79004D3B3A /* NSAttributedString+HelpersTests.swift in Sources */,
 				8AFAEB091E6E331700E09B68 /* StringTests.swift in Sources */,
 				EE59C30222ECF0BD006EE8A8 /* StylerTestSuite.swift in Sources */,
+				EE335C4A22EDC85900648842 /* ListItemStyleTests.swift in Sources */,
 				EE8F38CC22BFB2420056270E /* NodeTests.swift in Sources */,
 				EE64FEF0225BEB3900A35B34 /* VisitorTests.swift in Sources */,
 				8AFAEB071E6E331700E09B68 /* DownViewTests.swift in Sources */,
