@@ -11,7 +11,7 @@ import UIKit // TODO: conditional compilation
 
 public struct ListItemParagraphStyler {
 
-    let options: ListItemOptions
+    var options: ListItemOptions
 
     private let largestPrefixWidth: CGFloat
 
@@ -60,10 +60,10 @@ public struct ListItemParagraphStyler {
 
 public struct ListItemOptions {
 
-    public let maxPrefixDigits: UInt
-    public let spacingAfterPrefix: CGFloat
-    public let spacingAbove: CGFloat
-    public let spacingBelow: CGFloat
+    public var maxPrefixDigits: UInt
+    public var spacingAfterPrefix: CGFloat
+    public var spacingAbove: CGFloat
+    public var spacingBelow: CGFloat
 
     public init(maxPrefixDigits: UInt = 2, spacingAfterPrefix: CGFloat = 8, spacingAbove: CGFloat = 4, spacingBelow: CGFloat = 8) {
         self.maxPrefixDigits = maxPrefixDigits

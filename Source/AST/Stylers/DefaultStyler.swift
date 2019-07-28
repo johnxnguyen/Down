@@ -13,30 +13,20 @@ import UIKit
 
 open class DefaultStyler: Styler {
 
-    public let listPrefixAttributes: [NSAttributedString.Key : Any]
+    public var fonts: FontCollection = .dynamicFonts
+    public var colors: ColorCollection = .init()
+    public var paragraphStyles: ParagraphStyleCollection = .init()
 
-    private let fonts: FontCollection
-    private let colors: ColorCollection
-    private let paragraphStyles: ParagraphStyleCollection
+    private var listPrefixAttributes: [NSAttributedString.Key : Any] {[
+        .font: fonts.listItemPrefix,
+        .foregroundColor: colors.listItemPrefix]
+    }
 
-    private let itemParagraphStyler: ListItemParagraphStyler
+    let itemParagraphStyler: ListItemParagraphStyler
 
-    public init(fonts: FontCollection = .dynamicFonts,
-                colors: ColorCollection = .init(),
-                paragraphStyles: ParagraphStyleCollection = .init(),
-                listItemOptions: ListItemOptions) {
-
-        self.fonts = fonts
-        self.colors = colors
-        self.paragraphStyles = paragraphStyles
-
-        listPrefixAttributes = [
-            .font: fonts.listItemPrefix,
-            .foregroundColor: colors.listItemPrefix
-        ]
-
+    public init(listItemOptions: ListItemOptions) {
         // TODO: Can we not assume there is a period?
-        let widthOfPeriod = NSAttributedString(string: ".", attributes: listPrefixAttributes).size().width
+        let widthOfPeriod = NSAttributedString(string: ".", attributes: [.font: fonts.listItemPrefix]).size().width
         let maxPrefixWidth = fonts.listItemPrefix.widthOfLargestDigit * CGFloat(listItemOptions.maxPrefixDigits)
         let maxPrefixWidthIncludingPeriod = maxPrefixWidth + widthOfPeriod
         itemParagraphStyler = ListItemParagraphStyler(options: listItemOptions, largestPrefixWidth: maxPrefixWidthIncludingPeriod)
