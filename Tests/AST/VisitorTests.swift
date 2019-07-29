@@ -6,11 +6,12 @@
 //
 
 import XCTest
+import SnapshotTesting
 @testable import Down
 
 class VisitorTests: XCTestCase {
 
-    func testExample() throws {
+    func testSimpleMarkdown() throws {
         // Given
         let markdown = """
         # Hello
@@ -23,20 +24,9 @@ class VisitorTests: XCTestCase {
         
         // When
         let result = document.accept(DebugVisitor())
-        
-        // Then
-        let expected = """
-        Document
-            ↳ Heading - L1
-                ↳ Text - Hello
-            ↳ Paragraph
-                ↳ Text - This is a 
-                ↳ Strong
-                    ↳ Text - test!
 
-        """
-        
-        XCTAssertEqual(result, expected)
+        // Then
+        assertSnapshot(matching: result, as: .lines)
     }
     
     func testAttributedStringVisitor() throws {
@@ -78,22 +68,7 @@ class VisitorTests: XCTestCase {
         let result = try down.toAttributedString(styler: EmptyStyler()).string
         
         // Then
-        let expected = """
-        Heading
-        This is a paragraph with inline elements <p></p>
-        This is followed by a hard linebreak\u{2028}This is after the linebreak
-        \u{2028}this is a link this is an image
-        this is a quote
-        code block
-        code block
-        <html>
-            block
-        </html>
-        1.\tfirst item
-        2.\tsecond item
-        """
-        
-        XCTAssertEqual(result, expected)
+        assertSnapshot(matching: result, as: .lines)
     }
 }
 
