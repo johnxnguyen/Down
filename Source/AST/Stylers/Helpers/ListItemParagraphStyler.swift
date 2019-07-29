@@ -9,8 +9,9 @@
 import Foundation
 import UIKit // TODO: conditional compilation
 
-public struct ListItemParagraphStyler {
+public class ListItemParagraphStyler {
 
+    // TODO: if the max prefix digits change here, we need to update the largest prefix width.
     var options: ListItemOptions
 
     private let largestPrefixWidth: CGFloat
