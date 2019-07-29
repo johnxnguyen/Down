@@ -29,6 +29,7 @@ open class DefaultStyler: Styler {
         let widthOfPeriod = NSAttributedString(string: ".", attributes: [.font: fonts.listItemPrefix]).size().width
         let maxPrefixWidth = fonts.listItemPrefix.widthOfLargestDigit * CGFloat(listItemOptions.maxPrefixDigits)
         let maxPrefixWidthIncludingPeriod = maxPrefixWidth + widthOfPeriod
+
         itemParagraphStyler = ListItemParagraphStyler(options: listItemOptions, largestPrefixWidth: maxPrefixWidthIncludingPeriod)
     }
 }
