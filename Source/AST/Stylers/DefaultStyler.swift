@@ -99,9 +99,16 @@ extension DefaultStyler {
     }
 
     open func style(heading str: NSMutableAttributedString, level: Int) {
-        str.updateAttribute(.font) { (currentFont: UIFont) in
-            var newFont = fonts.heading1
 
+        let font = fonts.heading1
+
+        str.updateAttribute(.font) { (currentFont: UIFont) in
+            var newFont = font
+
+            if (currentFont.isMonospace) {
+                newFont = newFont.monospace
+            }
+            
             if (currentFont.isItalic) {
                 newFont = newFont.italic
             }
