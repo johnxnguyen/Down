@@ -99,8 +99,7 @@ extension DefaultStyler {
     }
 
     open func style(heading str: NSMutableAttributedString, level: Int) {
-
-        let font = fonts.heading1
+        let font = fonts.attributeFor(headingLevel: level) ?? fonts.heading1
 
         str.updateAttribute(.font) { (currentFont: UIFont) in
             var newFont = font
@@ -120,10 +119,12 @@ extension DefaultStyler {
             return newFont
         }
 
-        // TODO: Add helper to get the right style for the level
+        let color = colors.attributeFor(headingLevel: level) ?? colors.heading1
+        let paragraphStyle = paragraphStyles.attributeFor(headingLevel: level) ?? paragraphStyles.heading1
+
         str.addAttributes([
-            .foregroundColor: colors.heading1,
-            .paragraphStyle: paragraphStyles.heading1])
+            .foregroundColor: color,
+            .paragraphStyle: paragraphStyle])
     }
 
     open func style(thematicBreak str: NSMutableAttributedString) {
