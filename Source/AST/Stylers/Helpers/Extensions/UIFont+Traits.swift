@@ -37,8 +37,7 @@ extension UIFont {
 
         guard let newDescriptor = fontDescriptor.withSymbolicTraits(traits) else { return nil }
 
-        // 0 means the size remains the same as before.
-        return UIFont(descriptor: newDescriptor, size: 0)
+        return UIFont(descriptor: newDescriptor, size: pointSize)
     }
 
     private func contains(_ trait: UIFontDescriptor.SymbolicTraits) -> Bool {
