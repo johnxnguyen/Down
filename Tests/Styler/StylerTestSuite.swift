@@ -18,7 +18,7 @@ class StylerTestSuite: XCTestCase {
 
     var enableHardBreaks = false
 
-    var fonts = FontCollection(
+    private let fonts = FontCollection(
         heading1: .systemFont(ofSize: 28),
         heading2: .systemFont(ofSize: 24),
         heading3: .systemFont(ofSize: 20),
@@ -27,16 +27,16 @@ class StylerTestSuite: XCTestCase {
         code: UIFont(name: "menlo", size: 17)!,
         listItemPrefix: .monospacedDigitSystemFont(ofSize: 17, weight: .regular))
 
-    var colors = ColorCollection(
-        heading1: .black,
-        heading2: .black,
-        heading3: .black,
+    private let colors = ColorCollection(
+        heading1: #colorLiteral(red: 0.7803921569, green: 0, blue: 0.2235294118, alpha: 1),
+        heading2: #colorLiteral(red: 1, green: 0.3411764706, blue: 0.2, alpha: 1),
+        heading3: #colorLiteral(red: 1, green: 0.7647058824, blue: 0.05882352941, alpha: 1),
         body: .black,
         quote: .lightGray,
         code: .darkGray,
         listItemPrefix: .gray)
 
-    var paragraphStyles: ParagraphStyleCollection = {
+    private let paragraphStyles: ParagraphStyleCollection = {
         let headingStyle = NSMutableParagraphStyle()
         headingStyle.paragraphSpacing = 8
 
@@ -53,7 +53,7 @@ class StylerTestSuite: XCTestCase {
             code: NSParagraphStyle())
     }()
 
-    var listItemOptions = ListItemOptions(
+    private let listItemOptions = ListItemOptions(
         maxPrefixDigits: 2,
         spacingAfterPrefix: 8,
         spacingAbove: 4,
