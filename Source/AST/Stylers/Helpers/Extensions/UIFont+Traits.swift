@@ -21,12 +21,20 @@ extension UIFont {
         return contains(.traitItalic)
     }
 
+    var isMonospace: Bool {
+        return contains(.traitMonoSpace)
+    }
+
     var bold: UIFont {
         return with(.traitBold) ?? self
     }
 
     var italic: UIFont {
         return with(.traitItalic) ?? self
+    }
+
+    var monospace: UIFont {
+        return with(.traitMonoSpace) ?? self
     }
 
     private func with(_ trait: UIFontDescriptor.SymbolicTraits) -> UIFont? {
