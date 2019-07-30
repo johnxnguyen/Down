@@ -317,4 +317,5 @@ class ListItemStyleTests: StylerTestSuite {
         assertSnapshot(matching: result, as: .image)
     }
 
+    // TODO: test prefix font and color
 }

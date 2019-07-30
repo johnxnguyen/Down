@@ -122,4 +122,6 @@ class InlineStyleTests: StylerTestSuite {
         assertSnapshot(matching: result, as: .image)
     }
 
+    // TODO: fonts, colors and paragraph styles
+
 }
