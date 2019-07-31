@@ -77,13 +77,17 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(codeBlock node: CodeBlock) -> NSMutableAttributedString {
-        guard let s = node.literal?.attributed else { return .empty }
+        guard let literal = node.literal else { return .empty }
+        let block = literal.replacingNewlinesWithLineSeparators() + "\n"
+        let s = block.attributed
         styler.style(codeBlock: s, fenceInfo: node.fenceInfo)
         return s
     }
     
     public func visit(htmlBlock node: HtmlBlock) -> NSMutableAttributedString {
-        guard let s = node.literal?.attributed else { return .empty }
+        guard let literal = node.literal else { return .empty }
+        let block = literal.replacingNewlinesWithLineSeparators() + "\n"
+        let s = block.attributed
         styler.style(htmlBlock: s)
         return s
     }
@@ -206,5 +210,9 @@ private extension String {
     // https://lists.apple.com/archives/Cocoa-dev/2010/Dec/msg00347.html
     static var lineSeparator: String {
         return "\u{2028}"
+    }
+
+    func replacingNewlinesWithLineSeparators() -> String {
+        return components(separatedBy: .newlines).joined(separator: .lineSeparator)
     }
 }
