@@ -32,12 +32,16 @@ public extension ParagraphStyleCollection {
         bodyStyle.paragraphSpacingBefore = 8
         bodyStyle.paragraphSpacing = 8
 
+        let codeStyle = NSMutableParagraphStyle()
+        codeStyle.paragraphSpacingBefore = 8
+        codeStyle.paragraphSpacing = 8
+
         heading1 = headingStyle
         heading2 = headingStyle
         heading3 = headingStyle
         body = bodyStyle
         quote = bodyStyle
-        code = NSParagraphStyle()
+        code = codeStyle
     }
 }
 
