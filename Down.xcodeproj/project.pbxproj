@@ -112,6 +112,8 @@
 		EEEBEE72225D2F9200AE438D /* AttributedStringVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBEE71225D2F9200AE438D /* AttributedStringVisitor.swift */; };
 		EEF1376F2259E53400D7DDE0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF1376E2259E53400D7DDE0 /* Node.swift */; };
 		EEF137712259E7E700D7DDE0 /* Vistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF137702259E7E700D7DDE0 /* Vistor.swift */; };
+		EEFFFDDB22F4C36800036FD5 /* ThematicBreakAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFFDDA22F4C36800036FD5 /* ThematicBreakAttribute.swift */; };
+		EEFFFDDD22F4C8AB00036FD5 /* DownLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFFDDC22F4C8AB00036FD5 /* DownLayoutManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -301,6 +303,8 @@
 		EEEBEE71225D2F9200AE438D /* AttributedStringVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringVisitor.swift; sourceTree = "<group>"; };
 		EEF1376E2259E53400D7DDE0 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		EEF137702259E7E700D7DDE0 /* Vistor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vistor.swift; sourceTree = "<group>"; };
+		EEFFFDDA22F4C36800036FD5 /* ThematicBreakAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThematicBreakAttribute.swift; sourceTree = "<group>"; };
+		EEFFFDDC22F4C8AB00036FD5 /* DownLayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownLayoutManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -535,6 +539,7 @@
 		EE5F2BA22262562F00B7C0F3 /* Stylers */ = {
 			isa = PBXGroup;
 			children = (
+				EEFFFDD922F4C35000036FD5 /* Custom Attributes */,
 				EE5F2BA32262564A00B7C0F3 /* Styler.swift */,
 				EED8DA8D22BE404F00E54492 /* DefaultStyler.swift */,
 				EE48C7DE22EC99F3004815ED /* Attribute Collections */,
@@ -618,6 +623,15 @@
 				EE5F2BA22262562F00B7C0F3 /* Stylers */,
 			);
 			path = AST;
+			sourceTree = "<group>";
+		};
+		EEFFFDD922F4C35000036FD5 /* Custom Attributes */ = {
+			isa = PBXGroup;
+			children = (
+				EEFFFDDA22F4C36800036FD5 /* ThematicBreakAttribute.swift */,
+				EEFFFDDC22F4C8AB00036FD5 /* DownLayoutManager.swift */,
+			);
+			path = "Custom Attributes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -795,6 +809,7 @@
 				EEEBEE55225D2A4E00AE438D /* Paragraph.swift in Sources */,
 				8A569F721E6B3EDE008BE2AC /* DownHTMLRenderable.swift in Sources */,
 				EED8DA9422BECC2100E54492 /* UIFont+Traits.swift in Sources */,
+				EEFFFDDB22F4C36800036FD5 /* ThematicBreakAttribute.swift in Sources */,
 				EEE2C7F122C2AFEF001B7054 /* ListItemParagraphStyler.swift in Sources */,
 				8A569F581E6B3ED9008BE2AC /* houdini_html_e.c in Sources */,
 				EEEBEE5D225D2A8F00AE438D /* SoftBreak.swift in Sources */,
@@ -804,6 +819,7 @@
 				8A569F4A1E6B3ED9008BE2AC /* buffer.c in Sources */,
 				EED8DA9222BECBF200E54492 /* NSMutableAttributedString+Attributes.swift in Sources */,
 				EED8DA9022BECBAE00E54492 /* NSAttributedString+Helpers.swift in Sources */,
+				EEFFFDDD22F4C8AB00036FD5 /* DownLayoutManager.swift in Sources */,
 				8A569F771E6B3EE3008BE2AC /* String+ToHTML.swift in Sources */,
 				8A569F751E6B3EDE008BE2AC /* DownRenderable.swift in Sources */,
 				EE8F38CE22BFEDE50056270E /* ListItemPrefixGenerator.swift in Sources */,

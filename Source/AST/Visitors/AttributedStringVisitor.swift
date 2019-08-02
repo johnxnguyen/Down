@@ -113,7 +113,7 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(thematicBreak node: ThematicBreak) -> NSMutableAttributedString {
-        let s = String.lineSeparator.attributed
+        let s = "\(String.zeroWidthSpace)\(String.lineSeparator)".attributed
         styler.style(thematicBreak: s)
         return s
     }
@@ -194,7 +194,7 @@ private extension String {
         return NSMutableAttributedString(string: self)
     }
 }
-
+// TODO: move this to string extension
 private extension NSAttributedString {
     static var paragraphSeparator: NSAttributedString {
         return "\u{2029}".attributed
@@ -206,10 +206,15 @@ private extension NSMutableAttributedString {
         return "".attributed
     }
 }
+
 private extension String {
     // https://lists.apple.com/archives/Cocoa-dev/2010/Dec/msg00347.html
     static var lineSeparator: String {
         return "\u{2028}"
+    }
+
+    static var zeroWidthSpace: String {
+        return "\u{200B}"
     }
 
     func replacingNewlinesWithLineSeparators() -> String {
