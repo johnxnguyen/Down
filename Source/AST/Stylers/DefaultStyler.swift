@@ -128,8 +128,7 @@ extension DefaultStyler {
     }
 
     open func style(thematicBreak str: NSMutableAttributedString) {
-        let attrs = ThematicBreakAttribute(thickness: 1, color: .gray)
-        str.addAttribute(.thematicBreak, value: attrs)
+        str.addAttribute(.thematicBreak, value: ThematicBreakAttribute(thickness: 1, color: colors.thematicBreak))
     }
 
     open func style(text str: NSMutableAttributedString) {

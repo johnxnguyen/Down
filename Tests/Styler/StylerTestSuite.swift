@@ -34,6 +34,7 @@ class StylerTestSuite: XCTestCase {
         body: .black,
         quote: .lightGray,
         code: .darkGray,
+        thematicBreak: .lightGray,
         listItemPrefix: .gray)
 
     private let paragraphStyles: ParagraphStyleCollection = {

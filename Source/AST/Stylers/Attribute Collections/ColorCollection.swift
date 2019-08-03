@@ -21,6 +21,7 @@ public struct ColorCollection: AttributeCollection {
     public var body: UIColor
     public var quote: UIColor
     public var code: UIColor
+    public var thematicBreak: UIColor
     public var listItemPrefix: UIColor
 }
 
@@ -33,6 +34,7 @@ public extension ColorCollection {
         body = .black
         quote = .darkGray
         code = .lightGray
+        thematicBreak = .lightGray
         listItemPrefix = .lightGray
     }
 }
