@@ -113,7 +113,7 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(thematicBreak node: ThematicBreak) -> NSMutableAttributedString {
-        let s = "\(String.zeroWidthSpace)\(String.lineSeparator)".attributed
+        let s = "\(String.zeroWidthSpace)\n".attributed
         styler.style(thematicBreak: s)
         return s
     }
