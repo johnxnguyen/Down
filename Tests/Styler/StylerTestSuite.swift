@@ -79,7 +79,7 @@ class StylerTestSuite: XCTestCase {
     // MARK: - Helpers
 
     func view(for markdown: String, width: Width) -> UIView {
-        let textView = UITextView(width: width)
+        let textView = DownTextView(width: width)
         textView.attributedText = attributedString(for: markdown)
         textView.resizeToContentSize()
         return textView
@@ -101,7 +101,7 @@ extension StylerTestSuite {
 }
 
 
-private extension UITextView {
+private extension DownTextView {
 
     convenience init(width: StylerTestSuite.Width) {
         self.init(frame: .init(origin: .zero, size: .init(width: width.rawValue, height: 0)))
