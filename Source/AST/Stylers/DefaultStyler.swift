@@ -105,17 +105,8 @@ extension DefaultStyler {
     }
 
     private func indentListItemQuotes(in str: NSMutableAttributedString, inRange range: NSRange) {
-        str.ranges(of: .quoteStripe, inRange: range).forEach { quoteRange in
-            str.updateAttribute(.quoteStripe, inRange: quoteRange) { (stripe: QuoteStripeAttribute) in
-                stripe.indented(by: itemParagraphStyler.indentation)
-            }
-
-            let stripe = str.attribute(.quoteStripe, at: quoteRange.lowerBound, effectiveRange: nil) as? QuoteStripeAttribute
-            let stripeLayoutWidth = stripe?.layoutWidth ?? 0
-
-            str.updateAttribute(.paragraphStyle, inRange: quoteRange) { (style: NSParagraphStyle) in
-                return style.indented(by: stripeLayoutWidth)
-            }
+        str.updateAttribute(.quoteStripe, inRange: range) { (stripe: QuoteStripeAttribute) in
+            stripe.indented(by: itemParagraphStyler.indentation)
         }
     }
 
