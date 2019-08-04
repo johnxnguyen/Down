@@ -154,6 +154,27 @@ class BlockQuoteStyleTests: StylerTestSuite {
         assertSnapshot(matching: result, as: .image)
     }
 
+    func testThat_QuoteContent_Preserves_ThematicBreak() {
+        // TODO: THIS ISN'T RIGHT
+        // Given
+        let markdown = """
+        Etiam vel dui id purus finibus auctor. Donec in semper lectus. Vestibulum vel eleifend justo.
+
+        > # Donec vitae justo gravida
+        > ---
+        >
+        > Curabitur fringilla lacus eget nunc dictum dignissim. Donec cursus magna a libero vulputate maximus.
+
+        Duis ultrices dapibus diam nec mollis. Mauris scelerisque massa nec tristique dapibus. Mauris sed tempor lorem.
+        """
+
+        // When
+        let result = view(for: markdown, width: .narrow)
+
+        // Then
+        assertSnapshot(matching: result, as: .image)
+    }
+
     // MARK: - Nested Quotes
 
     func testThat_NestedQuotes_Have_TheirOwnStripes() {
