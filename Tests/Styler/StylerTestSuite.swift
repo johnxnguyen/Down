@@ -79,7 +79,7 @@ class StylerTestSuite: XCTestCase {
 
     // MARK: - Helpers
 
-    func view(for markdown: String, width: Width) -> UIView {
+    func view(for markdown: String, width: Width) -> DownTextView {
         let textView = DownTextView(width: width)
         textView.attributedText = attributedString(for: markdown)
         textView.resizeToContentSize()

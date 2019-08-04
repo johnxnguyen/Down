@@ -29,7 +29,7 @@ public class DownLayoutManager: NSLayoutManager {
             guard let attr = value as? ThematicBreakAttribute else { return }
             let firstGlyphIndex = glyphIndexForCharacter(at: range.lowerBound)
             let lineRect = lineFragmentRect(forGlyphAt: firstGlyphIndex, effectiveRange: nil)
-            let adjustedLineRect = lineRect.shiftedVertically(by: insets.top)
+            let adjustedLineRect = lineRect.translatedTo(point: .init(x: insets.left, y: insets.top))
 
             drawThematicBreak(in: adjustedLineRect, attr: attr)
         }
@@ -96,6 +96,10 @@ extension CGRect {
 
     func shiftedVertically(by points: CGFloat) -> CGRect {
         return CGRect(x: origin.x, y: origin.y + points, width: width, height: height)
+    }
+
+    func translatedTo(point: CGPoint) -> CGRect {
+        return CGRect(x: origin.x + point.x, y: origin.y + point.y, width: width, height: height)
     }
 }
 

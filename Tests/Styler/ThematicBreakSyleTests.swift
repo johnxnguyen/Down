@@ -36,4 +36,24 @@ class ThematicBreakSyleTests: StylerTestSuite {
         assertSnapshot(matching: result, as: .image)
     }
 
+    func testThat_ThematicBreak_InOffsetTextContainer_IsStyled() {
+        // Given
+        let markdown = """
+        # Praesent facilisis pellentesque ipsum at pulvinar.
+
+        ---
+
+        Quisque molestie auctor neque. Donec vitae risus non odio viverra hendrerit. Pellentesque non vulputate felis.
+        Curabitur aliquam, nisl vitae vulputate eleifend, metus sapien eleifend. Quisque molestie auctor neque.
+        Donec vitae risus non odio viverra hendrerit.
+        """
+
+        // When
+        let result = view(for: markdown, width: .wide)
+        result.textContainerInset = .init(top: 30, left: 60, bottom: 30, right: 20)
+
+        // Then
+        assertSnapshot(matching: result, as: .image)
+    }
+
 }
