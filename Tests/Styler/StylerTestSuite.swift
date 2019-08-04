@@ -34,7 +34,7 @@ class StylerTestSuite: XCTestCase {
         body: .black,
         quote: .lightGray,
         code: .darkGray,
-        thematicBreak: .lightGray,
+        thematicBreak: #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1),
         listItemPrefix: .gray)
 
     private let paragraphStyles: ParagraphStyleCollection = {
@@ -65,12 +65,16 @@ class StylerTestSuite: XCTestCase {
         thickness: 3,
         spacingAfter: 8)
 
+    private let thematicBreakOptions = ThematicBreakOptions(
+        thickness: 1,
+        indentation: 0)
+
 
     // MARK: - Lifecycle
 
     override func setUp() {
         super.setUp()
-        styler = DefaultStyler(listItemOptions: listItemOptions, quoteStripeOptions: quoteStripeOptions)
+        styler = DefaultStyler(listItemOptions: listItemOptions, quoteStripeOptions: quoteStripeOptions, thematicBreakOptions: thematicBreakOptions)
         styler.fonts = fonts
         styler.colors = colors
         styler.paragraphStyles = paragraphStyles

@@ -32,11 +32,22 @@ public class DownLayoutManager: NSLayoutManager {
 
         textStorage?.enumerate(key: .thematicBreak, inRange: characterRange) { (attr: ThematicBreakAttribute, range) in
             let firstGlyphIndex = glyphIndexForCharacter(at: range.lowerBound)
+
             let lineRect = lineFragmentRect(forGlyphAt: firstGlyphIndex, effectiveRange: nil)
-            let adjustedLineRect = lineRect.translated(by: origin)
+            let usedRect = lineFragmentUsedRect(forGlyphAt: firstGlyphIndex, effectiveRange: nil)
+
+            let lineStart = usedRect.minX + fragmentPadding(forGlyphAt: firstGlyphIndex)
+
+            let boundingRect = CGRect(x: lineStart, y: lineRect.minY, width: lineRect.width - lineStart, height: lineRect.height)
+            let adjustedLineRect = boundingRect.translated(by: origin)
 
             drawThematicBreak(with: context, in: adjustedLineRect, attr: attr)
         }
+    }
+
+    private func fragmentPadding(forGlyphAt glyphIndex: Int) -> CGFloat {
+        let textContainer = self.textContainer(forGlyphAt: glyphIndex, effectiveRange: nil)
+        return textContainer?.lineFragmentPadding ?? 0
     }
 
     private func drawThematicBreak(with context: CGContext, in rect: CGRect, attr: ThematicBreakAttribute) {

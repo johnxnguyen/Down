@@ -56,4 +56,23 @@ class ThematicBreakSyleTests: StylerTestSuite {
         assertSnapshot(matching: result, as: .image)
     }
 
+    func testThat_ThematicBreak_CanBe_Indented() {
+        // Given
+        let markdown = """
+        # Praesent facilisis pellentesque ipsum at pulvinar.
+
+        ---
+
+        Quisque molestie auctor neque. Donec vitae risus non odio viverra hendrerit. Pellentesque non vulputate felis.
+        Curabitur aliquam, nisl vitae vulputate eleifend, metus sapien eleifend.
+        """
+
+        styler.thematicBreakOptions.indentation = 30
+
+        // When
+        let result = view(for: markdown, width: .wide)
+
+        // Then
+        assertSnapshot(matching: result, as: .image)
+    }
 }

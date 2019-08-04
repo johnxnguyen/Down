@@ -17,6 +17,7 @@ open class DefaultStyler: Styler {
     public var colors: ColorCollection = .init()
     public var paragraphStyles: ParagraphStyleCollection = .init()
     public var quoteStripeOptions: QuoteStripeOptions
+    public var thematicBreakOptions: ThematicBreakOptions
 
     private var listPrefixAttributes: [NSAttributedString.Key : Any] {[
         .font: fonts.listItemPrefix,
@@ -25,7 +26,7 @@ open class DefaultStyler: Styler {
 
     let itemParagraphStyler: ListItemParagraphStyler
 
-    public init(listItemOptions: ListItemOptions, quoteStripeOptions: QuoteStripeOptions) {
+    public init(listItemOptions: ListItemOptions, quoteStripeOptions: QuoteStripeOptions, thematicBreakOptions: ThematicBreakOptions) {
         // TODO: Can we not assume there is a period?
         let widthOfPeriod = NSAttributedString(string: ".", attributes: [.font: fonts.listItemPrefix]).size().width
         let maxPrefixWidth = fonts.listItemPrefix.widthOfLargestDigit * CGFloat(listItemOptions.maxPrefixDigits)
@@ -34,6 +35,7 @@ open class DefaultStyler: Styler {
         itemParagraphStyler = ListItemParagraphStyler(options: listItemOptions, largestPrefixWidth: maxPrefixWidthIncludingPeriod)
 
         self.quoteStripeOptions = quoteStripeOptions
+        self.thematicBreakOptions = thematicBreakOptions
     }
 }
 
@@ -134,7 +136,10 @@ extension DefaultStyler {
     }
 
     open func style(thematicBreak str: NSMutableAttributedString) {
-        str.addAttribute(.thematicBreak, value: ThematicBreakAttribute(thickness: 1, color: colors.thematicBreak))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.firstLineHeadIndent = thematicBreakOptions.indentation
+        str.addAttribute(.thematicBreak, value: ThematicBreakAttribute(thickness: thematicBreakOptions.thickness, color: colors.thematicBreak))
+        str.addAttribute(.paragraphStyle, value: paragraphStyle)
     }
 
     open func style(text str: NSMutableAttributedString) {
