@@ -12,10 +12,22 @@ import Foundation
 import UIKit
 
 struct QuoteStripeAttribute {
-    var thickness: CGFloat = 2
     var color: UIColor = .gray
+    var thickness: CGFloat = 2
     var spacingAfter: CGFloat = 8
     var locations: [CGFloat] = []
+
+    var layoutWidth: CGFloat {
+        return thickness + spacingAfter
+    }
+}
+
+extension QuoteStripeAttribute {
+
+    init(level: Int, options: QuoteStripeOptions) {
+        self.init(color: options.color, thickness: options.thickness, spacingAfter: options.spacingAfter, locations: [])
+        locations = (0..<level).map { CGFloat($0) * layoutWidth }
+    }
 }
 
 extension NSAttributedString.Key {

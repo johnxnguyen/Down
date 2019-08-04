@@ -16,6 +16,7 @@ open class DefaultStyler: Styler {
     public var fonts: FontCollection = .dynamicFonts
     public var colors: ColorCollection = .init()
     public var paragraphStyles: ParagraphStyleCollection = .init()
+    public var quoteStripeOptions: QuoteStripeOptions
 
     private var listPrefixAttributes: [NSAttributedString.Key : Any] {[
         .font: fonts.listItemPrefix,
@@ -24,13 +25,15 @@ open class DefaultStyler: Styler {
 
     let itemParagraphStyler: ListItemParagraphStyler
 
-    public init(listItemOptions: ListItemOptions) {
+    public init(listItemOptions: ListItemOptions, quoteStripeOptions: QuoteStripeOptions) {
         // TODO: Can we not assume there is a period?
         let widthOfPeriod = NSAttributedString(string: ".", attributes: [.font: fonts.listItemPrefix]).size().width
         let maxPrefixWidth = fonts.listItemPrefix.widthOfLargestDigit * CGFloat(listItemOptions.maxPrefixDigits)
         let maxPrefixWidthIncludingPeriod = maxPrefixWidth + widthOfPeriod
 
         itemParagraphStyler = ListItemParagraphStyler(options: listItemOptions, largestPrefixWidth: maxPrefixWidthIncludingPeriod)
+
+        self.quoteStripeOptions = quoteStripeOptions
     }
 }
 
@@ -43,23 +46,15 @@ extension DefaultStyler {
     }
 
     open func style(blockQuote str: NSMutableAttributedString, nestDepth: Int) {
-        let adjustedDepth = nestDepth + 1
-        var stripeAttribute = QuoteStripeAttribute(thickness: 4, color: .lightGray, spacingAfter: 8)
-        let indentation = (stripeAttribute.thickness + stripeAttribute.spacingAfter)
+        let stripeAttribute = QuoteStripeAttribute(level: nestDepth + 1, options: quoteStripeOptions)
 
-        stripeAttribute.locations = (0..<adjustedDepth).map { CGFloat($0) * indentation }
-
-        // Maybe it's better to add the indentations all at once given the nest depth
         str.updateAttribute(.paragraphStyle) { (style: NSParagraphStyle) in
-            style.indented(by: indentation)
+            style.indented(by: stripeAttribute.layoutWidth)
         }
 
-        for range in str.rangesMissingAttribute(name: .quoteStripe) {
-            str.addAttribute(.quoteStripe, value: stripeAttribute, range: range)
-            
+        str.rangesMissingAttribute(name: .quoteStripe).forEach {
+            str.addAttributes([.foregroundColor: colors.quote, .quoteStripe: stripeAttribute], range: $0)
         }
-
-        str.addAttribute(.foregroundColor, value: colors.quote)
     }
 
     open func style(list str: NSMutableAttributedString, nestDepth: Int) {
@@ -73,7 +68,6 @@ extension DefaultStyler {
     open func style(item str: NSMutableAttributedString, prefixLength: Int, nestDepth: Int) {
         // For simplicity, let's assume that there is no nested list directly after the prefix.
         // TODO: handle this case.
-
         let paragraphRanges = str.paragraphRangesExcludingLists()
         guard let leadingParagraphRange = paragraphRanges.first else { return }
         

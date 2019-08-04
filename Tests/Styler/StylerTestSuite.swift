@@ -60,12 +60,17 @@ class StylerTestSuite: XCTestCase {
         spacingAbove: 4,
         spacingBelow: 8)
 
+    private let quoteStripeOptions = QuoteStripeOptions(
+        color: .lightGray,
+        thickness: 3,
+        spacingAfter: 8)
+
 
     // MARK: - Lifecycle
 
     override func setUp() {
         super.setUp()
-        styler = DefaultStyler(listItemOptions: listItemOptions)
+        styler = DefaultStyler(listItemOptions: listItemOptions, quoteStripeOptions: quoteStripeOptions)
         styler.fonts = fonts
         styler.colors = colors
         styler.paragraphStyles = paragraphStyles
