@@ -84,6 +84,7 @@
 		EE9E886322EF76040005948C /* InlineStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9E886222EF76040005948C /* InlineStyleTests.swift */; };
 		EEA2BDC422F704F200D0C72C /* QuoteStripeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2BDC322F704F200D0C72C /* QuoteStripeOptions.swift */; };
 		EEA2BDC622F7057600D0C72C /* ListItemOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2BDC522F7057600D0C72C /* ListItemOptions.swift */; };
+		EEA2BDC822F705B900D0C72C /* BlockQuoteStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2BDC722F705B900D0C72C /* BlockQuoteStyleTests.swift */; };
 		EEA5C02922F58A0900B91D60 /* DownTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA5C02822F58A0900B91D60 /* DownTextView.swift */; };
 		EEA5C02B22F58B8000B91D60 /* ThematicBreakSyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA5C02A22F58B8000B91D60 /* ThematicBreakSyleTests.swift */; };
 		EEA5C02D22F5C96B00B91D60 /* QuoteStripeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA5C02C22F5C96B00B91D60 /* QuoteStripeAttribute.swift */; };
@@ -280,6 +281,7 @@
 		EE9E886222EF76040005948C /* InlineStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InlineStyleTests.swift; path = Styler/InlineStyleTests.swift; sourceTree = "<group>"; };
 		EEA2BDC322F704F200D0C72C /* QuoteStripeOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStripeOptions.swift; sourceTree = "<group>"; };
 		EEA2BDC522F7057600D0C72C /* ListItemOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemOptions.swift; sourceTree = "<group>"; };
+		EEA2BDC722F705B900D0C72C /* BlockQuoteStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlockQuoteStyleTests.swift; path = Styler/BlockQuoteStyleTests.swift; sourceTree = "<group>"; };
 		EEA5C02822F58A0900B91D60 /* DownTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownTextView.swift; sourceTree = "<group>"; };
 		EEA5C02A22F58B8000B91D60 /* ThematicBreakSyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThematicBreakSyleTests.swift; path = Styler/ThematicBreakSyleTests.swift; sourceTree = "<group>"; };
 		EEA5C02C22F5C96B00B91D60 /* QuoteStripeAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStripeAttribute.swift; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 		D4201EC41CFA59A5008EEC6E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				EEA2BDC722F705B900D0C72C /* BlockQuoteStyleTests.swift */,
 				EEA5C02A22F58B8000B91D60 /* ThematicBreakSyleTests.swift */,
 				EE99E3DD22F0C83F00BCE15B /* HeadingStyleTests.swift */,
 				EE9E886222EF76040005948C /* InlineStyleTests.swift */,
@@ -890,6 +893,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEA2BDC822F705B900D0C72C /* BlockQuoteStyleTests.swift in Sources */,
 				EE97253E22C130D8004D3B3A /* NSMutableAttributedString+AttributesTests.swift in Sources */,
 				EE97254322C14B79004D3B3A /* NSAttributedString+HelpersTests.swift in Sources */,
 				8AFAEB091E6E331700E09B68 /* StringTests.swift in Sources */,

@@ -61,7 +61,7 @@ class StylerTestSuite: XCTestCase {
         spacingBelow: 8)
 
     private let quoteStripeOptions = QuoteStripeOptions(
-        color: .lightGray,
+        color: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1),
         thickness: 3,
         spacingAfter: 8)
 
