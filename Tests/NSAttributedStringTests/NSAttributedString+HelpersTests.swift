@@ -132,7 +132,7 @@ class NSAttributedString_HelpersTests: XCTestCase {
         sut.append(make("Hello world", attributed: true))
 
         // When
-        let result = sut.rangesMissingAttribute(name: dummyKey)
+        let result = sut.rangesMissingAttribute(for: dummyKey)
 
         // Then
         XCTAssertTrue(result.isEmpty)
@@ -144,7 +144,7 @@ class NSAttributedString_HelpersTests: XCTestCase {
         sut.append(make("Hello world", attributed: false))
 
         // When
-        let result = sut.rangesMissingAttribute(name: dummyKey)
+        let result = sut.rangesMissingAttribute(for: dummyKey)
 
         // Then
         XCTAssertEqual(result.count, 1)
@@ -161,7 +161,7 @@ class NSAttributedString_HelpersTests: XCTestCase {
         sut.append(make("do?"))
 
         // When
-        let result = sut.rangesMissingAttribute(name: dummyKey)
+        let result = sut.rangesMissingAttribute(for: dummyKey)
 
         // Then
         XCTAssertEqual(result.count, 3)

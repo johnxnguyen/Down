@@ -50,12 +50,12 @@ extension DefaultStyler {
     open func style(blockQuote str: NSMutableAttributedString, nestDepth: Int) {
         let stripeAttribute = QuoteStripeAttribute(level: nestDepth + 1, options: quoteStripeOptions)
 
-        str.updateAttribute(.paragraphStyle) { (style: NSParagraphStyle) in
+        str.updateExistingAttributes(for: .paragraphStyle) { (style: NSParagraphStyle) in
             style.indented(by: stripeAttribute.layoutWidth)
         }
 
-        str.addAttributeInMissingRanges(key: .quoteStripe, value: stripeAttribute)
-        str.addAttribute(.foregroundColor, value: colors.quote)
+        str.addAttributeInMissingRanges(for: .quoteStripe, value: stripeAttribute)
+        str.addAttribute(for: .foregroundColor, value: colors.quote)
     }
 
     open func style(list str: NSMutableAttributedString, nestDepth: Int) {
@@ -82,7 +82,7 @@ extension DefaultStyler {
     }
 
     private func indentListItemLeadingParagraph(in str: NSMutableAttributedString, prefixLength: Int, inRange range: NSRange) {
-        str.updateAttribute(.paragraphStyle, inRange: range) { (existingStyle: NSParagraphStyle) in
+        str.updateExistingAttributes(for: .paragraphStyle, in: range) { (existingStyle: NSParagraphStyle) in
             existingStyle.indented(by: itemParagraphStyler.indentation)
         }
 
@@ -90,22 +90,22 @@ extension DefaultStyler {
         let prefixWidth = attributedPrefix.size().width
 
         let defaultStyle = itemParagraphStyler.leadingParagraphStyle(prefixWidth: prefixWidth)
-        str.addAttributeInMissingRanges(key: .paragraphStyle, value: defaultStyle, withinRange: range)
+        str.addAttributeInMissingRanges(for: .paragraphStyle, value: defaultStyle, within: range)
     }
 
     private func indentListItemTrailingParagraph(in str: NSMutableAttributedString, inRange range: NSRange) {
-        str.updateAttribute(.paragraphStyle, inRange: range) { (existingStyle: NSParagraphStyle) in
+        str.updateExistingAttributes(for: .paragraphStyle, in: range) { (existingStyle: NSParagraphStyle) in
             existingStyle.indented(by: itemParagraphStyler.indentation)
         }
 
         let defaultStyle = itemParagraphStyler.trailingParagraphStyle
-        str.addAttributeInMissingRanges(key: .paragraphStyle, value: defaultStyle, withinRange: range)
+        str.addAttributeInMissingRanges(for: .paragraphStyle, value: defaultStyle, within: range)
 
         indentListItemQuotes(in: str, inRange: range)
     }
 
     private func indentListItemQuotes(in str: NSMutableAttributedString, inRange range: NSRange) {
-        str.updateAttribute(.quoteStripe, inRange: range) { (stripe: QuoteStripeAttribute) in
+        str.updateExistingAttributes(for: .quoteStripe, in: range) { (stripe: QuoteStripeAttribute) in
             stripe.indented(by: itemParagraphStyler.indentation)
         }
     }
@@ -129,13 +129,13 @@ extension DefaultStyler {
     }
 
     open func style(paragraph str: NSMutableAttributedString,  isTopLevel: Bool) {
-        str.addAttribute(.paragraphStyle, value: paragraphStyles.body)
+        str.addAttribute(for: .paragraphStyle, value: paragraphStyles.body)
     }
 
     open func style(heading str: NSMutableAttributedString, level: Int) {
         let font = fonts.attributeFor(headingLevel: level) ?? fonts.heading1
 
-        str.updateAttribute(.font) { (currentFont: UIFont) in
+        str.updateExistingAttributes(for: .font) { (currentFont: UIFont) in
             var newFont = font
 
             if (currentFont.isMonospace) {
@@ -164,8 +164,8 @@ extension DefaultStyler {
     open func style(thematicBreak str: NSMutableAttributedString) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.firstLineHeadIndent = thematicBreakOptions.indentation
-        str.addAttribute(.thematicBreak, value: ThematicBreakAttribute(thickness: thematicBreakOptions.thickness, color: colors.thematicBreak))
-        str.addAttribute(.paragraphStyle, value: paragraphStyle)
+        str.addAttribute(for: .thematicBreak, value: ThematicBreakAttribute(thickness: thematicBreakOptions.thickness, color: colors.thematicBreak))
+        str.addAttribute(for: .paragraphStyle, value: paragraphStyle)
     }
 
     open func style(text str: NSMutableAttributedString) {
@@ -199,25 +199,25 @@ extension DefaultStyler {
     }
 
     open func style(emphasis str: NSMutableAttributedString) {
-        str.updateAttribute(.font) { (font: UIFont) in
+        str.updateExistingAttributes(for: .font) { (font: UIFont) in
             font.italic
         }
     }
 
     open func style(strong str: NSMutableAttributedString) {
-        str.updateAttribute(.font) { (font: UIFont) in
+        str.updateExistingAttributes(for: .font) { (font: UIFont) in
             font.bold
         }
     }
 
     open func style(link str: NSMutableAttributedString, title: String?, url: String?) {
         guard let url = url else { return }
-        str.addAttribute(.link, value: url)
+        str.addAttribute(for: .link, value: url)
     }
 
     open func style(image str: NSMutableAttributedString, title: String?, url: String?) {
         guard let url = url else { return }
-        str.addAttribute(.link, value: url)
+        str.addAttribute(for: .link, value: url)
     }
 }
 

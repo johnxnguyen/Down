@@ -18,59 +18,42 @@ extension NSMutableAttributedString {
         addAttributes(attrs, range: wholeRange)
     }
 
-    // TODO: you can just write Key
-    func addAttribute(_ name: NSAttributedString.Key, value: Any) {
-        addAttribute(name, value: value, range: wholeRange)
+    func addAttribute(for key: Key, value: Any) {
+        addAttribute(key, value: value, range: wholeRange)
     }
 
-    func removeAttribute(_ name: NSAttributedString.Key) {
-        removeAttribute(name, range: wholeRange)
+    func removeAttribute(for key: Key) {
+        removeAttribute(key, range: wholeRange)
     }
 
-    func replaceAttribute(_ name: NSAttributedString.Key, value: Any) {
-        replaceAttribute(name, value: value, inRange: wholeRange)
+    func replaceAttribute(for key: Key, value: Any) {
+        replaceAttribute(for: key, value: value, inRange: wholeRange)
     }
 
-    func replaceAttribute(_ name: NSAttributedString.Key, value: Any, inRange range: NSRange) {
-        removeAttribute(name, range: range)
-        addAttribute(name, value: value, range: range)
+    func replaceAttribute(for key: Key, value: Any, inRange range: NSRange) {
+        removeAttribute(key, range: range)
+        addAttribute(key, value: value, range: range)
     }
 
-    // TODO: rename to "updateExistingAtribute"
-    // TODO: test the default value
-    func updateAttribute<A>(_ key: NSAttributedString.Key, with f: (A) -> A) {
-        updateAttribute(key, inRange: wholeRange, with: f)
+    func updateExistingAttributes<A>(for key: Key, using f: (A) -> A) {
+        updateExistingAttributes(for: key, in: wholeRange, using: f)
     }
 
-    // TODO: This default value makes the method do more than one thing...
-    func updateAttribute<A>(_ key: NSAttributedString.Key, inRange range: NSRange, with f: (A) -> A) {
+    func updateExistingAttributes<A>(for key: Key, in range: NSRange, using f: (A) -> A) {
         var exisitngValues = [(value: A, range: NSRange)]()
-        enumerate(key: key, inRange: range) { exisitngValues.append(($0, $1)) }
+        enumerateAttributes(for: key, in: range) { exisitngValues.append(($0, $1)) }
         exisitngValues.forEach { addAttribute(key, value: f($0.0), range: $0.1) }
     }
 
     // TODO: test
-    func addAttributeInMissingRanges<A>(key: Key, value: A) {
-        addAttributeInMissingRanges(key: key, value: value, withinRange: wholeRange)
+    func addAttributeInMissingRanges<A>(for key: Key, value: A) {
+        addAttributeInMissingRanges(for: key, value: value, within: wholeRange)
     }
 
     // TODO: test
-    func addAttributeInMissingRanges<A>(key: Key, value: A, withinRange range: NSRange) {
-        rangesMissingAttribute(name: key, inRange: range).forEach {
+    func addAttributeInMissingRanges<A>(for key: Key, value: A, within range: NSRange) {
+        rangesMissingAttribute(for: key, in: range).forEach {
             addAttribute(key, value: value, range: $0)
-        }
-    }
-
-    // TODO: move this to attributed string extension
-    func enumerate<A>(key: NSAttributedString.Key, block: (_ attr: A, _ range: NSRange) -> Void) {
-        enumerate(key: key, inRange: wholeRange, block: block)
-    }
-
-    func enumerate<A>(key: NSAttributedString.Key, inRange range: NSRange, block: (_ attr: A, _ range: NSRange) -> Void) {
-        enumerateAttribute(key, in: range, options: []) { value, range, _ in
-            if let value = value as? A {
-                block(value, range)
-            }
         }
     }
 }

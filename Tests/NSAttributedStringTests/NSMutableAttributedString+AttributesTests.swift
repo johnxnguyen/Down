@@ -52,7 +52,7 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         let sut = NSMutableAttributedString(string: "Hello")
 
         // When
-        sut.addAttribute(key1, value: dummyValue)
+        sut.addAttribute(for: key1, value: dummyValue)
 
         // Then
         let attributeRanges = sut.ranges(of: key1)
@@ -65,7 +65,7 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         let sut = NSMutableAttributedString(string: "Hello", attributes: [key1: dummyValue])
 
         // When
-        sut.removeAttribute(key1)
+        sut.removeAttribute(for: key1)
 
         // Then
         let attributeRanges = sut.ranges(of: key1)
@@ -84,7 +84,7 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         XCTAssertEqual(countAttribute(.foregroundColor, in: sut), 2)
 
         // When
-        sut.replaceAttribute(.foregroundColor, value: UIColor.yellow)
+        sut.replaceAttribute(for: .foregroundColor, value: UIColor.yellow)
 
         // Then
         let attributeRanges = sut.ranges(of: .foregroundColor)
@@ -98,7 +98,7 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         let sut = NSMutableAttributedString(string: "Hello", attributes: [key1: dummyValue])
 
         // When
-        sut.updateAttribute(key1) { (value: String) in
+        sut.updateExistingAttributes(for: key1) { (value: String) in
             value.uppercased()
         }
 
@@ -116,7 +116,7 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         let rangeOfSecondWord = NSRange(location: 6, length: 5)
 
         // When
-        sut.updateAttribute(key1, inRange: rangeOfFirstWord) { (value: String) in
+        sut.updateExistingAttributes(for: key1, in: rangeOfFirstWord) { (value: String) in
             "some new value"
         }
 
@@ -133,7 +133,7 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         let rangeOfFirstWord = NSRange(location: 0, length: 6)
 
         // When
-        sut.updateAttribute(key1, inRange: rangeOfFirstWord) { (value: String) in
+        sut.updateExistingAttributes(for: key1, in: rangeOfFirstWord) { (value: String) in
             "some new value"
         }
 

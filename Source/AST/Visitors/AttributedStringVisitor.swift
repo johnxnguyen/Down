@@ -55,7 +55,7 @@ extension AttributedStringVisitor: Visitor {
         if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(list: s, nestDepth: node.nestDepth)
 
-        s.replaceAttribute(.listMarker, value: ())
+        s.replaceAttribute(for: .listMarker, value: ())
 
         return s
     }

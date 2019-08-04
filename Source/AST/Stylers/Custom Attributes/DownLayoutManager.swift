@@ -30,7 +30,7 @@ public class DownLayoutManager: NSLayoutManager {
         UIGraphicsPushContext(context)
         defer { UIGraphicsPopContext() }
 
-        textStorage?.enumerate(key: .thematicBreak, inRange: characterRange) { (attr: ThematicBreakAttribute, range) in
+        textStorage?.enumerateAttributes(for: .thematicBreak, in: characterRange) { (attr: ThematicBreakAttribute, range) in
             let firstGlyphIndex = glyphIndexForCharacter(at: range.lowerBound)
 
             let lineRect = lineFragmentRect(forGlyphAt: firstGlyphIndex, effectiveRange: nil)
@@ -64,7 +64,7 @@ public class DownLayoutManager: NSLayoutManager {
         UIGraphicsPushContext(context)
         defer { UIGraphicsPopContext() }
 
-        textStorage?.enumerate(key: .quoteStripe, inRange: characterRange) { (attr: QuoteStripeAttribute, range) in
+        textStorage?.enumerateAttributes(for: .quoteStripe, in: characterRange) { (attr: QuoteStripeAttribute, range) in
             context.setFillColor(attr.color.cgColor)
 
             let glyphRangeOfQuote = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)

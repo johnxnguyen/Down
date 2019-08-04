@@ -28,13 +28,13 @@ extension NSAttributedString {
     }
 
     // TODO: This is duplicaton of other attributed string extensions
-    func ranges(of name: NSAttributedString.Key) -> [NSRange] {
-        ranges(of: name, inRange: wholeRange)
+    func ranges(of key: Key) -> [NSRange] {
+        ranges(of: key, in: wholeRange)
     }
 
-    func ranges(of name: NSAttributedString.Key, inRange range: NSRange) -> [NSRange] {
+    func ranges(of key: Key, in range: NSRange) -> [NSRange] {
         var ranges = [NSRange]()
-        enumerateAttribute(name, in: range, options: []) { value, range, _ in
+        enumerateAttribute(key, in: range, options: []) { value, range, _ in
             if value != nil {
                 ranges.append(range)
             }
@@ -43,15 +43,14 @@ extension NSAttributedString {
         return ranges
     }
 
-    // TODO: remove duplication
-    func rangesMissingAttribute(name: NSAttributedString.Key) -> [NSRange] {
-        rangesMissingAttribute(name: name, inRange: wholeRange)
+    func rangesMissingAttribute(for key: Key) -> [NSRange] {
+        rangesMissingAttribute(for: key, in: wholeRange)
     }
 
-    // TODO: make naming consistent
-    func rangesMissingAttribute(name: NSAttributedString.Key, inRange range: NSRange) -> [NSRange] {
+    // TODO: remove duplication
+    func rangesMissingAttribute(for key: Key, in range: NSRange) -> [NSRange] {
         var ranges = [NSRange]()
-        enumerateAttribute(name, in: range, options: []) { value, attrRange, _ in
+        enumerateAttribute(key, in: range, options: []) { value, attrRange, _ in
             if value == nil {
                 ranges.append(attrRange)
             }
@@ -81,5 +80,17 @@ extension NSAttributedString {
         }
 
         return result.filter { $0.length > 1 }
+    }
+
+    func enumerateAttributes<A>(for key: Key, block: (_ attr: A, _ range: NSRange) -> Void) {
+        enumerateAttributes(for: key, in: wholeRange, block: block)
+    }
+
+    func enumerateAttributes<A>(for key: Key, in range: NSRange, block: (_ attr: A, _ range: NSRange) -> Void) {
+        enumerateAttribute(key, in: range, options: []) { value, range, _ in
+            if let value = value as? A {
+                block(value, range)
+            }
+        }
     }
 }
