@@ -18,6 +18,7 @@ extension NSMutableAttributedString {
         addAttributes(attrs, range: wholeRange)
     }
 
+    // TODO: you can just write Key
     func addAttribute(_ name: NSAttributedString.Key, value: Any) {
         addAttribute(name, value: value, range: wholeRange)
     }
@@ -35,6 +36,7 @@ extension NSMutableAttributedString {
         addAttribute(name, value: value, range: range)
     }
 
+    // TODO: rename to "updateExistingAtribute"
     func updateAttribute<A>(_ key: NSAttributedString.Key, with f: (A) -> A) {
         updateAttribute(key, inRange: wholeRange, with: f)
     }
@@ -47,6 +49,7 @@ extension NSMutableAttributedString {
         exisitngValues.forEach { addAttribute(key, value: f($0.0), range: $0.1) }
     }
 
+    // TODO: move this to attributed string extension
     func enumerate<A>(key: NSAttributedString.Key, block: (_ attr: A, _ range: NSRange) -> Void) {
         enumerate(key: key, inRange: wholeRange, block: block)
     }
