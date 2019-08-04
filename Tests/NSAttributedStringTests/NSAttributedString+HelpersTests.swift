@@ -126,6 +126,50 @@ class NSAttributedString_HelpersTests: XCTestCase {
         XCTAssertEqual(result[1], NSRange(location: 19, length: 4)) // "you "
     }
 
+    func testRangesMissingAttribute_None() {
+        // Given
+        let sut = NSMutableAttributedString()
+        sut.append(make("Hello world", attributed: true))
+
+        // When
+        let result = sut.rangesMissingAttribute(name: dummyKey)
+
+        // Then
+        XCTAssertTrue(result.isEmpty)
+    }
+
+    func testRangesMissingAttribute_Whole() {
+        // Given
+        let sut = NSMutableAttributedString()
+        sut.append(make("Hello world", attributed: false))
+
+        // When
+        let result = sut.rangesMissingAttribute(name: dummyKey)
+
+        // Then
+        XCTAssertEqual(result.count, 1)
+        XCTAssertEqual(result[0], NSRange(location: 0, length: 11)) // "Hello world"
+    }
+
+    func testRangesMissingAttribute_Partial() {
+        // Given
+        let sut = NSMutableAttributedString()
+        sut.append(make("Hello "))
+        sut.append(make("world ", attributed: true))
+        sut.append(make("how do "))
+        sut.append(make("you ", attributed: true))
+        sut.append(make("do?"))
+
+        // When
+        let result = sut.rangesMissingAttribute(name: dummyKey)
+
+        // Then
+        XCTAssertEqual(result.count, 3)
+        XCTAssertEqual(result[0], NSRange(location: 0, length: 6))  // "Hello "
+        XCTAssertEqual(result[1], NSRange(location: 12, length: 7)) // "how do "
+        XCTAssertEqual(result[2], NSRange(location: 23, length: 3)) // "do?"
+    }
+
     // MARK: - Paragraph Ranges
 
     func testParagraphRangesExcludingListOfEmptyString() {

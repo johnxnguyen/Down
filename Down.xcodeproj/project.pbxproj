@@ -84,6 +84,7 @@
 		EE9E886322EF76040005948C /* InlineStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9E886222EF76040005948C /* InlineStyleTests.swift */; };
 		EEA5C02922F58A0900B91D60 /* DownTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA5C02822F58A0900B91D60 /* DownTextView.swift */; };
 		EEA5C02B22F58B8000B91D60 /* ThematicBreakSyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA5C02A22F58B8000B91D60 /* ThematicBreakSyleTests.swift */; };
+		EEA5C02D22F5C96B00B91D60 /* QuoteStripeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA5C02C22F5C96B00B91D60 /* QuoteStripeAttribute.swift */; };
 		EED8DA8E22BE404F00E54492 /* DefaultStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA8D22BE404F00E54492 /* DefaultStyler.swift */; };
 		EED8DA9022BECBAE00E54492 /* NSAttributedString+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA8F22BECBAE00E54492 /* NSAttributedString+Helpers.swift */; };
 		EED8DA9222BECBF200E54492 /* NSMutableAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */; };
@@ -277,6 +278,7 @@
 		EE9E886222EF76040005948C /* InlineStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InlineStyleTests.swift; path = Styler/InlineStyleTests.swift; sourceTree = "<group>"; };
 		EEA5C02822F58A0900B91D60 /* DownTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownTextView.swift; sourceTree = "<group>"; };
 		EEA5C02A22F58B8000B91D60 /* ThematicBreakSyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThematicBreakSyleTests.swift; path = Styler/ThematicBreakSyleTests.swift; sourceTree = "<group>"; };
+		EEA5C02C22F5C96B00B91D60 /* QuoteStripeAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStripeAttribute.swift; sourceTree = "<group>"; };
 		EED8DA8D22BE404F00E54492 /* DefaultStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStyler.swift; sourceTree = "<group>"; };
 		EED8DA8F22BECBAE00E54492 /* NSAttributedString+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Helpers.swift"; sourceTree = "<group>"; };
 		EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Attributes.swift"; sourceTree = "<group>"; };
@@ -634,6 +636,7 @@
 			isa = PBXGroup;
 			children = (
 				EEFFFDDA22F4C36800036FD5 /* ThematicBreakAttribute.swift */,
+				EEA5C02C22F5C96B00B91D60 /* QuoteStripeAttribute.swift */,
 				EEFFFDDC22F4C8AB00036FD5 /* DownLayoutManager.swift */,
 				EEA5C02822F58A0900B91D60 /* DownTextView.swift */,
 			);
@@ -847,6 +850,7 @@
 				8A569F781E6B3EE7008BE2AC /* DownErrors.swift in Sources */,
 				8A569F5C1E6B3ED9008BE2AC /* inlines.c in Sources */,
 				EE48C7DB22EC946F004815ED /* ColorCollection.swift in Sources */,
+				EEA5C02D22F5C96B00B91D60 /* QuoteStripeAttribute.swift in Sources */,
 				8A569F571E6B3ED9008BE2AC /* houdini_href_e.c in Sources */,
 				8A569F4D1E6B3ED9008BE2AC /* cmark.c in Sources */,
 				EE48C7DD22EC99D1004815ED /* AttributeCollection.swift in Sources */,

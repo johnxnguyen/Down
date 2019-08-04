@@ -75,7 +75,7 @@ class VisitorTests: XCTestCase {
 private class EmptyStyler: Styler {
     var listPrefixAttributes: [NSAttributedString.Key : Any] = [:]
     func style(document str: NSMutableAttributedString) {}
-    func style(blockQuote str: NSMutableAttributedString) {}
+    func style(blockQuote str: NSMutableAttributedString, nestDepth: Int) {}
     func style(list str: NSMutableAttributedString, nestDepth: Int) {}
     func style(listItemPrefix str: NSMutableAttributedString) {}
     func style(item str: NSMutableAttributedString, prefixLength: Int, nestDepth: Int) {}

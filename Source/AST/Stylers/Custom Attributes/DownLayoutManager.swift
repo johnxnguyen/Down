@@ -13,19 +13,54 @@ import UIKit
 
 public class DownLayoutManager: NSLayoutManager {
 
+    // TODO: Get this from the text view
+    public var insets: UIEdgeInsets = .init(top: 8, left: 0, bottom: 0, right: 0)
+
     override public func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
 
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
         drawThematicBreakIfNeeded(in: characterRange)
+        drawQuoteStripeIfNeeded(in: characterRange)
     }
 
     private func drawThematicBreakIfNeeded(in characterRange: NSRange) {
         textStorage?.enumerateAttribute(.thematicBreak, in: characterRange, options: []) { value, range, _ in
             guard let attr = value as? ThematicBreakAttribute else { return }
-            let glyphIndex = glyphIndexForCharacter(at: range.lowerBound)
-            let lineRect = lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil)
-            drawThematicBreak(in: lineRect, attr: attr)
+            let firstGlyphIndex = glyphIndexForCharacter(at: range.lowerBound)
+            let lineRect = lineFragmentRect(forGlyphAt: firstGlyphIndex, effectiveRange: nil)
+            let adjustedLineRect = lineRect.shiftedVertically(by: insets.top)
+
+            drawThematicBreak(in: adjustedLineRect, attr: attr)
+        }
+    }
+
+    private func drawQuoteStripeIfNeeded(in characterRange: NSRange) {
+        textStorage?.enumerateAttribute(.quoteStripe, in: characterRange, options: []) { value, range, _ in
+            guard let attr = value as? QuoteStripeAttribute else { return }
+            guard let context = UIGraphicsGetCurrentContext() else { return }
+
+            UIGraphicsPushContext(context)
+            defer { UIGraphicsPopContext() }
+
+            context.setFillColor(attr.color.cgColor)
+
+            let glyphRangeOfQuote = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
+
+            enumerateLineFragments(forGlyphRange: glyphRangeOfQuote) { rect, _, textContainer, _, _ in
+                for location in attr.locations {
+                    let padding: CGFloat = textContainer.lineFragmentPadding
+                    let offset = location + padding
+
+                    let origin = CGPoint(x: rect.minX + offset, y: rect.minY)
+                    let size = CGSize(width: attr.thickness, height: rect.height)
+
+                    let stripeRect = CGRect(origin: origin, size: size)
+                    let adjustedStripeRect = stripeRect.shiftedVertically(by: self.insets.top)
+
+                    context.fill(adjustedStripeRect)
+                }
+            }
         }
     }
 
@@ -36,6 +71,31 @@ public class DownLayoutManager: NSLayoutManager {
         context.move(to: CGPoint(x: lineRect.minX, y: lineRect.midY))
         context.addLine(to: CGPoint(x: lineRect.maxX, y: lineRect.midY))
         context.strokePath()
+    }
+
+    // TODO: For debug purposes
+    private func drawLineFragments(forGlyphRange glyphsToShow: NSRange, usedPortionsOnly: Bool = false) {
+        enumerateLineFragments(forGlyphRange: glyphsToShow) { rect, usedRect, textContainer, glyphRange, _ in
+            let (rectToDraw, color) = usedPortionsOnly ? (usedRect, UIColor.blue) : (rect, UIColor.red)
+            let adjustedRect = rectToDraw.shiftedVertically(by: self.insets.top)
+            self.drawRect(adjustedRect, color: color.cgColor)
+        }
+    }
+
+    private func drawRect(_ rect: CGRect, color: CGColor) {
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        UIGraphicsPushContext(context)
+        context.setStrokeColor(color)
+        context.stroke(rect)
+        UIGraphicsPopContext()
+    }
+}
+
+
+extension CGRect {
+
+    func shiftedVertically(by points: CGFloat) -> CGRect {
+        return CGRect(x: origin.x, y: origin.y + points, width: width, height: height)
     }
 }
 

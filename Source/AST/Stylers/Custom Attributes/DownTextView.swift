@@ -27,6 +27,12 @@ open class DownTextView: UITextView {
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    open override var textContainerInset: UIEdgeInsets {
+        willSet {
+            (layoutManager as? DownLayoutManager)?.insets =  newValue
+        }
+    }
 }
 
 #endif

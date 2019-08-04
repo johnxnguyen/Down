@@ -42,11 +42,24 @@ extension DefaultStyler {
 
     }
 
-    open func style(blockQuote str: NSMutableAttributedString) {
-        str.setAttributes([
-            .font: fonts.quote,
-            .foregroundColor: colors.quote,
-            .paragraphStyle: paragraphStyles.quote])
+    open func style(blockQuote str: NSMutableAttributedString, nestDepth: Int) {
+        let adjustedDepth = nestDepth + 1
+        var stripeAttribute = QuoteStripeAttribute(thickness: 4, color: .lightGray, spacingAfter: 8)
+        let indentation = (stripeAttribute.thickness + stripeAttribute.spacingAfter)
+
+        stripeAttribute.locations = (0..<adjustedDepth).map { CGFloat($0) * indentation }
+
+        // Maybe it's better to add the indentations all at once given the nest depth
+        str.updateAttribute(.paragraphStyle) { (style: NSParagraphStyle) in
+            style.indented(by: indentation)
+        }
+
+        for range in str.rangesMissingAttribute(name: .quoteStripe) {
+            str.addAttribute(.quoteStripe, value: stripeAttribute, range: range)
+            
+        }
+
+        str.addAttribute(.foregroundColor, value: colors.quote)
     }
 
     open func style(list str: NSMutableAttributedString, nestDepth: Int) {
@@ -67,11 +80,11 @@ extension DefaultStyler {
         let attributedPrefix = str.prefix(with: prefixLength)
         let prefixWidth = attributedPrefix.size().width
         let leadingParagraphStyle = itemParagraphStyler.leadingParagraphStyle(nestDepth: nestDepth, prefixWidth: prefixWidth)
-        str.addAttribute(.paragraphStyle, value: leadingParagraphStyle, range: leadingParagraphRange)
+        str.replaceAttribute(.paragraphStyle, value: leadingParagraphStyle, inRange: leadingParagraphRange)
 
         for range in paragraphRanges.dropFirst() {
             let paragraphStyle = itemParagraphStyler.trailingParagraphStyle(nestDepth: nestDepth)
-            str.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
+            str.replaceAttribute(.paragraphStyle, value: paragraphStyle, inRange: range)
         }
     }
 
@@ -94,7 +107,6 @@ extension DefaultStyler {
     }
 
     open func style(paragraph str: NSMutableAttributedString,  isTopLevel: Bool) {
-        guard isTopLevel else { return }
         str.addAttribute(.paragraphStyle, value: paragraphStyles.body)
     }
 
@@ -192,6 +204,21 @@ private extension UIFont {
         (0...9)
             .map { NSAttributedString(string: "\($0)", attributes: [.font: self]).size().width }
             .max()!
+    }
+}
+
+private extension NSParagraphStyle {
+
+    func indented(by indentation: CGFloat) -> NSParagraphStyle {
+        let result = mutableCopy() as! NSMutableParagraphStyle
+        result.firstLineHeadIndent += indentation
+        result.headIndent += indentation
+
+        result.tabStops = tabStops.map {
+            NSTextTab(textAlignment: $0.alignment, location: $0.location + indentation, options: $0.options)
+        }
+
+        return result
     }
 }
 

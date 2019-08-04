@@ -38,6 +38,18 @@ extension NSAttributedString {
         return ranges
     }
 
+    // TODO: remove duplication
+    func rangesMissingAttribute(name: NSAttributedString.Key) -> [NSRange] {
+        var ranges = [NSRange]()
+        enumerateAttribute(name, in: wholeRange, options: []) { value, range, _ in
+            if value == nil {
+                ranges.append(range)
+            }
+        }
+
+        return ranges
+    }
+
     func paragraphRangesExcludingLists() -> [NSRange] {
         let listRanges = ranges(of: .listMarker)
         let areDisjoint = { (a: NSRange, b: NSRange) in a.intersection(b) == .none }

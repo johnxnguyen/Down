@@ -17,7 +17,7 @@ import Foundation
 public protocol Styler {
     // TODO: Add docs for each method, describing what each node is.
     func style(document str: NSMutableAttributedString)
-    func style(blockQuote str: NSMutableAttributedString)
+    func style(blockQuote str: NSMutableAttributedString, nestDepth: Int)
     func style(list str: NSMutableAttributedString, nestDepth: Int)
     func style(listItemPrefix str: NSMutableAttributedString)
     func style(item str: NSMutableAttributedString, prefixLength: Int, nestDepth: Int)

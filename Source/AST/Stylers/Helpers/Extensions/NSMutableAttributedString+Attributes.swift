@@ -27,8 +27,12 @@ extension NSMutableAttributedString {
     }
 
     func replaceAttribute(_ name: NSAttributedString.Key, value: Any) {
-        removeAttribute(name)
-        addAttribute(name, value: value)
+        replaceAttribute(name, value: value, inRange: wholeRange)
+    }
+
+    func replaceAttribute(_ name: NSAttributedString.Key, value: Any, inRange range: NSRange) {
+        removeAttribute(name, range: range)
+        addAttribute(name, value: value, range: range)
     }
 
     func updateAttribute<A>(_ key: NSAttributedString.Key, with f: (A) -> A) {

@@ -40,7 +40,7 @@ extension AttributedStringVisitor: Visitor {
     public func visit(blockQuote node: BlockQuote) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
         if node.hasSuccessor { s.append(.paragraphSeparator) }
-        styler.style(blockQuote: s)
+        styler.style(blockQuote: s, nestDepth: node.nestDepth)
         return s
     }
 
