@@ -126,6 +126,9 @@ class NSAttributedString_HelpersTests: XCTestCase {
         XCTAssertEqual(result[1], NSRange(location: 19, length: 4)) // "you "
     }
 
+  // MARK: - Missing Attribute Ranges
+
+
     func testRangesMissingAttribute_None() {
         // Given
         let sut = NSMutableAttributedString()
@@ -295,4 +298,29 @@ class NSAttributedString_HelpersTests: XCTestCase {
         XCTAssertEqual(result[1], NSRange(location: 7, length: 6))  // "hello\n"
         XCTAssertEqual(result[2], NSRange(location: 15, length: 5)) // "world
     }
+
+  // MARK: - Enumeration
+
+  func testEnumerationOfAttributes() {
+    // Given
+    let sut = NSMutableAttributedString()
+    sut.append(make("Hello ", attributed: true))
+    sut.append(make("world ", attributed: true))
+    sut.append(make("how do "))
+    sut.append(make("you ", attributed: true))
+    sut.append(make("do?"))
+
+    // When
+    var result = [(String, NSRange)]()
+    sut.enumerateAttributes(for: dummyKey) { (attr: String, range) in
+      result.append((attr, range))
+    }
+
+    // Then
+    XCTAssertEqual(result.count, 2)
+    XCTAssertEqual(result[0].0, "value")
+    XCTAssertEqual(result[0].1, NSRange(location: 0, length: 12)) // "Hello world "
+    XCTAssertEqual(result[1].0, "value")
+    XCTAssertEqual(result[1].1, NSRange(location: 19, length: 4)) // "you "
+  }
 }
