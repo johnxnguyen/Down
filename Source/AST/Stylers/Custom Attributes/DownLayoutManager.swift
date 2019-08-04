@@ -13,34 +13,29 @@ import UIKit
 
 public class DownLayoutManager: NSLayoutManager {
 
-    // TODO: Get this from the text view
-    // TODO: How do we know which text container this is for?
-    public var insets: UIEdgeInsets = .init(top: 8, left: 0, bottom: 0, right: 0)
-
-    private var textContainerOffset: CGPoint {
-        return .init(x: insets.left, y: insets.top)
-    }
-
     override public func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
-
-        let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
-        drawThematicBreakIfNeeded(in: characterRange)
-        drawQuoteStripeIfNeeded(in: characterRange)
+        drawCustomAttriibutes(forGlyphRange: glyphsToShow, at: origin)
     }
 
-    private func drawThematicBreakIfNeeded(in characterRange: NSRange) {
+    private func drawCustomAttriibutes(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
+        let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
+        drawThematicBreakIfNeeded(in: characterRange, at: origin)
+        drawQuoteStripeIfNeeded(in: characterRange, at: origin)
+    }
+
+    private func drawThematicBreakIfNeeded(in characterRange: NSRange, at origin: CGPoint) {
         textStorage?.enumerateAttribute(.thematicBreak, in: characterRange, options: []) { value, range, _ in
             guard let attr = value as? ThematicBreakAttribute else { return }
             let firstGlyphIndex = glyphIndexForCharacter(at: range.lowerBound)
             let lineRect = lineFragmentRect(forGlyphAt: firstGlyphIndex, effectiveRange: nil)
-            let adjustedLineRect = lineRect.translatedTo(point: textContainerOffset)
+            let adjustedLineRect = lineRect.translatedTo(point: origin)
 
             drawThematicBreak(in: adjustedLineRect, attr: attr)
         }
     }
 
-    private func drawQuoteStripeIfNeeded(in characterRange: NSRange) {
+    private func drawQuoteStripeIfNeeded(in characterRange: NSRange, at origin: CGPoint) {
         textStorage?.enumerateAttribute(.quoteStripe, in: characterRange, options: []) { value, range, _ in
             guard let attr = value as? QuoteStripeAttribute else { return }
             guard let context = UIGraphicsGetCurrentContext() else { return }
@@ -57,11 +52,11 @@ public class DownLayoutManager: NSLayoutManager {
                     let padding: CGFloat = textContainer.lineFragmentPadding
                     let offset = location + padding
 
-                    let origin = CGPoint(x: rect.minX + offset, y: rect.minY)
-                    let size = CGSize(width: attr.thickness, height: rect.height)
+                    let stripeOrigin = CGPoint(x: rect.minX + offset, y: rect.minY)
+                    let stripeSize = CGSize(width: attr.thickness, height: rect.height)
 
-                    let stripeRect = CGRect(origin: origin, size: size)
-                    let adjustedStripeRect = stripeRect.translatedTo(point: self.textContainerOffset)
+                    let stripeRect = CGRect(origin: stripeOrigin, size: stripeSize)
+                    let adjustedStripeRect = stripeRect.translatedTo(point: origin)
 
                     context.fill(adjustedStripeRect)
                 }
@@ -79,10 +74,10 @@ public class DownLayoutManager: NSLayoutManager {
     }
 
     // TODO: For debug purposes
-    private func drawLineFragments(forGlyphRange glyphsToShow: NSRange, usedPortionsOnly: Bool = false) {
+    private func drawLineFragments(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint, usedPortionsOnly: Bool = false) {
         enumerateLineFragments(forGlyphRange: glyphsToShow) { rect, usedRect, textContainer, glyphRange, _ in
             let (rectToDraw, color) = usedPortionsOnly ? (usedRect, UIColor.blue) : (rect, UIColor.red)
-            let adjustedRect = rectToDraw.translatedTo(point: self.textContainerOffset)
+            let adjustedRect = rectToDraw.translatedTo(point: origin)
             self.drawRect(adjustedRect, color: color.cgColor)
         }
     }
