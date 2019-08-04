@@ -14,6 +14,7 @@ import UIKit
 public class DownLayoutManager: NSLayoutManager {
 
     // TODO: Get this from the text view
+    // TODO: How do we know which text container this is for?
     public var insets: UIEdgeInsets = .init(top: 8, left: 0, bottom: 0, right: 0)
 
     override public func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
@@ -56,7 +57,7 @@ public class DownLayoutManager: NSLayoutManager {
                     let size = CGSize(width: attr.thickness, height: rect.height)
 
                     let stripeRect = CGRect(origin: origin, size: size)
-                    let adjustedStripeRect = stripeRect.shiftedVertically(by: self.insets.top)
+                    let adjustedStripeRect = stripeRect.translatedTo(point: .init(x: self.insets.left, y: self.insets.top))
 
                     context.fill(adjustedStripeRect)
                 }
