@@ -27,9 +27,14 @@ extension NSAttributedString {
         NSRange(location: 0, length: length)
     }
 
+    // TODO: This is duplicaton of other attributed string extensions
     func ranges(of name: NSAttributedString.Key) -> [NSRange] {
+        ranges(of: name, inRange: wholeRange)
+    }
+
+    func ranges(of name: NSAttributedString.Key, inRange range: NSRange) -> [NSRange] {
         var ranges = [NSRange]()
-        enumerateAttribute(name, in: wholeRange, options: []) { value, range, _ in
+        enumerateAttribute(name, in: range, options: []) { value, range, _ in
             if value != nil {
                 ranges.append(range)
             }
@@ -40,10 +45,15 @@ extension NSAttributedString {
 
     // TODO: remove duplication
     func rangesMissingAttribute(name: NSAttributedString.Key) -> [NSRange] {
+        rangesMissingAttribute(name: name, inRange: wholeRange)
+    }
+
+    // TODO: make naming consistent
+    func rangesMissingAttribute(name: NSAttributedString.Key, inRange range: NSRange) -> [NSRange] {
         var ranges = [NSRange]()
-        enumerateAttribute(name, in: wholeRange, options: []) { value, range, _ in
+        enumerateAttribute(name, in: range, options: []) { value, attrRange, _ in
             if value == nil {
-                ranges.append(range)
+                ranges.append(attrRange)
             }
         }
 
