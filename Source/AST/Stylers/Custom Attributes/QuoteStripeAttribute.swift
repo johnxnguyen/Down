@@ -28,6 +28,12 @@ extension QuoteStripeAttribute {
         self.init(color: options.color, thickness: options.thickness, spacingAfter: options.spacingAfter, locations: [])
         locations = (0..<level).map { CGFloat($0) * layoutWidth }
     }
+
+    func indented(by indentation: CGFloat) -> QuoteStripeAttribute {
+        var copy = self
+        copy.locations = locations.map { $0 + indentation }
+        return copy
+    }
 }
 
 extension NSAttributedString.Key {

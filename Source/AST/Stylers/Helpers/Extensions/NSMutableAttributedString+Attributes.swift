@@ -37,16 +37,28 @@ extension NSMutableAttributedString {
     }
 
     // TODO: rename to "updateExistingAtribute"
+    // TODO: test the default value
     func updateAttribute<A>(_ key: NSAttributedString.Key, with f: (A) -> A) {
         updateAttribute(key, inRange: wholeRange, with: f)
     }
 
+    // TODO: This default value makes the method do more than one thing...
     func updateAttribute<A>(_ key: NSAttributedString.Key, inRange range: NSRange, with f: (A) -> A) {
         var exisitngValues = [(value: A, range: NSRange)]()
-
         enumerate(key: key, inRange: range) { exisitngValues.append(($0, $1)) }
-
         exisitngValues.forEach { addAttribute(key, value: f($0.0), range: $0.1) }
+    }
+
+    // TODO: test
+    func addAttributeInMissingRanges<A>(key: Key, value: A) {
+        addAttributeInMissingRanges(key: key, value: value, withinRange: wholeRange)
+    }
+
+    // TODO: test
+    func addAttributeInMissingRanges<A>(key: Key, value: A, withinRange range: NSRange) {
+        rangesMissingAttribute(name: key, inRange: range).forEach {
+            addAttribute(key, value: value, range: $0)
+        }
     }
 
     // TODO: move this to attributed string extension

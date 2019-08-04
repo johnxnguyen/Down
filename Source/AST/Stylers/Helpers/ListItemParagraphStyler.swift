@@ -14,11 +14,16 @@ public class ListItemParagraphStyler {
     // TODO: if the max prefix digits change here, we need to update the largest prefix width.
     var options: ListItemOptions
 
-    private let largestPrefixWidth: CGFloat
+    var indentation: CGFloat {
+        return largestPrefixWidth + options.spacingAfterPrefix
+    }
 
-    public init(options: ListItemOptions, largestPrefixWidth: CGFloat) {
-        self.options = options
-        self.largestPrefixWidth = largestPrefixWidth
+    var trailingParagraphStyle: NSParagraphStyle {
+        let contentIndentation = indentation
+        let style = baseStyle
+        style.firstLineHeadIndent = contentIndentation
+        style.headIndent = contentIndentation
+        return style
     }
 
     private var baseStyle: NSMutableParagraphStyle {
@@ -28,8 +33,16 @@ public class ListItemParagraphStyler {
         return style
     }
 
-    func leadingParagraphStyle(nestDepth: Int, prefixWidth: CGFloat) -> NSParagraphStyle {
-        let contentIndentation = self.indentation(atDepth: nestDepth)
+    private let largestPrefixWidth: CGFloat
+
+    public init(options: ListItemOptions, largestPrefixWidth: CGFloat) {
+        self.options = options
+        self.largestPrefixWidth = largestPrefixWidth
+    }
+
+
+    func leadingParagraphStyle(prefixWidth: CGFloat) -> NSParagraphStyle {
+        let contentIndentation = indentation
         let prefixIndentation: CGFloat = contentIndentation - options.spacingAfterPrefix - prefixWidth
         let prefixSpill = max(0, prefixWidth - largestPrefixWidth)
         let firstLineContentIndentation = contentIndentation + prefixSpill
@@ -39,19 +52,6 @@ public class ListItemParagraphStyler {
         style.tabStops = [tabStop(at: firstLineContentIndentation)]
         style.headIndent = contentIndentation
         return style
-    }
-
-    func trailingParagraphStyle(nestDepth: Int) -> NSParagraphStyle {
-        let contentIndentation = self.indentation(atDepth: nestDepth)
-        let style = baseStyle
-        style.firstLineHeadIndent = contentIndentation
-        style.headIndent = contentIndentation
-        return style
-    }
-
-    private func indentation(atDepth nestDepth: Int) -> CGFloat {
-        let indentationWidth: CGFloat = largestPrefixWidth + options.spacingAfterPrefix
-        return indentationWidth * CGFloat(nestDepth + 1)
     }
 
     private func tabStop(at location: CGFloat) -> NSTextTab {

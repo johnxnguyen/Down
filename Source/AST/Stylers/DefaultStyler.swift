@@ -54,9 +54,8 @@ extension DefaultStyler {
             style.indented(by: stripeAttribute.layoutWidth)
         }
 
-        str.rangesMissingAttribute(name: .quoteStripe).forEach {
-            str.addAttributes([.foregroundColor: colors.quote, .quoteStripe: stripeAttribute], range: $0)
-        }
+        str.addAttributeInMissingRanges(key: .quoteStripe, value: stripeAttribute)
+        str.addAttribute(.foregroundColor, value: colors.quote)
     }
 
     open func style(list str: NSMutableAttributedString, nestDepth: Int) {
@@ -68,46 +67,54 @@ extension DefaultStyler {
     }
 
     open func style(item str: NSMutableAttributedString, prefixLength: Int, nestDepth: Int) {
+
         // For simplicity, let's assume that there is no nested list directly after the prefix.
         // TODO: handle this case.
-        let paragraphRanges = str.paragraphRangesExcludingLists()
+
+        let paragraphRanges = str.paragraphRanges()
         guard let leadingParagraphRange = paragraphRanges.first else { return }
-        
+
+        indentListItemLeadingParagraph(in: str, prefixLength: prefixLength, inRange: leadingParagraphRange)
+
+        paragraphRanges.dropFirst().forEach {
+            indentListItemTrailingParagraph(in: str, inRange: $0)
+        }
+    }
+
+    private func indentListItemLeadingParagraph(in str: NSMutableAttributedString, prefixLength: Int, inRange range: NSRange) {
+        str.updateAttribute(.paragraphStyle, inRange: range) { (existingStyle: NSParagraphStyle) in
+            existingStyle.indented(by: itemParagraphStyler.indentation)
+        }
+
         let attributedPrefix = str.prefix(with: prefixLength)
         let prefixWidth = attributedPrefix.size().width
 
-        let leadingParagraphStyle = itemParagraphStyler.leadingParagraphStyle(nestDepth: nestDepth, prefixWidth: prefixWidth)
-        str.replaceAttribute(.paragraphStyle, value: leadingParagraphStyle, inRange: leadingParagraphRange)
+        let defaultStyle = itemParagraphStyler.leadingParagraphStyle(prefixWidth: prefixWidth)
+        str.addAttributeInMissingRanges(key: .paragraphStyle, value: defaultStyle, withinRange: range)
+    }
 
-        for trailingParagraphRange in paragraphRanges.dropFirst() {
-            let paragraphStyle = itemParagraphStyler.trailingParagraphStyle(nestDepth: nestDepth)
+    private func indentListItemTrailingParagraph(in str: NSMutableAttributedString, inRange range: NSRange) {
+        str.updateAttribute(.paragraphStyle, inRange: range) { (existingStyle: NSParagraphStyle) in
+            existingStyle.indented(by: itemParagraphStyler.indentation)
+        }
 
-            str.rangesMissingAttribute(name: .quoteStripe, inRange: trailingParagraphRange).forEach { nonQuoteRange in
-                str.replaceAttribute(.paragraphStyle, value: paragraphStyle, inRange: nonQuoteRange)
+        let defaultStyle = itemParagraphStyler.trailingParagraphStyle
+        str.addAttributeInMissingRanges(key: .paragraphStyle, value: defaultStyle, withinRange: range)
+
+        indentListItemQuotes(in: str, inRange: range)
+    }
+
+    private func indentListItemQuotes(in str: NSMutableAttributedString, inRange range: NSRange) {
+        str.ranges(of: .quoteStripe, inRange: range).forEach { quoteRange in
+            str.updateAttribute(.quoteStripe, inRange: quoteRange) { (stripe: QuoteStripeAttribute) in
+                stripe.indented(by: itemParagraphStyler.indentation)
             }
 
-            str.ranges(of: .quoteStripe, inRange: trailingParagraphRange).forEach { quoteRange in
-                let indentation = paragraphStyle.headIndent
+            let stripe = str.attribute(.quoteStripe, at: quoteRange.lowerBound, effectiveRange: nil) as? QuoteStripeAttribute
+            let stripeLayoutWidth = stripe?.layoutWidth ?? 0
 
-                str.updateAttribute(.quoteStripe, inRange: quoteRange) { (stripe: QuoteStripeAttribute) in
-                    var newStripe = stripe
-                    newStripe.locations = newStripe.locations.map { $0 + indentation }
-                    return newStripe
-                }
-
-                let stripe = str.attribute(.quoteStripe, at: quoteRange.lowerBound, effectiveRange: nil) as? QuoteStripeAttribute
-                let stripeLayoutWidth = stripe?.layoutWidth ?? 0
-
-                str.updateAttribute(.paragraphStyle, inRange: quoteRange) { (style: NSParagraphStyle) in
-                    guard let newStyle = paragraphStyle.mutableCopy() as? NSMutableParagraphStyle else  {
-                        return style
-                    }
-
-                    // TODO: indentation extension on paragraph style
-                    newStyle.firstLineHeadIndent += stripeLayoutWidth
-                    newStyle.headIndent += stripeLayoutWidth
-                    return newStyle
-                }
+            str.updateAttribute(.paragraphStyle, inRange: quoteRange) { (style: NSParagraphStyle) in
+                return style.indented(by: stripeLayoutWidth)
             }
         }
     }
@@ -236,6 +243,7 @@ private extension UIFont {
 
 private extension NSParagraphStyle {
 
+    // TODO: test
     func indented(by indentation: CGFloat) -> NSParagraphStyle {
         let result = mutableCopy() as! NSMutableParagraphStyle
         result.firstLineHeadIndent += indentation
