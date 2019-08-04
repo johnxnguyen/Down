@@ -75,12 +75,40 @@ extension DefaultStyler {
         
         let attributedPrefix = str.prefix(with: prefixLength)
         let prefixWidth = attributedPrefix.size().width
+
         let leadingParagraphStyle = itemParagraphStyler.leadingParagraphStyle(nestDepth: nestDepth, prefixWidth: prefixWidth)
         str.replaceAttribute(.paragraphStyle, value: leadingParagraphStyle, inRange: leadingParagraphRange)
 
-        for range in paragraphRanges.dropFirst() {
+        for trailingParagraphRange in paragraphRanges.dropFirst() {
             let paragraphStyle = itemParagraphStyler.trailingParagraphStyle(nestDepth: nestDepth)
-            str.replaceAttribute(.paragraphStyle, value: paragraphStyle, inRange: range)
+
+            str.rangesMissingAttribute(name: .quoteStripe, inRange: trailingParagraphRange).forEach { nonQuoteRange in
+                str.replaceAttribute(.paragraphStyle, value: paragraphStyle, inRange: nonQuoteRange)
+            }
+
+            str.ranges(of: .quoteStripe, inRange: trailingParagraphRange).forEach { quoteRange in
+                let indentation = paragraphStyle.headIndent
+
+                str.updateAttribute(.quoteStripe, inRange: quoteRange) { (stripe: QuoteStripeAttribute) in
+                    var newStripe = stripe
+                    newStripe.locations = newStripe.locations.map { $0 + indentation }
+                    return newStripe
+                }
+
+                let stripe = str.attribute(.quoteStripe, at: quoteRange.lowerBound, effectiveRange: nil) as? QuoteStripeAttribute
+                let stripeLayoutWidth = stripe?.layoutWidth ?? 0
+
+                str.updateAttribute(.paragraphStyle, inRange: quoteRange) { (style: NSParagraphStyle) in
+                    guard let newStyle = paragraphStyle.mutableCopy() as? NSMutableParagraphStyle else  {
+                        return style
+                    }
+
+                    // TODO: indentation extension on paragraph style
+                    newStyle.firstLineHeadIndent += stripeLayoutWidth
+                    newStyle.headIndent += stripeLayoutWidth
+                    return newStyle
+                }
+            }
         }
     }
 

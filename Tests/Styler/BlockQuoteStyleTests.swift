@@ -76,6 +76,25 @@ class BlockQuoteStyleTests: StylerTestSuite {
         assertSnapshot(matching: result, as: .image)
     }
 
+    func testThat_Quotes_WithinA_ListItem_AlignsTo_ListItemContent() {
+        // Given
+        let markdown = """
+        1. Etiam vel dui id purus finibus auctor.
+        2. Donec in semper lectus. Vestibulum vel eleifend justo.
+            > Curabitur fringilla lacus eget nunc dictum dignissim.
+            > Donec cursus magna a libero vulputate maximus.
+        3. Nunc vitae tellus eget purus sagittis aliquet.
+        """
+
+        // When
+        let result = view(for: markdown, width: .narrow)
+
+        // Then
+        assertSnapshot(matching: result, as: .image)
+    }
+
+    // TODO: also check if nested list contains quote that contains a list?
+
     // MARK: - Preservation
 
     func testThat_QuoteContent_Preserves_InlineElements() {
