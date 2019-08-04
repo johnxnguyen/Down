@@ -17,6 +17,10 @@ public class DownLayoutManager: NSLayoutManager {
     // TODO: How do we know which text container this is for?
     public var insets: UIEdgeInsets = .init(top: 8, left: 0, bottom: 0, right: 0)
 
+    private var textContainerOffset: CGPoint {
+        return .init(x: insets.left, y: insets.top)
+    }
+
     override public func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
 
@@ -30,7 +34,7 @@ public class DownLayoutManager: NSLayoutManager {
             guard let attr = value as? ThematicBreakAttribute else { return }
             let firstGlyphIndex = glyphIndexForCharacter(at: range.lowerBound)
             let lineRect = lineFragmentRect(forGlyphAt: firstGlyphIndex, effectiveRange: nil)
-            let adjustedLineRect = lineRect.translatedTo(point: .init(x: insets.left, y: insets.top))
+            let adjustedLineRect = lineRect.translatedTo(point: textContainerOffset)
 
             drawThematicBreak(in: adjustedLineRect, attr: attr)
         }
@@ -57,7 +61,7 @@ public class DownLayoutManager: NSLayoutManager {
                     let size = CGSize(width: attr.thickness, height: rect.height)
 
                     let stripeRect = CGRect(origin: origin, size: size)
-                    let adjustedStripeRect = stripeRect.translatedTo(point: .init(x: self.insets.left, y: self.insets.top))
+                    let adjustedStripeRect = stripeRect.translatedTo(point: self.textContainerOffset)
 
                     context.fill(adjustedStripeRect)
                 }
@@ -78,7 +82,7 @@ public class DownLayoutManager: NSLayoutManager {
     private func drawLineFragments(forGlyphRange glyphsToShow: NSRange, usedPortionsOnly: Bool = false) {
         enumerateLineFragments(forGlyphRange: glyphsToShow) { rect, usedRect, textContainer, glyphRange, _ in
             let (rectToDraw, color) = usedPortionsOnly ? (usedRect, UIColor.blue) : (rect, UIColor.red)
-            let adjustedRect = rectToDraw.shiftedVertically(by: self.insets.top)
+            let adjustedRect = rectToDraw.translatedTo(point: self.textContainerOffset)
             self.drawRect(adjustedRect, color: color.cgColor)
         }
     }
@@ -94,10 +98,6 @@ public class DownLayoutManager: NSLayoutManager {
 
 
 extension CGRect {
-
-    func shiftedVertically(by points: CGFloat) -> CGRect {
-        return CGRect(x: origin.x, y: origin.y + points, width: width, height: height)
-    }
 
     func translatedTo(point: CGPoint) -> CGRect {
         return CGRect(x: origin.x + point.x, y: origin.y + point.y, width: width, height: height)
