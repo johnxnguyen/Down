@@ -96,20 +96,23 @@ class StylerTestSuite: XCTestCase {
     func assertStyle(
         for markdown: String,
         width: Width,
+        showLineFragments: Bool = false,
         record recording: Bool = false,
         file: StaticString = #file,
         testName: String = #function,
         line: UInt = #line) {
 
-        let view = self.view(for: markdown, width: width)
+        let view = self.view(for: markdown, width: width, showLineFragments: showLineFragments)
+
         let failure = verifySnapshot(matching: view, as: .image, record: recording, file: file, testName: testName, line: line)
 
         guard let message = failure else { return }
         XCTFail(message, file: file, line: line)
     }
 
-    func view(for markdown: String, width: Width) -> DownTextView {
-        let textView = DownTextView(width: width)
+    func view(for markdown: String, width: Width, showLineFragments: Bool = false) -> DownTextView {
+        let frame = CGRect(width: width)
+        let textView = showLineFragments ? DownDebugTextView(frame: frame) : DownTextView(frame: frame)
         textView.textContainerInset = textContainerInset
         textView.attributedText = attributedString(for: markdown)
         textView.resizeToContentSize()
@@ -134,11 +137,14 @@ extension StylerTestSuite {
 
 private extension DownTextView {
 
-    convenience init(width: StylerTestSuite.Width) {
-        self.init(frame: .init(origin: .zero, size: .init(width: width.rawValue, height: 0)))
-    }
-
     func resizeToContentSize() {
         frame = .init(origin: frame.origin, size: .init(width: contentSize.width, height: contentSize.height))
+    }
+}
+
+private extension CGRect {
+
+    init(width: StylerTestSuite.Width) {
+        self.init(origin: .zero, size: .init(width: width.rawValue, height: 0))
     }
 }
