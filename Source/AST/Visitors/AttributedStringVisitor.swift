@@ -78,16 +78,16 @@ extension AttributedStringVisitor: Visitor {
     
     public func visit(codeBlock node: CodeBlock) -> NSMutableAttributedString {
         guard let literal = node.literal else { return .empty }
-        let block = literal.replacingNewlinesWithLineSeparators() + "\n"
-        let s = block.attributed
+        let s = literal.replacingNewlinesWithLineSeparators().attributed
+        if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(codeBlock: s, fenceInfo: node.fenceInfo)
         return s
     }
     
     public func visit(htmlBlock node: HtmlBlock) -> NSMutableAttributedString {
         guard let literal = node.literal else { return .empty }
-        let block = literal.replacingNewlinesWithLineSeparators() + "\n"
-        let s = block.attributed
+        let s = literal.replacingNewlinesWithLineSeparators().attributed
+        if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(htmlBlock: s)
         return s
     }
@@ -218,6 +218,8 @@ private extension String {
     }
 
     func replacingNewlinesWithLineSeparators() -> String {
-        return components(separatedBy: .newlines).joined(separator: .lineSeparator)
+        let trimmed = trimmingCharacters(in: .newlines)
+        let lines = trimmed.components(separatedBy: .newlines)
+        return lines.joined(separator: .lineSeparator)
     }
 }
