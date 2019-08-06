@@ -45,12 +45,10 @@ class ThematicBreakSyleTests: StylerTestSuite {
         Donec vitae risus non odio viverra hendrerit.
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-        result.textContainerInset = .init(top: 30, left: 60, bottom: 30, right: 20)
+        textContainerInset = .init(top: 30, left: 60, bottom: 30, right: 20)
 
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_ThematicBreak_CanBe_Indented() {
