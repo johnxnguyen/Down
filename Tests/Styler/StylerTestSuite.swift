@@ -88,6 +88,21 @@ class StylerTestSuite: XCTestCase {
 
     // MARK: - Helpers
 
+    func assertStyle(
+        for markdown: String,
+        width: Width,
+        record recording: Bool = false,
+        file: StaticString = #file,
+        testName: String = #function,
+        line: UInt = #line) {
+
+        let view = self.view(for: markdown, width: width)
+        let failure = verifySnapshot(matching: view, as: .image, record: recording, file: file, testName: testName, line: line)
+
+        guard let message = failure else { return }
+        XCTFail(message, file: file, line: line)
+    }
+
     func view(for markdown: String, width: Width) -> DownTextView {
         let textView = DownTextView(width: width)
         textView.attributedText = attributedString(for: markdown)
