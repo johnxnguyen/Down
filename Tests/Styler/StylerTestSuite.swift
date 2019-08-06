@@ -51,7 +51,7 @@ class StylerTestSuite: XCTestCase {
             heading3: headingStyle,
             body: bodyStyle,
             quote: bodyStyle,
-            code: NSParagraphStyle())
+            code: bodyStyle)
     }()
 
     private let listItemOptions = ListItemOptions(
