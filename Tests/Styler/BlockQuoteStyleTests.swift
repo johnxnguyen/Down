@@ -30,11 +30,8 @@ class BlockQuoteStyleTests: StylerTestSuite {
         Duis ultrices dapibus diam nec mollis. Mauris scelerisque massa nec tristique dapibus. Mauris sed tempor lorem.
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     func testThat_QuoteContent_Aligns() {
@@ -49,11 +46,8 @@ class BlockQuoteStyleTests: StylerTestSuite {
         Duis ultrices dapibus diam nec mollis. Mauris scelerisque massa nec tristique dapibus. Mauris sed tempor lorem.
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     func testThat_QuoteAlignment_Obeys_TextContainerOffset() {
@@ -68,12 +62,10 @@ class BlockQuoteStyleTests: StylerTestSuite {
         Duis ultrices dapibus diam nec mollis. Mauris scelerisque massa nec tristique dapibus. Mauris sed tempor lorem.
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-        result.textContainerInset = .init(top: 30, left: 30, bottom: 30, right: 30)
+        textContainerInset = .init(top: 30, left: 30, bottom: 30, right: 30)
 
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     func testThat_Quotes_WithinA_ListItem_AlignsTo_ListItemContent() {
@@ -86,11 +78,8 @@ class BlockQuoteStyleTests: StylerTestSuite {
         3. Nunc vitae tellus eget purus sagittis aliquet.
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     func testThat_QuotedList_WithinA_ListItem_AlignsCorrectly() {
@@ -103,11 +92,8 @@ class BlockQuoteStyleTests: StylerTestSuite {
         3. Nunc vitae tellus eget purus sagittis aliquet.
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     // MARK: - Preservation
@@ -122,11 +108,8 @@ class BlockQuoteStyleTests: StylerTestSuite {
         Duis ultrices dapibus diam nec mollis. Mauris scelerisque massa nec tristique dapibus. Mauris sed tempor lorem.
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     func testThat_QuoteContent_Preserves_BlockElements() {
@@ -150,11 +133,8 @@ class BlockQuoteStyleTests: StylerTestSuite {
         Duis ultrices dapibus diam nec mollis. Mauris scelerisque massa nec tristique dapibus. Mauris sed tempor lorem.
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_QuoteContent_Preserves_ListFormatting() {
@@ -181,11 +161,8 @@ class BlockQuoteStyleTests: StylerTestSuite {
         Duis ultrices dapibus diam nec mollis. Mauris scelerisque massa nec tristique dapibus. Mauris sed tempor lorem.
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     func testThat_QuoteContent_Preserves_ThematicBreak() {
@@ -202,11 +179,8 @@ class BlockQuoteStyleTests: StylerTestSuite {
         Duis ultrices dapibus diam nec mollis. Mauris scelerisque massa nec tristique dapibus. Mauris sed tempor lorem.
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     // MARK: - Nested Quotes
@@ -232,11 +206,8 @@ class BlockQuoteStyleTests: StylerTestSuite {
         Duis ultrices dapibus diam nec mollis. Mauris scelerisque massa nec tristique dapibus. Mauris sed tempor lorem.
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 }
 

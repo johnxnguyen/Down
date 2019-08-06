@@ -33,11 +33,8 @@ class CodeBlockStyleTests: StylerTestSuite {
         Duis ultrices dapibus diam nec mollis. Mauris scelerisque massa nec tristique dapibus. Mauris sed tempor lorem.
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_HtmlBlock_IsStyled() {
@@ -53,11 +50,8 @@ class CodeBlockStyleTests: StylerTestSuite {
         Duis ultrices dapibus diam nec mollis. Mauris scelerisque massa nec tristique dapibus. Mauris sed tempor lorem.
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     // TODO: Test also line spacing

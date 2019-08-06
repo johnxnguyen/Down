@@ -29,11 +29,8 @@ class ThematicBreakSyleTests: StylerTestSuite {
         Curabitur aliquam, nisl vitae vulputate eleifend, metus sapien eleifend.
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_ThematicBreak_InOffsetTextContainer_IsStyled() {
@@ -69,10 +66,7 @@ class ThematicBreakSyleTests: StylerTestSuite {
 
         styler.thematicBreakOptions.indentation = 30
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 }

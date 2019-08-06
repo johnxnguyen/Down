@@ -23,33 +23,24 @@ class InlineStyleTests: StylerTestSuite {
         // Given
         let markdown = "Text **strong** text."
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_EmphasizedText_IsStyled() {
         // Given
         let markdown = "Text _emphasized_ text."
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_CodeText_IsStyled() {
         // Given
         let markdown = "Text `code` text <html> text."
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     // MARK: - Double Combinations
@@ -58,44 +49,32 @@ class InlineStyleTests: StylerTestSuite {
         // Given
         let markdown = "Text **strong _emphasized_ strong** text."
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_EmphasizedStrongText_IsStyled() {
         // Given
         let markdown = "Text _emphasized **strong** emphasized_ text."
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_StrongCode_IsStyled() {
         // Given
         let markdown = "Text **strong `code` strong <html> strong** text."
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_EmphasizedCode_IsStyled() {
         // Given
         let markdown = "Text _emphasized `code` emphasized <html> emphasized_ text."
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     // MARK: - Triple Combinations
@@ -104,22 +83,16 @@ class InlineStyleTests: StylerTestSuite {
         // Given
         let markdown = "Text **strong _emphasized `code` emphasized <html> emphasized_ strong** text."
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_EmphasizedStrongCode_IsStyled() {
         // Given
         let markdown = "Text _emphasized **strong `code` strong <html> strong** emphasized_ text."
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     // TODO: fonts, colors and paragraph styles

@@ -29,11 +29,8 @@ class HeadingStyleTests: StylerTestSuite {
         Pellentesque non vulputate felis. Curabitur aliquam, nisl vitae vulputate eleifend, metus sapien eleifend.
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image )
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_Heading_LevelTwo_IsStyled() {
@@ -46,11 +43,8 @@ class HeadingStyleTests: StylerTestSuite {
         Pellentesque non vulputate felis. Curabitur aliquam, nisl vitae vulputate eleifend, metus sapien eleifend.
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_Heading_LevelThree_IsStyled() {
@@ -63,11 +57,8 @@ class HeadingStyleTests: StylerTestSuite {
         Pellentesque non vulputate felis. Curabitur aliquam, nisl vitae vulputate eleifend, metus sapien eleifend.
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_Heading_LevelsThreeToSix_AreStyledEqually() {
@@ -98,11 +89,8 @@ class HeadingStyleTests: StylerTestSuite {
         Pellentesque non vulputate felis. Curabitur aliquam, nisl vitae vulputate eleifend, metus sapien eleifend.
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     // MARK: - Inline Presevation
@@ -115,10 +103,7 @@ class HeadingStyleTests: StylerTestSuite {
         Pellentesque non vulputate felis. Curabitur aliquam, nisl vitae vulputate eleifend, metus sapien eleifend.
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 }

@@ -32,11 +32,8 @@ class ListItemStyleTests: StylerTestSuite {
         12. imperdiet pulvinar a eget urna
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_DigitAndBulletPrefixes_Align() {
@@ -51,11 +48,8 @@ class ListItemStyleTests: StylerTestSuite {
         - nisi faucibus, convallis enim non
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_DigitPrefixes_ExceedingMaxPrefixLength_Push_FirstLine() {
@@ -70,11 +64,8 @@ class ListItemStyleTests: StylerTestSuite {
         102. imperdiet pulvinar a eget urna
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_DigitPrefixes_ExceedingMaxPrefixLength_DontPush_WrappedLines() {
@@ -84,11 +75,8 @@ class ListItemStyleTests: StylerTestSuite {
         100. vitae sodales metus velit vitae est. Aliquam a dolor magna. In fermentum mattis urna
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     // MARK: - Paragraph Alignment
@@ -100,11 +88,8 @@ class ListItemStyleTests: StylerTestSuite {
         vitae sodales metus velit vitae est. Aliquam a dolor magna. In fermentum mattis urna
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     func testThat_FirstParagraph_WithLineBreaks_AlignTo_FirstLine() {
@@ -115,11 +100,8 @@ class ListItemStyleTests: StylerTestSuite {
         Etiam feugiat lectus in euismod egestas. Aenean vehicula finibus justo
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     func testThat_TrailingParagraphs_FirstLines_AlignTo_FirstParagraph() {
@@ -132,11 +114,8 @@ class ListItemStyleTests: StylerTestSuite {
            Etiam feugiat lectus in euismod egestas
         """
 
-        // When
-        let result = view(for: markdown, width: .wide)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .wide)
     }
 
     func testThat_TrailingParagraphs_WrappedLines_AlignTo_FirstLines() {
@@ -149,11 +128,8 @@ class ListItemStyleTests: StylerTestSuite {
            Etiam feugiat lectus in euismod egestas. Aenean vehicula finibus justo
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     // MARK: - Nested Lists
@@ -175,11 +151,8 @@ class ListItemStyleTests: StylerTestSuite {
         4. imperdiet pulvinar a eget urna
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     func testThat_NestedLists_AlignTo_ParentLists() {
@@ -202,11 +175,8 @@ class ListItemStyleTests: StylerTestSuite {
         4. imperdiet pulvinar a eget urna
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
 //    func testThat_NestedList_InFirstParagraph_StartsOn_NewLine() {
@@ -230,11 +200,8 @@ class ListItemStyleTests: StylerTestSuite {
         3. imperdiet pulvinar a eget urna
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     func testThat_NestedList_InTrailingParagraph_AlignsTo_OuterList() {
@@ -254,11 +221,8 @@ class ListItemStyleTests: StylerTestSuite {
         3. imperdiet pulvinar a eget urna
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     func testThat_NestedList_With_MultipleParagraphs_Align() {
@@ -283,11 +247,8 @@ class ListItemStyleTests: StylerTestSuite {
         3. imperdiet pulvinar a eget urna
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     // MARK: - Miscellaneous
@@ -310,11 +271,8 @@ class ListItemStyleTests: StylerTestSuite {
         5. imperdiet <pulvinar> a eget urna
         """
 
-        // When
-        let result = view(for: markdown, width: .narrow)
-
         // Then
-        assertSnapshot(matching: result, as: .image)
+        assertStyle(for: markdown, width: .narrow)
     }
 
     // TODO: test prefix font and color

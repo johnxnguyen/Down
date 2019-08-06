@@ -18,6 +18,8 @@ class StylerTestSuite: XCTestCase {
 
     var enableHardBreaks = false
 
+    var textContainerInset: UIEdgeInsets!
+
     private let fonts = FontCollection(
         heading1: .systemFont(ofSize: 28),
         heading2: .systemFont(ofSize: 24),
@@ -78,10 +80,13 @@ class StylerTestSuite: XCTestCase {
         styler.fonts = fonts
         styler.colors = colors
         styler.paragraphStyles = paragraphStyles
+
+        textContainerInset = .init(top: 8, left: 0, bottom: 0, right: 0)
     }
 
     override func tearDown() {
         styler = nil
+        textContainerInset = nil
         super.tearDown()
     }
 
@@ -107,6 +112,7 @@ class StylerTestSuite: XCTestCase {
         let textView = DownTextView(width: width)
         textView.attributedText = attributedString(for: markdown)
         textView.resizeToContentSize()
+        textView.textContainerInset = textContainerInset
         return textView
     }
 
