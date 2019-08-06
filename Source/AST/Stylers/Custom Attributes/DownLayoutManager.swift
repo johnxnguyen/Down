@@ -91,34 +91,17 @@ public class DownLayoutManager: NSLayoutManager {
             context.fill(stripeRect)
         }
     }
-
-    // TODO: For debug purposes
-    private func drawLineFragments(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint, usedPortionsOnly: Bool = false) {
-        enumerateLineFragments(forGlyphRange: glyphsToShow) { rect, usedRect, textContainer, glyphRange, _ in
-            let (rectToDraw, color) = usedPortionsOnly ? (usedRect, UIColor.blue) : (rect, UIColor.red)
-            let adjustedRect = rectToDraw.translated(by: origin)
-            self.drawRect(adjustedRect, color: color.cgColor)
-        }
-    }
-
-    private func drawRect(_ rect: CGRect, color: CGColor) {
-        guard let context = UIGraphicsGetCurrentContext() else { return }
-        UIGraphicsPushContext(context)
-        context.setStrokeColor(color)
-        context.stroke(rect)
-        UIGraphicsPopContext()
-    }
 }
 
 
-private extension CGRect {
+extension CGRect {
 
     func translated(by point: CGPoint) -> CGRect {
-        return CGRect(x: origin.x + point.x, y: origin.y + point.y, width: width, height: height)
+        return CGRect(origin: origin.translated(by: point), size: size)
     }
 }
 
-private extension CGPoint {
+extension CGPoint {
 
     func translated(by point: CGPoint) -> CGPoint {
         return CGPoint(x: x + point.x, y: y + point.y)

@@ -13,7 +13,11 @@ import  UIKit
 
 open class DownTextView: UITextView {
 
-    public init(frame: CGRect) {
+    public convenience init(frame: CGRect) {
+        self.init(frame: frame, layoutManager: DownLayoutManager())
+    }
+
+    init(frame: CGRect, layoutManager: NSLayoutManager) {
         let textStorage = NSTextStorage()
         let layoutManager = DownLayoutManager()
         let textContainer = NSTextContainer()
