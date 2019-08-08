@@ -73,6 +73,7 @@
 		EE54F96F22EB9CE500628683 /* SnapshotTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */; };
 		EE54F97122EB9D0400628683 /* SnapshotTesting.framework in Copy Testing Frameworks */ = {isa = PBXBuildFile; fileRef = EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE59C30222ECF0BD006EE8A8 /* StylerTestSuite.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE59C30122ECF0BD006EE8A8 /* StylerTestSuite.swift */; };
+		EE5D2DF622FC99A6009EC13E /* LinkStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D2DF522FC99A6009EC13E /* LinkStyleTests.swift */; };
 		EE5F2BA42262564A00B7C0F3 /* Styler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5F2BA32262564A00B7C0F3 /* Styler.swift */; };
 		EE64722B22F8BB0B00C5F0BA /* CodeBlockStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE64722A22F8BB0B00C5F0BA /* CodeBlockStyleTests.swift */; };
 		EE64FEF0225BEB3900A35B34 /* VisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */; };
@@ -274,6 +275,7 @@
 		EE54F96B22EB9C9800628683 /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
 		EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapshotTesting.framework; path = Carthage/Build/iOS/SnapshotTesting.framework; sourceTree = "<group>"; };
 		EE59C30122ECF0BD006EE8A8 /* StylerTestSuite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StylerTestSuite.swift; path = Styler/StylerTestSuite.swift; sourceTree = "<group>"; };
+		EE5D2DF522FC99A6009EC13E /* LinkStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkStyleTests.swift; sourceTree = "<group>"; };
 		EE5F2BA32262564A00B7C0F3 /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styler.swift; sourceTree = "<group>"; };
 		EE64722A22F8BB0B00C5F0BA /* CodeBlockStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CodeBlockStyleTests.swift; path = Styler/CodeBlockStyleTests.swift; sourceTree = "<group>"; };
 		EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorTests.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 		D4201EC41CFA59A5008EEC6E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				EE5D2DF522FC99A6009EC13E /* LinkStyleTests.swift */,
 				EE64722A22F8BB0B00C5F0BA /* CodeBlockStyleTests.swift */,
 				EEA2BDC722F705B900D0C72C /* BlockQuoteStyleTests.swift */,
 				EEA5C02A22F58B8000B91D60 /* ThematicBreakSyleTests.swift */,
@@ -909,6 +912,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEA2BDC822F705B900D0C72C /* BlockQuoteStyleTests.swift in Sources */,
+				EE5D2DF622FC99A6009EC13E /* LinkStyleTests.swift in Sources */,
 				EE97253E22C130D8004D3B3A /* NSMutableAttributedString+AttributesTests.swift in Sources */,
 				EE97254322C14B79004D3B3A /* NSAttributedString+HelpersTests.swift in Sources */,
 				8AFAEB091E6E331700E09B68 /* StringTests.swift in Sources */,
