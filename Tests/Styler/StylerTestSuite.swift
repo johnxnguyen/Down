@@ -36,6 +36,7 @@ class StylerTestSuite: XCTestCase {
         body: .black,
         quote: .lightGray,
         code: .darkGray,
+        link: #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1),
         thematicBreak: #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1),
         listItemPrefix: .gray)
 

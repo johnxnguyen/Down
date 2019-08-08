@@ -212,12 +212,18 @@ extension DefaultStyler {
 
     open func style(link str: NSMutableAttributedString, title: String?, url: String?) {
         guard let url = url else { return }
-        str.addAttribute(for: .link, value: url)
+
+        str.addAttributes([
+            .link: url,
+            .foregroundColor: colors.link])
     }
 
     open func style(image str: NSMutableAttributedString, title: String?, url: String?) {
         guard let url = url else { return }
-        str.addAttribute(for: .link, value: url)
+
+        str.addAttributes([
+            .link: url,
+            .foregroundColor: colors.link])
     }
 }
 
