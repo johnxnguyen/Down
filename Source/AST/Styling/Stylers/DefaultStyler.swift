@@ -66,11 +66,7 @@ extension DefaultStyler {
         str.setAttributes(listPrefixAttributes)
     }
 
-    open func style(item str: NSMutableAttributedString, prefixLength: Int, nestDepth: Int) {
-
-        // For simplicity, let's assume that there is no nested list directly after the prefix.
-        // TODO: handle this case.
-
+    open func style(item str: NSMutableAttributedString, prefixLength: Int) {
         let paragraphRanges = str.paragraphRanges()
         guard let leadingParagraphRange = paragraphRanges.first else { return }
 

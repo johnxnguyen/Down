@@ -20,7 +20,7 @@ public protocol Styler {
     func style(blockQuote str: NSMutableAttributedString, nestDepth: Int)
     func style(list str: NSMutableAttributedString, nestDepth: Int)
     func style(listItemPrefix str: NSMutableAttributedString)
-    func style(item str: NSMutableAttributedString, prefixLength: Int, nestDepth: Int)
+    func style(item str: NSMutableAttributedString, prefixLength: Int)
     func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?)
     func style(htmlBlock str: NSMutableAttributedString)
     func style(customBlock str: NSMutableAttributedString)
