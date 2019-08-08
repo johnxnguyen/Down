@@ -175,64 +175,6 @@ class NSAttributedString_HelpersTests: XCTestCase {
 
     // MARK: - Paragraph Ranges
 
-    func testParagraphRangesExcludingListOfEmptyString() {
-        // Given
-        let sut = NSAttributedString()
-
-        // When
-        let result = sut.paragraphRangesExcludingLists()
-
-        // Then
-        XCTAssertTrue(result.isEmpty)
-    }
-
-    func testParagraphRangesExcludingListOfStringWithNoLists() {
-        // Given
-        let sut = NSAttributedString(string: "Hello\nworld")
-
-        // When
-        let result = sut.paragraphRangesExcludingLists()
-
-        // Then
-        XCTAssertEqual(result.count, 2)
-        XCTAssertEqual(result[0], NSRange(location: 0, length: 6))  // "Hello\n"
-        XCTAssertEqual(result[1], NSRange(location: 6, length: 5))  // "world"
-    }
-
-    func testParagraphRangesExcludingListOfStringWihSingleList() {
-        // Given
-        let sut = NSMutableAttributedString(string: "Hello\nworld")
-
-        let list = NSAttributedString(string: "List\n", attributes: [.listMarker: ()])
-        sut.insert(list, at: 6)
-
-        // When
-        let result = sut.paragraphRangesExcludingLists()
-
-        // Then
-        XCTAssertEqual(result.count, 2)
-        XCTAssertEqual(result[0], NSRange(location: 0, length: 6))  // "Hello\n"
-        XCTAssertEqual(result[1], NSRange(location: 11, length: 5)) // "world"
-    }
-
-    func testParagraphRangesExcludingListOfStringWihMultipleLists() {
-        // Given
-        let sut = NSMutableAttributedString(string: "Hello\ndear\nworld")
-
-        let list = NSAttributedString(string: "List\n", attributes: [.listMarker: ()])
-        sut.insert(list, at: 11)
-        sut.insert(list, at: 6)
-
-        // When
-        let result = sut.paragraphRangesExcludingLists()
-
-        // Then
-        XCTAssertEqual(result.count, 3)
-        XCTAssertEqual(result[0], NSRange(location: 0, length: 6))  // "Hello\n"
-        XCTAssertEqual(result[1], NSRange(location: 11, length: 5)) // "dear\n"
-        XCTAssertEqual(result[2], NSRange(location: 21, length: 5)) // "world"
-    }
-
     func testParagraphRangesOfEmptySring() {
         // Given
         let sut = NSAttributedString()

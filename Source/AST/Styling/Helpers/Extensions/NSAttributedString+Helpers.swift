@@ -59,13 +59,6 @@ extension NSAttributedString {
         return ranges
     }
 
-    func paragraphRangesExcludingLists() -> [NSRange] {
-        let listRanges = ranges(of: .listMarker)
-        let areDisjoint = { (a: NSRange, b: NSRange) in a.intersection(b) == .none }
-        let isNotInList = { (range: NSRange) in listRanges.allSatisfy { areDisjoint($0, range) } }
-        return paragraphRanges().filter(isNotInList)
-    }
-
     func paragraphRanges() -> [NSRange] {
         guard length > 0 else { return [] }
 
