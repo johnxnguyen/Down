@@ -128,8 +128,8 @@ extension DefaultStyler {
         // Not supported.
     }
 
-    // TODO: Consider removing isTopLevel, or using it again.
-    open func style(paragraph str: NSMutableAttributedString,  isTopLevel: Bool) {
+
+    open func style(paragraph str: NSMutableAttributedString) {
         str.addAttribute(for: .paragraphStyle, value: paragraphStyles.body)
     }
 

@@ -101,7 +101,7 @@ extension AttributedStringVisitor: Visitor {
     public func visit(paragraph node: Paragraph) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
         if node.hasSuccessor { s.append(.paragraphSeparator) }
-        styler.style(paragraph: s, isTopLevel: node.isTopLevel)
+        styler.style(paragraph: s)
         return s
     }
     

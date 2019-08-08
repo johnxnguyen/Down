@@ -24,7 +24,7 @@ public protocol Styler {
     func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?)
     func style(htmlBlock str: NSMutableAttributedString)
     func style(customBlock str: NSMutableAttributedString)
-    func style(paragraph str: NSMutableAttributedString, isTopLevel: Bool)
+    func style(paragraph str: NSMutableAttributedString)
     func style(heading str: NSMutableAttributedString, level: Int)
     func style(thematicBreak str: NSMutableAttributedString)
     func style(text str: NSMutableAttributedString)
