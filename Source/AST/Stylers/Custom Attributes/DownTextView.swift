@@ -19,7 +19,6 @@ open class DownTextView: UITextView {
 
     init(frame: CGRect, layoutManager: NSLayoutManager) {
         let textStorage = NSTextStorage()
-        let layoutManager = DownLayoutManager()
         let textContainer = NSTextContainer()
 
         textStorage.addLayoutManager(layoutManager)
