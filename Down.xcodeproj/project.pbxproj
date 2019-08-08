@@ -562,16 +562,24 @@
 			path = Styler;
 			sourceTree = "<group>";
 		};
-		EE5F2BA22262562F00B7C0F3 /* Stylers */ = {
+		EE5D2DF722FC9D98009EC13E /* Options */ = {
 			isa = PBXGroup;
 			children = (
-				EEFFFDD922F4C35000036FD5 /* Custom Attributes */,
-				EE5F2BA32262564A00B7C0F3 /* Styler.swift */,
-				EED8DA8D22BE404F00E54492 /* DefaultStyler.swift */,
 				EEA2BDC922F7152B00D0C72C /* ThematicBreakOptions.swift */,
 				EEA2BDC322F704F200D0C72C /* QuoteStripeOptions.swift */,
 				EEA2BDC522F7057600D0C72C /* ListItemOptions.swift */,
+			);
+			path = Options;
+			sourceTree = "<group>";
+		};
+		EE5F2BA22262562F00B7C0F3 /* Stylers */ = {
+			isa = PBXGroup;
+			children = (
+				EE5F2BA32262564A00B7C0F3 /* Styler.swift */,
+				EED8DA8D22BE404F00E54492 /* DefaultStyler.swift */,
+				EEFFFDD922F4C35000036FD5 /* Custom Attributes */,
 				EE48C7DE22EC99F3004815ED /* Attribute Collections */,
+				EE5D2DF722FC9D98009EC13E /* Options */,
 				EED8DA9522BECCF000E54492 /* Helpers */,
 			);
 			path = Stylers;
