@@ -6,10 +6,6 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
-import XCTest
-import SnapshotTesting
-@testable import Down
-
 class ListItemStyleTests: StylerTestSuite {
 
     /// # Important

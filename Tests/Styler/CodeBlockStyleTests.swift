@@ -6,9 +6,6 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
-import XCTest
-import SnapshotTesting
-
 class CodeBlockStyleTests: StylerTestSuite {
 
     /// # Important
