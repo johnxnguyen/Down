@@ -13,6 +13,8 @@ import UIKit
 
 open class DownStyler: Styler {
 
+    // MARK: - Properties
+
     public let fonts: FontCollection
     public let colors: ColorCollection
     public let paragraphStyles: ParagraphStyleCollection
@@ -20,12 +22,14 @@ open class DownStyler: Styler {
     public let quoteStripeOptions: QuoteStripeOptions
     public let thematicBreakOptions: ThematicBreakOptions
 
+    private let itemParagraphStyler: ListItemParagraphStyler
+
     private var listPrefixAttributes: [NSAttributedString.Key : Any] {[
         .font: fonts.listItemPrefix,
         .foregroundColor: colors.listItemPrefix]
     }
 
-    private let itemParagraphStyler: ListItemParagraphStyler
+    // MARK: - Init
 
     public init(configuration: DownStylerConfiguration) {
         self.fonts = configuration.fonts
@@ -35,11 +39,8 @@ open class DownStyler: Styler {
         self.thematicBreakOptions = configuration.thematicBreakStyle
         self.itemParagraphStyler = ListItemParagraphStyler(options: configuration.listItemStyle, prefixFont: fonts.listItemPrefix)
     }
-}
 
-// MARK: - Styling
-
-extension DownStyler {
+    // MARK: - Styling
 
     open func style(document str: NSMutableAttributedString) {
 
@@ -119,7 +120,7 @@ extension DownStyler {
     }
 
     open func style(customBlock str: NSMutableAttributedString) {
-        // Not supported.
+
     }
 
 
@@ -190,7 +191,7 @@ extension DownStyler {
     }
 
     open func style(customInline str: NSMutableAttributedString) {
-        // Not supported.
+
     }
 
     open func style(emphasis str: NSMutableAttributedString) {

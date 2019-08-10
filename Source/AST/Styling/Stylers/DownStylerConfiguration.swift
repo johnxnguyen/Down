@@ -13,5 +13,5 @@ public struct DownStylerConfiguration {
     public var paragraphStyles: ParagraphStyleCollection
     public var listItemStyle: ListItemOptions
     public var quoteStripeStyle: QuoteStripeOptions
-    public var thematicBreakStyle:  ThematicBreakOptions
+    public var thematicBreakStyle: ThematicBreakOptions
 }
