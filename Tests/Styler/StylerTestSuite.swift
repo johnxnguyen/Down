@@ -14,7 +14,7 @@ class StylerTestSuite: XCTestCase {
 
     // MARK: - Properties
 
-    var styler: DefaultStyler!
+    var styler: DownStyler!
 
     var enableHardBreaks = false
 
@@ -77,7 +77,7 @@ class StylerTestSuite: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        styler = DefaultStyler(listItemOptions: listItemOptions, quoteStripeOptions: quoteStripeOptions, thematicBreakOptions: thematicBreakOptions)
+        styler = DownStyler(listItemOptions: listItemOptions, quoteStripeOptions: quoteStripeOptions, thematicBreakOptions: thematicBreakOptions)
         styler.fonts = fonts
         styler.colors = colors
         styler.paragraphStyles = paragraphStyles

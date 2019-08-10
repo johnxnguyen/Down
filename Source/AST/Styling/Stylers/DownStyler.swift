@@ -1,5 +1,5 @@
 //
-//  DefaultStyler.swift
+//  DownStyler.swift
 //  Down
 //
 //  Created by John Nguyen on 22.06.19.
@@ -11,7 +11,7 @@
 import Foundation
 import UIKit
 
-open class DefaultStyler: Styler {
+open class DownStyler: Styler {
 
     public var fonts: FontCollection = .dynamicFonts
     public var colors: ColorCollection = .init()
@@ -36,7 +36,7 @@ open class DefaultStyler: Styler {
 
 // MARK: - Styling
 
-extension DefaultStyler {
+extension DownStyler {
 
     open func style(document str: NSMutableAttributedString) {
 
