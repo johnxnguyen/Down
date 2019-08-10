@@ -129,7 +129,7 @@ open class DownStyler: Styler {
     }
 
     open func style(heading str: NSMutableAttributedString, level: Int) {
-        let font = fonts.attributeFor(headingLevel: level) ?? fonts.heading1
+        let (font, color, paragraphStyle) = headingAttributes(for: level)
 
         str.updateExistingAttributes(for: .font) { (currentFont: UIFont) in
             var newFont = font
@@ -149,12 +149,18 @@ open class DownStyler: Styler {
             return newFont
         }
 
-        let color = colors.attributeFor(headingLevel: level) ?? colors.heading1
-        let paragraphStyle = paragraphStyles.attributeFor(headingLevel: level) ?? paragraphStyles.heading1
-
         str.addAttributes([
             .foregroundColor: color,
             .paragraphStyle: paragraphStyle])
+    }
+
+    private func headingAttributes(for level: Int) -> (UIFont, UIColor, NSParagraphStyle) {
+        switch level {
+        case 1: return (fonts.heading1, colors.heading1, paragraphStyles.heading1)
+        case 2: return (fonts.heading2, colors.heading2, paragraphStyles.heading2)
+        case 3...6: return (fonts.heading3, colors.heading3, paragraphStyles.heading3)
+        default: return (fonts.heading1, colors.heading1, paragraphStyles.heading1)
+        }
     }
 
     open func style(thematicBreak str: NSMutableAttributedString) {

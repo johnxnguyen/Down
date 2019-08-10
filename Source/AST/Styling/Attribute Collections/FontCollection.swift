@@ -16,13 +16,12 @@ import UIKit
 // `adjustsFontForContentSizeCategory` is actually false. Instead override `traitCollectionDidChange()` to
 // manually reload the content.
 
-public struct FontCollection: AttributeCollection {
+public struct FontCollection {
 
     public var heading1: UIFont
     public var heading2: UIFont
     public var heading3: UIFont
     public var body: UIFont
-    public var quote: UIFont // Remove this
     public var code: UIFont
     public var listItemPrefix: UIFont
 
@@ -34,7 +33,6 @@ public struct FontCollection: AttributeCollection {
         let normal = UIFont.systemFont(ofSize: 17)
 
         body = normal
-        quote = body
 
         if #available(iOS 12, *) {
             code = .monospacedSystemFont(ofSize: normal.pointSize, weight: .regular)
@@ -55,7 +53,6 @@ public extension FontCollection {
         fonts.heading2 = .preferredFont(forTextStyle: .title2)
         fonts.heading3 = .preferredFont(forTextStyle: .title3)
         fonts.body = .preferredFont(forTextStyle: .body)
-        fonts.quote = fonts.body // Remove  this
         fonts.listItemPrefix = .monospacedDigitSystemFont(ofSize: fonts.body.pointSize, weight: .regular)
 
         // TODO: Clean this

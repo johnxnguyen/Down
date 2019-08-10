@@ -30,7 +30,6 @@ class StylerTestSuite: XCTestCase {
         super.tearDown()
     }
 
-
     // MARK: - Helpers
 
     func assertStyle(
@@ -94,64 +93,63 @@ private extension CGRect {
 private extension DownStylerConfiguration {
 
     static var testConfiguration: DownStylerConfiguration {
-        let fonts = FontCollection(
-            heading1: .systemFont(ofSize: 28),
-            heading2: .systemFont(ofSize: 24),
-            heading3: .systemFont(ofSize: 20),
-            body: .systemFont(ofSize: 17),
-            quote: .systemFont(ofSize: 17),
-            code: UIFont(name: "menlo", size: 17)!,
-            listItemPrefix: .monospacedDigitSystemFont(ofSize: 17, weight: .regular))
+        var fonts = FontCollection()
+        fonts.heading1 = .systemFont(ofSize: 28)
+        fonts.heading2 = .systemFont(ofSize: 24)
+        fonts.heading3 = .systemFont(ofSize: 20)
+        fonts.body = .systemFont(ofSize: 17)
+        fonts.code = UIFont(name: "menlo", size: 17)!
+        fonts.listItemPrefix = .monospacedDigitSystemFont(ofSize: 17, weight: .regular)
 
-        let colors = ColorCollection(
-            heading1: #colorLiteral(red: 0.7803921569, green: 0, blue: 0.2235294118, alpha: 1),
-            heading2: #colorLiteral(red: 1, green: 0.3411764706, blue: 0.2, alpha: 1),
-            heading3: #colorLiteral(red: 1, green: 0.7647058824, blue: 0.05882352941, alpha: 1),
-            body: .black,
-            quote: .lightGray,
-            code: .darkGray,
-            link: #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1),
-            thematicBreak: #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1),
-            listItemPrefix: .gray)
+        var colors = ColorCollection()
+        colors.heading1 = #colorLiteral(red: 0.7803921569, green: 0, blue: 0.2235294118, alpha: 1)
+        colors.heading2 = #colorLiteral(red: 1, green: 0.3411764706, blue: 0.2, alpha: 1)
+        colors.heading3 = #colorLiteral(red: 1, green: 0.7647058824, blue: 0.05882352941, alpha: 1)
+        colors.body = .black
+        colors.code = .darkGray
+        colors.link = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        colors.quote = .lightGray
+        colors.quoteStripe = .lightGray
+        colors.thematicBreak = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+        colors.listItemPrefix = .gray
 
-        let paragraphStyles: ParagraphStyleCollection = {
-            let headingStyle = NSMutableParagraphStyle()
-            headingStyle.paragraphSpacing = 8
+        var paragraphStyles = ParagraphStyleCollection()
+        let headingParagraphStyle = NSMutableParagraphStyle()
+        headingParagraphStyle.paragraphSpacing = 8
 
-            let bodyStyle = NSMutableParagraphStyle()
-            bodyStyle.paragraphSpacingBefore = 8
-            bodyStyle.paragraphSpacing = 8
+        let bodyParagraphStyle = NSMutableParagraphStyle()
+        bodyParagraphStyle.paragraphSpacingBefore = 8
+        bodyParagraphStyle.paragraphSpacing = 8
 
-            return ParagraphStyleCollection(
-                heading1: headingStyle,
-                heading2: headingStyle,
-                heading3: headingStyle,
-                body: bodyStyle,
-                quote: bodyStyle,
-                code: bodyStyle)
-        }()
+        paragraphStyles.heading1 = headingParagraphStyle
+        paragraphStyles.heading2 = headingParagraphStyle
+        paragraphStyles.heading3 = headingParagraphStyle
+        paragraphStyles.body = bodyParagraphStyle
+        paragraphStyles.code = bodyParagraphStyle
 
-        let listItemOptions = ListItemOptions(
-            maxPrefixDigits: 2,
-            spacingAfterPrefix: 8,
-            spacingAbove: 4,
-            spacingBelow: 8)
+        var listItemOptions = ListItemOptions()
+        listItemOptions.maxPrefixDigits = 2
+        listItemOptions.spacingAfterPrefix = 8
+        listItemOptions.spacingAbove = 4
+        listItemOptions.spacingBelow = 8
 
-        let quoteStripeOptions = QuoteStripeOptions(
-            color: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1),
-            thickness: 3,
-            spacingAfter: 8)
+        var quoteStripeOptions = QuoteStripeOptions()
+        quoteStripeOptions.color = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        quoteStripeOptions.thickness = 3
+        quoteStripeOptions.spacingAfter = 8
 
-        let thematicBreakOptions = ThematicBreakOptions(
-            thickness: 1,
-            indentation: 0)
+        var thematicBreakOptions = ThematicBreakOptions()
+        thematicBreakOptions.thickness = 1
+        thematicBreakOptions.indentation = 0
 
-        return DownStylerConfiguration(
-            fonts: fonts,
-            colors: colors,
-            paragraphStyles: paragraphStyles,
-            listItemStyle: listItemOptions,
-            quoteStripeStyle: quoteStripeOptions,
-            thematicBreakStyle: thematicBreakOptions)
+        var configuration = DownStylerConfiguration()
+        configuration.fonts = fonts
+        configuration.colors = colors
+        configuration.paragraphStyles = paragraphStyles
+        configuration.listItemStyle = listItemOptions
+        configuration.quoteStripeStyle = quoteStripeOptions
+        configuration.thematicBreakStyle = thematicBreakOptions
+
+        return configuration
     }
 }

@@ -11,13 +11,12 @@
 import Foundation
 import UIKit
 
-public struct ParagraphStyleCollection: AttributeCollection {
+public struct ParagraphStyleCollection {
 
     public var heading1: NSParagraphStyle
     public var heading2: NSParagraphStyle
     public var heading3: NSParagraphStyle
     public var body: NSParagraphStyle
-    public var quote: NSParagraphStyle
     public var code: NSParagraphStyle
 
     public init() {
@@ -36,7 +35,6 @@ public struct ParagraphStyleCollection: AttributeCollection {
         heading2 = headingStyle
         heading3 = headingStyle
         body = bodyStyle
-        quote = bodyStyle
         code = codeStyle
     }
 }
