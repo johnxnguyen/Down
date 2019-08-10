@@ -12,8 +12,8 @@ import Foundation
 import UIKit
 
 struct ThematicBreakAttribute {
-    var thickness: CGFloat = 1
-    var color: UIColor = .darkGray
+    var thickness: CGFloat
+    var color: UIColor
 }
 
 extension NSAttributedString.Key {

@@ -12,10 +12,10 @@ import Foundation
 import UIKit
 
 struct QuoteStripeAttribute {
-    var color: UIColor = .gray
-    var thickness: CGFloat = 2
-    var spacingAfter: CGFloat = 8
-    var locations: [CGFloat] = []
+    var color: UIColor
+    var thickness: CGFloat
+    var spacingAfter: CGFloat
+    var locations: [CGFloat]
 
     var layoutWidth: CGFloat {
         return thickness + spacingAfter
