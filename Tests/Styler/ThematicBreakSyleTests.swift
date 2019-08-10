@@ -58,9 +58,10 @@ class ThematicBreakSyleTests: StylerTestSuite {
         Curabitur aliquam, nisl vitae vulputate eleifend, metus sapien eleifend.
         """
 
-        styler.thematicBreakOptions.indentation = 30
+        var configuration = self.configuration
+        configuration.thematicBreakStyle.indentation = 30
 
         // Then
-        assertStyle(for: markdown, width: .wide)
+        assertStyle(for: markdown, width: .wide, configuration: configuration)
     }
 }

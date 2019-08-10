@@ -13,24 +13,27 @@ import UIKit
 
 open class DownStyler: Styler {
 
-    public var fonts: FontCollection = .dynamicFonts
-    public var colors: ColorCollection = .init()
-    public var paragraphStyles: ParagraphStyleCollection = .init()
+    public let fonts: FontCollection
+    public let colors: ColorCollection
+    public let paragraphStyles: ParagraphStyleCollection
 
-    public var quoteStripeOptions: QuoteStripeOptions
-    public var thematicBreakOptions: ThematicBreakOptions
+    public let quoteStripeOptions: QuoteStripeOptions
+    public let thematicBreakOptions: ThematicBreakOptions
 
     private var listPrefixAttributes: [NSAttributedString.Key : Any] {[
         .font: fonts.listItemPrefix,
         .foregroundColor: colors.listItemPrefix]
     }
 
-    let itemParagraphStyler: ListItemParagraphStyler
+    private let itemParagraphStyler: ListItemParagraphStyler
 
-    public init(listItemOptions: ListItemOptions, quoteStripeOptions: QuoteStripeOptions, thematicBreakOptions: ThematicBreakOptions) {
-        self.itemParagraphStyler = ListItemParagraphStyler(options: listItemOptions, prefixFont: fonts.listItemPrefix)
-        self.quoteStripeOptions = quoteStripeOptions
-        self.thematicBreakOptions = thematicBreakOptions
+    public init(configuration: DownStylerConfiguration) {
+        self.fonts = configuration.fonts
+        self.colors = configuration.colors
+        self.paragraphStyles = configuration.paragraphStyles
+        self.quoteStripeOptions = configuration.quoteStripeStyle
+        self.thematicBreakOptions = configuration.thematicBreakStyle
+        self.itemParagraphStyler = ListItemParagraphStyler(options: configuration.listItemStyle, prefixFont: fonts.listItemPrefix)
     }
 }
 
