@@ -47,7 +47,7 @@ open class DownStyler: Styler {
     }
 
     open func style(blockQuote str: NSMutableAttributedString, nestDepth: Int) {
-        let stripeAttribute = QuoteStripeAttribute(level: nestDepth + 1, options: quoteStripeOptions)
+        let stripeAttribute = QuoteStripeAttribute(level: nestDepth + 1, color: colors.quoteStripe, options: quoteStripeOptions)
 
         str.updateExistingAttributes(for: .paragraphStyle) { (style: NSParagraphStyle) in
             style.indented(by: stripeAttribute.layoutWidth)

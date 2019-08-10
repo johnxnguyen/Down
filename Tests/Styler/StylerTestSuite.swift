@@ -109,7 +109,7 @@ private extension DownStylerConfiguration {
         colors.code = .darkGray
         colors.link = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         colors.quote = .lightGray
-        colors.quoteStripe = .lightGray
+        colors.quoteStripe = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         colors.thematicBreak = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
         colors.listItemPrefix = .gray
 
@@ -134,7 +134,6 @@ private extension DownStylerConfiguration {
         listItemOptions.spacingBelow = 8
 
         var quoteStripeOptions = QuoteStripeOptions()
-        quoteStripeOptions.color = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         quoteStripeOptions.thickness = 3
         quoteStripeOptions.spacingAfter = 8
 

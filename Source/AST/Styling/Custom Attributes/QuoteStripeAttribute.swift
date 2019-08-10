@@ -24,8 +24,8 @@ struct QuoteStripeAttribute {
 
 extension QuoteStripeAttribute {
 
-    init(level: Int, options: QuoteStripeOptions) {
-        self.init(color: options.color, thickness: options.thickness, spacingAfter: options.spacingAfter, locations: [])
+    init(level: Int, color: UIColor, options: QuoteStripeOptions) {
+        self.init(color: color, thickness: options.thickness, spacingAfter: options.spacingAfter, locations: [])
         locations = (0..<level).map { CGFloat($0) * layoutWidth }
     }
 
