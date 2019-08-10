@@ -16,6 +16,7 @@ open class DefaultStyler: Styler {
     public var fonts: FontCollection = .dynamicFonts
     public var colors: ColorCollection = .init()
     public var paragraphStyles: ParagraphStyleCollection = .init()
+
     public var quoteStripeOptions: QuoteStripeOptions
     public var thematicBreakOptions: ThematicBreakOptions
 
@@ -27,13 +28,7 @@ open class DefaultStyler: Styler {
     let itemParagraphStyler: ListItemParagraphStyler
 
     public init(listItemOptions: ListItemOptions, quoteStripeOptions: QuoteStripeOptions, thematicBreakOptions: ThematicBreakOptions) {
-        // TODO: Can we not assume there is a period?
-        let widthOfPeriod = NSAttributedString(string: ".", attributes: [.font: fonts.listItemPrefix]).size().width
-        let maxPrefixWidth = fonts.listItemPrefix.widthOfLargestDigit * CGFloat(listItemOptions.maxPrefixDigits)
-        let maxPrefixWidthIncludingPeriod = maxPrefixWidth + widthOfPeriod
-
-        itemParagraphStyler = ListItemParagraphStyler(options: listItemOptions, largestPrefixWidth: maxPrefixWidthIncludingPeriod)
-
+        self.itemParagraphStyler = ListItemParagraphStyler(options: listItemOptions, prefixFont: fonts.listItemPrefix)
         self.quoteStripeOptions = quoteStripeOptions
         self.thematicBreakOptions = thematicBreakOptions
     }
@@ -225,15 +220,6 @@ extension DefaultStyler {
 }
 
 // MARK: - Helper Extensions
-
-private extension UIFont {
-
-    var widthOfLargestDigit: CGFloat {
-        (0...9)
-            .map { NSAttributedString(string: "\($0)", attributes: [.font: self]).size().width }
-            .max()!
-    }
-}
 
 private extension NSParagraphStyle {
 

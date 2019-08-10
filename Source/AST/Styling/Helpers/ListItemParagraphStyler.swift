@@ -6,13 +6,12 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 import Foundation
-import UIKit // TODO: conditional compilation
+import UIKit
 
 public class ListItemParagraphStyler {
-
-    // TODO: if the max prefix digits change here, we need to update the largest prefix width.
-    var options: ListItemOptions
 
     var indentation: CGFloat {
         return largestPrefixWidth + options.spacingAfterPrefix
@@ -26,6 +25,9 @@ public class ListItemParagraphStyler {
         return style
     }
 
+    private let options: ListItemOptions
+    private let largestPrefixWidth: CGFloat
+
     private var baseStyle: NSMutableParagraphStyle {
         let style = NSMutableParagraphStyle()
         style.paragraphSpacingBefore = options.spacingAbove
@@ -33,13 +35,10 @@ public class ListItemParagraphStyler {
         return style
     }
 
-    private let largestPrefixWidth: CGFloat
-
-    public init(options: ListItemOptions, largestPrefixWidth: CGFloat) {
+    public init(options: ListItemOptions, prefixFont: UIFont) {
         self.options = options
-        self.largestPrefixWidth = largestPrefixWidth
+        self.largestPrefixWidth = prefixFont.widthOfNumberedPrefix(digits: options.maxPrefixDigits)
     }
-
 
     func leadingParagraphStyle(prefixWidth: CGFloat) -> NSParagraphStyle {
         let contentIndentation = indentation
@@ -58,3 +57,26 @@ public class ListItemParagraphStyler {
         return NSTextTab(textAlignment: .left, location: location, options: [:])
     }
 }
+
+// MARK: - Helpers
+
+private extension UIFont {
+
+    func widthOfNumberedPrefix(digits: UInt) -> CGFloat {
+        widthOfLargestDigit * CGFloat(digits) + widthOfPeriod
+    }
+
+    private var widthOfLargestDigit: CGFloat {
+        (0...9)
+            .map { NSAttributedString(string: "\($0)", attributes: [.font: self]).size().width }
+            .max()!
+    }
+
+    private var widthOfPeriod: CGFloat {
+        NSAttributedString(string: ".", attributes: [.font: self])
+            .size()
+            .width
+    }
+}
+
+#endif
