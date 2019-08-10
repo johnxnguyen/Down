@@ -22,43 +22,59 @@ public struct FontCollection: AttributeCollection {
     public var heading2: UIFont
     public var heading3: UIFont
     public var body: UIFont
-    public var quote: UIFont
+    public var quote: UIFont // Remove this
     public var code: UIFont
     public var listItemPrefix: UIFont
+
+    public init() {
+        heading1 = .systemFont(ofSize: 28)
+        heading2 = .systemFont(ofSize: 24)
+        heading3 = .systemFont(ofSize: 20)
+
+        let normal = UIFont.systemFont(ofSize: 17)
+
+        body = normal
+        quote = body
+
+        if #available(iOS 12, *) {
+            code = .monospacedSystemFont(ofSize: normal.pointSize, weight: .regular)
+        } else {
+            code = UIFont(name: "menlo", size: normal.pointSize) ?? normal
+        }
+
+        listItemPrefix = .monospacedDigitSystemFont(ofSize: body.pointSize, weight: .regular)
+    }
 }
 
 public extension FontCollection {
 
     static let dynamicFonts: FontCollection = {
 
-        let heading1 = UIFont.preferredFont(forTextStyle: .title1)
-        let heading2 = UIFont.preferredFont(forTextStyle: .title2)
-        let heading3 = UIFont.preferredFont(forTextStyle: .title3)
-        let body = UIFont.preferredFont(forTextStyle: .body)
-        let quote = body
-        var code = body
-        let listItemPrefix = UIFont.monospacedDigitSystemFont(ofSize: body.pointSize, weight: .regular)
+        var fonts = FontCollection()
+        fonts.heading1 = .preferredFont(forTextStyle: .title1)
+        fonts.heading2 = .preferredFont(forTextStyle: .title2)
+        fonts.heading3 = .preferredFont(forTextStyle: .title3)
+        fonts.body = .preferredFont(forTextStyle: .body)
+        fonts.quote = fonts.body // Remove  this
+        fonts.listItemPrefix = .monospacedDigitSystemFont(ofSize: fonts.body.pointSize, weight: .regular)
 
         // TODO: Clean this
         if #available(iOS 12, *) {
-            code = .monospacedSystemFont(ofSize: body.pointSize, weight: .regular)
+            fonts.code = .monospacedSystemFont(ofSize: fonts.body.pointSize, weight: .regular)
         }
-        else if let menlo = UIFont(name: "menlo", size: body.pointSize) {
+        else if let menlo = UIFont(name: "menlo", size: fonts.body.pointSize) {
             if #available(iOS 11, *) {
-                code = UIFontMetrics(forTextStyle: .body).scaledFont(for: menlo)
+                fonts.code = UIFontMetrics(forTextStyle: .body).scaledFont(for: menlo)
             }
             else {
-                code = menlo
+                fonts.code = menlo
             }
         }
+        else {
+            fonts.code = fonts.body
+        }
 
-        return FontCollection(heading1: heading1,
-                              heading2: heading2,
-                              heading3: heading3,
-                              body: body,
-                              quote: quote,
-                              code: code,
-                              listItemPrefix: listItemPrefix)
+        return fonts
     }()
 }
 

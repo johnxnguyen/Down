@@ -8,10 +8,12 @@
 
 public struct DownStylerConfiguration {
     
-    public var fonts: FontCollection
-    public var colors: ColorCollection
-    public var paragraphStyles: ParagraphStyleCollection
-    public var listItemStyle: ListItemOptions
-    public var quoteStripeStyle: QuoteStripeOptions
-    public var thematicBreakStyle: ThematicBreakOptions
+    public var fonts = FontCollection()
+    public var colors = ColorCollection()
+    public var paragraphStyles = ParagraphStyleCollection()
+    public var listItemStyle = ListItemOptions()
+    public var quoteStripeStyle = QuoteStripeOptions()
+    public var thematicBreakStyle = ThematicBreakOptions()
+
+    public init() {}
 }

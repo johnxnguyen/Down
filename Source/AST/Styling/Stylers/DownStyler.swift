@@ -31,7 +31,7 @@ open class DownStyler: Styler {
 
     // MARK: - Init
 
-    public init(configuration: DownStylerConfiguration) {
+    public init(configuration: DownStylerConfiguration = DownStylerConfiguration()) {
         self.fonts = configuration.fonts
         self.colors = configuration.colors
         self.paragraphStyles = configuration.paragraphStyles

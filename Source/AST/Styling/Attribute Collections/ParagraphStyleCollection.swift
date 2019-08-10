@@ -19,12 +19,8 @@ public struct ParagraphStyleCollection: AttributeCollection {
     public var body: NSParagraphStyle
     public var quote: NSParagraphStyle
     public var code: NSParagraphStyle
-}
 
-
-public extension ParagraphStyleCollection {
-
-    init() {
+    public init() {
         let headingStyle = NSMutableParagraphStyle()
         headingStyle.paragraphSpacing = 8
 

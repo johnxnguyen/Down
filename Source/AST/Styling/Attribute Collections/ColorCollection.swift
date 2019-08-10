@@ -24,11 +24,8 @@ public struct ColorCollection: AttributeCollection {
     public var link: UIColor
     public var thematicBreak: UIColor
     public var listItemPrefix: UIColor
-}
 
-public extension ColorCollection {
-
-    init() {
+    public init() {
         heading1 = .black
         heading2 = .black
         heading3 = .black

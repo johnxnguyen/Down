@@ -15,10 +15,13 @@ public struct ThematicBreakOptions {
 
     public var thickness: CGFloat
     public var indentation: CGFloat
+}
 
-    public init(thickness: CGFloat, indentation: CGFloat)  {
-        self.thickness = thickness
-        self.indentation = indentation
+public extension ThematicBreakOptions {
+
+    init() {
+        thickness = 1
+        indentation = 0
     }
 }
 

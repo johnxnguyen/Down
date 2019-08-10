@@ -12,14 +12,18 @@ import Foundation
 import UIKit
 
 public struct QuoteStripeOptions {
+
     public var color: UIColor
     public var thickness: CGFloat
     public var spacingAfter: CGFloat
+}
 
-    public init(color: UIColor, thickness: CGFloat = 4, spacingAfter: CGFloat = 8) {
-        self.color = color
-        self.thickness = thickness
-        self.spacingAfter = spacingAfter
+public extension QuoteStripeOptions {
+
+    init() {
+        color = .lightGray
+        thickness = 2
+        spacingAfter = 8
     }
 }
 
