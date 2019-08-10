@@ -145,9 +145,9 @@ private extension DownStylerConfiguration {
         configuration.fonts = fonts
         configuration.colors = colors
         configuration.paragraphStyles = paragraphStyles
-        configuration.listItemStyle = listItemOptions
-        configuration.quoteStripeStyle = quoteStripeOptions
-        configuration.thematicBreakStyle = thematicBreakOptions
+        configuration.listItemOptions = listItemOptions
+        configuration.quoteStripeOptions = quoteStripeOptions
+        configuration.thematicBreakOptions = thematicBreakOptions
 
         return configuration
     }

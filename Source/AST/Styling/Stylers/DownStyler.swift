@@ -18,7 +18,6 @@ open class DownStyler: Styler {
     public let fonts: FontCollection
     public let colors: ColorCollection
     public let paragraphStyles: ParagraphStyleCollection
-
     public let quoteStripeOptions: QuoteStripeOptions
     public let thematicBreakOptions: ThematicBreakOptions
 
@@ -32,12 +31,12 @@ open class DownStyler: Styler {
     // MARK: - Init
 
     public init(configuration: DownStylerConfiguration = DownStylerConfiguration()) {
-        self.fonts = configuration.fonts
-        self.colors = configuration.colors
-        self.paragraphStyles = configuration.paragraphStyles
-        self.quoteStripeOptions = configuration.quoteStripeStyle
-        self.thematicBreakOptions = configuration.thematicBreakStyle
-        self.itemParagraphStyler = ListItemParagraphStyler(options: configuration.listItemStyle, prefixFont: fonts.listItemPrefix)
+        fonts = configuration.fonts
+        colors = configuration.colors
+        paragraphStyles = configuration.paragraphStyles
+        quoteStripeOptions = configuration.quoteStripeOptions
+        thematicBreakOptions = configuration.thematicBreakOptions
+        itemParagraphStyler = ListItemParagraphStyler(options: configuration.listItemOptions, prefixFont: fonts.listItemPrefix)
     }
 
     // MARK: - Styling

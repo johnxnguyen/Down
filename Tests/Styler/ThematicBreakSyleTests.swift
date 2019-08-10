@@ -59,7 +59,7 @@ class ThematicBreakSyleTests: StylerTestSuite {
         """
 
         var configuration = self.configuration
-        configuration.thematicBreakStyle.indentation = 30
+        configuration.thematicBreakOptions.indentation = 30
 
         // Then
         assertStyle(for: markdown, width: .wide, configuration: configuration)
