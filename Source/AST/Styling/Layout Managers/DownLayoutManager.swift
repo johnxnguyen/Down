@@ -59,59 +59,37 @@ public class DownLayoutManager: NSLayoutManager {
     }
 
     private func drawQuoteStripeIfNeeded(in characterRange: NSRange, at origin: CGPoint) {
-        guard
-            let context = UIGraphicsGetCurrentContext(),
-            let textStorage = textStorage
-            else { return }
+        guard let context = UIGraphicsGetCurrentContext() else { return }
 
         UIGraphicsPushContext(context)
         defer { UIGraphicsPopContext() }
 
-        let allQuoteGlyphRanges = quoteGlyphRanges(in: textStorage, inCharacterRange: characterRange)
-
-        textStorage.enumerateAttributes(for: .quoteStripe, in: characterRange) { (attr: QuoteStripeAttribute, quoteRange) in
-
+        textStorage?.enumerateAttributes(for: .quoteStripe, in: characterRange) { (attr: QuoteStripeAttribute, range) in
             context.setFillColor(attr.color.cgColor)
 
-            let currentQuoteGlyphRange = self.glyphRange(forCharacterRange: quoteRange, actualCharacterRange: nil)
-            
-            enumerateLineFragments(forGlyphRange: currentQuoteGlyphRange) { lineRect, lineUsedRect, container, lineGlyphRange, _ in
+            let glyphRangeOfQuote = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
 
-                let isLineStartOfQuote = allQuoteGlyphRanges.contains {
-                    lineGlyphRange.overlapsStart(of: $0)
-                }
+            enumerateLineFragments(forGlyphRange: glyphRangeOfQuote) { rect, _, textContainer, _, _ in
+                let stripeSize = CGSize(width: attr.thickness, height: rect.height)
+                let offset = CGPoint(x: textContainer.lineFragmentPadding, y: 0)
 
-                let isLineEndOfQuote = allQuoteGlyphRanges.contains {
-                    lineGlyphRange.overlapsEnd(of: $0)
-
-                }
-
-                let minX = lineRect.minX + container.lineFragmentPadding
-                let minY = isLineStartOfQuote ? lineUsedRect.minY : lineRect.minY
-                let maxY = isLineEndOfQuote ? lineUsedRect.maxY : lineRect.maxY
-
-                let candidateStripeOrigin = CGPoint(x: minX, y: minY)
-                let stripeSize = CGSize(width: attr.thickness, height: maxY - minY)
-
-                let stripeOrigins = attr.locations.map {
+                let locations = attr.locations.map {
                     CGPoint(x: $0, y: 0)
-                        .translated(by: candidateStripeOrigin)
+                        .translated(by: offset)
+                        .translated(by: rect.origin)
                         .translated(by: origin)
                 }
 
-                stripeOrigins.forEach {
-                    let stripeRect = CGRect(origin: $0, size: stripeSize)
-                    context.fill(stripeRect)
-                }
+                self.drawQuoteStripes(with: context, locations: locations, size: stripeSize)
             }
         }
     }
 
-    private func quoteGlyphRanges(in storage: NSTextStorage, inCharacterRange range: NSRange) -> [NSRange] {
-        return storage
-            .ranges(of: .quoteStripe, in: range)
-            .map { self.glyphRange(forCharacterRange: $0, actualCharacterRange: nil) }
-            .merged()
+    private func drawQuoteStripes(with context: CGContext, locations: [CGPoint], size: CGSize) {
+        locations.forEach {
+            let stripeRect = CGRect(origin: $0, size: size)
+            context.fill(stripeRect)
+        }
     }
 }
 
@@ -127,43 +105,6 @@ extension CGPoint {
 
     func translated(by point: CGPoint) -> CGPoint {
         return CGPoint(x: x + point.x, y: y + point.y)
-    }
-}
-
-private extension NSRange {
-
-    func overlapsStart(of range: NSRange) -> Bool {
-        return lowerBound <= range.lowerBound && upperBound > range.lowerBound
-    }
-
-    func overlapsEnd(of range: NSRange) -> Bool {
-        return lowerBound < range.upperBound && upperBound >= range.upperBound
-    }
-}
-
-private extension Array where Element == NSRange {
-
-
-    // TODO: Should this swallow contained ranges? And should it merge overlapping ranges?
-    func merged() -> [Element] {
-        // Sort by lowerbound
-        let sorted = self.sorted { $0.lowerBound <= $1.lowerBound }
-
-        let result = sorted.reduce(into: [NSRange]()) { acc, next in
-            guard let last = acc.popLast() else {
-                acc.append(next)
-                return
-            }
-
-            guard last.upperBound == next.lowerBound else {
-                acc.append(contentsOf: [last, next])
-                return
-            }
-
-            acc.append(NSRange(location: last.lowerBound, length: next.upperBound - last.lowerBound))
-        }
-
-        return result
     }
 }
 
