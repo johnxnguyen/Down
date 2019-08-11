@@ -26,9 +26,9 @@ public struct FontCollection {
     public var listItemPrefix: UIFont
 
     public init() {
-        heading1 = .systemFont(ofSize: 28)
-        heading2 = .systemFont(ofSize: 24)
-        heading3 = .systemFont(ofSize: 20)
+        heading1 = .boldSystemFont(ofSize: 28)
+        heading2 = .boldSystemFont(ofSize: 24)
+        heading3 = .boldSystemFont(ofSize: 20)
 
         let normal = UIFont.systemFont(ofSize: 17)
 

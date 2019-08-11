@@ -26,6 +26,7 @@ public struct ParagraphStyleCollection {
         let bodyStyle = NSMutableParagraphStyle()
         bodyStyle.paragraphSpacingBefore = 8
         bodyStyle.paragraphSpacing = 8
+        bodyStyle.lineSpacing = 8
 
         let codeStyle = NSMutableParagraphStyle()
         codeStyle.paragraphSpacingBefore = 8

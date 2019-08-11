@@ -14,8 +14,50 @@ import UIKit
 public class DownLayoutManager: NSLayoutManager {
 
     override public func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
+        drawCustomBackgrounds(forGlyphRange: glyphsToShow, at: origin)
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
         drawCustomAttriibutes(forGlyphRange: glyphsToShow, at: origin)
+    }
+
+    private func drawCustomBackgrounds(forGlyphRange glyphsToShow: NSRange,  at origin: CGPoint) {
+        guard
+            let context = UIGraphicsGetCurrentContext(),
+            let textStorage = textStorage
+            else { return }
+
+        UIGraphicsPushContext(context)
+        defer { UIGraphicsPopContext() }
+
+        let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
+
+        textStorage.enumerateAttributes(for: .blockBackgroundColor, in: characterRange) { (attr: BlockBackgroundColorAttribute, blockRange) in
+
+            let inset = attr.inset
+
+            context.setFillColor(attr.color.cgColor)
+
+            let allBlockColorRanges = glyphRanges(for: .blockBackgroundColor, in: textStorage, inCharacterRange: blockRange)
+            let blockColorGlyphRange = glyphRange(forCharacterRange: blockRange, actualCharacterRange: nil)
+
+            enumerateLineFragments(forGlyphRange: blockColorGlyphRange) { lineRect, lineUsedRect, container, lineGlyphRange, _ in
+
+                let isLineStartOfBlock = allBlockColorRanges.contains {
+                    lineGlyphRange.overlapsStart(of: $0)
+                }
+
+                let isLineEndOfBlock = allBlockColorRanges.contains {
+                    lineGlyphRange.overlapsEnd(of: $0)
+                }
+
+                let minX = lineUsedRect.minX + container.lineFragmentPadding - inset
+                let maxX = lineRect.maxX
+                let minY = isLineStartOfBlock ? lineUsedRect.minY - inset : lineRect.minY
+                let maxY = isLineEndOfBlock ? lineUsedRect.maxY + inset : lineUsedRect.maxY
+                let blockRect = CGRect(minX, minY, maxX, maxY).translated(by: origin)
+
+                context.fill(blockRect)
+            }
+        }
     }
 
     private func drawCustomAttriibutes(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
@@ -88,10 +130,20 @@ public class DownLayoutManager: NSLayoutManager {
             context.fill(stripeRect)
         }
     }
+
+    private func glyphRanges(for key: NSAttributedString.Key, in storage: NSTextStorage, inCharacterRange range: NSRange) -> [NSRange] {
+        return storage
+            .ranges(of: key, in: range)
+            .map { self.glyphRange(forCharacterRange: $0, actualCharacterRange: nil) }
+            .merged()
+    }
 }
 
-
 extension CGRect {
+
+    init(_ minX: CGFloat, _ minY: CGFloat, _ maxX: CGFloat, _ maxY: CGFloat) {
+        self.init(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
+    }
 
     func translated(by point: CGPoint) -> CGRect {
         return CGRect(origin: origin.translated(by: point), size: size)
@@ -102,6 +154,43 @@ extension CGPoint {
 
     func translated(by point: CGPoint) -> CGPoint {
         return CGPoint(x: x + point.x, y: y + point.y)
+    }
+}
+
+private extension NSRange {
+
+    func overlapsStart(of range: NSRange) -> Bool {
+        return lowerBound <= range.lowerBound && upperBound > range.lowerBound
+    }
+
+    func overlapsEnd(of range: NSRange) -> Bool {
+        return lowerBound < range.upperBound && upperBound >= range.upperBound
+    }
+}
+
+private extension Array where Element == NSRange {
+
+
+    // TODO: Should this swallow contained ranges? And should it merge overlapping ranges?
+    func merged() -> [Element] {
+        // Sort by lowerbound
+        let sorted = self.sorted { $0.lowerBound <= $1.lowerBound }
+
+        let result = sorted.reduce(into: [NSRange]()) { acc, next in
+            guard let last = acc.popLast() else {
+                acc.append(next)
+                return
+            }
+
+            guard last.upperBound == next.lowerBound else {
+                acc.append(contentsOf: [last, next])
+                return
+            }
+
+            acc.append(NSRange(location: last.lowerBound, length: next.upperBound - last.lowerBound))
+        }
+
+        return result
     }
 }
 

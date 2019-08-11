@@ -107,6 +107,7 @@ private extension DownStylerConfiguration {
         colors.heading3 = #colorLiteral(red: 1, green: 0.7647058824, blue: 0.05882352941, alpha: 1)
         colors.body = .black
         colors.code = .darkGray
+        colors.codeBlockBackground = #colorLiteral(red: 0.9647058824, green: 0.9725490196, blue: 0.9803921569, alpha: 1)
         colors.link = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         colors.quote = .lightGray
         colors.quoteStripe = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
@@ -148,6 +149,8 @@ private extension DownStylerConfiguration {
         configuration.listItemOptions = listItemOptions
         configuration.quoteStripeOptions = quoteStripeOptions
         configuration.thematicBreakOptions = thematicBreakOptions
+
+        configuration.codeBlockInset = 8
 
         return configuration
     }

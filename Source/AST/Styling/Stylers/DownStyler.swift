@@ -21,6 +21,8 @@ open class DownStyler: Styler {
     public let quoteStripeOptions: QuoteStripeOptions
     public let thematicBreakOptions: ThematicBreakOptions
 
+    public let codeBlockInset: CGFloat
+
     private let itemParagraphStyler: ListItemParagraphStyler
 
     private var listPrefixAttributes: [NSAttributedString.Key : Any] {[
@@ -36,6 +38,7 @@ open class DownStyler: Styler {
         paragraphStyles = configuration.paragraphStyles
         quoteStripeOptions = configuration.quoteStripeOptions
         thematicBreakOptions = configuration.thematicBreakOptions
+        codeBlockInset = configuration.codeBlockInset
         itemParagraphStyler = ListItemParagraphStyler(options: configuration.listItemOptions, prefixFont: fonts.listItemPrefix)
     }
 
@@ -105,17 +108,31 @@ open class DownStyler: Styler {
     }
 
     open func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?) {
+        let blockBackgroundAttribute = BlockBackgroundColorAttribute(
+            color: colors.codeBlockBackground,
+            inset: codeBlockInset)
+
+        let adjustedParagraphStyle = paragraphStyles.code.inset(by: blockBackgroundAttribute.inset)
+
         str.setAttributes([
             .font: fonts.code,
             .foregroundColor: colors.code,
-            .paragraphStyle: paragraphStyles.code])
+            .paragraphStyle: adjustedParagraphStyle,
+            .blockBackgroundColor: blockBackgroundAttribute])
     }
 
     open func style(htmlBlock str: NSMutableAttributedString) {
+        let blockBackgroundAttribute = BlockBackgroundColorAttribute(
+            color: colors.codeBlockBackground,
+            inset: codeBlockInset)
+
+        let adjustedParagraphStyle = paragraphStyles.code.inset(by: blockBackgroundAttribute.inset)
+
         str.setAttributes([
             .font: fonts.code,
             .foregroundColor: colors.code,
-            .paragraphStyle: paragraphStyles.code])
+            .paragraphStyle: adjustedParagraphStyle,
+            .blockBackgroundColor: blockBackgroundAttribute])
     }
 
     open func style(customBlock str: NSMutableAttributedString) {
@@ -242,6 +259,17 @@ private extension NSParagraphStyle {
             NSTextTab(textAlignment: $0.alignment, location: $0.location + indentation, options: $0.options)
         }
 
+        return result
+    }
+
+    // TODO: test
+    func inset(by amount: CGFloat) -> NSParagraphStyle {
+        let result = mutableCopy() as! NSMutableParagraphStyle
+        result.paragraphSpacingBefore += amount
+        result.paragraphSpacing += amount
+        result.firstLineHeadIndent += amount
+        result.headIndent += amount
+        result.tailIndent = -amount
         return result
     }
 }

@@ -23,18 +23,20 @@ public struct ColorCollection {
     public var quoteStripe: UIColor
     public var thematicBreak: UIColor
     public var listItemPrefix: UIColor
+    public var codeBlockBackground: UIColor
 
     public init() {
         heading1 = .black
         heading2 = .black
         heading3 = .black
         body = .black
-        code = .lightGray
+        code = .black
         link = .systemBlue
         quote = .darkGray
         quoteStripe = .darkGray
-        thematicBreak = .lightGray
+        thematicBreak = UIColor(white: 0.9, alpha: 1)
         listItemPrefix = .lightGray
+        codeBlockBackground = UIColor(red: 0.96, green: 0.97, blue: 0.98, alpha: 1)
     }
 }
 
