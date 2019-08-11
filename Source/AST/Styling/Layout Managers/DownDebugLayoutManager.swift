@@ -11,9 +11,9 @@
 import Foundation
 import UIKit
 
-class DownDebugLayoutManager: DownLayoutManager {
+public class DownDebugLayoutManager: DownLayoutManager {
 
-    override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
+    override public func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
         drawLineFragments(forGlyphRange: glyphsToShow, at: origin)
     }

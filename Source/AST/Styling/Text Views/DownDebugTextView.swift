@@ -13,8 +13,8 @@ import  UIKit
 
 public class DownDebugTextView: DownTextView {
 
-    public init(frame: CGRect) {
-        super.init(frame: frame, layoutManager: DownDebugLayoutManager())
+    public init(frame: CGRect, styler: Styler = DownStyler()) {
+        super.init(frame: frame, styler: styler, layoutManager: DownDebugLayoutManager())
     }
 
     required public init?(coder: NSCoder) {

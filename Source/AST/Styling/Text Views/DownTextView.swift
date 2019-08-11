@@ -9,15 +9,30 @@
 #if canImport(UIKit)
 
 import Foundation
-import  UIKit
+import UIKit
 
 open class DownTextView: UITextView {
 
-    public convenience init(frame: CGRect) {
-        self.init(frame: frame, layoutManager: DownLayoutManager())
+    // MARK: - Properties
+
+    open var styler: Styler
+
+    open override var text: String! {
+        didSet {
+            guard oldValue != text else { return }
+            try? render()
+        }
     }
 
-    init(frame: CGRect, layoutManager: NSLayoutManager) {
+    // MARK: - Init
+
+    public convenience init(frame: CGRect, styler: Styler = DownStyler()) {
+        self.init(frame: frame, styler: styler, layoutManager: DownLayoutManager())
+    }
+
+    init(frame: CGRect, styler: Styler, layoutManager: NSLayoutManager) {
+        self.styler = styler
+
         let textStorage = NSTextStorage()
         let textContainer = NSTextContainer()
 
@@ -29,6 +44,13 @@ open class DownTextView: UITextView {
 
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Methods
+
+    open func render() throws {
+        let down = Down(markdownString: text)
+        attributedText = try down.toAttributedString(styler: styler)
     }
 }
 
