@@ -64,22 +64,19 @@ public class DownLayoutManager: NSLayoutManager {
         UIGraphicsPushContext(context)
         defer { UIGraphicsPopContext() }
 
-        textStorage?.enumerateAttributes(for: .quoteStripe, in: characterRange) { (attr: QuoteStripeAttribute, range) in
+        textStorage?.enumerateAttributes(for: .quoteStripe, in: characterRange) { (attr: QuoteStripeAttribute, quoteRange) in
             context.setFillColor(attr.color.cgColor)
 
-            let glyphRangeOfQuote = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
+            let glyphRangeOfQuote = self.glyphRange(forCharacterRange: quoteRange, actualCharacterRange: nil)
 
-            enumerateLineFragments(forGlyphRange: glyphRangeOfQuote) { rect, _, textContainer, _, _ in
-                let stripeSize = CGSize(width: attr.thickness, height: rect.height)
-                let offset = CGPoint(x: textContainer.lineFragmentPadding, y: 0)
-
+            enumerateLineFragments(forGlyphRange: glyphRangeOfQuote) { lineRect, _, container, _, _ in
                 let locations = attr.locations.map {
-                    CGPoint(x: $0, y: 0)
-                        .translated(by: offset)
-                        .translated(by: rect.origin)
+                    CGPoint(x: $0 + container.lineFragmentPadding, y: 0)
+                        .translated(by: lineRect.origin)
                         .translated(by: origin)
                 }
 
+                let stripeSize = CGSize(width: attr.thickness, height: lineRect.height)
                 self.drawQuoteStripes(with: context, locations: locations, size: stripeSize)
             }
         }
