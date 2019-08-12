@@ -12,6 +12,7 @@ import Foundation
 import UIKit
 
 struct QuoteStripeAttribute {
+
     var color: UIColor
     var thickness: CGFloat
     var spacingAfter: CGFloat
@@ -37,6 +38,7 @@ extension QuoteStripeAttribute {
 }
 
 extension NSAttributedString.Key {
+    
     static let quoteStripe = NSAttributedString.Key(rawValue: "quoteStripe")
 }
 

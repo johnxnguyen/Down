@@ -170,7 +170,6 @@ private extension NSRange {
 
 private extension Array where Element == NSRange {
 
-
     // TODO: Should this swallow contained ranges? And should it merge overlapping ranges?
     func merged() -> [Element] {
         // Sort by lowerbound

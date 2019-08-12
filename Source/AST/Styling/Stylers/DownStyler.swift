@@ -249,7 +249,6 @@ open class DownStyler: Styler {
 
 private extension NSParagraphStyle {
 
-    // TODO: test
     func indented(by indentation: CGFloat) -> NSParagraphStyle {
         let result = mutableCopy() as! NSMutableParagraphStyle
         result.firstLineHeadIndent += indentation
@@ -262,7 +261,6 @@ private extension NSParagraphStyle {
         return result
     }
 
-    // TODO: test
     func inset(by amount: CGFloat) -> NSParagraphStyle {
         let result = mutableCopy() as! NSMutableParagraphStyle
         result.paragraphSpacingBefore += amount

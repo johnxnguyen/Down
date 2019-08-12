@@ -12,11 +12,13 @@ import Foundation
 import UIKit
 
 struct ThematicBreakAttribute {
+
     var thickness: CGFloat
     var color: UIColor
 }
 
 extension NSAttributedString.Key {
+    
     static let thematicBreak = NSAttributedString.Key(rawValue: "thematicBreak")
 }
 
