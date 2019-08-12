@@ -18,30 +18,24 @@ import UIKit
 
 public struct FontCollection {
 
-    public var heading1: UIFont
-    public var heading2: UIFont
-    public var heading3: UIFont
-    public var body: UIFont
-    public var code: UIFont
-    public var listItemPrefix: UIFont
+    public var heading1 = UIFont.boldSystemFont(ofSize: 28)
+    public var heading2 = UIFont.boldSystemFont(ofSize: 24)
+    public var heading3 = UIFont.boldSystemFont(ofSize: 20)
+    public var body = UIFont.systemFont(ofSize: 17)
 
-    public init() {
-        heading1 = .boldSystemFont(ofSize: 28)
-        heading2 = .boldSystemFont(ofSize: 24)
-        heading3 = .boldSystemFont(ofSize: 20)
-
-        let normal = UIFont.systemFont(ofSize: 17)
-
-        body = normal
-
+    public var code: UIFont = {
         if #available(iOS 12, *) {
-            code = .monospacedSystemFont(ofSize: normal.pointSize, weight: .regular)
-        } else {
-            code = UIFont(name: "menlo", size: normal.pointSize) ?? normal
+            return .monospacedSystemFont(ofSize: 17, weight: .regular)
+        }
+        else {
+            return UIFont(name: "menlo", size: 17) ?? .systemFont(ofSize: 17)
         }
 
-        listItemPrefix = .monospacedDigitSystemFont(ofSize: body.pointSize, weight: .regular)
-    }
+    }()
+
+    public var listItemPrefix: UIFont = {
+        UIFont.monospacedDigitSystemFont(ofSize: 17, weight: .regular)
+    }()
 }
 
 public extension FontCollection {

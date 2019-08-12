@@ -13,16 +13,8 @@ import UIKit
 
 public struct ThematicBreakOptions {
 
-    public var thickness: CGFloat
-    public var indentation: CGFloat
-}
-
-public extension ThematicBreakOptions {
-
-    init() {
-        thickness = 1
-        indentation = 0
-    }
+    public var thickness: CGFloat = 1
+    public var indentation: CGFloat = 0
 }
 
 #endif

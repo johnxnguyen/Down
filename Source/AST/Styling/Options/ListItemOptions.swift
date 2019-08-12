@@ -13,20 +13,10 @@ import UIKit
 
 public struct ListItemOptions {
 
-    public var maxPrefixDigits: UInt
-    public var spacingAfterPrefix: CGFloat
-    public var spacingAbove: CGFloat
-    public var spacingBelow: CGFloat
-}
-
-public extension ListItemOptions {
-
-    init() {
-        maxPrefixDigits = 2
-        spacingAfterPrefix = 8
-        spacingAbove = 4
-        spacingBelow = 8
-    }
+    public var maxPrefixDigits: UInt = 2
+    public var spacingAfterPrefix: CGFloat = 8
+    public var spacingAbove: CGFloat = 4
+    public var spacingBelow: CGFloat = 8
 }
 
 #endif

@@ -13,16 +13,8 @@ import UIKit
 
 public struct QuoteStripeOptions {
 
-    public var thickness: CGFloat
-    public var spacingAfter: CGFloat
-}
-
-public extension QuoteStripeOptions {
-
-    init() {
-        thickness = 2
-        spacingAfter = 8
-    }
+    public var thickness: CGFloat = 2
+    public var spacingAfter: CGFloat = 8
 }
 
 #endif
