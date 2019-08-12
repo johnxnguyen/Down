@@ -150,7 +150,8 @@ private extension DownStylerConfiguration {
         configuration.quoteStripeOptions = quoteStripeOptions
         configuration.thematicBreakOptions = thematicBreakOptions
 
-        configuration.codeBlockInset = 8
+        configuration.codeBlockOptions = CodeBlockOptions()
+        configuration.codeBlockOptions.containerInset = 8
 
         return configuration
     }

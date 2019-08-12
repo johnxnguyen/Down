@@ -18,10 +18,10 @@ open class DownStyler: Styler {
     public let fonts: FontCollection
     public let colors: ColorCollection
     public let paragraphStyles: ParagraphStyleCollection
+
     public let quoteStripeOptions: QuoteStripeOptions
     public let thematicBreakOptions: ThematicBreakOptions
-
-    public let codeBlockInset: CGFloat
+    public let codeBlockOptions: CodeBlockOptions
 
     private let itemParagraphStyler: ListItemParagraphStyler
 
@@ -38,7 +38,7 @@ open class DownStyler: Styler {
         paragraphStyles = configuration.paragraphStyles
         quoteStripeOptions = configuration.quoteStripeOptions
         thematicBreakOptions = configuration.thematicBreakOptions
-        codeBlockInset = configuration.codeBlockInset
+        codeBlockOptions = configuration.codeBlockOptions
         itemParagraphStyler = ListItemParagraphStyler(options: configuration.listItemOptions, prefixFont: fonts.listItemPrefix)
     }
 
@@ -110,7 +110,7 @@ open class DownStyler: Styler {
     open func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?) {
         let blockBackgroundAttribute = BlockBackgroundColorAttribute(
             color: colors.codeBlockBackground,
-            inset: codeBlockInset)
+            inset: codeBlockOptions.containerInset)
 
         let adjustedParagraphStyle = paragraphStyles.code.inset(by: blockBackgroundAttribute.inset)
 
@@ -124,7 +124,7 @@ open class DownStyler: Styler {
     open func style(htmlBlock str: NSMutableAttributedString) {
         let blockBackgroundAttribute = BlockBackgroundColorAttribute(
             color: colors.codeBlockBackground,
-            inset: codeBlockInset)
+            inset: codeBlockOptions.containerInset)
 
         let adjustedParagraphStyle = paragraphStyles.code.inset(by: blockBackgroundAttribute.inset)
 
