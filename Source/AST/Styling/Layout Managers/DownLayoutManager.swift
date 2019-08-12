@@ -135,7 +135,7 @@ public class DownLayoutManager: NSLayoutManager {
         return storage
             .ranges(of: key, in: range)
             .map { self.glyphRange(forCharacterRange: $0, actualCharacterRange: nil) }
-            .merged()
+            .mergeNeighbors()
     }
 }
 
@@ -170,9 +170,7 @@ private extension NSRange {
 
 private extension Array where Element == NSRange {
 
-    // TODO: Should this swallow contained ranges? And should it merge overlapping ranges?
-    func merged() -> [Element] {
-        // Sort by lowerbound
+    func mergeNeighbors() -> [Element] {
         let sorted = self.sorted { $0.lowerBound <= $1.lowerBound }
 
         let result = sorted.reduce(into: [NSRange]()) { acc, next in
