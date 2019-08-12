@@ -139,23 +139,7 @@ public class DownLayoutManager: NSLayoutManager {
     }
 }
 
-extension CGRect {
-
-    init(_ minX: CGFloat, _ minY: CGFloat, _ maxX: CGFloat, _ maxY: CGFloat) {
-        self.init(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
-    }
-
-    func translated(by point: CGPoint) -> CGRect {
-        return CGRect(origin: origin.translated(by: point), size: size)
-    }
-}
-
-extension CGPoint {
-
-    func translated(by point: CGPoint) -> CGPoint {
-        return CGPoint(x: x + point.x, y: y + point.y)
-    }
-}
+// MARK: - Helpers
 
 private extension NSRange {
 
