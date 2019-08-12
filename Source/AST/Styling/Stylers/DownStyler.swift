@@ -79,35 +79,6 @@ open class DownStyler: Styler {
         }
     }
 
-    private func indentListItemLeadingParagraph(in str: NSMutableAttributedString, prefixLength: Int, inRange range: NSRange) {
-        str.updateExistingAttributes(for: .paragraphStyle, in: range) { (existingStyle: NSParagraphStyle) in
-            existingStyle.indented(by: itemParagraphStyler.indentation)
-        }
-
-        let attributedPrefix = str.prefix(with: prefixLength)
-        let prefixWidth = attributedPrefix.size().width
-
-        let defaultStyle = itemParagraphStyler.leadingParagraphStyle(prefixWidth: prefixWidth)
-        str.addAttributeInMissingRanges(for: .paragraphStyle, value: defaultStyle, within: range)
-    }
-
-    private func indentListItemTrailingParagraph(in str: NSMutableAttributedString, inRange range: NSRange) {
-        str.updateExistingAttributes(for: .paragraphStyle, in: range) { (existingStyle: NSParagraphStyle) in
-            existingStyle.indented(by: itemParagraphStyler.indentation)
-        }
-
-        let defaultStyle = itemParagraphStyler.trailingParagraphStyle
-        str.addAttributeInMissingRanges(for: .paragraphStyle, value: defaultStyle, within: range)
-
-        indentListItemQuotes(in: str, inRange: range)
-    }
-
-    private func indentListItemQuotes(in str: NSMutableAttributedString, inRange range: NSRange) {
-        str.updateExistingAttributes(for: .quoteStripe, in: range) { (stripe: QuoteStripeAttribute) in
-            stripe.indented(by: itemParagraphStyler.indentation)
-        }
-    }
-
     open func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?) {
         styleGenericCodeBlock(in: str)
     }
@@ -116,24 +87,9 @@ open class DownStyler: Styler {
         styleGenericCodeBlock(in: str)
     }
 
-    private func styleGenericCodeBlock(in str: NSMutableAttributedString) {
-        let blockBackgroundAttribute = BlockBackgroundColorAttribute(
-            color: colors.codeBlockBackground,
-            inset: codeBlockOptions.containerInset)
-
-        let adjustedParagraphStyle = paragraphStyles.code.inset(by: blockBackgroundAttribute.inset)
-
-        str.setAttributes([
-            .font: fonts.code,
-            .foregroundColor: colors.code,
-            .paragraphStyle: adjustedParagraphStyle,
-            .blockBackgroundColor: blockBackgroundAttribute])
-    }
-
     open func style(customBlock str: NSMutableAttributedString) {
 
     }
-
 
     open func style(paragraph str: NSMutableAttributedString) {
         str.addAttribute(for: .paragraphStyle, value: paragraphStyles.body)
@@ -165,19 +121,11 @@ open class DownStyler: Styler {
             .paragraphStyle: paragraphStyle])
     }
 
-    private func headingAttributes(for level: Int) -> (UIFont, UIColor, NSParagraphStyle) {
-        switch level {
-        case 1: return (fonts.heading1, colors.heading1, paragraphStyles.heading1)
-        case 2: return (fonts.heading2, colors.heading2, paragraphStyles.heading2)
-        case 3...6: return (fonts.heading3, colors.heading3, paragraphStyles.heading3)
-        default: return (fonts.heading1, colors.heading1, paragraphStyles.heading1)
-        }
-    }
-
     open func style(thematicBreak str: NSMutableAttributedString) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.firstLineHeadIndent = thematicBreakOptions.indentation
-        str.addAttribute(for: .thematicBreak, value: ThematicBreakAttribute(thickness: thematicBreakOptions.thickness, color: colors.thematicBreak))
+        let attr = ThematicBreakAttribute(thickness: thematicBreakOptions.thickness, color: colors.thematicBreak)
+        str.addAttribute(for: .thematicBreak, value: attr)
         str.addAttribute(for: .paragraphStyle, value: paragraphStyle)
     }
 
@@ -196,15 +144,11 @@ open class DownStyler: Styler {
     }
 
     open func style(code str: NSMutableAttributedString) {
-        str.setAttributes([
-            .font: fonts.code,
-            .foregroundColor: colors.code])
+        styleGenericInlineCode(in: str)
     }
 
     open func style(htmlInline str: NSMutableAttributedString) {
-        str.setAttributes([
-            .font: fonts.code,
-            .foregroundColor: colors.code])
+        styleGenericInlineCode(in: str)
     }
 
     open func style(customInline str: NSMutableAttributedString) {
@@ -225,19 +169,82 @@ open class DownStyler: Styler {
 
     open func style(link str: NSMutableAttributedString, title: String?, url: String?) {
         guard let url = url else { return }
-
-        str.addAttributes([
-            .link: url,
-            .foregroundColor: colors.link])
+        styleGenericLink(in: str, url: url)
     }
 
     open func style(image str: NSMutableAttributedString, title: String?, url: String?) {
         guard let url = url else { return }
+        styleGenericLink(in: str, url: url)
+    }
 
+    // MARK: - Common Styling
+
+    private func styleGenericCodeBlock(in str: NSMutableAttributedString) {
+        let blockBackgroundAttribute = BlockBackgroundColorAttribute(
+            color: colors.codeBlockBackground,
+            inset: codeBlockOptions.containerInset)
+
+        let adjustedParagraphStyle = paragraphStyles.code.inset(by: blockBackgroundAttribute.inset)
+
+        str.setAttributes([
+            .font: fonts.code,
+            .foregroundColor: colors.code,
+            .paragraphStyle: adjustedParagraphStyle,
+            .blockBackgroundColor: blockBackgroundAttribute])
+    }
+
+    private func styleGenericInlineCode(in str: NSMutableAttributedString) {
+        str.setAttributes([
+            .font: fonts.code,
+            .foregroundColor: colors.code])
+    }
+
+    private func styleGenericLink(in str: NSMutableAttributedString, url: String) {
         str.addAttributes([
             .link: url,
             .foregroundColor: colors.link])
     }
+
+    // MARK: - Helpers
+
+    private func headingAttributes(for level: Int) -> (UIFont, UIColor, NSParagraphStyle) {
+        switch level {
+        case 1: return (fonts.heading1, colors.heading1, paragraphStyles.heading1)
+        case 2: return (fonts.heading2, colors.heading2, paragraphStyles.heading2)
+        case 3...6: return (fonts.heading3, colors.heading3, paragraphStyles.heading3)
+        default: return (fonts.heading1, colors.heading1, paragraphStyles.heading1)
+        }
+    }
+
+    private func indentListItemLeadingParagraph(in str: NSMutableAttributedString, prefixLength: Int, inRange range: NSRange) {
+        str.updateExistingAttributes(for: .paragraphStyle, in: range) { (existingStyle: NSParagraphStyle) in
+            existingStyle.indented(by: itemParagraphStyler.indentation)
+        }
+
+        let attributedPrefix = str.prefix(with: prefixLength)
+        let prefixWidth = attributedPrefix.size().width
+
+        let defaultStyle = itemParagraphStyler.leadingParagraphStyle(prefixWidth: prefixWidth)
+        str.addAttributeInMissingRanges(for: .paragraphStyle, value: defaultStyle, within: range)
+    }
+
+    private func indentListItemTrailingParagraph(in str: NSMutableAttributedString, inRange range: NSRange) {
+        str.updateExistingAttributes(for: .paragraphStyle, in: range) { (existingStyle: NSParagraphStyle) in
+            existingStyle.indented(by: itemParagraphStyler.indentation)
+        }
+
+        let defaultStyle = itemParagraphStyler.trailingParagraphStyle
+        str.addAttributeInMissingRanges(for: .paragraphStyle, value: defaultStyle, within: range)
+
+        indentListItemQuotes(in: str, inRange: range)
+    }
+
+    private func indentListItemQuotes(in str: NSMutableAttributedString, inRange range: NSRange) {
+        str.updateExistingAttributes(for: .quoteStripe, in: range) { (stripe: QuoteStripeAttribute) in
+            stripe.indented(by: itemParagraphStyler.indentation)
+        }
+    }
+
 }
 
 // MARK: - Helper Extensions
