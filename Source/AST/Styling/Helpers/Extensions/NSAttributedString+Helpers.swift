@@ -12,17 +12,6 @@ extension NSAttributedString {
 
     typealias Attributes = [NSAttributedString.Key: Any]
 
-    func prefix(with length: Int) -> NSAttributedString {
-        guard length <= self.length else { return self }
-        guard length > 0 else { return NSAttributedString() }
-        return attributedSubstring(from: NSMakeRange(0, length))
-    }
-}
-
-// MARK: - Ranges
-
-extension NSAttributedString {
-
     var wholeRange: NSRange {
         NSRange(location: 0, length: length)
     }

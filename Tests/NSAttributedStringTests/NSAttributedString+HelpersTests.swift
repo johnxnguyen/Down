@@ -19,41 +19,6 @@ class NSAttributedString_HelpersTests: XCTestCase {
         return NSAttributedString(string: str, attributes: attrs)
     }
 
-    // MARK: - Prefix
-
-    func testPrefixWithLength() {
-        // Given
-        let sut = make("Hello")
-
-        // When
-        let prefix = sut.prefix(with: 3)
-
-        // Then
-        XCTAssertEqual(prefix, make("Hel"))
-    }
-
-    func testPrefixWithLengthOutOfBounds() {
-        // Given
-        let sut = make("Hello")
-
-        // When
-        let prefix = sut.prefix(with: 10)
-
-        // Then
-        XCTAssertEqual(prefix, sut)
-    }
-
-    func testPrefixWithNegativeLength() {
-        // Given
-        let sut = make("Hello")
-
-        // When
-        let prefix = sut.prefix(with: -1)
-
-        // Then
-        XCTAssertEqual(prefix, make(""))
-    }
-
     // MARK: - Whole Ranges
 
     func testWholeRangeOfEmptyString() {
