@@ -21,15 +21,7 @@ extension NSAttributedString {
     }
 
     func ranges(of key: Key, in range: NSRange) -> [NSRange] {
-        var ranges = [NSRange]()
-
-        enumerateAttribute(key, in: range, options: []) { value, range, _ in
-            if value != nil {
-                ranges.append(range)
-            }
-        }
-
-        return ranges
+        return ranges(for: key, in: range, where: { $0 != nil })
     }
 
     func rangesMissingAttribute(for key: Key) -> [NSRange] {
@@ -37,10 +29,14 @@ extension NSAttributedString {
     }
 
     func rangesMissingAttribute(for key: Key, in range: NSRange) -> [NSRange] {
+        return ranges(for: key, in: range, where: { $0 == nil })
+    }
+
+    private func ranges(for key: Key, in range: NSRange, where p: (Any?) -> Bool) -> [NSRange] {
         var ranges = [NSRange]()
 
         enumerateAttribute(key, in: range, options: []) { value, attrRange, _ in
-            if value == nil {
+            if p(value) {
                 ranges.append(attrRange)
             }
         }
