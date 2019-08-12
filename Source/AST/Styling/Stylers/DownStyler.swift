@@ -69,6 +69,7 @@ open class DownStyler: Styler {
 
     open func style(item str: NSMutableAttributedString, prefixLength: Int) {
         let paragraphRanges = str.paragraphRanges()
+
         guard let leadingParagraphRange = paragraphRanges.first else { return }
 
         indentListItemLeadingParagraph(in: str, prefixLength: prefixLength, inRange: leadingParagraphRange)
@@ -108,20 +109,14 @@ open class DownStyler: Styler {
     }
 
     open func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?) {
-        let blockBackgroundAttribute = BlockBackgroundColorAttribute(
-            color: colors.codeBlockBackground,
-            inset: codeBlockOptions.containerInset)
-
-        let adjustedParagraphStyle = paragraphStyles.code.inset(by: blockBackgroundAttribute.inset)
-
-        str.setAttributes([
-            .font: fonts.code,
-            .foregroundColor: colors.code,
-            .paragraphStyle: adjustedParagraphStyle,
-            .blockBackgroundColor: blockBackgroundAttribute])
+        styleGenericCodeBlock(in: str)
     }
 
     open func style(htmlBlock str: NSMutableAttributedString) {
+        styleGenericCodeBlock(in: str)
+    }
+
+    private func styleGenericCodeBlock(in str: NSMutableAttributedString) {
         let blockBackgroundAttribute = BlockBackgroundColorAttribute(
             color: colors.codeBlockBackground,
             inset: codeBlockOptions.containerInset)
