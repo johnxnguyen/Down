@@ -108,8 +108,7 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         XCTAssertTrue(value(for: key1, inRange: attributeRanges.first!, isEqualTo: dummyValue.uppercased(), sut: sut))
     }
 
-
-    func testAddingAttributeInRange() {
+    func testUpdatingAttributeInRange() {
         // Given
         let sut = NSMutableAttributedString(string: "Hello world", attributes: [key1: dummyValue])
         let rangeOfFirstWord = NSRange(location: 0, length: 6)
@@ -127,7 +126,7 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         XCTAssertTrue(value(for: key1, inRange: attributeRanges.first!, isEqualTo: "some new value", sut: sut))
     }
 
-    func testUpdatingAttributeThatDidNotExistInRange() {
+    func testUpdatingAttributeThatDidNotExistInRangeDoesNothing() {
         // Given
         let sut = NSMutableAttributedString(string: "Hello world")
         let rangeOfFirstWord = NSRange(location: 0, length: 6)
@@ -141,9 +140,42 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         let attributeRanges = sut.ranges(of: key1)
         XCTAssertTrue(attributeRanges.isEmpty)
     }
+
+    func testAdddingAttributeInMissingRanges() {
+        // Given
+        let sut = NSMutableAttributedString(string: "Hello world")
+        let rangeOfFirstWord = NSRange(location: 0, length: 6)
+        let rangeOfSecondWord = NSRange(location: 6, length: 5)
+
+        sut.addAttribute(key1, value: dummyValue, range: rangeOfFirstWord)
+
+        // When
+        sut.addAttributeInMissingRanges(for: key1, value: "some new value")
+
+        // Then
+        let attributeRanges = sut.ranges(of: key1)
+        XCTAssertEqual(attributeRanges.count, 2)
+        XCTAssertEqual(attributeRanges, [rangeOfFirstWord, rangeOfSecondWord])
+        XCTAssertTrue(value(for: key1, inRange: attributeRanges.first!, isEqualTo: dummyValue, sut: sut))
+        XCTAssertTrue(value(for: key1, inRange: attributeRanges.last!, isEqualTo: "some new value", sut: sut))
+    }
+
+    func testAdddingAttributeInMissingRangesDoesNothingIfNoMissingRanges() {
+        // Given
+        let sut = NSMutableAttributedString(string: "Hello world", attributes: [key1: dummyValue])
+
+        // When
+        sut.addAttributeInMissingRanges(for: key1, value: "some new value")
+
+        // Then
+        let attributeRanges = sut.ranges(of: key1)
+        XCTAssertEqual(attributeRanges.count, 1)
+        XCTAssertEqual(attributeRanges.first!, sut.wholeRange)
+        XCTAssertTrue(value(for: key1, inRange: attributeRanges.first!, isEqualTo: dummyValue, sut: sut))
+    }
 }
 
-extension NSMutableAttributedString_AttributesTests {
+private extension NSMutableAttributedString_AttributesTests {
 
     func countAttribute(_ name: NSAttributedString.Key, in str: NSAttributedString) -> Int {
         str.ranges(of: name).count

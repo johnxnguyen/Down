@@ -45,12 +45,10 @@ extension NSMutableAttributedString {
         exisitngValues.forEach { addAttribute(key, value: f($0.0), range: $0.1) }
     }
 
-    // TODO: test
     func addAttributeInMissingRanges<A>(for key: Key, value: A) {
         addAttributeInMissingRanges(for: key, value: value, within: wholeRange)
     }
 
-    // TODO: test
     func addAttributeInMissingRanges<A>(for key: Key, value: A, within range: NSRange) {
         rangesMissingAttribute(for: key, in: range).forEach {
             addAttribute(key, value: value, range: $0)
