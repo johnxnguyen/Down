@@ -16,6 +16,13 @@ class VisitorTests: XCTestCase {
         return try! down.toAttributedString(styler: EmptyStyler()).string
     }
 
+    func debugResult(for markdown: String) -> String {
+        let down = Down(markdownString: markdown)
+        let ast = try! down.toAST()
+        let document = Document(cmarkNode: ast)
+        return document.accept(DebugVisitor())
+    }
+
     func testBlockQuote() {
         // Given
         let markdown = """
@@ -30,7 +37,7 @@ class VisitorTests: XCTestCase {
 
         // Then
         assertSnapshot(matching: result(for: markdown), as: .lines)
-
+        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
     }
 
     func testList() {
@@ -49,6 +56,7 @@ class VisitorTests: XCTestCase {
 
         // Then
         assertSnapshot(matching: result(for: markdown), as: .lines)
+        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
     }
 
     func testCodeBlock() {
@@ -66,6 +74,7 @@ class VisitorTests: XCTestCase {
 
         // Then
         assertSnapshot(matching: result(for: markdown), as: .lines)
+        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
     }
 
     func testHtmlBlock() {
@@ -82,6 +91,7 @@ class VisitorTests: XCTestCase {
 
         // Then
         assertSnapshot(matching: result(for: markdown), as: .lines)
+        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
     }
 
     func testParagraph() {
@@ -96,6 +106,7 @@ class VisitorTests: XCTestCase {
 
         // Then
         assertSnapshot(matching: result(for: markdown), as: .lines)
+        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
     }
 
     func testHeading() {
@@ -110,6 +121,7 @@ class VisitorTests: XCTestCase {
 
         // Then
         assertSnapshot(matching: result(for: markdown), as: .lines)
+        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
     }
 
     func testThematicBreak() {
@@ -124,6 +136,7 @@ class VisitorTests: XCTestCase {
 
         // Then
         assertSnapshot(matching: result(for: markdown), as: .lines)
+        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
     }
 
     func testSoftBreak() {
@@ -135,6 +148,7 @@ class VisitorTests: XCTestCase {
 
         // Then
         assertSnapshot(matching: result(for: markdown), as: .lines)
+        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
     }
 
     func testLineBreak() {
@@ -146,6 +160,7 @@ class VisitorTests: XCTestCase {
 
         // Then
         assertSnapshot(matching: result(for: markdown), as: .lines)
+        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
     }
 
     func testInline() {
@@ -156,6 +171,7 @@ class VisitorTests: XCTestCase {
 
         // Then
         assertSnapshot(matching: result(for: markdown), as: .lines)
+        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
     }
 
     func testLink() {
@@ -166,6 +182,7 @@ class VisitorTests: XCTestCase {
 
         // Then
         assertSnapshot(matching: result(for: markdown), as: .lines)
+        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
     }
 }
 

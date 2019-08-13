@@ -1,0 +1,6 @@
+Document
+    ↳ Paragraph
+        ↳ Text - Text text.
+    ↳ Code Block - fenceInfo: nil, content: Code block\nCode block\n
+    ↳ Paragraph
+        ↳ Text - Text text.

@@ -1,0 +1,6 @@
+Document
+    ↳ Paragraph
+        ↳ Text - Text text.
+    ↳ Thematic Break
+    ↳ Paragraph
+        ↳ Text - Text text.
