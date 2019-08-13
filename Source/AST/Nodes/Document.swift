@@ -27,6 +27,7 @@ public class Document: BaseNode {
 // MARK: - Debug
 
 extension Document: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
         return "Document"
     }

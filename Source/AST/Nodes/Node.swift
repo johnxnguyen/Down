@@ -96,6 +96,7 @@ public extension UnsafeMutablePointer where Pointee == cmark_node {
 }
 
 private extension String {
+    
     init?(cString: UnsafePointer<Int8>?) {
         guard let unwrapped = cString else { return nil }
         let result = String(cString: unwrapped)

@@ -52,6 +52,7 @@ public extension List {
 // MARK: - Debug
 
 extension List: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
         return "List - type: \(listType)"
     }

@@ -17,6 +17,7 @@ public class Heading: BaseNode {
 // MARK: - Debug
 
 extension Heading: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
         return "Heading - L\(headingLevel)"
     }

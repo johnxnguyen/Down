@@ -18,8 +18,9 @@ public class HtmlBlock: BaseNode {
 // MARK: - Debug
 
 extension HtmlBlock: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
-        let content = (literal ?? "").replacingOccurrences(of: "\n", with: "\\n")
+        let content = (literal ?? "nil").replacingOccurrences(of: "\n", with: "\\n")
         return "Html Block - content: \(content)"
     }
 }

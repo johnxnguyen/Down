@@ -11,22 +11,18 @@ import Foundation
 /// indicating relationships between nodes with indentation.
 public class DebugVisitor: Visitor {
     
-    /// Current depth in the tree.
     private var depth = 0
-    
-    /// The amount of indent for the current depth.
+
     private var indent: String {
         return String(repeating: "    ", count: depth)
     }
 
     public init() {}
-    
-    /// Debug representation of node.
+
     private func report(_ node: Node) -> String {
         return "\(indent)\(node is Document ? "" : "↳ ")\(String(reflecting: node))\n"
     }
-    
-    /// Debug representation of node including all children.
+
     private func reportWithChildren(_ node: Node) -> String {
         let thisNode = report(node)
         depth += 1
