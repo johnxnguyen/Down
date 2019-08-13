@@ -23,7 +23,7 @@ class ListItemPrefixGenerator {
                 .makeIterator()
 
         case .ordered(let start):
-            prefixes = (start...(start + numberOfItems))
+            prefixes = (start..<(start + numberOfItems))
                 .map { "\($0)." }
                 .makeIterator()
         }
