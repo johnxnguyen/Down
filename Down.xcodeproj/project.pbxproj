@@ -435,16 +435,12 @@
 		D4201EC41CFA59A5008EEC6E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				EE408A3C23033B6B00E5278A /* ListItemPrefixGeneratorTests.swift */,
-				EE408A3A2303399B00E5278A /* CGRect_HelpersTests.swift */,
-				EE408A38230338B600E5278A /* CGPoint_TranslateTests.swift */,
 				EE59C30022ECF08E006EE8A8 /* Styler */,
 				907C64611EC120530095FEE1 /* Fixtures */,
 				D4201EC51CFA59A5008EEC6E /* BindingTests.swift */,
 				D41689B21CFFE28200E5802B /* DownViewTests.swift */,
 				D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */,
 				D438696B1D00D27700E95A1F /* StringTests.swift */,
-				EEC752BD22C4ADC000EC729C /* NSAttributedStringTests */,
 				EEC752BE22C4AE1300EC729C /* AST */,
 			);
 			path = Tests;
@@ -534,6 +530,17 @@
 			path = "Enums & Options";
 			sourceTree = "<group>";
 		};
+		EE408A3E23033DFE00E5278A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EE408A3A2303399B00E5278A /* CGRect_HelpersTests.swift */,
+				EE408A38230338B600E5278A /* CGPoint_TranslateTests.swift */,
+				EE97254222C14B79004D3B3A /* NSAttributedString+HelpersTests.swift */,
+				EE97253D22C130D8004D3B3A /* NSMutableAttributedString+AttributesTests.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		EE48C7DE22EC99F3004815ED /* Attribute Collections */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,6 +574,7 @@
 		EE59C30022ECF08E006EE8A8 /* Styler */ = {
 			isa = PBXGroup;
 			children = (
+				EE408A3E23033DFE00E5278A /* Helpers */,
 				EE5D2DF822FC9E89009EC13E /* DownDebugLayoutManagerTests.swift */,
 				EE5D2DF522FC99A6009EC13E /* LinkStyleTests.swift */,
 				EE64722A22F8BB0B00C5F0BA /* CodeBlockStyleTests.swift */,
@@ -633,20 +641,12 @@
 			path = Styling;
 			sourceTree = "<group>";
 		};
-		EEC752BD22C4ADC000EC729C /* NSAttributedStringTests */ = {
-			isa = PBXGroup;
-			children = (
-				EE97254222C14B79004D3B3A /* NSAttributedString+HelpersTests.swift */,
-				EE97253D22C130D8004D3B3A /* NSMutableAttributedString+AttributesTests.swift */,
-			);
-			path = NSAttributedStringTests;
-			sourceTree = "<group>";
-		};
 		EEC752BE22C4AE1300EC729C /* AST */ = {
 			isa = PBXGroup;
 			children = (
 				EE8F38CB22BFB2420056270E /* NodeTests.swift */,
 				EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */,
+				EE408A3C23033B6B00E5278A /* ListItemPrefixGeneratorTests.swift */,
 			);
 			path = AST;
 			sourceTree = "<group>";
