@@ -11,64 +11,161 @@ import SnapshotTesting
 
 class VisitorTests: XCTestCase {
 
-    func testSimpleMarkdown() throws {
+    func result(for markdown: String) -> String {
+        let down = Down(markdownString: markdown)
+        return try! down.toAttributedString(styler: EmptyStyler()).string
+    }
+
+    func testBlockQuote() {
         // Given
         let markdown = """
-        # Hello
-        This is a **test!**
+        Text text.
+
+        > Quote
+        > Quote
+
+        > Quote
+        > Quote
         """
-        
-        let down = Down(markdownString: markdown)
-        let ast = try down.toAST()
-        let document = Document(cmarkNode: ast)
-        
-        // When
-        let result = document.accept(DebugVisitor())
 
         // Then
-        assertSnapshot(matching: result, as: .lines)
+        assertSnapshot(matching: result(for: markdown), as: .lines)
+
     }
-    
-    func testAttributedStringVisitor() throws {
+
+    func testList() {
         // Given
         let markdown = """
-        # Heading
-        
-        This **is** a *paragraph* with `inline`
-        elements <p></p>
-        
-        This is followed by a hard linebreak\("  ")
-        This is after the linebreak
-        
-        ---
-        
-        [this is a link](www.text.com)
-        ![this is an image](www.text.com)
-        
-        > this is a quote
-        
-        ```
-        code block
-        code block
-        ```
-        
-        <html>
-            block
-        </html>
-        
-        1. first item
-        2. second item
+        Text text.
+
+        3. One
+        3. Two
+            - Three
+            - Four
+        3. Five
+
+        Text text.
         """
-        
-        let down = Down(markdownString: markdown)
-        let ast = try down.toAST()
-        print(Document(cmarkNode: ast).accept(DebugVisitor()))
-        
-        // When
-        let result = try down.toAttributedString(styler: EmptyStyler()).string
-        
+
         // Then
-        assertSnapshot(matching: result, as: .lines)
+        assertSnapshot(matching: result(for: markdown), as: .lines)
+    }
+
+    func testCodeBlock() {
+        // Given
+        let markdown = """
+        Text text.
+
+        ```
+        Code block
+        Code block
+        ```
+
+        Text text.
+        """
+
+        // Then
+        assertSnapshot(matching: result(for: markdown), as: .lines)
+    }
+
+    func testHtmlBlock() {
+        // Given
+        let markdown = """
+        Text text.
+
+        <html>
+            <head></head>
+        </html>
+
+        Text text.
+        """
+
+        // Then
+        assertSnapshot(matching: result(for: markdown), as: .lines)
+    }
+
+    func testParagraph() {
+        // Given
+        let markdown = """
+        Text text.
+
+        Text text.
+
+        Text text.
+        """
+
+        // Then
+        assertSnapshot(matching: result(for: markdown), as: .lines)
+    }
+
+    func testHeading() {
+        // Given
+        let markdown = """
+        Text text.
+
+        # Heading
+
+        Text text.
+        """
+
+        // Then
+        assertSnapshot(matching: result(for: markdown), as: .lines)
+    }
+
+    func testThematicBreak() {
+        // Given
+        let markdown = """
+        Text text.
+
+        ---
+
+        Text text.
+        """
+
+        // Then
+        assertSnapshot(matching: result(for: markdown), as: .lines)
+    }
+
+    func testSoftBreak() {
+        // Given
+        let markdown = """
+        Text text
+        text text
+        """
+
+        // Then
+        assertSnapshot(matching: result(for: markdown), as: .lines)
+    }
+
+    func testLineBreak() {
+        // Given
+        let markdown = """
+        Text text.\\
+        Text text.
+        """
+
+        // Then
+        assertSnapshot(matching: result(for: markdown), as: .lines)
+    }
+
+    func testInline() {
+        // Given
+        let markdown = """
+        Text **strong _emphasis `code` <html>_**
+        """
+
+        // Then
+        assertSnapshot(matching: result(for: markdown), as: .lines)
+    }
+
+    func testLink() {
+        // Given
+        let markdown = """
+        Text [link](www.example.com) text ![image](www.example.com)
+        """
+
+        // Then
+        assertSnapshot(matching: result(for: markdown), as: .lines)
     }
 }
 
