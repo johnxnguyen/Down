@@ -15,7 +15,7 @@ public class AttributedStringVisitor {
     
     private let styler: Styler
     private let options: DownOptions
-    private var listStack = [ListItemPrefixGenerator]()
+    private var listPrefixGenerators = [ListItemPrefixGenerator]()
 
     /// Creates a new instance with the given styler and options.
     ///
@@ -45,32 +45,27 @@ extension AttributedStringVisitor: Visitor {
     }
 
     public func visit(list node: List) -> NSMutableAttributedString {
-        listStack.append(ListItemPrefixGenerator(list: node))
+        listPrefixGenerators.append(ListItemPrefixGenerator(list: node))
+        defer { listPrefixGenerators.removeLast() }
 
         let items = visitChildren(of: node)
-
-        listStack.removeLast()
 
         let s = items.joined
         if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(list: s, nestDepth: node.nestDepth)
-
         return s
     }
     
     public func visit(item node: Item) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
 
-        let prefix = listStack.last?.next() ?? "•"
-
+        let prefix = listPrefixGenerators.last?.next() ?? "•"
         let attributedPrefix = "\(prefix)\t".attributed
         styler.style(listItemPrefix: attributedPrefix)
         s.insert(attributedPrefix, at: 0)
 
         if node.hasSuccessor { s.append(.paragraphSeparator) }
-
         styler.style(item: s, prefixLength: (prefix as NSString).length)
-
         return s
     }
     
@@ -179,34 +174,40 @@ extension AttributedStringVisitor: Visitor {
 
 // MARK: - Helper extensions
 
-// TODO: I'd like to move these into separate files.
-
 private extension Sequence where Iterator.Element == NSMutableAttributedString {
+
     var joined: NSMutableAttributedString {
         return reduce(into: NSMutableAttributedString()) { $0.append($1) }
     }
 }
 
-private extension String {
-    var attributed: NSMutableAttributedString {
-        return NSMutableAttributedString(string: self)
-    }
-}
-// TODO: move this to string extension
-private extension NSAttributedString {
-    static var paragraphSeparator: NSAttributedString {
-        return "\u{2029}".attributed
-    }
-}
-
 private extension NSMutableAttributedString {
+
     static var empty: NSMutableAttributedString {
         return "".attributed
     }
 }
 
+private extension NSAttributedString {
+
+    // This codepoint marks the end of a paragraph and the start of the next.
+    static var paragraphSeparator: NSAttributedString {
+        return String.paragraphSeparator.attributed
+    }
+}
+
 private extension String {
-    // https://lists.apple.com/archives/Cocoa-dev/2010/Dec/msg00347.html
+
+    var attributed: NSMutableAttributedString {
+        return NSMutableAttributedString(string: self)
+    }
+
+    // This codepoint marks the end of a paragraph and the start of the next.
+    static var paragraphSeparator: String {
+        return "\u{2029}"
+    }
+
+    // This code point allows line breaking, without starting a new paragraph.
     static var lineSeparator: String {
         return "\u{2028}"
     }
