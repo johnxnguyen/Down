@@ -66,6 +66,8 @@
 		90A40A9C1EC03292004F2E91 /* Down.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE0E54F82300800E0070C83F /* BlockBackgroundColorAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0E54F72300800E0070C83F /* BlockBackgroundColorAttribute.swift */; };
 		EE335C4A22EDC85900648842 /* ListItemStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE335C4922EDC85900648842 /* ListItemStyleTests.swift */; };
+		EE408A39230338B600E5278A /* CGPoint_TranslateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE408A38230338B600E5278A /* CGPoint_TranslateTests.swift */; };
+		EE408A3B2303399B00E5278A /* CGRect_HelpersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE408A3A2303399B00E5278A /* CGRect_HelpersTests.swift */; };
 		EE44848B2301E51C0065C836 /* CodeBlockOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE44848A2301E51C0065C836 /* CodeBlockOptions.swift */; };
 		EE4484912301F2920065C836 /* CGPoint+Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4484902301F2920065C836 /* CGPoint+Translate.swift */; };
 		EE4484932301F2DB0065C836 /* CGRect+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4484922301F2DB0065C836 /* CGRect+Helpers.swift */; };
@@ -273,6 +275,8 @@
 		D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
 		EE0E54F72300800E0070C83F /* BlockBackgroundColorAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockBackgroundColorAttribute.swift; sourceTree = "<group>"; };
 		EE335C4922EDC85900648842 /* ListItemStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemStyleTests.swift; sourceTree = "<group>"; };
+		EE408A38230338B600E5278A /* CGPoint_TranslateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint_TranslateTests.swift; sourceTree = "<group>"; };
+		EE408A3A2303399B00E5278A /* CGRect_HelpersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect_HelpersTests.swift; sourceTree = "<group>"; };
 		EE44848A2301E51C0065C836 /* CodeBlockOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBlockOptions.swift; sourceTree = "<group>"; };
 		EE4484902301F2920065C836 /* CGPoint+Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Translate.swift"; sourceTree = "<group>"; };
 		EE4484922301F2DB0065C836 /* CGRect+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Helpers.swift"; sourceTree = "<group>"; };
@@ -429,6 +433,8 @@
 		D4201EC41CFA59A5008EEC6E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				EE408A3A2303399B00E5278A /* CGRect_HelpersTests.swift */,
+				EE408A38230338B600E5278A /* CGPoint_TranslateTests.swift */,
 				EE59C30022ECF08E006EE8A8 /* Styler */,
 				907C64611EC120530095FEE1 /* Fixtures */,
 				D4201EC51CFA59A5008EEC6E /* BindingTests.swift */,
@@ -969,7 +975,9 @@
 				EE64722B22F8BB0B00C5F0BA /* CodeBlockStyleTests.swift in Sources */,
 				EE335C4A22EDC85900648842 /* ListItemStyleTests.swift in Sources */,
 				EE8F38CC22BFB2420056270E /* NodeTests.swift in Sources */,
+				EE408A39230338B600E5278A /* CGPoint_TranslateTests.swift in Sources */,
 				EE99E3DE22F0C83F00BCE15B /* HeadingStyleTests.swift in Sources */,
+				EE408A3B2303399B00E5278A /* CGRect_HelpersTests.swift in Sources */,
 				EE64FEF0225BEB3900A35B34 /* VisitorTests.swift in Sources */,
 				8AFAEB071E6E331700E09B68 /* DownViewTests.swift in Sources */,
 				EE9E886322EF76040005948C /* InlineStyleTests.swift in Sources */,
