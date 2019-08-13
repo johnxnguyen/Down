@@ -190,7 +190,6 @@ private extension NSMutableAttributedString {
 
 private extension NSAttributedString {
 
-    // This codepoint marks the end of a paragraph and the start of the next.
     static var paragraphSeparator: NSAttributedString {
         return String.paragraphSeparator.attributed
     }
