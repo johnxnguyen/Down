@@ -14,7 +14,7 @@ import UIKit
 // TODO: test
 extension CGRect {
 
-    init(_ minX: CGFloat, _ minY: CGFloat, _ maxX: CGFloat, _ maxY: CGFloat) {
+    init(minX: CGFloat, minY: CGFloat, maxX: CGFloat, maxY: CGFloat) {
         self.init(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
     }
 
