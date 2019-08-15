@@ -8,15 +8,17 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
 
 extension CGPoint {
 
-    // TODO: test
     func translated(by point: CGPoint) -> CGPoint {
         return CGPoint(x: x + point.x, y: y + point.y)
     }
 }
-
-#endif

@@ -8,12 +8,17 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
 
 struct QuoteStripeAttribute {
 
-    var color: UIColor
+    var color: DownColor
     var thickness: CGFloat
     var spacingAfter: CGFloat
     var locations: [CGFloat]
@@ -25,7 +30,7 @@ struct QuoteStripeAttribute {
 
 extension QuoteStripeAttribute {
 
-    init(level: Int, color: UIColor, options: QuoteStripeOptions) {
+    init(level: Int, color: DownColor, options: QuoteStripeOptions) {
         self.init(color: color, thickness: options.thickness, spacingAfter: options.spacingAfter, locations: [])
         locations = (0..<level).map { CGFloat($0) * layoutWidth }
     }
@@ -41,5 +46,3 @@ extension NSAttributedString.Key {
     
     static let quoteStripe = NSAttributedString.Key(rawValue: "quoteStripe")
 }
-
-#endif

@@ -8,12 +8,17 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
 
 struct BlockBackgroundColorAttribute {
 
-    var color: UIColor
+    var color: DownColor
     var inset: CGFloat
 }
 
@@ -21,5 +26,3 @@ extension NSAttributedString.Key {
 
     static let blockBackgroundColor = NSAttributedString.Key("blockBackgroundColor")
 }
-
-#endif

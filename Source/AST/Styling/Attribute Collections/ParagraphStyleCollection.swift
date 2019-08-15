@@ -8,8 +8,13 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
 
 public struct ParagraphStyleCollection {
 
@@ -39,5 +44,3 @@ public struct ParagraphStyleCollection {
         code = codeStyle
     }
 }
-
-#endif

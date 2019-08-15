@@ -8,8 +8,13 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
 
 public struct ListItemOptions {
 
@@ -18,5 +23,3 @@ public struct ListItemOptions {
     public var spacingAbove: CGFloat = 4
     public var spacingBelow: CGFloat = 8
 }
-
-#endif

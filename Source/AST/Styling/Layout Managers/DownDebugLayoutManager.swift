@@ -20,7 +20,7 @@ public class DownDebugLayoutManager: DownLayoutManager {
 
     private func drawLineFragments(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         enumerateLineFragments(forGlyphRange: glyphsToShow) { rect, usedRect, textContainer, glyphRange, _ in
-            [(usedRect, UIColor.blue), (rect, UIColor.red)].forEach { rectToDraw, color in
+            [(usedRect, DownColor.blue), (rect, DownColor.red)].forEach { rectToDraw, color in
                 let adjustedRect = rectToDraw.translated(by: origin)
                 self.drawRect(adjustedRect, color: color.cgColor)
             }

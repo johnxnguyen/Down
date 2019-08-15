@@ -8,7 +8,6 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
 
 public class DownLayoutManager: NSLayoutManager {

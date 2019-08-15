@@ -8,29 +8,22 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+public typealias DownFont = UIFont
+
+#elseif canImport(AppKit)
+
+import AppKit
+public typealias DownFont = NSFont
+
+#endif
 
 public struct FontCollection {
 
-    public var heading1 = UIFont.boldSystemFont(ofSize: 28)
-    public var heading2 = UIFont.boldSystemFont(ofSize: 24)
-    public var heading3 = UIFont.boldSystemFont(ofSize: 20)
-    public var body = UIFont.systemFont(ofSize: 17)
-
-    public var code: UIFont = {
-        if #available(iOS 12, *) {
-            return .monospacedSystemFont(ofSize: 17, weight: .regular)
-        }
-        else {
-            return UIFont(name: "menlo", size: 17) ?? .systemFont(ofSize: 17)
-        }
-
-    }()
-
-    public var listItemPrefix: UIFont = {
-        UIFont.monospacedDigitSystemFont(ofSize: 17, weight: .regular)
-    }()
+    public var heading1 = DownFont.boldSystemFont(ofSize: 28)
+    public var heading2 = DownFont.boldSystemFont(ofSize: 24)
+    public var heading3 = DownFont.boldSystemFont(ofSize: 20)
+    public var body = DownFont.systemFont(ofSize: 17)
+    public var code = DownFont(name: "menlo", size: 17) ?? .systemFont(ofSize: 17)
+    public var listItemPrefix = DownFont.monospacedDigitSystemFont(ofSize: 17, weight: .regular)
 }
-
-#endif

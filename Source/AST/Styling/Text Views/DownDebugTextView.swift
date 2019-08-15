@@ -8,8 +8,7 @@
 
 #if canImport(UIKit)
 
-import Foundation
-import  UIKit
+import UIKit
 
 public class DownDebugTextView: DownTextView {
 

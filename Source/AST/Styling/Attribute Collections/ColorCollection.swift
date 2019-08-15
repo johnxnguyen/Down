@@ -8,22 +8,27 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+public typealias DownColor = UIColor
+
+#elseif canImport(AppKit)
+
+import AppKit
+public typealias DownColor = NSColor
+
+#endif
 
 public struct ColorCollection {
 
-    public var heading1 = UIColor.black
-    public var heading2 = UIColor.black
-    public var heading3 = UIColor.black
-    public var body = UIColor.black
-    public var code = UIColor.black
-    public var link = UIColor.systemBlue
-    public var quote = UIColor.darkGray
-    public var quoteStripe = UIColor.darkGray
-    public var thematicBreak = UIColor(white: 0.9, alpha: 1)
-    public var listItemPrefix = UIColor.lightGray
-    public var codeBlockBackground = UIColor(red: 0.96, green: 0.97, blue: 0.98, alpha: 1)
+    public var heading1 = DownColor.black
+    public var heading2 = DownColor.black
+    public var heading3 = DownColor.black
+    public var body = DownColor.black
+    public var code = DownColor.black
+    public var link = DownColor.systemBlue
+    public var quote = DownColor.darkGray
+    public var quoteStripe = DownColor.darkGray
+    public var thematicBreak = DownColor(white: 0.9, alpha: 1)
+    public var listItemPrefix = DownColor.lightGray
+    public var codeBlockBackground = DownColor(red: 0.96, green: 0.97, blue: 0.98, alpha: 1)
 }
-
-#endif

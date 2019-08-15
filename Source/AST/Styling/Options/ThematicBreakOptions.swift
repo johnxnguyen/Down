@@ -8,13 +8,16 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
 
 public struct ThematicBreakOptions {
 
     public var thickness: CGFloat = 1
     public var indentation: CGFloat = 0
 }
-
-#endif

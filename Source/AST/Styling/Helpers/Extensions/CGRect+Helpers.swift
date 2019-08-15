@@ -8,10 +8,14 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
 
-// TODO: test
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
+
 extension CGRect {
 
     init(minX: CGFloat, minY: CGFloat, maxX: CGFloat, maxY: CGFloat) {
@@ -22,5 +26,3 @@ extension CGRect {
         return CGRect(origin: origin.translated(by: point), size: size)
     }
 }
-
-#endif

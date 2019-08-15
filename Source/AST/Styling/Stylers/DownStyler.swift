@@ -8,8 +8,13 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
 
 open class DownStyler: Styler {
 
@@ -98,7 +103,7 @@ open class DownStyler: Styler {
     open func style(heading str: NSMutableAttributedString, level: Int) {
         let (font, color, paragraphStyle) = headingAttributes(for: level)
 
-        str.updateExistingAttributes(for: .font) { (currentFont: UIFont) in
+        str.updateExistingAttributes(for: .font) { (currentFont: DownFont) in
             var newFont = font
 
             if (currentFont.isMonospace) {
@@ -156,13 +161,13 @@ open class DownStyler: Styler {
     }
 
     open func style(emphasis str: NSMutableAttributedString) {
-        str.updateExistingAttributes(for: .font) { (font: UIFont) in
+        str.updateExistingAttributes(for: .font) { (font: DownFont) in
             font.italic
         }
     }
 
     open func style(strong str: NSMutableAttributedString) {
-        str.updateExistingAttributes(for: .font) { (font: UIFont) in
+        str.updateExistingAttributes(for: .font) { (font: DownFont) in
             font.bold
         }
     }
@@ -207,7 +212,7 @@ open class DownStyler: Styler {
 
     // MARK: - Helpers
 
-    private func headingAttributes(for level: Int) -> (UIFont, UIColor, NSParagraphStyle) {
+    private func headingAttributes(for level: Int) -> (DownFont, DownColor, NSParagraphStyle) {
         switch level {
         case 1: return (fonts.heading1, colors.heading1, paragraphStyles.heading1)
         case 2: return (fonts.heading2, colors.heading2, paragraphStyles.heading2)
@@ -282,5 +287,3 @@ private extension NSAttributedString {
         return attributedSubstring(from: NSMakeRange(0, length))
     }
 }
-
-#endif

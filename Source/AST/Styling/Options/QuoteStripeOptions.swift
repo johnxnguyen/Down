@@ -8,13 +8,16 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
 
 public struct QuoteStripeOptions {
 
     public var thickness: CGFloat = 2
     public var spacingAfter: CGFloat = 8
 }
-
-#endif

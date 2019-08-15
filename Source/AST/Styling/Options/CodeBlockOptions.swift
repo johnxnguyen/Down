@@ -8,12 +8,15 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
 
 public struct CodeBlockOptions {
 
     public var containerInset: CGFloat = 8
 }
-
-#endif

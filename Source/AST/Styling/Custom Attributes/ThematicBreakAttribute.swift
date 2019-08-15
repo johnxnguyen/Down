@@ -8,18 +8,21 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
 
 struct ThematicBreakAttribute {
 
     var thickness: CGFloat
-    var color: UIColor
+    var color: DownColor
 }
 
 extension NSAttributedString.Key {
     
     static let thematicBreak = NSAttributedString.Key(rawValue: "thematicBreak")
 }
-
-#endif

@@ -8,8 +8,13 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
 
 public class ListItemParagraphStyler {
 
@@ -35,7 +40,7 @@ public class ListItemParagraphStyler {
         return style
     }
 
-    public init(options: ListItemOptions, prefixFont: UIFont) {
+    public init(options: ListItemOptions, prefixFont: DownFont) {
         self.options = options
         self.largestPrefixWidth = prefixFont.widthOfNumberedPrefix(digits: options.maxPrefixDigits)
     }
@@ -60,7 +65,7 @@ public class ListItemParagraphStyler {
 
 // MARK: - Helpers
 
-private extension UIFont {
+private extension DownFont {
 
     func widthOfNumberedPrefix(digits: UInt) -> CGFloat {
         widthOfLargestDigit * CGFloat(digits) + widthOfPeriod
@@ -78,5 +83,3 @@ private extension UIFont {
             .width
     }
 }
-
-#endif
