@@ -20,11 +20,11 @@ public typealias DownFontDescriptor = NSFontDescriptor
 
 extension DownFont {
 
-    var isBold: Bool {
+    var isStrong: Bool {
         return contains(.strong)
     }
 
-    var isItalic: Bool {
+    var isEmphasized: Bool {
         return contains(.emphasis)
     }
 
@@ -32,11 +32,11 @@ extension DownFont {
         return contains(.monoSpace)
     }
 
-    var bold: DownFont {
+    var strong: DownFont {
         return with(.strong) ?? self
     }
 
-    var italic: DownFont {
+    var emphasis: DownFont {
         return with(.emphasis) ?? self
     }
 

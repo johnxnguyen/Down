@@ -110,12 +110,12 @@ open class DownStyler: Styler {
                 newFont = newFont.monospace
             }
             
-            if (currentFont.isItalic) {
-                newFont = newFont.italic
+            if (currentFont.isEmphasized) {
+                newFont = newFont.emphasis
             }
 
-            if (currentFont.isBold) {
-                newFont = newFont.bold
+            if (currentFont.isStrong) {
+                newFont = newFont.strong
             }
 
             return newFont
@@ -162,13 +162,13 @@ open class DownStyler: Styler {
 
     open func style(emphasis str: NSMutableAttributedString) {
         str.updateExistingAttributes(for: .font) { (font: DownFont) in
-            font.italic
+            font.emphasis
         }
     }
 
     open func style(strong str: NSMutableAttributedString) {
         str.updateExistingAttributes(for: .font) { (font: DownFont) in
-            font.bold
+            font.strong
         }
     }
 
