@@ -8,14 +8,23 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+public typealias TextView = UITextView
 
-open class DownTextView: UITextView {
+#elseif canImport(AppKit)
+
+import AppKit
+public typealias TextView = NSTextView
+
+#endif
+
+open class DownTextView: TextView {
 
     // MARK: - Properties
 
     open var styler: Styler
+
+    #if canImport(UIKit)
 
     open override var text: String! {
         didSet {
@@ -23,6 +32,18 @@ open class DownTextView: UITextView {
             try? render()
         }
     }
+
+    #elseif canImport(AppKit)
+
+    open override var string: String {
+        didSet {
+            guard oldValue != string else  { return }
+            try? render()
+        }
+    }
+
+    #endif
+
 
     // MARK: - Init
 
@@ -49,9 +70,17 @@ open class DownTextView: UITextView {
     // MARK: - Methods
 
     open func render() throws {
+        #if canImport(UIKit)
         let down = Down(markdownString: text)
-        attributedText = try down.toAttributedString(styler: styler)
+        let markdown = try down.toAttributedString(styler: styler)
+        attributedText = markdown
+
+        #elseif canImport(AppKit)
+        guard let textStorage = textStorage else { return }
+        let down = Down(markdownString: string)
+        let markdown = try down.toAttributedString(styler: styler)
+        textStorage.replaceCharacters(in: textStorage.wholeRange, with: markdown)
+
+        #endif
     }
 }
-
-#endif

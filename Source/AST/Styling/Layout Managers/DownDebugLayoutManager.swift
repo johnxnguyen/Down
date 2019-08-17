@@ -8,8 +8,13 @@
 
 #if canImport(UIKit)
 
-import Foundation
 import UIKit
+
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
 
 public class DownDebugLayoutManager: DownLayoutManager {
 
@@ -28,12 +33,21 @@ public class DownDebugLayoutManager: DownLayoutManager {
     }
 
     private func drawRect(_ rect: CGRect, color: CGColor) {
+        #if canImport(UIKit)
         guard let context = UIGraphicsGetCurrentContext() else { return }
+
         UIGraphicsPushContext(context)
+        defer { UIGraphicsPopContext() }
+
+        #elseif canImport(AppKit)
+        guard let context = NSGraphicsContext.current?.cgContext else { return }
+
+        NSGraphicsContext.saveGraphicsState()
+        defer { NSGraphicsContext.restoreGraphicsState() }
+
+        #endif
+
         context.setStrokeColor(color)
         context.stroke(rect)
-        UIGraphicsPopContext()
     }
 }
-
-#endif

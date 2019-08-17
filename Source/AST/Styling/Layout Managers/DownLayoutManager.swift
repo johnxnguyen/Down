@@ -10,6 +10,12 @@
 
 import UIKit
 
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
+
 public class DownLayoutManager: NSLayoutManager {
 
     override public func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
@@ -19,13 +25,21 @@ public class DownLayoutManager: NSLayoutManager {
     }
 
     private func drawCustomBackgrounds(forGlyphRange glyphsToShow: NSRange,  at origin: CGPoint) {
-        guard
-            let context = UIGraphicsGetCurrentContext(),
-            let textStorage = textStorage
-            else { return }
+        #if canImport(UIKit)
+        guard let context = UIGraphicsGetCurrentContext() else { return }
 
         UIGraphicsPushContext(context)
         defer { UIGraphicsPopContext() }
+
+        #elseif canImport(AppKit)
+        guard let context = NSGraphicsContext.current?.cgContext else { return }
+
+        NSGraphicsContext.saveGraphicsState()
+        defer { NSGraphicsContext.restoreGraphicsState() }
+
+        #endif
+
+        guard let textStorage = textStorage else { return }
 
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
 
@@ -66,10 +80,19 @@ public class DownLayoutManager: NSLayoutManager {
     }
 
     private func drawThematicBreakIfNeeded(in characterRange: NSRange, at origin: CGPoint) {
+        #if canImport(UIKit)
         guard let context = UIGraphicsGetCurrentContext() else { return }
-        
+
         UIGraphicsPushContext(context)
         defer { UIGraphicsPopContext() }
+
+        #elseif canImport(AppKit)
+        guard let context = NSGraphicsContext.current?.cgContext else { return }
+
+        NSGraphicsContext.saveGraphicsState()
+        defer { NSGraphicsContext.restoreGraphicsState() }
+
+        #endif
 
         textStorage?.enumerateAttributes(for: .thematicBreak, in: characterRange) { (attr: ThematicBreakAttribute, range) in
             let firstGlyphIndex = glyphIndexForCharacter(at: range.lowerBound)
@@ -100,10 +123,19 @@ public class DownLayoutManager: NSLayoutManager {
     }
 
     private func drawQuoteStripeIfNeeded(in characterRange: NSRange, at origin: CGPoint) {
+        #if canImport(UIKit)
         guard let context = UIGraphicsGetCurrentContext() else { return }
 
         UIGraphicsPushContext(context)
         defer { UIGraphicsPopContext() }
+
+        #elseif canImport(AppKit)
+        guard let context = NSGraphicsContext.current?.cgContext else { return }
+
+        NSGraphicsContext.saveGraphicsState()
+        defer { NSGraphicsContext.restoreGraphicsState() }
+
+        #endif
 
         textStorage?.enumerateAttributes(for: .quoteStripe, in: characterRange) { (attr: QuoteStripeAttribute, quoteRange) in
             context.setFillColor(attr.color.cgColor)
@@ -173,5 +205,3 @@ private extension Array where Element == NSRange {
         return result
     }
 }
-
-#endif

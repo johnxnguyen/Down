@@ -10,6 +10,12 @@
 
 import UIKit
 
+#elseif canImport(AppKit)
+
+import AppKit
+
+#endif
+
 public class DownDebugTextView: DownTextView {
 
     public init(frame: CGRect, styler: Styler = DownStyler()) {
@@ -20,5 +26,3 @@ public class DownDebugTextView: DownTextView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-#endif
