@@ -3,9 +3,9 @@ language: objective-c
 before_install:
   - set -o pipefail
   - gem install xcpretty slather -N
-  - xcrun simctl boot "iPhone 7" || echo "(Pre)Launched the simulator."
+  - xcrun simctl boot "iPhone Xs" || echo "(Pre)Launched the simulator."
 script:
-  - travis_retry xcodebuild -project Down.xcodeproj -scheme "Down" -destination "platform=iOS Simulator,name=iPhone 7" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES test | xcpretty -c
+  - travis_retry xcodebuild -project Down.xcodeproj -scheme "Down" -destination "platform=iOS Simulator,name=iPhone Xs" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES test | xcpretty -c
   - travis_retry xcodebuild -project Down.xcodeproj -scheme "Down" -sdk macosx -destination 'platform=OS X,arch=x86_64' -enableCodeCoverage YES test | xcpretty -c
   - travis_retry xcodebuild -project Down.xcodeproj -scheme "Down" -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV' -enableCodeCoverage YES test | xcpretty -c
 after_success:
