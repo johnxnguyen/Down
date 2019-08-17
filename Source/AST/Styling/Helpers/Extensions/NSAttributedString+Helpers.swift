@@ -13,11 +13,11 @@ extension NSAttributedString {
     typealias Attributes = [NSAttributedString.Key: Any]
 
     var wholeRange: NSRange {
-        NSRange(location: 0, length: length)
+        return NSRange(location: 0, length: length)
     }
 
     func ranges(of key: Key) -> [NSRange] {
-        ranges(of: key, in: wholeRange)
+        return ranges(of: key, in: wholeRange)
     }
 
     func ranges(of key: Key, in range: NSRange) -> [NSRange] {
@@ -25,7 +25,7 @@ extension NSAttributedString {
     }
 
     func rangesMissingAttribute(for key: Key) -> [NSRange] {
-        rangesMissingAttribute(for: key, in: wholeRange)
+        return rangesMissingAttribute(for: key, in: wholeRange)
     }
 
     func rangesMissingAttribute(for key: Key, in range: NSRange) -> [NSRange] {

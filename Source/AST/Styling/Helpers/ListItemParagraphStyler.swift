@@ -68,17 +68,17 @@ public class ListItemParagraphStyler {
 private extension DownFont {
 
     func widthOfNumberedPrefix(digits: UInt) -> CGFloat {
-        widthOfLargestDigit * CGFloat(digits) + widthOfPeriod
+        return widthOfLargestDigit * CGFloat(digits) + widthOfPeriod
     }
 
     private var widthOfLargestDigit: CGFloat {
-        (0...9)
+        return (0...9)
             .map { NSAttributedString(string: "\($0)", attributes: [.font: self]).size().width }
             .max()!
     }
 
     private var widthOfPeriod: CGFloat {
-        NSAttributedString(string: ".", attributes: [.font: self])
+        return NSAttributedString(string: ".", attributes: [.font: self])
             .size()
             .width
     }
