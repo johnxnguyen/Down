@@ -34,4 +34,4 @@ extension NSAttributedString {
     }
 
 }
-#endif
+#endif // !os(Linux)

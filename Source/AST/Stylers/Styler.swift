@@ -15,6 +15,13 @@ import Foundation
 /// A styler is used in conjunction with an instance of `AttributedStringVisitor` in order
 /// to generate an NSAttributedString from an abstract syntax tree.
 public protocol Styler {
+
+    #if os(Linux)
+    typealias PrefixAttributeKey = NSAttributedStringKey
+    #else
+    typealias PrefixAttributeKey = NSAttributedString.Key
+    #endif
+
     func style(document str: NSMutableAttributedString)
     func style(blockQuote str: NSMutableAttributedString)
     func style(list str: NSMutableAttributedString)
@@ -36,5 +43,5 @@ public protocol Styler {
     func style(link str: NSMutableAttributedString, title: String?, url: String?)
     func style(image str: NSMutableAttributedString, title: String?, url: String?)
     
-    var listPrefixAttributes: [NSAttributedString.Key: Any] { get }
+    var listPrefixAttributes: [PrefixAttributeKey: Any] { get }
 }

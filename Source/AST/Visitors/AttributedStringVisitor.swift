@@ -5,6 +5,8 @@
 //  Created by John Nguyen on 09.04.19.
 //
 
+#if !os(Linux)
+
 import Foundation
 
 /// This class is used to generated an `NSMutableAttributedString` from the abstract syntax
@@ -201,3 +203,4 @@ private extension String {
         return "\u{2028}"
     }
 }
+#endif // !os(Linux)

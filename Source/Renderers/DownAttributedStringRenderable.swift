@@ -6,6 +6,7 @@
 //  Copyright © 2016-2019 Glazed Donut, LLC. All rights reserved.
 //
 
+#if !os(Linux)
 import Foundation
 import libcmark
 
@@ -56,3 +57,4 @@ extension DownAttributedStringRenderable {
         return document.accept(visitor)
     }
 }
+#endif // !os(Linux)
