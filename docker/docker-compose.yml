@@ -9,4 +9,4 @@ services:
     working_dir: /app
     stdin_open: true
     tty: true
-    command: /app/docker/swift-rebuild.sh
+    command: /app/docker/down-rebuild.sh
