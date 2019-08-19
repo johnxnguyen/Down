@@ -17,7 +17,6 @@ Pod::Spec.new do |spec|
   spec.module_name = "Down"
   spec.preserve_paths = "Source/cmark/include/module.modulemap", "Source/cmark/*.inc", "Source/cmark/COPYING"
   spec.pod_target_xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/Down/Source/cmark/**' }
-  spec.compiler_flags = '-Wno-shorten-64-to-32'
   spec.ios.resource = 'Resources/DownView.bundle'
   spec.osx.resource = 'Resources/DownView.bundle'
   spec.swift_version = "5.0"
