@@ -16,6 +16,9 @@ import AppKit
 
 #endif
 
+/// A default `Styler` implementation that supports a variety of configurable
+/// properties for font, text color and paragraph styling, as well as formatting
+/// of nested lists and quotes.
 open class DownStyler: Styler {
 
     // MARK: - Properties

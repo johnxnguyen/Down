@@ -18,6 +18,7 @@ public typealias TextView = NSTextView
 
 #endif
 
+/// A text view capable of parsing and rendering markdown via the AST.
 open class DownTextView: TextView {
 
     // MARK: - Properties

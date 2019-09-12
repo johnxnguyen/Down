@@ -16,6 +16,19 @@ import AppKit
 
 #endif
 
+/// A layout manager that draws the line fragments.
+///
+/// Line fragments are the areas with a document that contain lines of text. There
+/// are two types.
+///
+/// 1. A *line rect* (drawn in red) indicates the maximum rect enclosing the line.
+/// This inlcudes not only the textual content, but also the padding (if any) around that text.
+/// 2. A *line used rect* (drawn in blue) is the smallest rect enclosing the textual content.
+///
+/// The visualization of these rects is useful when determining the paragraph styles
+/// of a `DownStyler`.
+///
+/// Insert this into a TextKit stack manually, or use the provided `DownDebugTextView`.
 public class DownDebugLayoutManager: DownLayoutManager {
 
     override public func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {

@@ -16,6 +16,9 @@ import AppKit
 
 #endif
 
+/// A text view capable of parsing and rendering markdown via the AST, as well as line fragments.
+///
+/// See `DownDebugLayoutManager`.
 public class DownDebugTextView: DownTextView {
 
     public init(frame: CGRect, styler: Styler = DownStyler()) {

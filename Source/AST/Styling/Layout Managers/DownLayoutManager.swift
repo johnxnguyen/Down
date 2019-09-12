@@ -16,6 +16,9 @@ import AppKit
 
 #endif
 
+/// A layout manager capable of drawing the custom attributes set by the `DownStyler`.
+///
+/// Insert this into a TextKit stack manually, or use the provided `DownTextView`.
 public class DownLayoutManager: NSLayoutManager {
 
     override public func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {

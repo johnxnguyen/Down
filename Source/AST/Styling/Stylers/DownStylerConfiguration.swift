@@ -6,6 +6,7 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
+/// A configuration object used to initialze the `DownStyler`.
 public struct DownStylerConfiguration {
     
     public var fonts = FontCollection()

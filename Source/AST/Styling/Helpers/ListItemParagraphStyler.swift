@@ -16,12 +16,15 @@ import AppKit
 
 #endif
 
+/// A convenient class used to format lists, such that list item prefixes
+/// are right aligned and list item content left aligns.
 public class ListItemParagraphStyler {
 
     var indentation: CGFloat {
         return largestPrefixWidth + options.spacingAfterPrefix
     }
 
+    /// The paragraph style intended for all paragraphs excluding the first.
     var trailingParagraphStyle: NSParagraphStyle {
         let contentIndentation = indentation
         let style = baseStyle
@@ -45,6 +48,10 @@ public class ListItemParagraphStyler {
         self.largestPrefixWidth = prefixFont.widthOfNumberedPrefix(digits: options.maxPrefixDigits)
     }
 
+
+    /// The paragraph style intended for the first paragraph of the list item.
+    /// 
+    /// - Parameter prefixWidth: the width (in points) of the list item prefix.
     func leadingParagraphStyle(prefixWidth: CGFloat) -> NSParagraphStyle {
         let contentIndentation = indentation
         let prefixIndentation: CGFloat = contentIndentation - options.spacingAfterPrefix - prefixWidth
