@@ -249,10 +249,6 @@ class ListItemStyleTests: StylerTestSuite {
 
     // MARK: - Miscellaneous
 
-//    func testThat_AdjacentLists_Have_VerticalSpacing() {
-//        XCTFail()
-//    }
-
     func testThat_ListItems_Preseve_InlineElements() {
         // Given
         let markdown = """
@@ -270,6 +266,4 @@ class ListItemStyleTests: StylerTestSuite {
         // Then
         assertStyle(for: markdown, width: .narrow)
     }
-
-    // TODO: test prefix font and color
 }

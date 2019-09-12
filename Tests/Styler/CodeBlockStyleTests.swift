@@ -50,6 +50,4 @@ class CodeBlockStyleTests: StylerTestSuite {
         // Then
         assertStyle(for: markdown, width: .wide)
     }
-
-    // TODO: Test also line spacing
 }

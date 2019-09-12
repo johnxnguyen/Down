@@ -91,7 +91,4 @@ class InlineStyleTests: StylerTestSuite {
         // Then
         assertStyle(for: markdown, width: .wide)
     }
-
-    // TODO: fonts, colors and paragraph styles
-
 }

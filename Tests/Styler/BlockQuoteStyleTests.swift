@@ -162,7 +162,6 @@ class BlockQuoteStyleTests: StylerTestSuite {
     }
 
     func testThat_QuoteContent_Preserves_ThematicBreak() {
-        // TODO: THIS ISN'T RIGHT
         // Given
         let markdown = """
         Etiam vel dui id purus finibus auctor. Donec in semper lectus. Vestibulum vel eleifend justo.
