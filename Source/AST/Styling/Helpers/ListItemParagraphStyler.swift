@@ -79,7 +79,7 @@ private extension DownFont {
     }
 
     private var widthOfLargestDigit: CGFloat {
-        return (0...9)
+        return Int.decimalDigits
             .map { NSAttributedString(string: "\($0)", attributes: [.font: self]).size().width }
             .max()!
     }
@@ -88,5 +88,12 @@ private extension DownFont {
         return NSAttributedString(string: ".", attributes: [.font: self])
             .size()
             .width
+    }
+}
+
+private extension Int {
+
+    static var decimalDigits: [Int] {
+        return Array(0...9)
     }
 }
