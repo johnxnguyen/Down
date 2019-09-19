@@ -31,7 +31,7 @@ public class BaseNode: Node {
         return result
     }()
 
-    public lazy var nestDepth: Int = {
+    public private(set) lazy var nestDepth: Int = {
         var depth = 0
         var next = cmarkNode.parent
 
