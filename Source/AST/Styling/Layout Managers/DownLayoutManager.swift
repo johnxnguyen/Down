@@ -21,26 +21,44 @@ import AppKit
 /// Insert this into a TextKit stack manually, or use the provided `DownTextView`.
 public class DownLayoutManager: NSLayoutManager {
 
+    #if canImport(UIKit)
+    var context: CGContext? {
+        return UIGraphicsGetCurrentContext()
+    }
+
+    func push(context: CGContext) {
+        UIGraphicsPushContext(context)
+    }
+
+    func popContext() {
+        UIGraphicsPopContext()
+    }
+
+    #elseif canImport(AppKit)
+    var context: CGContext? {
+        return NSGraphicsContext.current?.cgContext
+    }
+
+    func push(context: CGContext) {
+        NSGraphicsContext.saveGraphicsState()
+    }
+
+    func popContext() {
+        NSGraphicsContext.restoreGraphicsState()
+    }
+
+    #endif
+
     override public func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         drawCustomBackgrounds(forGlyphRange: glyphsToShow, at: origin)
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
-        drawCustomAttriibutes(forGlyphRange: glyphsToShow, at: origin)
+        drawCustomAttributes(forGlyphRange: glyphsToShow, at: origin)
     }
 
     private func drawCustomBackgrounds(forGlyphRange glyphsToShow: NSRange,  at origin: CGPoint) {
-        #if canImport(UIKit)
-        guard let context = UIGraphicsGetCurrentContext() else { return }
-
-        UIGraphicsPushContext(context)
-        defer { UIGraphicsPopContext() }
-
-        #elseif canImport(AppKit)
-        guard let context = NSGraphicsContext.current?.cgContext else { return }
-
-        NSGraphicsContext.saveGraphicsState()
-        defer { NSGraphicsContext.restoreGraphicsState() }
-
-        #endif
+        guard let context = context else { return }
+        push(context: context)
+        defer { popContext() }
 
         guard let textStorage = textStorage else { return }
 
@@ -76,26 +94,16 @@ public class DownLayoutManager: NSLayoutManager {
         }
     }
 
-    private func drawCustomAttriibutes(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
+    private func drawCustomAttributes(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
         drawThematicBreakIfNeeded(in: characterRange, at: origin)
         drawQuoteStripeIfNeeded(in: characterRange, at: origin)
     }
 
     private func drawThematicBreakIfNeeded(in characterRange: NSRange, at origin: CGPoint) {
-        #if canImport(UIKit)
-        guard let context = UIGraphicsGetCurrentContext() else { return }
-
-        UIGraphicsPushContext(context)
-        defer { UIGraphicsPopContext() }
-
-        #elseif canImport(AppKit)
-        guard let context = NSGraphicsContext.current?.cgContext else { return }
-
-        NSGraphicsContext.saveGraphicsState()
-        defer { NSGraphicsContext.restoreGraphicsState() }
-
-        #endif
+        guard let context = context else { return }
+        push(context: context)
+        defer { popContext() }
 
         textStorage?.enumerateAttributes(for: .thematicBreak, in: characterRange) { (attr: ThematicBreakAttribute, range) in
             let firstGlyphIndex = glyphIndexForCharacter(at: range.lowerBound)
@@ -126,19 +134,9 @@ public class DownLayoutManager: NSLayoutManager {
     }
 
     private func drawQuoteStripeIfNeeded(in characterRange: NSRange, at origin: CGPoint) {
-        #if canImport(UIKit)
-        guard let context = UIGraphicsGetCurrentContext() else { return }
-
-        UIGraphicsPushContext(context)
-        defer { UIGraphicsPopContext() }
-
-        #elseif canImport(AppKit)
-        guard let context = NSGraphicsContext.current?.cgContext else { return }
-
-        NSGraphicsContext.saveGraphicsState()
-        defer { NSGraphicsContext.restoreGraphicsState() }
-
-        #endif
+        guard let context = context else { return }
+        push(context: context)
+        defer { popContext() }
 
         textStorage?.enumerateAttributes(for: .quoteStripe, in: characterRange) { (attr: QuoteStripeAttribute, quoteRange) in
             context.setFillColor(attr.color.cgColor)
