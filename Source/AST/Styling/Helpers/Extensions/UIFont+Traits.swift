@@ -51,7 +51,7 @@ extension DownFont {
         traits.insert(trait)
 
         #if canImport(UIKit)
-        guard let newDescriptor = fontDescriptor.withSymbolicTraits(traits) else { return nil }
+        guard let newDescriptor = fontDescriptor.withSymbolicTraits(traits) else { return self }
         return DownFont(descriptor: newDescriptor, size: pointSize)
 
         #elseif canImport(AppKit)
