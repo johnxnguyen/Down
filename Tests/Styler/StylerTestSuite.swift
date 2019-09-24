@@ -93,7 +93,7 @@ private extension CGRect {
 private extension DownStylerConfiguration {
 
     static var testConfiguration: DownStylerConfiguration {
-        var fonts = FontCollection()
+        var fonts = StaticFontCollection()
         fonts.heading1 = .systemFont(ofSize: 28)
         fonts.heading2 = .systemFont(ofSize: 24)
         fonts.heading3 = .systemFont(ofSize: 20)
@@ -101,7 +101,7 @@ private extension DownStylerConfiguration {
         fonts.code = UIFont(name: "menlo", size: 17)!
         fonts.listItemPrefix = .monospacedDigitSystemFont(ofSize: 17, weight: .regular)
 
-        var colors = ColorCollection()
+        var colors = StaticColorCollection()
         colors.heading1 = #colorLiteral(red: 0.7803921569, green: 0, blue: 0.2235294118, alpha: 1)
         colors.heading2 = #colorLiteral(red: 1, green: 0.3411764706, blue: 0.2, alpha: 1)
         colors.heading3 = #colorLiteral(red: 1, green: 0.7647058824, blue: 0.05882352941, alpha: 1)

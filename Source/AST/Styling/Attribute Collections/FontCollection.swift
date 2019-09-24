@@ -18,7 +18,17 @@ public typealias DownFont = NSFont
 
 #endif
 
-public struct FontCollection {
+public protocol FontCollection {
+
+    var heading1: DownFont { get }
+    var heading2: DownFont { get }
+    var heading3: DownFont { get }
+    var body: DownFont { get }
+    var code: DownFont { get }
+    var listItemPrefix: DownFont { get }
+}
+
+public struct StaticFontCollection: FontCollection {
 
     public var heading1 = DownFont.boldSystemFont(ofSize: 28)
     public var heading2 = DownFont.boldSystemFont(ofSize: 24)
