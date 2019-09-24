@@ -1049,6 +1049,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 90A40A9A1EC0309A004F2E91 /* Universal-Target-Base.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1066,6 +1067,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 90A40A9A1EC0309A004F2E91 /* Universal-Target-Base.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

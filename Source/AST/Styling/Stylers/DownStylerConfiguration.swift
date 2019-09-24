@@ -6,6 +6,8 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
+#if !os(watchOS)
+
 /// A configuration object used to initialze the `DownStyler`.
 public struct DownStylerConfiguration {
     
@@ -20,3 +22,5 @@ public struct DownStylerConfiguration {
 
     public init() {}
 }
+
+#endif

@@ -6,6 +6,8 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
+#if !os(watchOS)
+
 #if canImport(UIKit)
 
 import UIKit
@@ -47,3 +49,5 @@ public struct StaticColorCollection: ColorCollection {
     public var listItemPrefix = DownColor.lightGray
     public var codeBlockBackground = DownColor(red: 0.96, green: 0.97, blue: 0.98, alpha: 1)
 }
+
+#endif

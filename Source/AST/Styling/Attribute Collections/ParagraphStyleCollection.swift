@@ -6,6 +6,8 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
+#if !os(watchOS)
+
 #if canImport(UIKit)
 
 import UIKit
@@ -44,3 +46,5 @@ public struct ParagraphStyleCollection {
         code = codeStyle
     }
 }
+
+#endif

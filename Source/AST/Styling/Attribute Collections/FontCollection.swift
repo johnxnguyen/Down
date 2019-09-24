@@ -6,6 +6,8 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
+#if !os(watchOS)
+
 #if canImport(UIKit)
 
 import UIKit
@@ -37,3 +39,5 @@ public struct StaticFontCollection: FontCollection {
     public var code = DownFont(name: "menlo", size: 17) ?? .systemFont(ofSize: 17)
     public var listItemPrefix = DownFont.monospacedDigitSystemFont(ofSize: 17, weight: .regular)
 }
+
+#endif

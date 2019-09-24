@@ -6,6 +6,8 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
+#if !os(watchOS)
+
 #if canImport(UIKit)
 
 import UIKit
@@ -97,3 +99,5 @@ private extension Int {
         return Array(0...9)
     }
 }
+
+#endif

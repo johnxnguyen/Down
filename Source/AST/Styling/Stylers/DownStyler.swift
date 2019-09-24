@@ -6,6 +6,8 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
+#if !os(watchOS)
+
 #if canImport(UIKit)
 
 import UIKit
@@ -290,3 +292,5 @@ private extension NSAttributedString {
         return attributedSubstring(from: NSMakeRange(0, length))
     }
 }
+
+#endif
