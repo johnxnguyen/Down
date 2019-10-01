@@ -175,10 +175,6 @@ class ListItemStyleTests: StylerTestSuite {
         assertStyle(for: markdown, width: .narrow)
     }
 
-//    func testThat_NestedList_InFirstParagraph_StartsOn_NewLine() {
-//        XCTFail()
-//    }
-
     func testThat_NestedList_InMiddleParagraph_AlignsTo_OuterList() {
         // Given
         let markdown = """
