@@ -74,8 +74,8 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
 
     func testReplacingAttribute() {
         // Given
-        let hello = NSAttributedString(string: "Hello ", attributes: [.foregroundColor: UIColor.black])
-        let world = NSAttributedString(string: "world!", attributes: [.foregroundColor: UIColor.white])
+        let hello = NSAttributedString(string: "Hello ", attributes: [.foregroundColor: DownColor.black])
+        let world = NSAttributedString(string: "world!", attributes: [.foregroundColor: DownColor.white])
 
         let sut = NSMutableAttributedString(attributedString: hello)
         sut.append(world)
@@ -84,13 +84,13 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         XCTAssertEqual(countAttribute(.foregroundColor, in: sut), 2)
 
         // When
-        sut.replaceAttribute(for: .foregroundColor, value: UIColor.yellow)
+        sut.replaceAttribute(for: .foregroundColor, value: DownColor.yellow)
 
         // Then
         let attributeRanges = sut.ranges(of: .foregroundColor)
         XCTAssertEqual(attributeRanges.count, 1)
         XCTAssertEqual(attributeRanges.first, NSRange(location: 0, length: 12))
-        XCTAssertTrue(value(for: .foregroundColor, inRange: attributeRanges.first!, isEqualTo: UIColor.yellow, sut: sut))
+        XCTAssertTrue(value(for: .foregroundColor, inRange: attributeRanges.first!, isEqualTo: DownColor.yellow, sut: sut))
     }
 
     func testUpdatingAttribute() {
