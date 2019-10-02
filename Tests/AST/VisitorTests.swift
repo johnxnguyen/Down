@@ -5,6 +5,8 @@
 //  Created by John Nguyen on 08.04.19.
 //
 
+#if os(iOS)
+
 import XCTest
 import SnapshotTesting
 @testable import Down
@@ -210,3 +212,5 @@ private class EmptyStyler: Styler {
     func style(link str: NSMutableAttributedString, title: String?, url: String?) {}
     func style(image str: NSMutableAttributedString, title: String?, url: String?) {}
 }
+
+#endif

@@ -6,6 +6,8 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
+#if os(iOS)
+
 class ThematicBreakSyleTests: StylerTestSuite {
 
     /// # Important
@@ -65,3 +67,5 @@ class ThematicBreakSyleTests: StylerTestSuite {
         assertStyle(for: markdown, width: .wide, configuration: configuration)
     }
 }
+
+#endif
