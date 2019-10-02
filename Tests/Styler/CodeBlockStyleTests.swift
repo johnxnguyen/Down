@@ -6,8 +6,6 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
-#if os(iOS)
-
 class CodeBlockStyleTests: StylerTestSuite {
 
     /// # Important
@@ -53,5 +51,3 @@ class CodeBlockStyleTests: StylerTestSuite {
         assertStyle(for: markdown, width: .wide)
     }
 }
-
-#endif

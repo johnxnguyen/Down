@@ -6,8 +6,6 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
-#if os(iOS)
-
 import XCTest
 import SnapshotTesting
 @testable import Down
@@ -158,5 +156,3 @@ private extension DownStylerConfiguration {
         return configuration
     }
 }
-
-#endif

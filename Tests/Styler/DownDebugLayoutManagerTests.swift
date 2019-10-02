@@ -6,8 +6,6 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
-#if os(iOS)
-
 class DownDebugLayoutManagerTests: StylerTestSuite {
 
     /// # Important
@@ -42,5 +40,3 @@ class DownDebugLayoutManagerTests: StylerTestSuite {
         assertStyle(for: markdown, width: .wide, showLineFragments: true)
     }
 }
-
-#endif

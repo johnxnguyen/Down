@@ -6,8 +6,6 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
-#if os(iOS)
-
 class BlockQuoteStyleTests: StylerTestSuite {
 
     /// # Important
@@ -208,4 +206,3 @@ class BlockQuoteStyleTests: StylerTestSuite {
     }
 }
 
-#endif

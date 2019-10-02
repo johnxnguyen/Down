@@ -6,8 +6,6 @@
 //  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
 //
 
-#if os(iOS)
-
 class ListItemStyleTests: StylerTestSuite {
 
     /// # Important
@@ -265,5 +263,3 @@ class ListItemStyleTests: StylerTestSuite {
         assertStyle(for: markdown, width: .narrow)
     }
 }
-
-#endif
