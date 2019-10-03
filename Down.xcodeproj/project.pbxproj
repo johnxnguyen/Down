@@ -86,7 +86,6 @@
 		EEA2BDCA22F7152B00D0C72C /* ThematicBreakOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2BDC922F7152B00D0C72C /* ThematicBreakOptions.swift */; };
 		EEA5C02922F58A0900B91D60 /* DownTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA5C02822F58A0900B91D60 /* DownTextView.swift */; };
 		EEA5C02D22F5C96B00B91D60 /* QuoteStripeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA5C02C22F5C96B00B91D60 /* QuoteStripeAttribute.swift */; };
-		EEBA153D2344845500B54ECB /* DownSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBA153C2344845500B54ECB /* DownSnapshotTests.swift */; };
 		EEBA15422344849600B54ECB /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; };
 		EEBA1543234484A000B54ECB /* SnapshotTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */; };
 		EEBA1545234484B800B54ECB /* SnapshotTesting.framework in Copy Testing Frameworks */ = {isa = PBXBuildFile; fileRef = EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1037,7 +1036,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEBA153D2344845500B54ECB /* DownSnapshotTests.swift in Sources */,
 				EEBA154B234484BF00B54ECB /* HeadingStyleTests.swift in Sources */,
 				EEBA1549234484BF00B54ECB /* BlockQuoteStyleTests.swift in Sources */,
 				EEBA1546234484BF00B54ECB /* DownDebugLayoutManagerTests.swift in Sources */,
