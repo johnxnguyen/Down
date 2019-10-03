@@ -11,7 +11,7 @@ class CodeBlockStyleTests: StylerTestSuite {
     /// # Important
     ///
     /// Snapshot tests must be run on the same simulator used to record the reference snapshots, otherwise
-    /// the comparison may fail. These tests were recorded on the **iPhone Xs** simulator.
+    /// the comparison may fail. These tests were recorded on the **iPhone 11** simulator.
     ///
 
     func testThat_CodeBlock_IsStyled() {
