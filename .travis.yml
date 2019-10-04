@@ -11,5 +11,6 @@ script:
   - travis_retry xcodebuild -project Down.xcodeproj -scheme "DownSnapshotTests" -destination "platform=iOS Simulator,OS=13.0,,name=iPhone 11" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES test | xcpretty -c
 after_success:
   - slather coverage --ignore "../**/*/Xcode*" --ignore "Source/cmark/*" --scheme "Down" Down.xcodeproj
+  - bash <(curl -s https://codecov.io/bash) -f coverage/cobertura.xml -X coveragepy -X gcov -X xcode
   - slather coverage --ignore "../**/*/Xcode*" --ignore "Source/cmark/*" --scheme "DownSnapshotTests" Down.xcodeproj
   - bash <(curl -s https://codecov.io/bash) -f coverage/cobertura.xml -X coveragepy -X gcov -X xcode
