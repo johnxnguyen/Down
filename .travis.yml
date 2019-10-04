@@ -12,3 +12,4 @@ script:
 after_success:
   - slather coverage --ignore "../**/*/Xcode*" --ignore "Source/cmark/*" --scheme "Down" Down.xcodeproj
   - slather coverage --ignore "../**/*/Xcode*" --ignore "Source/cmark/*" --scheme "DownSnapshotTests" Down.xcodeproj
+  - bash <(curl -s https://codecov.io/bash) -f coverage/cobertura.xml -X coveragepy -X gcov -X xcode
