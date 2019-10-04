@@ -3,7 +3,7 @@
 //  DownTests
 //
 //  Created by John Nguyen on 29.07.19.
-//  Copyright © 2019 Glazed Donut, LLC. All rights reserved.
+//  Copyright © 2016-2019 Down. All rights reserved.
 //
 
 class InlineStyleTests: StylerTestSuite {

@@ -3,7 +3,7 @@
 //  Down
 //
 //  Created by Rob Phillips on 5/31/16.
-//  Copyright © 2016-2019 Glazed Donut, LLC. All rights reserved.
+//  Copyright © 2016-2019 Down. All rights reserved.
 //
 
 import Foundation
