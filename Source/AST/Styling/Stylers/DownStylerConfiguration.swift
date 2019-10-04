@@ -11,8 +11,8 @@
 /// A configuration object used to initialze the `DownStyler`.
 public struct DownStylerConfiguration {
     
-    public var fonts = StaticFontCollection()
-    public var colors = StaticColorCollection()
+    public var fonts: FontCollection = StaticFontCollection()
+    public var colors: ColorCollection = StaticColorCollection()
     public var paragraphStyles = ParagraphStyleCollection()
     
     public var listItemOptions = ListItemOptions()
