@@ -6,7 +6,7 @@
 [![macOS](https://img.shields.io/badge/OS-macOS-orange.svg)](https://developer.apple.com/macos/)
 [![iOS](https://img.shields.io/badge/OS-iOS-orange.svg)](https://developer.apple.com/ios/)
 [![tvOS](https://img.shields.io/badge/OS-tvOS-orange.svg)](https://developer.apple.com/tvos/)
-[![Coverage Status](https://coveralls.io/repos/github/iwasrobbed/Down/badge.svg?branch=master)](https://coveralls.io/github/iwasrobbed/Down?branch=master)
+[![Code Coverage](https://codecov.io/gh/iwasrobbed/Down/branch/master/graph/badge.svg)](https://codecov.io/gh/iwasrobbed/Down)
 
 Blazing fast Markdown (CommonMark) rendering in Swift, built upon [cmark v0.29.0](https://github.com/commonmark/cmark).
 
@@ -200,14 +200,14 @@ public static let hardBreaks = DownOptions(rawValue: 1 << 2)
  `image/jpeg`, or `image/webp` mime types).  Raw HTML is replaced
  by a placeholder HTML comment. Unsafe links are replaced by
  empty strings. Note that this option is provided for backwards
- compatibility, but safe mode is now the default. 
+ compatibility, but safe mode is now the default.
 */
 public static let safe = DownOptions(rawValue: 1 << 3)
 
 /**
- Allow raw HTML and unsafe links. Note that safe mode is now 
+ Allow raw HTML and unsafe links. Note that safe mode is now
  the default, and the unsafe option must be used if rendering
- of raw HTML and unsafe links is desired. 
+ of raw HTML and unsafe links is desired.
 */
 public static let unsafe = DownOptions(rawValue: 1 << 17)
 
@@ -230,7 +230,7 @@ public static let validateUTF8 = DownOptions(rawValue: 1 << 5)
 public static let smart = DownOptions(rawValue: 1 << 6)
 
 /**
- Combine smart typography with HTML rendering. 
+ Combine smart typography with HTML rendering.
 */
 public static let smartUnsaFe = DownOptions(rawValue: (1 << 17) + (1 << 6))
 ```

@@ -1,7 +1,6 @@
 coverage_service: cobertura_xml
 xcodeproj: Down.xcodeproj
 source_directory: Source
-output_directory: coverage
 ignore:
   - Source/cmark/*
   - Down-Example/*
