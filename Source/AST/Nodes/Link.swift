@@ -39,6 +39,7 @@ public class Link: BaseNode {
 // MARK: - Debug
 
 extension Link: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
         return "Link - title: \(title ?? "nil"), url: \(url ?? "nil"))"
     }

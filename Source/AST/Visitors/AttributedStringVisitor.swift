@@ -15,7 +15,8 @@ public class AttributedStringVisitor {
     
     private let styler: Styler
     private let options: DownOptions
-    
+    private var listPrefixGenerators = [ListItemPrefixGenerator]()
+
     /// Creates a new instance with the given styler and options.
     ///
     /// - parameters:
@@ -39,46 +40,47 @@ extension AttributedStringVisitor: Visitor {
     public func visit(blockQuote node: BlockQuote) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
         if node.hasSuccessor { s.append(.paragraphSeparator) }
-        styler.style(blockQuote: s)
+        styler.style(blockQuote: s, nestDepth: node.nestDepth)
         return s
     }
-    
+
     public func visit(list node: List) -> NSMutableAttributedString {
+        listPrefixGenerators.append(ListItemPrefixGenerator(list: node))
+        defer { listPrefixGenerators.removeLast() }
+
         let items = visitChildren(of: node)
-        
-        // Prepend prefixes to each item.
-        items.enumerated().forEach { index, item in
-            let prefix: String
-            switch node.listType {
-            case .bullet: prefix = "•\t"
-            case .ordered(let start): prefix = "\(start + index).\t"
-            }
-            
-            let attrPrefix = NSAttributedString(string: prefix, attributes: styler.listPrefixAttributes)
-            item.insert(attrPrefix, at: 0)
-        }
-        
+
         let s = items.joined
         if node.hasSuccessor { s.append(.paragraphSeparator) }
-        styler.style(list: s)
+        styler.style(list: s, nestDepth: node.nestDepth)
         return s
     }
     
     public func visit(item node: Item) -> NSMutableAttributedString {
         let s = visitChildren(of: node).joined
+
+        let prefix = listPrefixGenerators.last?.next() ?? "•"
+        let attributedPrefix = "\(prefix)\t".attributed
+        styler.style(listItemPrefix: attributedPrefix)
+        s.insert(attributedPrefix, at: 0)
+
         if node.hasSuccessor { s.append(.paragraphSeparator) }
-        styler.style(item: s)
+        styler.style(item: s, prefixLength: (prefix as NSString).length)
         return s
     }
     
     public func visit(codeBlock node: CodeBlock) -> NSMutableAttributedString {
-        guard let s = node.literal?.attributed else { return .empty }
+        guard let literal = node.literal else { return .empty }
+        let s = literal.replacingNewlinesWithLineSeparators().attributed
+        if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(codeBlock: s, fenceInfo: node.fenceInfo)
         return s
     }
     
     public func visit(htmlBlock node: HtmlBlock) -> NSMutableAttributedString {
-        guard let s = node.literal?.attributed else { return .empty }
+        guard let literal = node.literal else { return .empty }
+        let s = literal.replacingNewlinesWithLineSeparators().attributed
+        if node.hasSuccessor { s.append(.paragraphSeparator) }
         styler.style(htmlBlock: s)
         return s
     }
@@ -104,7 +106,7 @@ extension AttributedStringVisitor: Visitor {
     }
     
     public func visit(thematicBreak node: ThematicBreak) -> NSMutableAttributedString {
-        let s = String.lineSeparator.attributed
+        let s = "\(String.zeroWidthSpace)\n".attributed
         styler.style(thematicBreak: s)
         return s
     }
@@ -170,34 +172,52 @@ extension AttributedStringVisitor: Visitor {
     }
 }
 
-// MARK: - Helper extentions
+// MARK: - Helper extensions
 
 private extension Sequence where Iterator.Element == NSMutableAttributedString {
+
     var joined: NSMutableAttributedString {
         return reduce(into: NSMutableAttributedString()) { $0.append($1) }
     }
 }
 
-private extension String {
-    var attributed: NSMutableAttributedString {
-        return NSMutableAttributedString(string: self)
-    }
-}
-
-private extension NSAttributedString {
-    static var paragraphSeparator: NSAttributedString {
-        return "\n".attributed
-    }
-}
-
 private extension NSMutableAttributedString {
+
     static var empty: NSMutableAttributedString {
         return "".attributed
     }
 }
+
+private extension NSAttributedString {
+
+    static var paragraphSeparator: NSAttributedString {
+        return String.paragraphSeparator.attributed
+    }
+}
+
 private extension String {
-    // https://lists.apple.com/archives/Cocoa-dev/2010/Dec/msg00347.html
+
+    var attributed: NSMutableAttributedString {
+        return NSMutableAttributedString(string: self)
+    }
+
+    // This codepoint marks the end of a paragraph and the start of the next.
+    static var paragraphSeparator: String {
+        return "\u{2029}"
+    }
+
+    // This code point allows line breaking, without starting a new paragraph.
     static var lineSeparator: String {
         return "\u{2028}"
+    }
+
+    static var zeroWidthSpace: String {
+        return "\u{200B}"
+    }
+
+    func replacingNewlinesWithLineSeparators() -> String {
+        let trimmed = trimmingCharacters(in: .newlines)
+        let lines = trimmed.components(separatedBy: .newlines)
+        return lines.joined(separator: .lineSeparator)
     }
 }

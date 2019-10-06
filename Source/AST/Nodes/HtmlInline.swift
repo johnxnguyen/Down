@@ -18,6 +18,7 @@ public class HtmlInline: BaseNode {
 // MARK: - Debug
 
 extension HtmlInline: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
         return "Html Inline - \(literal ?? "nil")"
     }

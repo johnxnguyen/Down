@@ -13,6 +13,7 @@ public class Paragraph: BaseNode {}
 // MARK: - Debug
 
 extension Paragraph: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
         return "Paragraph"
     }

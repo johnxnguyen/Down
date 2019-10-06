@@ -17,6 +17,7 @@ public class CustomInline: BaseNode {
 // MARK: - Debug
 
 extension CustomInline: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
         return "Custom Inline - \(literal ?? "nil")"
     }

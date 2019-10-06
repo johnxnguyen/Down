@@ -1,12 +1,12 @@
-osx_image: xcode10.2
+osx_image: xcode11
 language: objective-c
 before_install:
   - set -o pipefail
-  - gem install xcpretty slather -N
-  - xcrun simctl boot "iPhone 7" || echo "(Pre)Launched the simulator."
+  - xcrun simctl boot "iPhone 11" || echo "(Pre)Launched the simulator."
 script:
-  - travis_retry xcodebuild -project Down.xcodeproj -scheme "Down" -destination "platform=iOS Simulator,name=iPhone 7" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES test | xcpretty -c
-  - travis_retry xcodebuild -project Down.xcodeproj -scheme "Down" -sdk macosx -destination 'platform=OS X,arch=x86_64' -enableCodeCoverage YES test | xcpretty -c
-  - travis_retry xcodebuild -project Down.xcodeproj -scheme "Down" -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV' -enableCodeCoverage YES test | xcpretty -c
+  - travis_retry xcodebuild -project Down.xcodeproj -scheme "Down" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=13.0,name=iPhone 11" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES test
+  - travis_retry xcodebuild -project Down.xcodeproj -scheme "Down" -sdk macosx -destination 'platform=OS X,arch=x86_64' -enableCodeCoverage YES test
+  - travis_retry xcodebuild -project Down.xcodeproj -scheme "Down" -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV' -enableCodeCoverage YES test
+  - travis_retry xcodebuild -project Down.xcodeproj -scheme "DownSnapshotTests" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=13.0,name=iPhone 11" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES test
 after_success:
-  - slather coverage --ignore "../**/*/Xcode*" --ignore "Source/cmark/*" --scheme "Down" Down.xcodeproj
+  - bash <(curl -s https://codecov.io/bash)

@@ -1,0 +1,7 @@
+Document
+    ↳ Paragraph
+        ↳ Text - Text text.
+    ↳ Heading - L1
+        ↳ Text - Heading
+    ↳ Paragraph
+        ↳ Text - Text text.

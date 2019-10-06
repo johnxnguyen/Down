@@ -1,0 +1,5 @@
+Document
+    ↳ Paragraph
+        ↳ Text - Text text
+        ↳ Soft Break
+        ↳ Text - text text

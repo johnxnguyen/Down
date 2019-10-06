@@ -31,7 +31,9 @@ public class CodeBlock: BaseNode {
 // MARK: - Debug
 
 extension CodeBlock: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
-        return "Code Block - \(literal ?? "nil"), fenceInfo: \(fenceInfo ?? "nil")"
+        let content = (literal ?? "nil").replacingOccurrences(of: "\n", with: "\\n")
+        return "Code Block - fenceInfo: \(fenceInfo ?? "nil"), content: \(content)"
     }
 }

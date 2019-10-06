@@ -30,6 +30,17 @@ public class BaseNode: Node {
         
         return result
     }()
+
+    public private(set) lazy var nestDepth: Int = {
+        var depth = 0
+        var next = cmarkNode.parent
+
+        while let current = next {
+            depth += current.type == cmarkNode.type ? 1 : 0
+            next = current.parent
+        }
+        return depth
+    }()
     
     init(cmarkNode: CMarkNode) {
         self.cmarkNode = cmarkNode

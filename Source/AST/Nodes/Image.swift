@@ -39,6 +39,7 @@ public class Image: BaseNode {
 // MARK: - Debug
 
 extension Image: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
         return "Image - title: \(title ?? "nil"), url: \(url ?? "nil"))"
     }

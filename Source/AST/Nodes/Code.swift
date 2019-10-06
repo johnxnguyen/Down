@@ -18,6 +18,7 @@ public class Code: BaseNode {
 // MARK: - Debug
 
 extension Code: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
         return "Code - \(literal ?? "nil")"
     }
