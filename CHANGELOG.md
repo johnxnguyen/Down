@@ -1,5 +1,28 @@
 # Change Log
 
+## [v0.9.0](https://github.com/iwasrobbed/Down/tree/v0.9.0) (2019-10-06)
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.6...v0.9.0)
+
+**Closed issues:**
+
+- Please add Styler example in the documentation [\#179](https://github.com/iwasrobbed/Down/issues/179)
+- \[Attributed Strings\] Can the `Styler` know which list item marker was parsed? [\#176](https://github.com/iwasrobbed/Down/issues/176)
+- Error: 'cmark\_export.h' file not found with \<angled\> include; use "quotes" instead [\#175](https://github.com/iwasrobbed/Down/issues/175)
+- GIFF Support [\#174](https://github.com/iwasrobbed/Down/issues/174)
+- Help: Set Default Font [\#168](https://github.com/iwasrobbed/Down/issues/168)
+- \[Testing\] Adding a snapshot testing framework [\#165](https://github.com/iwasrobbed/Down/issues/165)
+- Adding a snapshot test framework [\#164](https://github.com/iwasrobbed/Down/issues/164)
+- XCode Beta 4 Build Error [\#162](https://github.com/iwasrobbed/Down/issues/162)
+- \[Attributed Strings\] Create default `Styler` for attributed string rendering [\#138](https://github.com/iwasrobbed/Down/issues/138)
+- \[Help out\] Collaborators wanted! Help us improve Down [\#105](https://github.com/iwasrobbed/Down/issues/105)
+- \[DownView\] Support for internal links? [\#93](https://github.com/iwasrobbed/Down/issues/93)
+
+**Merged pull requests:**
+
+- \[Feature\] Create default `Styler` for attributed string rendering [\#177](https://github.com/iwasrobbed/Down/pull/177) ([johnxnguyen](https://github.com/johnxnguyen))
+- Resolve xcode11beta4 issue. [\#170](https://github.com/iwasrobbed/Down/pull/170) ([ykphuah](https://github.com/ykphuah))
+- Minor documentation fix [\#169](https://github.com/iwasrobbed/Down/pull/169) ([nighthawk](https://github.com/nighthawk))
+
 ## [v0.8.6](https://github.com/iwasrobbed/Down/tree/v0.8.6) (2019-07-11)
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.5...v0.8.6)
 
