@@ -6,6 +6,8 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
+#if !os(Linux)
+
 #if canImport(UIKit)
 
 import UIKit
@@ -22,3 +24,5 @@ extension CGPoint {
         return CGPoint(x: x + point.x, y: y + point.y)
     }
 }
+
+#endif

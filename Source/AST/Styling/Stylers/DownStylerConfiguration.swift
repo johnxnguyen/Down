@@ -6,7 +6,7 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
-#if !os(watchOS)
+#if !os(watchOS) && !os(Linux)
 
 /// A configuration object used to initialze the `DownStyler`.
 public struct DownStylerConfiguration {

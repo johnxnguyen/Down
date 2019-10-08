@@ -6,6 +6,8 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
+#if !os(Linux)
+
 #if canImport(UIKit)
 
 import UIKit
@@ -21,3 +23,5 @@ public struct QuoteStripeOptions {
     public var thickness: CGFloat = 2
     public var spacingAfter: CGFloat = 8
 }
+
+#endif
