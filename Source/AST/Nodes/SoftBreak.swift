@@ -13,6 +13,7 @@ public class SoftBreak: BaseNode {}
 // MARK: - Debug
 
 extension SoftBreak: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
         return "Soft Break"
     }

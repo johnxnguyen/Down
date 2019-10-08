@@ -18,6 +18,7 @@ public class Text: BaseNode {
 // MARK: - Debug
 
 extension Text: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
         return "Text - \(literal ?? "nil")"
     }

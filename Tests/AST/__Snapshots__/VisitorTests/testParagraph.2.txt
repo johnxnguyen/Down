@@ -1,0 +1,7 @@
+Document
+    ↳ Paragraph
+        ↳ Text - Text text.
+    ↳ Paragraph
+        ↳ Text - Text text.
+    ↳ Paragraph
+        ↳ Text - Text text.

@@ -13,6 +13,7 @@ public class Item: BaseNode {}
 // MARK: - Debug
 
 extension Item: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
         return "Item"
     }

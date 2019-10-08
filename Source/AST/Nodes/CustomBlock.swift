@@ -18,6 +18,7 @@ public class CustomBlock: BaseNode {
 // MARK: - Debug
 
 extension CustomBlock: CustomDebugStringConvertible {
+    
     public var debugDescription: String {
         return "Custom Block - \(literal ?? "nil")"
     }

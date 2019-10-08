@@ -1,0 +1,13 @@
+Document
+    ↳ Paragraph
+        ↳ Text - Text text.
+    ↳ Block Quote
+        ↳ Paragraph
+            ↳ Text - Quote
+            ↳ Soft Break
+            ↳ Text - Quote
+    ↳ Block Quote
+        ↳ Paragraph
+            ↳ Text - Quote
+            ↳ Soft Break
+            ↳ Text - Quote

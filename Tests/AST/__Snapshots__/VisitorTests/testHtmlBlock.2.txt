@@ -1,0 +1,6 @@
+Document
+    ↳ Paragraph
+        ↳ Text - Text text.
+    ↳ Html Block - content: <html>\n    <head></head>\n</html>\n
+    ↳ Paragraph
+        ↳ Text - Text text.
