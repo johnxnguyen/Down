@@ -2,11 +2,16 @@
 
 echo "- Cleaning App"
 swift package clean
+if [ $? != 0 ]; then
+  echo "✖︎ Linux build failed."
+  exit 1
+fi
 
 echo "- Building App"
 swift build --configuration release
+if [ $? != 0 ]; then
+  echo "✖︎ Linux build failed."
+  exit 1
+fi
 
-echo "- Cleaning App"
-swift package clean
-
-echo "- Done!"
+echo "✔️ Linux build completed!"
