@@ -6,6 +6,7 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
+#if !os(Linux)
 #if os(tvOS) || os(watchOS)
     // Sorry, not available for tvOS nor watchOS
 #else
@@ -205,3 +206,4 @@ private extension WKNavigationDelegate {
 }
 
 #endif
+#endif // !os(Linux)

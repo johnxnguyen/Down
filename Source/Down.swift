@@ -9,8 +9,7 @@
 import Foundation
 
 public struct Down: DownASTRenderable, DownHTMLRenderable, DownXMLRenderable,
-                    DownLaTeXRenderable, DownGroffRenderable, DownCommonMarkRenderable,
-                    DownAttributedStringRenderable {
+                    DownLaTeXRenderable, DownGroffRenderable, DownCommonMarkRenderable {
     /// A string containing CommonMark Markdown
     public var markdownString: String
 
@@ -21,3 +20,7 @@ public struct Down: DownASTRenderable, DownHTMLRenderable, DownXMLRenderable,
         self.markdownString = markdownString
     }
 }
+
+#if !os(Linux)
+extension Down: DownAttributedStringRenderable { }
+#endif // !os(Linux)

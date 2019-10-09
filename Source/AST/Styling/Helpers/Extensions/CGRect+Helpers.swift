@@ -6,6 +6,8 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
+#if !os(Linux)
+
 #if canImport(UIKit)
 
 import UIKit
@@ -26,3 +28,5 @@ extension CGRect {
         return CGRect(origin: origin.translated(by: point), size: size)
     }
 }
+
+#endif

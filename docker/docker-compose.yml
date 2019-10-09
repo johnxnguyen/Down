@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  down:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/app
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    command: /app/docker/down-rebuild.sh

@@ -6,6 +6,8 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
+#if !os(Linux)
+
 #if os(macOS)
     import AppKit
 #else
@@ -32,3 +34,4 @@ extension NSAttributedString {
     }
 
 }
+#endif // !os(Linux)
