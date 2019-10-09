@@ -6,6 +6,7 @@
 [![macOS](https://img.shields.io/badge/OS-macOS-orange.svg)](https://developer.apple.com/macos/)
 [![iOS](https://img.shields.io/badge/OS-iOS-orange.svg)](https://developer.apple.com/ios/)
 [![tvOS](https://img.shields.io/badge/OS-tvOS-orange.svg)](https://developer.apple.com/tvos/)
+[![Linux](https://img.shields.io/badge/OS-Linux-orange.svg)](https://www.linux.org/)
 [![Code Coverage](https://codecov.io/gh/iwasrobbed/Down/branch/master/graph/badge.svg)](https://codecov.io/gh/iwasrobbed/Down)
 
 Blazing fast Markdown (CommonMark) rendering in Swift, built upon [cmark v0.29.0](https://github.com/commonmark/cmark).
