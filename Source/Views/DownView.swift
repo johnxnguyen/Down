@@ -161,20 +161,20 @@ private extension DownView {
 // MARK: - WKNavigationDelegate
 
 extension DownView: WKNavigationDelegate {
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+    open func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         decisionHandler(.allow)
     }
 
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    open func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url else { return decisionHandler(.allow) }
 
         switch navigationAction.navigationType {
         case .linkActivated:
-            if #available(iOS 11.0, macOS 10.13, *) {
-                if let scheme = url.scheme, configuration.urlSchemeHandler(forURLScheme: scheme) != nil {
-                    decisionHandler(.allow)
-                    return
-                }
+            if #available(iOS 11.0, macOS 10.13, *),
+                let scheme = url.scheme,
+                (configuration.urlSchemeHandler(forURLScheme: scheme) != nil || scheme == "file") {
+                decisionHandler(.allow)
+                return
             }
 
             decisionHandler(.cancel)
