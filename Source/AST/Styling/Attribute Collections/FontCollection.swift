@@ -32,12 +32,28 @@ public protocol FontCollection {
 
 public struct StaticFontCollection: FontCollection {
 
-    public var heading1 = DownFont.boldSystemFont(ofSize: 28)
-    public var heading2 = DownFont.boldSystemFont(ofSize: 24)
-    public var heading3 = DownFont.boldSystemFont(ofSize: 20)
-    public var body = DownFont.systemFont(ofSize: 17)
-    public var code = DownFont(name: "menlo", size: 17) ?? .systemFont(ofSize: 17)
-    public var listItemPrefix = DownFont.monospacedDigitSystemFont(ofSize: 17, weight: .regular)
+    public var heading1: DownFont
+    public var heading2: DownFont
+    public var heading3: DownFont
+    public var body: DownFont
+    public var code: DownFont
+    public var listItemPrefix: DownFont
+
+    public init(
+        heading1: DownFont = .boldSystemFont(ofSize: 28),
+        heading2: DownFont = .boldSystemFont(ofSize: 24),
+        heading3: DownFont = .boldSystemFont(ofSize: 20),
+        body: DownFont = .systemFont(ofSize: 17),
+        code: DownFont = DownFont(name: "menlo", size: 17) ?? .systemFont(ofSize: 17),
+        listItemPrefix: DownFont = DownFont.monospacedDigitSystemFont(ofSize: 17, weight: .regular)
+    ) {
+        self.heading1 = heading1
+        self.heading2 = heading2
+        self.heading3 = heading3
+        self.body = body
+        self.code = code
+        self.listItemPrefix = listItemPrefix
+    }
 }
 
 #endif
