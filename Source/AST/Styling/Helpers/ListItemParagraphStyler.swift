@@ -22,12 +22,12 @@ import AppKit
 /// are right aligned and list item content left aligns.
 public class ListItemParagraphStyler {
 
-    var indentation: CGFloat {
+    public var indentation: CGFloat {
         return largestPrefixWidth + options.spacingAfterPrefix
     }
 
     /// The paragraph style intended for all paragraphs excluding the first.
-    var trailingParagraphStyle: NSParagraphStyle {
+    public var trailingParagraphStyle: NSParagraphStyle {
         let contentIndentation = indentation
         let style = baseStyle
         style.firstLineHeadIndent = contentIndentation
@@ -54,7 +54,7 @@ public class ListItemParagraphStyler {
     /// The paragraph style intended for the first paragraph of the list item.
     /// 
     /// - Parameter prefixWidth: the width (in points) of the list item prefix.
-    func leadingParagraphStyle(prefixWidth: CGFloat) -> NSParagraphStyle {
+    public func leadingParagraphStyle(prefixWidth: CGFloat) -> NSParagraphStyle {
         let contentIndentation = indentation
         let prefixIndentation: CGFloat = contentIndentation - options.spacingAfterPrefix - prefixWidth
         let prefixSpill = max(0, prefixWidth - largestPrefixWidth)
