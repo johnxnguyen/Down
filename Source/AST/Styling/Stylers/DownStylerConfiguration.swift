@@ -22,7 +22,7 @@ public struct DownStylerConfiguration {
 
     public init(fonts: FontCollection = StaticFontCollection(),
                 colors: ColorCollection = StaticColorCollection(),
-                paragraphStyles: ParagraphStyleCollection = ParagraphStyleCollection(),
+                paragraphStyles: ParagraphStyleCollection = StaticParagraphStyleCollection(),
                 listItemOptions: ListItemOptions = ListItemOptions(),
                 quoteStripeOptions: QuoteStripeOptions = QuoteStripeOptions(),
                 thematicBreakOptions: ThematicBreakOptions = ThematicBreakOptions(),
