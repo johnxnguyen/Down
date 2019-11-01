@@ -20,7 +20,11 @@ import AppKit
 
 public struct CodeBlockOptions {
 
-    public var containerInset: CGFloat = 8
+    public var containerInset: CGFloat
+
+    public init(containerInset: CGFloat = 8) {
+        self.containerInset = containerInset
+    }
 }
 
 #endif
