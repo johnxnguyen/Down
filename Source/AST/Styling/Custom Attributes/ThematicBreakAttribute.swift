@@ -18,10 +18,24 @@ import AppKit
 
 #endif
 
-struct ThematicBreakAttribute {
-
+public class ThematicBreakAttribute : NSObject, NSCoding {
     var thickness: CGFloat
     var color: DownColor
+    
+    init(thickness: CGFloat, color: DownColor) {
+      self.color = color
+      self.thickness = thickness
+    }
+  
+    public func encode(with coder: NSCoder) {
+      coder.encode(color, forKey: "color")
+      coder.encode(thickness, forKey: "thickness")
+    }
+  
+    public required init?(coder: NSCoder) {
+      color = coder.decodeObject(forKey: "color") as? DownColor ?? DownColor()
+      thickness = coder.decodeObject(forKey: "thickness") as? CGFloat ?? 0.0
+    }
 }
 
 extension NSAttributedString.Key {

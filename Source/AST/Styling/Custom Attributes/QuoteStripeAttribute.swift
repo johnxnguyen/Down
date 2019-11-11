@@ -18,7 +18,7 @@ import AppKit
 
 #endif
 
-struct QuoteStripeAttribute {
+public class QuoteStripeAttribute : NSObject, NSCoding {
 
     var color: DownColor
     var thickness: CGFloat
@@ -28,17 +28,38 @@ struct QuoteStripeAttribute {
     var layoutWidth: CGFloat {
         return thickness + spacingAfter
     }
+    
+    public func encode(with coder: NSCoder) {
+      coder.encode(color, forKey: "color")
+      coder.encode(thickness, forKey: "thickness")
+      coder.encode(spacingAfter, forKey: "spacingAfter")
+      coder.encode(locations, forKey: "locations")
+    }
+    
+    public required init?(coder: NSCoder) {
+      color = coder.decodeObject(forKey: "color") as? DownColor ?? DownColor()
+      thickness = coder.decodeObject(forKey: "thickness") as? CGFloat ?? 0.0
+      spacingAfter = coder.decodeObject(forKey: "spacingAfter") as? CGFloat ?? 0.0
+      locations = coder.decodeObject(forKey: "locations") as? [CGFloat] ?? [CGFloat]()
+    }
+
+    init(color: DownColor, thickness: CGFloat, spacingAfter: CGFloat, locations: [CGFloat]) {
+      self.color = color
+      self.thickness = thickness
+      self.spacingAfter = spacingAfter
+      self.locations = locations
+    }
 }
 
 extension QuoteStripeAttribute {
 
-    init(level: Int, color: DownColor, options: QuoteStripeOptions) {
+    convenience init(level: Int, color: DownColor, options: QuoteStripeOptions) {
         self.init(color: color, thickness: options.thickness, spacingAfter: options.spacingAfter, locations: [])
         locations = (0..<level).map { CGFloat($0) * layoutWidth }
     }
 
     func indented(by indentation: CGFloat) -> QuoteStripeAttribute {
-        var copy = self
+        let copy = self
         copy.locations = locations.map { $0 + indentation }
         return copy
     }

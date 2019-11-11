@@ -18,10 +18,24 @@ import AppKit
 
 #endif
 
-struct BlockBackgroundColorAttribute {
-
+public class BlockBackgroundColorAttribute : NSObject, NSCoding {
     var color: DownColor
     var inset: CGFloat
+  
+    init(color: DownColor, inset: CGFloat) {
+        self.color = color
+        self.inset = inset
+    }
+  
+    public func encode(with coder: NSCoder) {
+        coder.encode(color, forKey: "color")
+        coder.encode(inset, forKey: "inset")
+    }
+    
+    public required init?(coder: NSCoder) {
+        color = coder.decodeObject(forKey: "color") as? DownColor ?? DownColor()
+        inset = coder.decodeObject(forKey: "inset") as? CGFloat ?? 0.0
+    }
 }
 
 extension NSAttributedString.Key {
