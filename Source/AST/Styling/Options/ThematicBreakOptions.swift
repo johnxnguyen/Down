@@ -20,8 +20,13 @@ import AppKit
 
 public struct ThematicBreakOptions {
 
-    public var thickness: CGFloat = 1
-    public var indentation: CGFloat = 0
+    public var thickness: CGFloat
+    public var indentation: CGFloat
+
+    public init(thickness: CGFloat = 1, indentation: CGFloat = 0) {
+        self.thickness = thickness
+        self.indentation = indentation
+    }
 }
 
 #endif
