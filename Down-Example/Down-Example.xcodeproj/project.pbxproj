@@ -32,6 +32,13 @@
 			remoteGlobalIDString = 8A569F3F1E6B3E50008BE2AC;
 			remoteInfo = Down;
 		};
+		CA15607E239816590087EF24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D49980AF1FA560F8004EE42E /* Down.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEBA153A2344845500B54ECB;
+			remoteInfo = DownSnapshotTests;
+		};
 		D4591E9E226D293F00EBD476 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D49980AF1FA560F8004EE42E /* Down.xcodeproj */;
@@ -186,6 +193,7 @@
 			children = (
 				D49980B51FA560F8004EE42E /* Down.framework */,
 				D49980B71FA560F8004EE42E /* DownTests.xctest */,
+				CA15607F239816590087EF24 /* DownSnapshotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -284,6 +292,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		CA15607F239816590087EF24 /* DownSnapshotTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DownSnapshotTests.xctest;
+			remoteRef = CA15607E239816590087EF24 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		D49980B51FA560F8004EE42E /* Down.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -408,7 +423,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.downMarkdown.macOS-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.1;
 			};
 			name = Debug;
 		};
@@ -433,7 +448,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.downMarkdown.macOS-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.1;
 			};
 			name = Release;
 		};
@@ -557,6 +572,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -568,7 +584,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.downMarkdown.Down-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.1;
 			};
 			name = Debug;
 		};
@@ -577,6 +593,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -588,7 +605,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.downMarkdown.Down-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.1;
 			};
 			name = Release;
 		};
