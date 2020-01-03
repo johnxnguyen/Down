@@ -42,7 +42,7 @@ public class BaseNode: Node {
         return depth
     }()
     
-    init(cmarkNode: CMarkNode) {
+    public init(cmarkNode: CMarkNode) {
         self.cmarkNode = cmarkNode
     }
     
