@@ -8,12 +8,13 @@ let package = Package(
         .macOS("10.11"),
         .iOS("9.0"),
         .tvOS("9.0"),
-        .watchOS("2.0"),
+        .watchOS("2.0")
     ],
     products: [
-    .library(
-        name: "Down",
-        targets: ["Down"]),
+        .library(
+            name: "Down",
+            targets: ["Down"]
+        )
     ],
     dependencies: [],
     targets: [
@@ -22,16 +23,19 @@ let package = Package(
             dependencies: [],
             path: "Source/cmark",
             exclude: ["include"],
-            publicHeadersPath: "./"),
+            publicHeadersPath: "./"
+        ),
         .target(
             name: "Down",
             dependencies: ["libcmark"],
             path: "Source/",
-            exclude: ["cmark", "Down.h"]),
+            exclude: ["cmark", "Down.h"]
+        ),
         .testTarget(
             name: "DownTests",
             dependencies: ["Down"],
             path: "Tests/",
-            exclude: ["Fixtures", "DownViewTests.swift"]),
+            exclude: ["Fixtures", "DownViewTests.swift"]
+        )
     ]
 )
