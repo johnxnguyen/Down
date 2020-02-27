@@ -35,7 +35,20 @@ let package = Package(
             name: "DownTests",
             dependencies: ["Down"],
             path: "Tests/",
-            exclude: ["Fixtures", "DownViewTests.swift"]
+            exclude: [
+                "AST/VisitorTests.swift",
+                "DownViewTests.swift",
+                "Fixtures",
+                "Styler/BlockQuoteStyleTests.swift",
+                "Styler/CodeBlockStyleTests.swift",
+                "Styler/DownDebugLayoutManagerTests.swift",
+                "Styler/HeadingStyleTests.swift",
+                "Styler/LinkStyleTests.swift",
+                "Styler/InlineStyleTests.swift",
+                "Styler/ListItemStyleTests.swift",
+                "Styler/StylerTestSuite.swift",
+                "Styler/ThematicBreakSyleTests.swift"
+            ]
         )
     ]
 )
