@@ -7,31 +7,47 @@ let package = Package(
     platforms: [
         .macOS("10.11"),
         .iOS("9.0"),
-        .tvOS("9.0"),
-        .watchOS("2.0"),
+        .tvOS("9.0")
     ],
     products: [
-    .library(
-        name: "Down",
-        targets: ["Down"]),
+        .library(
+            name: "Down",
+            targets: ["Down"]
+        )
     ],
-    dependencies: [],
     targets: [
         .target(
             name: "libcmark",
             dependencies: [],
             path: "Source/cmark",
             exclude: ["include"],
-            publicHeadersPath: "./"),
+            publicHeadersPath: "./"
+        ),
         .target(
             name: "Down",
             dependencies: ["libcmark"],
             path: "Source/",
-            exclude: ["cmark", "Down.h"]),
+            exclude: ["cmark", "Down.h"]
+        ),
         .testTarget(
             name: "DownTests",
             dependencies: ["Down"],
             path: "Tests/",
-            exclude: ["Fixtures", "DownViewTests.swift"]),
-    ]
+            exclude: [
+                "AST/VisitorTests.swift",
+                "DownViewTests.swift",
+                "Fixtures",
+                "Styler/BlockQuoteStyleTests.swift",
+                "Styler/CodeBlockStyleTests.swift",
+                "Styler/DownDebugLayoutManagerTests.swift",
+                "Styler/HeadingStyleTests.swift",
+                "Styler/LinkStyleTests.swift",
+                "Styler/InlineStyleTests.swift",
+                "Styler/ListItemStyleTests.swift",
+                "Styler/StylerTestSuite.swift",
+                "Styler/ThematicBreakSyleTests.swift"
+            ]
+        )
+    ],
+    swiftLanguageVersions: [.v5]
 )
