@@ -7,8 +7,7 @@ let package = Package(
     platforms: [
         .macOS("10.11"),
         .iOS("9.0"),
-        .tvOS("9.0"),
-        .watchOS("2.0")
+        .tvOS("9.0")
     ],
     products: [
         .library(
@@ -16,7 +15,6 @@ let package = Package(
             targets: ["Down"]
         )
     ],
-    dependencies: [],
     targets: [
         .target(
             name: "libcmark",
@@ -50,5 +48,6 @@ let package = Package(
                 "Styler/ThematicBreakSyleTests.swift"
             ]
         )
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )
