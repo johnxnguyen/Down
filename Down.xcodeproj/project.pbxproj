@@ -1078,7 +1078,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Source/cmark";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1100,7 +1099,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Source/cmark";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1116,7 +1114,6 @@
 				INFOPLIST_FILE = "Resources/DownTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.downMarkdown.DownTests;
-				SWIFT_VERSION = 5.0;
 				"TARGETED_DEVICE_FAMILY[sdk=appletvos*]" = 3;
 				"TARGETED_DEVICE_FAMILY[sdk=appletvsimulator*]" = 3;
 			};
@@ -1134,7 +1131,6 @@
 				INFOPLIST_FILE = "Resources/DownTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.downMarkdown.DownTests;
-				SWIFT_VERSION = 5.0;
 				"TARGETED_DEVICE_FAMILY[sdk=appletvos*]" = 3;
 				"TARGETED_DEVICE_FAMILY[sdk=appletvsimulator*]" = 3;
 			};
@@ -1199,7 +1195,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1257,7 +1252,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1286,7 +1280,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.downMarkdown.DownSnapshotTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1312,7 +1305,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.downMarkdown.DownSnapshotTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -19,5 +19,5 @@ Pod::Spec.new do |spec|
   spec.pod_target_xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/Down/Source/cmark/**' }
   spec.ios.resource = 'Resources/DownView.bundle'
   spec.osx.resource = 'Resources/DownView.bundle'
-  spec.swift_version = "5.0"
+  spec.swift_versions = ['5.0', '5.1']
 end
