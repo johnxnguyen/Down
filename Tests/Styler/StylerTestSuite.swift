@@ -108,9 +108,9 @@ private extension DownStylerConfiguration {
         colors.heading1 = #colorLiteral(red: 0.7803921569, green: 0, blue: 0.2235294118, alpha: 1)
         colors.heading2 = #colorLiteral(red: 1, green: 0.3411764706, blue: 0.2, alpha: 1)
         colors.heading3 = #colorLiteral(red: 1, green: 0.7647058824, blue: 0.05882352941, alpha: 1)
-        colors.heading4 = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
-        colors.heading5 = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
-        colors.heading6 = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        colors.heading4 = #colorLiteral(red: 1, green: 0.7647058824, blue: 0.05882352941, alpha: 1)
+        colors.heading5 = #colorLiteral(red: 1, green: 0.7647058824, blue: 0.05882352941, alpha: 1)
+        colors.heading6 = #colorLiteral(red: 1, green: 0.7647058824, blue: 0.05882352941, alpha: 1)
         colors.body = .black
         colors.code = .darkGray
         colors.codeBlockBackground = #colorLiteral(red: 0.9647058824, green: 0.9725490196, blue: 0.9803921569, alpha: 1)
