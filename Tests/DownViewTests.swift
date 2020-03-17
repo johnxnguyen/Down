@@ -97,6 +97,47 @@ class DownViewTests: XCTestCase {
         }
     }
 
+    #if os(iOS)
+    func testInstantiationWithCustomWritableTemplateBundle() {
+        let expect1 = expectation(description: "DownView accepts and loads custom bundle files from a user writable location")
+
+        guard
+            let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
+            let bundle = Bundle(for: type(of: self)).url(forResource: "TestDownView", withExtension: "bundle"),
+            let templateBundle = Bundle.init(url: documents)
+        else {
+            XCTFail("Test template bundle not found in test target!")
+            return
+        }
+
+        if !FileManager.default.fileExists(atPath: documents.path) {
+            try! FileManager.default.copyItem(at: bundle, to: documents)
+        }
+
+        let markdownString = """
+```swift
+let x = 1
+```
+"""
+        var downView: DownView?
+        downView = try? DownView(frame: .zero, markdownString: markdownString, templateBundle: templateBundle, writableBundle: true, didLoadSuccessfully: {
+            self._pageContents(for: downView!) { htmlString in
+                XCTAssertTrue(htmlString!.contains("css/down.min.css"))
+                XCTAssertTrue(htmlString!.contains("hljs-keyword"))
+                XCTAssertTrue(htmlString!.contains("But also, custom HTML!"))
+
+                expect1.fulfill()
+            }
+        })
+
+        waitForExpectations(timeout: 10) { (error: Error?) in
+            if let error = error {
+                XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+            }
+        }
+    }
+    #endif
+
 	func testDownOptions() {
         let markdownString = "## [Down](https://github.com/iwasrobbed/Down)\n\n<strong>I'm strong!</strong>"
         let renderedHTML = "<strong>I'm strong!</strong>"
