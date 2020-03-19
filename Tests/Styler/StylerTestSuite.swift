@@ -97,6 +97,9 @@ private extension DownStylerConfiguration {
         fonts.heading1 = .systemFont(ofSize: 28)
         fonts.heading2 = .systemFont(ofSize: 24)
         fonts.heading3 = .systemFont(ofSize: 20)
+        fonts.heading4 = .systemFont(ofSize: 20)
+        fonts.heading5 = .systemFont(ofSize: 20)
+        fonts.heading6 = .systemFont(ofSize: 20)
         fonts.body = .systemFont(ofSize: 17)
         fonts.code = UIFont(name: "menlo", size: 17)!
         fonts.listItemPrefix = .monospacedDigitSystemFont(ofSize: 17, weight: .regular)
@@ -105,6 +108,9 @@ private extension DownStylerConfiguration {
         colors.heading1 = #colorLiteral(red: 0.7803921569, green: 0, blue: 0.2235294118, alpha: 1)
         colors.heading2 = #colorLiteral(red: 1, green: 0.3411764706, blue: 0.2, alpha: 1)
         colors.heading3 = #colorLiteral(red: 1, green: 0.7647058824, blue: 0.05882352941, alpha: 1)
+        colors.heading4 = #colorLiteral(red: 1, green: 0.7647058824, blue: 0.05882352941, alpha: 1)
+        colors.heading5 = #colorLiteral(red: 1, green: 0.7647058824, blue: 0.05882352941, alpha: 1)
+        colors.heading6 = #colorLiteral(red: 1, green: 0.7647058824, blue: 0.05882352941, alpha: 1)
         colors.body = .black
         colors.code = .darkGray
         colors.codeBlockBackground = #colorLiteral(red: 0.9647058824, green: 0.9725490196, blue: 0.9803921569, alpha: 1)
@@ -125,6 +131,9 @@ private extension DownStylerConfiguration {
         paragraphStyles.heading1 = headingParagraphStyle
         paragraphStyles.heading2 = headingParagraphStyle
         paragraphStyles.heading3 = headingParagraphStyle
+        paragraphStyles.heading4 = headingParagraphStyle
+        paragraphStyles.heading5 = headingParagraphStyle
+        paragraphStyles.heading6 = headingParagraphStyle
         paragraphStyles.body = bodyParagraphStyle
         paragraphStyles.code = bodyParagraphStyle
 
