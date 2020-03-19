@@ -97,21 +97,15 @@ class DownViewTests: XCTestCase {
         }
     }
 
-    #if os(iOS)
     func testInstantiationWithCustomWritableTemplateBundle() {
         let expect1 = expectation(description: "DownView accepts and loads custom bundle files from a user writable location")
 
         guard
-            let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
             let bundle = Bundle(for: type(of: self)).url(forResource: "TestDownView", withExtension: "bundle"),
-            let templateBundle = Bundle.init(url: documents)
+            let templateBundle = Bundle(url: bundle)
         else {
             XCTFail("Test template bundle not found in test target!")
             return
-        }
-
-        if !FileManager.default.fileExists(atPath: documents.path) {
-            try! FileManager.default.copyItem(at: bundle, to: documents)
         }
 
         let markdownString = """
@@ -136,7 +130,6 @@ let x = 1
             }
         }
     }
-    #endif
 
 	func testDownOptions() {
         let markdownString = "## [Down](https://github.com/iwasrobbed/Down)\n\n<strong>I'm strong!</strong>"
