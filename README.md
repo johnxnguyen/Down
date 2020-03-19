@@ -26,7 +26,16 @@ Is your app using it? [Let us know!](mailto:rob@robphillips.me)
 
 ### Installation
 
-Note: Swift 5 support is now on the `master` branch and any tag >= 0.8.1 (Swift 4 is >= 0.4.x, Swift 3 is 0.3.x)
+Note: Swift support is summarized in the table below.
+
+|Swift Version|Tag|
+| --- | --- |
+| Swift 5.1 | >= 0.9.2 |
+| Swift 5.0 | >= 0.8.1 |
+| Swift 4 | >= 0.4.x |
+| Swift 3 | 0.3.x |
+
+ now on the `master` branch and any tag >= 0.8.1 (Swift 4 is >= 0.4.x, Swift 3 is 0.3.x)
 
 Quickly install using [CocoaPods](https://cocoapods.org):
 
