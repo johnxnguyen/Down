@@ -25,6 +25,9 @@ public protocol ColorCollection {
     var heading1: DownColor { get }
     var heading2: DownColor { get }
     var heading3: DownColor { get }
+    var heading4: DownColor { get }
+    var heading5: DownColor { get }
+    var heading6: DownColor { get }
     var body: DownColor { get }
     var code: DownColor { get }
     var link: DownColor { get }
@@ -40,6 +43,9 @@ public struct StaticColorCollection: ColorCollection {
     public var heading1: DownColor
     public var heading2: DownColor
     public var heading3: DownColor
+    public var heading4: DownColor
+    public var heading5: DownColor
+    public var heading6: DownColor
     public var body: DownColor
     public var code: DownColor
     public var link: DownColor
@@ -53,6 +59,9 @@ public struct StaticColorCollection: ColorCollection {
         heading1: DownColor = .black,
         heading2: DownColor = .black,
         heading3: DownColor = .black,
+        heading4: DownColor = .black,
+        heading5: DownColor = .black,
+        heading6: DownColor = .black,
         body: DownColor = .black,
         code: DownColor = .black,
         link: DownColor = .blue,
@@ -65,6 +74,9 @@ public struct StaticColorCollection: ColorCollection {
         self.heading1 = heading1
         self.heading2 = heading2
         self.heading3 = heading3
+        self.heading4 = heading4
+        self.heading5 = heading5
+        self.heading6 = heading6
         self.body = body
         self.code = code
         self.link = link
