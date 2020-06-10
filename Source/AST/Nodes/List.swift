@@ -25,8 +25,8 @@ public class List: BaseNode {
 
     /// Whether the list is "tight".
     ///
-    /// A list is tight if any of the list items are separated by a blank line. This property can be used
-    /// to render the list with more (loose) or less (tight) spacing between items.
+    /// If any of the list items are separated by a blank line, then this property is `false`. This value is
+    /// a hint to render the list with more (loose) or less (tight) spacing between items.
 
     public lazy var isTight: Bool = cmark_node_get_list_tight(cmarkNode) == 1
 }
