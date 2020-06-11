@@ -51,7 +51,9 @@ class StylerTestSuite: XCTestCase {
     }
 
     func view(for markdown: String, width: Width, configuration: DownStylerConfiguration?, showLineFragments: Bool = false) -> DownTextView {
-        let frame = CGRect(width: width)
+        // To make the snapshots the same size of the text content, we set a huge height then resize the view
+        // to the content size.
+        let frame = CGRect(x: 0, y: 0, width: width.rawValue, height: 5000)
         let textView = showLineFragments ? DownDebugTextView(frame: frame) : DownTextView(frame: frame)
         textView.textContainerInset = textContainerInset
         textView.attributedText = attributedString(for: markdown, configuration: configuration)
@@ -80,13 +82,6 @@ private extension DownTextView {
 
     func resizeToContentSize() {
         frame = .init(origin: frame.origin, size: .init(width: contentSize.width, height: contentSize.height))
-    }
-}
-
-private extension CGRect {
-
-    init(width: StylerTestSuite.Width) {
-        self.init(origin: .zero, size: .init(width: width.rawValue, height: 0))
     }
 }
 
