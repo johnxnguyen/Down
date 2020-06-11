@@ -1,0 +1,4 @@
+framework module SnapshotTesting {
+  header "SnapshotTesting-Swift.h"
+  requires objc
+}
