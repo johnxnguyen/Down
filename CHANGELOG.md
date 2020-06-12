@@ -1,6 +1,69 @@
-# Change Log
+# Changelog
+
+## [v0.9.3](https://github.com/iwasrobbed/Down/tree/v0.9.3) (2020-06-12)
+
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.9.2...v0.9.3)
+
+**Closed issues:**
+
+- Line breaks between list items are not parsed correctly [\#214](https://github.com/iwasrobbed/Down/issues/214)
+- Can't build with copied sources [\#211](https://github.com/iwasrobbed/Down/issues/211)
+- hard blank line insertion after list [\#210](https://github.com/iwasrobbed/Down/issues/210)
+- Cocoapod version 0.9.2 not available. [\#206](https://github.com/iwasrobbed/Down/issues/206)
+- \[Feature\] Local images not accessible from WKWebView [\#198](https://github.com/iwasrobbed/Down/issues/198)
+
+**Merged pull requests:**
+
+- \[Chore\] Bump swift snapshot testing to 1.7.2 [\#216](https://github.com/iwasrobbed/Down/pull/216) ([johnxnguyen](https://github.com/johnxnguyen))
+- Add tightness property to List node [\#215](https://github.com/iwasrobbed/Down/pull/215) ([johnxnguyen](https://github.com/johnxnguyen))
+- Add styling options for level 4 to 6 headings [\#207](https://github.com/iwasrobbed/Down/pull/207) ([mathebox](https://github.com/mathebox))
+- \[DownView\] Add parameter so bundle is writable [\#200](https://github.com/iwasrobbed/Down/pull/200) ([brunnobga](https://github.com/brunnobga))
+
+## [v0.9.2](https://github.com/iwasrobbed/Down/tree/v0.9.2) (2020-03-03)
+
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.9.1...v0.9.2)
+
+**Closed issues:**
+
+- Update Framework with Swift 5.1 [\#178](https://github.com/iwasrobbed/Down/issues/178)
+
+**Merged pull requests:**
+
+- Swift 5.1 Support [\#204](https://github.com/iwasrobbed/Down/pull/204) ([ghost](https://github.com/ghost))
+
+## [v0.9.1](https://github.com/iwasrobbed/Down/tree/v0.9.1) (2020-02-28)
+
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.9.0...v0.9.1)
+
+**Implemented enhancements:**
+
+- Added Linux support. [\#172](https://github.com/iwasrobbed/Down/pull/172) ([vgorloff](https://github.com/vgorloff))
+
+**Closed issues:**
+
+- SwiftPM : Resolve apparent version incompatibility with swift-snapshot-testing [\#202](https://github.com/iwasrobbed/Down/issues/202)
+- Release fixes made after 0.9.0 [\#201](https://github.com/iwasrobbed/Down/issues/201)
+- Swift UI Support [\#199](https://github.com/iwasrobbed/Down/issues/199)
+- 'BaseNode' initializer is inaccessible due to 'internal' protection level [\#196](https://github.com/iwasrobbed/Down/issues/196)
+- Any emoji support? [\#195](https://github.com/iwasrobbed/Down/issues/195)
+- Swift Packege maneger? [\#194](https://github.com/iwasrobbed/Down/issues/194)
+- Regression: single newline syntax not working \(any variety\) [\#191](https://github.com/iwasrobbed/Down/issues/191)
+- Down cannot convert this markdown string to html [\#190](https://github.com/iwasrobbed/Down/issues/190)
+- App using xcframework with Down pod dependency causes crash [\#187](https://github.com/iwasrobbed/Down/issues/187)
+- Is the text supposed to be rendering this large? [\#186](https://github.com/iwasrobbed/Down/issues/186)
+- Issue with markdown render/convert to attribute string on macOS latest version [\#185](https://github.com/iwasrobbed/Down/issues/185)
+- Table are not render [\#183](https://github.com/iwasrobbed/Down/issues/183)
+- How to change text color? [\#182](https://github.com/iwasrobbed/Down/issues/182)
+- incorrect parse for string that is a mixture of markdown and html [\#180](https://github.com/iwasrobbed/Down/issues/180)
+
+**Merged pull requests:**
+
+- Resolves Swift Package Manager issue related to swift-snapshot-testing [\#203](https://github.com/iwasrobbed/Down/pull/203) ([ghost](https://github.com/ghost))
+- Improve configurability of DownStyler [\#188](https://github.com/iwasrobbed/Down/pull/188) ([mgacy](https://github.com/mgacy))
+- Make color & font collection initializers public [\#184](https://github.com/iwasrobbed/Down/pull/184) ([johnxnguyen](https://github.com/johnxnguyen))
 
 ## [v0.9.0](https://github.com/iwasrobbed/Down/tree/v0.9.0) (2019-10-06)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.6...v0.9.0)
 
 **Closed issues:**
@@ -24,6 +87,7 @@
 - Minor documentation fix [\#169](https://github.com/iwasrobbed/Down/pull/169) ([nighthawk](https://github.com/nighthawk))
 
 ## [v0.8.6](https://github.com/iwasrobbed/Down/tree/v0.8.6) (2019-07-11)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.5...v0.8.6)
 
 **Closed issues:**
@@ -37,6 +101,7 @@
 - Fix permissions error on Catalina beta 2 [\#156](https://github.com/iwasrobbed/Down/pull/156) ([mdiep](https://github.com/mdiep))
 
 ## [v0.8.5](https://github.com/iwasrobbed/Down/tree/v0.8.5) (2019-06-13)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.4...v0.8.5)
 
 **Closed issues:**
@@ -46,10 +111,10 @@
 
 **Merged pull requests:**
 
-- \[SPM\] Fixes error with missing headers [\#154](https://github.com/iwasrobbed/Down/pull/154) ([aasimk2000](https://github.com/aasimk2000))
 - Create Public Initializer for DebugVisitor [\#153](https://github.com/iwasrobbed/Down/pull/153) ([mfcollins3](https://github.com/mfcollins3))
 
 ## [v0.8.4](https://github.com/iwasrobbed/Down/tree/v0.8.4) (2019-06-04)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.3...v0.8.4)
 
 **Closed issues:**
@@ -58,10 +123,12 @@
 
 **Merged pull requests:**
 
+- \[SPM\] Fixes error with missing headers [\#154](https://github.com/iwasrobbed/Down/pull/154) ([aasimk2000](https://github.com/aasimk2000))
 - Add Swift Package Manager support [\#150](https://github.com/iwasrobbed/Down/pull/150) ([aasimk2000](https://github.com/aasimk2000))
 - \[AST\] Replace line separator with paragraph separator. [\#149](https://github.com/iwasrobbed/Down/pull/149) ([fgulan](https://github.com/fgulan))
 
 ## [v0.8.3](https://github.com/iwasrobbed/Down/tree/v0.8.3) (2019-05-15)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.2...v0.8.3)
 
 **Closed issues:**
@@ -73,6 +140,7 @@
 - Feature - pass DownOptions to init and update [\#148](https://github.com/iwasrobbed/Down/pull/148) ([ladislas](https://github.com/ladislas))
 
 ## [v0.8.2](https://github.com/iwasrobbed/Down/tree/v0.8.2) (2019-05-10)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.1...v0.8.2)
 
 **Merged pull requests:**
@@ -80,6 +148,7 @@
 - Mark as safe for app extension use. [\#146](https://github.com/iwasrobbed/Down/pull/146) ([sgoodwin](https://github.com/sgoodwin))
 
 ## [v0.8.1](https://github.com/iwasrobbed/Down/tree/v0.8.1) (2019-04-26)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.8.0...v0.8.1)
 
 **Merged pull requests:**
@@ -87,6 +156,7 @@
 - \[Swift\] Update to Swift 5.0 [\#145](https://github.com/iwasrobbed/Down/pull/145) ([iwasrobbed](https://github.com/iwasrobbed))
 
 ## [v0.8.0](https://github.com/iwasrobbed/Down/tree/v0.8.0) (2019-04-24)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.7.0...v0.8.0)
 
 **Closed issues:**
@@ -99,6 +169,7 @@
 - Bump cmark to 0.29.0 [\#142](https://github.com/iwasrobbed/Down/pull/142) ([larryonoff](https://github.com/larryonoff))
 
 ## [v0.7.0](https://github.com/iwasrobbed/Down/tree/v0.7.0) (2019-04-24)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.6...v0.7.0)
 
 **Implemented enhancements:**
@@ -114,6 +185,7 @@
 - \[Feature\] Create API for parsing to AST and NSAttributedString [\#132](https://github.com/iwasrobbed/Down/pull/132) ([johnxnguyen](https://github.com/johnxnguyen))
 
 ## [v0.6.6](https://github.com/iwasrobbed/Down/tree/v0.6.6) (2019-04-11)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.5...v0.6.6)
 
 **Closed issues:**
@@ -125,6 +197,7 @@
 - Wrap openURL so that Down compiles in app extensions [\#133](https://github.com/iwasrobbed/Down/pull/133) ([nheagy](https://github.com/nheagy))
 
 ## [v0.6.5](https://github.com/iwasrobbed/Down/tree/v0.6.5) (2019-04-02)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.4...v0.6.5)
 
 **Merged pull requests:**
@@ -132,6 +205,7 @@
 - Fix Xcode 10.2 warnings [\#130](https://github.com/iwasrobbed/Down/pull/130) ([mdiep](https://github.com/mdiep))
 
 ## [v0.6.4](https://github.com/iwasrobbed/Down/tree/v0.6.4) (2019-03-30)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.3...v0.6.4)
 
 **Closed issues:**
@@ -144,6 +218,7 @@
 - Fix Swift module errors when used alongside Firestore [\#125](https://github.com/iwasrobbed/Down/pull/125) ([vzsg](https://github.com/vzsg))
 
 ## [v0.6.3](https://github.com/iwasrobbed/Down/tree/v0.6.3) (2019-03-27)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.2...v0.6.3)
 
 **Implemented enhancements:**
@@ -167,21 +242,19 @@
 - Make the DownView reflow text on device rotation [\#127](https://github.com/iwasrobbed/Down/pull/127) ([phoney](https://github.com/phoney))
 
 ## [v0.6.2](https://github.com/iwasrobbed/Down/tree/v0.6.2) (2018-11-28)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.1...v0.6.2)
 
 **Implemented enhancements:**
 
 - \[cmark\] Some characters are escaped twice [\#99](https://github.com/iwasrobbed/Down/issues/99)
 
-**Fixed bugs:**
-
-- \\[cmark\\] Some characters are escaped twice [\#99](https://github.com/iwasrobbed/Down/issues/99)
-
 **Merged pull requests:**
 
 - Add compiler flag to suppress implicit conversion warnings [\#118](https://github.com/iwasrobbed/Down/pull/118) ([phoney](https://github.com/phoney))
 
 ## [v0.6.1](https://github.com/iwasrobbed/Down/tree/v0.6.1) (2018-11-23)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.6.0...v0.6.1)
 
 **Closed issues:**
@@ -195,6 +268,7 @@
 - Fix macOS Platform, Custom URL Scheme Handler, Polish Demos. [\#110](https://github.com/iwasrobbed/Down/pull/110) ([chriszielinski](https://github.com/chriszielinski))
 
 ## [v0.6.0](https://github.com/iwasrobbed/Down/tree/v0.6.0) (2018-11-10)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.5.3...v0.6.0)
 
 **Implemented enhancements:**
@@ -215,6 +289,7 @@
 - Update project to Xcode 10 [\#109](https://github.com/iwasrobbed/Down/pull/109) ([funkyboy](https://github.com/funkyboy))
 
 ## [v0.5.3](https://github.com/iwasrobbed/Down/tree/v0.5.3) (2018-09-19)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.5.2...v0.5.3)
 
 **Implemented enhancements:**
@@ -244,6 +319,7 @@
 - \[Release\] v0.5.2 [\#87](https://github.com/iwasrobbed/Down/pull/87) ([iwasrobbed](https://github.com/iwasrobbed))
 
 ## [v0.5.2](https://github.com/iwasrobbed/Down/tree/v0.5.2) (2018-05-05)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.5.1...v0.5.2)
 
 **Merged pull requests:**
@@ -251,6 +327,7 @@
 - \[Pods\] Only include files in source\_files that can be compiled [\#86](https://github.com/iwasrobbed/Down/pull/86) ([njdehoog](https://github.com/njdehoog))
 
 ## [v0.5.1](https://github.com/iwasrobbed/Down/tree/v0.5.1) (2018-03-03)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.5.0...v0.5.1)
 
 **Closed issues:**
@@ -264,6 +341,7 @@
 - Update supported versions in README [\#77](https://github.com/iwasrobbed/Down/pull/77) ([kengruven](https://github.com/kengruven))
 
 ## [v0.5.0](https://github.com/iwasrobbed/Down/tree/v0.5.0) (2018-02-24)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.4.2...v0.5.0)
 
 **Implemented enhancements:**
@@ -274,7 +352,6 @@
 
 - Building for tvOS fails [\#49](https://github.com/iwasrobbed/Down/issues/49)
 - Fix Carthage builds [\#72](https://github.com/iwasrobbed/Down/pull/72) ([tonyarnold](https://github.com/tonyarnold))
-- Fix/update example app [\#58](https://github.com/iwasrobbed/Down/pull/58) ([iwasrobbed](https://github.com/iwasrobbed))
 
 **Closed issues:**
 
@@ -302,6 +379,7 @@
 - Updated Copyright year in ReadMe file [\#53](https://github.com/iwasrobbed/Down/pull/53) ([jobinsjohn](https://github.com/jobinsjohn))
 
 ## [v0.4.2](https://github.com/iwasrobbed/Down/tree/v0.4.2) (2017-10-21)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.4.1...v0.4.2)
 
 **Closed issues:**
@@ -313,6 +391,7 @@
 - \[tvOS\] Conditionally compile DownView [\#52](https://github.com/iwasrobbed/Down/pull/52) ([iwasrobbed](https://github.com/iwasrobbed))
 
 ## [v0.4.1](https://github.com/iwasrobbed/Down/tree/v0.4.1) (2017-10-04)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.4.0...v0.4.1)
 
 **Closed issues:**
@@ -325,9 +404,9 @@
 - Adds filters to remove Xcode-specific warnings [\#48](https://github.com/iwasrobbed/Down/pull/48) ([128keaton](https://github.com/128keaton))
 - Fixes issue \#43 [\#47](https://github.com/iwasrobbed/Down/pull/47) ([128keaton](https://github.com/128keaton))
 - Update to Swift 4  [\#46](https://github.com/iwasrobbed/Down/pull/46) ([iwasrobbed](https://github.com/iwasrobbed))
-- Fixed error with accessing shared workspace. [\#44](https://github.com/iwasrobbed/Down/pull/44) ([mjzac](https://github.com/mjzac))
 
 ## [v0.4.0](https://github.com/iwasrobbed/Down/tree/v0.4.0) (2017-08-31)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.5...v0.4.0)
 
 **Implemented enhancements:**
@@ -348,6 +427,7 @@
 - Prevent zoom documentation [\#34](https://github.com/iwasrobbed/Down/pull/34) ([Kumuluzz](https://github.com/Kumuluzz))
 
 ## [v0.3.5](https://github.com/iwasrobbed/Down/tree/v0.3.5) (2017-05-25)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.4...v0.3.5)
 
 **Implemented enhancements:**
@@ -355,6 +435,7 @@
 - Disable analysis of cmark source code [\#31](https://github.com/iwasrobbed/Down/pull/31) ([tonyarnold](https://github.com/tonyarnold))
 
 ## [v0.3.4](https://github.com/iwasrobbed/Down/tree/v0.3.4) (2017-05-13)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.3...v0.3.4)
 
 **Merged pull requests:**
@@ -363,6 +444,7 @@
 - Add the ability to initialise a DownView using a custom template bundle [\#27](https://github.com/iwasrobbed/Down/pull/27) ([tonyarnold](https://github.com/tonyarnold))
 
 ## [v0.3.3](https://github.com/iwasrobbed/Down/tree/v0.3.3) (2017-03-09)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.2...v0.3.3)
 
 **Implemented enhancements:**
@@ -374,6 +456,7 @@
 - \#6 macOS Support [\#25](https://github.com/iwasrobbed/Down/pull/25) ([128keaton](https://github.com/128keaton))
 
 ## [v0.3.2](https://github.com/iwasrobbed/Down/tree/v0.3.2) (2017-02-26)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3.1...v0.3.2)
 
 **Implemented enhancements:**
@@ -391,6 +474,7 @@
 - v0.3.1: Add the ability to update DownView content [\#22](https://github.com/iwasrobbed/Down/pull/22) ([iwasrobbed](https://github.com/iwasrobbed))
 
 ## [v0.3.1](https://github.com/iwasrobbed/Down/tree/v0.3.1) (2017-02-09)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.3...v0.3.1)
 
 **Closed issues:**
@@ -406,6 +490,7 @@
 - Add support for Carthage [\#8](https://github.com/iwasrobbed/Down/issues/8)
 
 ## [v0.3](https://github.com/iwasrobbed/Down/tree/v0.3) (2016-10-12)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.2...v0.3)
 
 **Implemented enhancements:**
@@ -424,6 +509,7 @@
 - DownView rendering to close \#3 [\#5](https://github.com/iwasrobbed/Down/pull/5) ([iwasrobbed](https://github.com/iwasrobbed))
 
 ## [v0.2](https://github.com/iwasrobbed/Down/tree/v0.2) (2016-06-02)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.1.1...v0.2)
 
 **Implemented enhancements:**
@@ -432,6 +518,7 @@
 - Adds attributed string rendering [\#4](https://github.com/iwasrobbed/Down/pull/4) ([iwasrobbed](https://github.com/iwasrobbed))
 
 ## [v0.1.1](https://github.com/iwasrobbed/Down/tree/v0.1.1) (2016-06-01)
+
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.1...v0.1.1)
 
 **Implemented enhancements:**
@@ -440,5 +527,8 @@
 
 ## [v0.1](https://github.com/iwasrobbed/Down/tree/v0.1) (2016-06-01)
 
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/69fba2a97e45a07360054a811cac018bec10e17d...v0.1)
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+
+
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
