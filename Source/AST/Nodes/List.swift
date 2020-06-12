@@ -22,6 +22,13 @@ public class List: BaseNode {
     
     /// The number of items in the list.
     public lazy var numberOfItems: Int = children.count
+
+    /// Whether the list is "tight".
+    ///
+    /// If any of the list items are separated by a blank line, then this property is `false`. This value is
+    /// a hint to render the list with more (loose) or less (tight) spacing between items.
+
+    public lazy var isTight: Bool = cmark_node_get_list_tight(cmarkNode) == 1
 }
 
 // MARK: - List Type
@@ -54,6 +61,6 @@ public extension List {
 extension List: CustomDebugStringConvertible {
     
     public var debugDescription: String {
-        return "List - type: \(listType)"
+        return "List - type: \(listType), isTight: \(isTight)"
     }
 }
