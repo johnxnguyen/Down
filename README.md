@@ -30,7 +30,7 @@ Note: Swift support is summarized in the table below.
 
 |Swift Version|Tag|
 | --- | --- |
-| Swift 5.1 | >= 0.9.2 |
+| Swift 5.1 | >= 0.9.0 |
 | Swift 5.0 | >= 0.8.1 |
 | Swift 4 | >= 0.4.x |
 | Swift 3 | 0.3.x |
