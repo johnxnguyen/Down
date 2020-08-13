@@ -62,9 +62,26 @@ open class DownStyler: Styler {
         let stripeAttribute = QuoteStripeAttribute(level: nestDepth + 1, color: colors.quoteStripe, options: quoteStripeOptions)
 
         str.addAttributes([
-            .font: fonts.quote,
             .foregroundColor: colors.quote
         ])
+
+        str.updateExistingAttributes(for: .font) { (currentFont: DownFont) in
+            var newFont = fonts.quote
+
+            if (currentFont.isMonospace) {
+                newFont = newFont.monospace
+            }
+
+            if (currentFont.isEmphasized) {
+                newFont = newFont.emphasis
+            }
+
+            if (currentFont.isStrong) {
+                newFont = newFont.strong
+            }
+
+            return newFont
+        }
 
         str.updateExistingAttributes(for: .paragraphStyle) { (style: NSParagraphStyle) in
             style.apply(style: paragraphStyles.quote)
