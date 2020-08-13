@@ -18,7 +18,7 @@ import AppKit
 
 #endif
 
-struct QuoteStripeAttribute {
+public struct QuoteStripeAttribute {
 
     var color: DownColor
     var thickness: CGFloat
@@ -46,7 +46,7 @@ extension QuoteStripeAttribute {
 
 extension NSAttributedString.Key {
     
-    static let quoteStripe = NSAttributedString.Key(rawValue: "quoteStripe")
+    public static let quoteStripe = NSAttributedString.Key(rawValue: "quoteStripe")
 }
 
 #endif

@@ -30,6 +30,7 @@ public protocol FontCollection {
     var heading6: DownFont { get }
     var body: DownFont { get }
     var code: DownFont { get }
+    var quote: DownFont { get }
     var listItemPrefix: DownFont { get }
 }
 
@@ -43,6 +44,7 @@ public struct StaticFontCollection: FontCollection {
     public var heading6: DownFont
     public var body: DownFont
     public var code: DownFont
+    public var quote: DownFont
     public var listItemPrefix: DownFont
 
     public init(
@@ -53,6 +55,7 @@ public struct StaticFontCollection: FontCollection {
         heading5: DownFont = .boldSystemFont(ofSize: 20),
         heading6: DownFont = .boldSystemFont(ofSize: 20),
         body: DownFont = .systemFont(ofSize: 17),
+        quote: DownFont = .systemFont(ofSize: 17),
         code: DownFont = DownFont(name: "menlo", size: 17) ?? .systemFont(ofSize: 17),
         listItemPrefix: DownFont = DownFont.monospacedDigitSystemFont(ofSize: 17, weight: .regular)
     ) {
@@ -64,6 +67,7 @@ public struct StaticFontCollection: FontCollection {
         self.heading6 = heading6
         self.body = body
         self.code = code
+        self.quote = quote
         self.listItemPrefix = listItemPrefix
     }
 }

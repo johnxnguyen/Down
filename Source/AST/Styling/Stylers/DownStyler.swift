@@ -66,7 +66,11 @@ open class DownStyler: Styler {
         }
 
         str.addAttributeInMissingRanges(for: .quoteStripe, value: stripeAttribute)
-        str.addAttribute(for: .foregroundColor, value: colors.quote)
+        str.addAttributes([
+            .font: fonts.quote,
+            .paragraphStyle: paragraphStyles.quote,
+            .foregroundColor: colors.quote
+        ])
     }
 
     open func style(list str: NSMutableAttributedString, nestDepth: Int) {
