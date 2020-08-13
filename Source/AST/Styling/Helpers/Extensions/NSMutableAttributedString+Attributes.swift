@@ -35,7 +35,7 @@ extension NSMutableAttributedString {
         addAttribute(key, value: value, range: range)
     }
 
-    func updateExistingAttributes<A>(for key: Key, using f: (A) -> A) {
+    public func updateExistingAttributes<A>(for key: Key, using f: (A) -> A) {
         updateExistingAttributes(for: key, in: wholeRange, using: f)
     }
 

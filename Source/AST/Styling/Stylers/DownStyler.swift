@@ -61,34 +61,12 @@ open class DownStyler: Styler {
     open func style(blockQuote str: NSMutableAttributedString, nestDepth: Int) {
         let stripeAttribute = QuoteStripeAttribute(level: nestDepth + 1, color: colors.quoteStripe, options: quoteStripeOptions)
 
-        str.addAttributes([
-            .foregroundColor: colors.quote
-        ])
-
-        str.updateExistingAttributes(for: .font) { (currentFont: DownFont) in
-            var newFont = fonts.quote
-
-            if (currentFont.isMonospace) {
-                newFont = newFont.monospace
-            }
-
-            if (currentFont.isEmphasized) {
-                newFont = newFont.emphasis
-            }
-
-            if (currentFont.isStrong) {
-                newFont = newFont.strong
-            }
-
-            return newFont
-        }
-
         str.updateExistingAttributes(for: .paragraphStyle) { (style: NSParagraphStyle) in
-            style.apply(style: paragraphStyles.quote)
-                    .indented(by: stripeAttribute.layoutWidth)
+            style.indented(by: stripeAttribute.layoutWidth)
         }
 
         str.addAttributeInMissingRanges(for: .quoteStripe, value: stripeAttribute)
+        str.addAttribute(for: .foregroundColor, value: colors.quote)
     }
 
     open func style(list str: NSMutableAttributedString, nestDepth: Int) {
@@ -294,16 +272,7 @@ private extension NSParagraphStyle {
         result.tabStops = tabStops.map {
             NSTextTab(textAlignment: $0.alignment, location: $0.location + indentation, options: $0.options)
         }
-        return result
-    }
 
-    func apply(style paragraphStyle: NSParagraphStyle) -> NSParagraphStyle {
-        let result = mutableCopy() as! NSMutableParagraphStyle
-        result.paragraphSpacingBefore = paragraphStyle.paragraphSpacingBefore
-        result.paragraphSpacing = paragraphStyle.paragraphSpacing
-        result.lineSpacing = paragraphStyle.lineSpacing
-        result.lineHeightMultiple = paragraphStyle.lineHeightMultiple
-        result.alignment = paragraphStyle.alignment
         return result
     }
 

@@ -28,7 +28,6 @@ public protocol ParagraphStyleCollection {
     var heading6: NSParagraphStyle { get }
     var body: NSParagraphStyle { get }
     var code: NSParagraphStyle { get }
-    var quote: NSParagraphStyle { get }
 }
 
 public struct StaticParagraphStyleCollection: ParagraphStyleCollection {
@@ -41,7 +40,6 @@ public struct StaticParagraphStyleCollection: ParagraphStyleCollection {
     public var heading6: NSParagraphStyle
     public var body: NSParagraphStyle
     public var code: NSParagraphStyle
-    public var quote: NSParagraphStyle
 
     public init() {
         let headingStyle = NSMutableParagraphStyle()
@@ -63,7 +61,6 @@ public struct StaticParagraphStyleCollection: ParagraphStyleCollection {
         heading5 = headingStyle
         heading6 = headingStyle
         body = bodyStyle
-        quote = bodyStyle
         code = codeStyle
     }
 }
