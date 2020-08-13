@@ -60,7 +60,7 @@ extension NSAttributedString {
         return result.filter { $0.length > 1 }
     }
 
-    func enumerateAttributes<A>(for key: Key, block: (_ attr: A, _ range: NSRange) -> Void) {
+    public func enumerateAttributes<A>(for key: Key, block: (_ attr: A, _ range: NSRange) -> Void) {
         enumerateAttributes(for: key, in: wholeRange, block: block)
     }
 
