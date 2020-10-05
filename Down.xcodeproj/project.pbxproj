@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		14C5E33521877CE900D5380C /* DownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D41689B51CFFE6BB00E5802B /* DownView.bundle */; };
+		26CABB93252B4D490032183C /* ChildSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CABB92252B4D490032183C /* ChildSequence.swift */; };
 		8A569F481E6B3ED2008BE2AC /* DownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AE5D91CFFD0D0006E1522 /* DownView.swift */; };
 		8A569F491E6B3ED9008BE2AC /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF71CFA5D63008EEC6E /* blocks.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8A569F4A1E6B3ED9008BE2AC /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF81CFA5D63008EEC6E /* buffer.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -211,6 +212,7 @@
 
 /* Begin PBXFileReference section */
 		14C5E33621877FCD00D5380C /* DownView (macOS).bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "DownView (macOS).bundle"; sourceTree = "<group>"; };
+		26CABB92252B4D490032183C /* ChildSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildSequence.swift; sourceTree = "<group>"; };
 		8A569F401E6B3E50008BE2AC /* Down.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Down.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AFAEAFB1E6E32E900E09B68 /* DownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C73B9B522A687C400C8E60F /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -708,6 +710,7 @@
 				EEEBEE68225D2B1200AE438D /* Strong.swift */,
 				EEEBEE5A225D2A7E00AE438D /* Text.swift */,
 				EEEBEE58225D2A7000AE438D /* ThematicBreak.swift */,
+				26CABB92252B4D490032183C /* ChildSequence.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -942,6 +945,7 @@
 				EEEBEE63225D2AD400AE438D /* HtmlInline.swift in Sources */,
 				8A569F621E6B3ED9008BE2AC /* node.c in Sources */,
 				EE4484932301F2DB0065C836 /* CGRect+Helpers.swift in Sources */,
+				26CABB93252B4D490032183C /* ChildSequence.swift in Sources */,
 				EEEBEE6D225D2B3200AE438D /* Image.swift in Sources */,
 				EED8DA9722BECD7500E54492 /* FontCollection.swift in Sources */,
 				EEEBEE4D225D2A0200AE438D /* Item.swift in Sources */,

@@ -16,6 +16,9 @@ public protocol Node {
     
     /// The wrapped child nodes.
     var children: [Node] { get }
+
+    /// Sequence of wrapped child nodes.
+    func childSequence() -> ChildSequence
 }
 
 public extension Node {
