@@ -46,13 +46,7 @@ extension DownAttributedStringRenderable {
     /// - Returns: An `NSAttributedString`
     /// - Throws: `DownErrors` depending on the scenario
     public func toAttributedString(_ options: DownOptions = .default, styler: Styler) throws -> NSAttributedString {
-        let tree = try self.toAST(options)
-        
-        guard tree.type == CMARK_NODE_DOCUMENT else {
-            throw DownErrors.astRenderingError
-        }
-        
-        let document = Document(cmarkNode: tree)
+        let document = try self.toDocument(options)
         let visitor = AttributedStringVisitor(styler: styler, options: options)
         return document.accept(visitor)
     }

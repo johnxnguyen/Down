@@ -18,8 +18,7 @@ class VisitorTests: XCTestCase {
 
     func debugResult(for markdown: String) -> String {
         let down = Down(markdownString: markdown)
-        let ast = try! down.toAST()
-        let document = Document(cmarkNode: ast)
+        let document = try! down.toDocument()
         return document.accept(DebugVisitor())
     }
 

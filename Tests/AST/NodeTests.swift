@@ -38,8 +38,7 @@ extension NodeTests {
 
     private func parse(_ markdown: String, andVisitWith visitor: NodeVisitor) {
         do {
-            let ast = try Down(markdownString: markdown).toAST()
-            let document = Document(cmarkNode: ast)
+            let document = try Down(markdownString: markdown).toDocument()
             document.accept(visitor)
         } catch {
             XCTFail()
