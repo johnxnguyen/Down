@@ -129,7 +129,7 @@
 		EEEBEE70225D2B9D00AE438D /* DebugVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBEE6F225D2B9D00AE438D /* DebugVisitor.swift */; };
 		EEEBEE72225D2F9200AE438D /* AttributedStringVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBEE71225D2F9200AE438D /* AttributedStringVisitor.swift */; };
 		EEF1376F2259E53400D7DDE0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF1376E2259E53400D7DDE0 /* Node.swift */; };
-		EEF137712259E7E700D7DDE0 /* Vistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF137702259E7E700D7DDE0 /* Vistor.swift */; };
+		EEF137712259E7E700D7DDE0 /* Visitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF137702259E7E700D7DDE0 /* Visitor.swift */; };
 		EEF8580F22FA101C0025370B /* DownDebugLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF8580E22FA101C0025370B /* DownDebugLayoutManager.swift */; };
 		EEF8581122FA11690025370B /* DownDebugTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF8581022FA11690025370B /* DownDebugTextView.swift */; };
 		EEFFFDDB22F4C36800036FD5 /* ThematicBreakAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFFDDA22F4C36800036FD5 /* ThematicBreakAttribute.swift */; };
@@ -342,7 +342,7 @@
 		EEEBEE6F225D2B9D00AE438D /* DebugVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugVisitor.swift; sourceTree = "<group>"; };
 		EEEBEE71225D2F9200AE438D /* AttributedStringVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringVisitor.swift; sourceTree = "<group>"; };
 		EEF1376E2259E53400D7DDE0 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
-		EEF137702259E7E700D7DDE0 /* Vistor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vistor.swift; sourceTree = "<group>"; };
+		EEF137702259E7E700D7DDE0 /* Visitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visitor.swift; sourceTree = "<group>"; };
 		EEF8580E22FA101C0025370B /* DownDebugLayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownDebugLayoutManager.swift; sourceTree = "<group>"; };
 		EEF8581022FA11690025370B /* DownDebugTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownDebugTextView.swift; sourceTree = "<group>"; };
 		EEFFFDDA22F4C36800036FD5 /* ThematicBreakAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThematicBreakAttribute.swift; sourceTree = "<group>"; };
@@ -721,7 +721,7 @@
 				EEEBEE71225D2F9200AE438D /* AttributedStringVisitor.swift */,
 				EE8F38CD22BFEDE50056270E /* ListItemPrefixGenerator.swift */,
 				EEEBEE6F225D2B9D00AE438D /* DebugVisitor.swift */,
-				EEF137702259E7E700D7DDE0 /* Vistor.swift */,
+				EEF137702259E7E700D7DDE0 /* Visitor.swift */,
 			);
 			path = Visitors;
 			sourceTree = "<group>";
@@ -1005,7 +1005,7 @@
 				EEEBEE5F225D2AA700AE438D /* LineBreak.swift in Sources */,
 				EEEBEE61225D2AC000AE438D /* Code.swift in Sources */,
 				8A569F491E6B3ED9008BE2AC /* blocks.c in Sources */,
-				EEF137712259E7E700D7DDE0 /* Vistor.swift in Sources */,
+				EEF137712259E7E700D7DDE0 /* Visitor.swift in Sources */,
 				EEEBEE53225D2A3C00AE438D /* CustomBlock.swift in Sources */,
 				EEEBEE69225D2B1200AE438D /* Strong.swift in Sources */,
 				EEEBEE47225D298D00AE438D /* Document.swift in Sources */,
