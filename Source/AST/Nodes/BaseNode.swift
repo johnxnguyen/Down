@@ -13,11 +13,7 @@ public class BaseNode: Node {
     
     public let cmarkNode: CMarkNode
 
-    public func childSequence() -> ChildSequence {
-        return ChildSequence(node: cmarkNode)
-    }
-    
-    public private(set) lazy var children: [Node] = Array(childSequence())
+    public private(set) lazy var children: [Node] = Array(childSequence)
 
     public private(set) lazy var nestDepth: Int = {
         var depth = 0

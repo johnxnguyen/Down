@@ -16,15 +16,17 @@ public protocol Node {
     
     /// The wrapped child nodes.
     var children: [Node] { get }
-
-    /// Sequence of wrapped child nodes.
-    func childSequence() -> ChildSequence
 }
 
 public extension Node {
     /// True iff the node has a sibling that succeeds it.
     var hasSuccessor: Bool {
         return cmark_node_next(cmarkNode) != nil
+    }
+
+    /// Sequence of wrapped child nodes.
+    var childSequence: ChildSequence {
+        return ChildSequence(node: cmarkNode)
     }
 }
 
