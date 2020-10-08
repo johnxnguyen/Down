@@ -37,13 +37,13 @@ Note: Swift support is summarized in the table below.
 
  now on the `master` branch and any tag >= 0.8.1 (Swift 4 is >= 0.4.x, Swift 3 is 0.3.x)
 
-Quickly install using [CocoaPods](https://cocoapods.org):
+#### Quickly install using [CocoaPods](https://cocoapods.org):
 
 ```ruby
 pod 'Down'
 ```
 
-Or [Carthage](https://github.com/Carthage/Carthage):
+#### Install using [Carthage](https://github.com/Carthage/Carthage):
 
 ```
 github "iwasrobbed/Down"
@@ -54,7 +54,12 @@ e.g.
 
 ```carthage update --platform iOS```
 
-Or manually install:
+#### Install using [Swift Package Manager](https://github.com/apple/swift-package-manager):
+
+To add *Down* to your project, select `File → Swift Packages → Add Package Dependency` and enter the GitHub URL for *Down*. 
+See [Adding Package Dependencies to Your App](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app) for detailed instructions.
+
+#### Or manually install:
 
 1. Clone this repository
 2. Drag and drop the Down project into your workspace file, adding the framework in the embedded framework section
