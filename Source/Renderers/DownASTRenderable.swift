@@ -23,10 +23,10 @@ extension DownASTRenderable {
         return try DownASTRenderer.stringToAST(markdownString, options: options)
     }
 
-    /// Generates an abstract syntax tree from the `markdownString` property
+    /// Parses the `markdownString` property into an abstract syntax tree and returns the root `Document` node.
     ///
     /// - Parameter options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
-    /// - Returns: An abstract syntax tree representation of the Markdown input
+    /// - Returns: The root Document node for the abstract syntax tree representation of the Markdown input
     /// - Throws: `MarkdownToASTError` if conversion fails
     public func toDocument(_ options: DownOptions = .default) throws -> Document {
         let tree = try toAST(options)
