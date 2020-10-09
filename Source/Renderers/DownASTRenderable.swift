@@ -11,7 +11,6 @@ import libcmark
 
 public protocol DownASTRenderable: DownRenderable {
     func toAST(_ options: DownOptions) throws -> UnsafeMutablePointer<cmark_node>
-    func toDocument(_ options: DownOptions) throws -> Document
 }
 
 extension DownASTRenderable {
