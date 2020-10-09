@@ -23,6 +23,11 @@ public extension Node {
     var hasSuccessor: Bool {
         return cmark_node_next(cmarkNode) != nil
     }
+
+    /// Sequence of wrapped child nodes.
+    var childSequence: ChildSequence {
+        return ChildSequence(node: cmarkNode)
+    }
 }
 
 // MARK: - Helper extensions
