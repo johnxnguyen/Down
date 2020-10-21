@@ -64,6 +64,10 @@ open class DownTextView: TextView {
         layoutManager.addTextContainer(textContainer)
 
         super.init(frame: frame, textContainer: textContainer)
+
+        // We don't want the text view to overwrite link attributes set
+        // by the styler.
+        linkTextAttributes = [:]
     }
 
     required public init?(coder: NSCoder) {
