@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.name         = "Down"
   spec.summary      = "Blazing fast Markdown rendering in Swift, built upon cmark."
-  spec.version      = "0.9.3"
+  spec.version      = "0.9.4"
   spec.homepage     = "https://github.com/iwasrobbed/Down"
   spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.authors      = { "Rob Phillips" => "rob@robphillips.me" }
