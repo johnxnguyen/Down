@@ -1,5 +1,32 @@
 # Changelog
 
+## [v0.9.4](https://github.com/iwasrobbed/Down/tree/v0.9.4) (2020-10-21)
+
+[Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.9.3...v0.9.4)
+
+**Implemented enhancements:**
+
+- Create custom sequence to access child nodes [\#228](https://github.com/iwasrobbed/Down/pull/228) ([5sw](https://github.com/5sw))
+
+**Closed issues:**
+
+- DownStylerConfiguration Link Color Not Working [\#232](https://github.com/iwasrobbed/Down/issues/232)
+- SwiftUI support [\#231](https://github.com/iwasrobbed/Down/issues/231)
+- How to pre-calculate height needed for attributed string when using DownLayoutManager [\#226](https://github.com/iwasrobbed/Down/issues/226)
+- How i can render both markdown and Latex  ? [\#221](https://github.com/iwasrobbed/Down/issues/221)
+- Emphasis + Strong [\#220](https://github.com/iwasrobbed/Down/issues/220)
+- \[StackOverflow\] Creating a new Visitor leads to wrapping value error [\#218](https://github.com/iwasrobbed/Down/issues/218)
+- 0.9.0/0.9.1 don't build with Swift 5.0.x [\#217](https://github.com/iwasrobbed/Down/issues/217)
+- Unable to build Swift package in Xcode 11.4.1 [\#209](https://github.com/iwasrobbed/Down/issues/209)
+- \[Feature\] Add support for Mac Catalyst [\#208](https://github.com/iwasrobbed/Down/issues/208)
+
+**Merged pull requests:**
+
+- \[Fix\] DownTextView renders incorrect link color [\#233](https://github.com/iwasrobbed/Down/pull/233) ([johnxnguyen](https://github.com/johnxnguyen))
+- Added instructions for using the Swift Package Manager [\#230](https://github.com/iwasrobbed/Down/pull/230) ([klm1](https://github.com/klm1))
+- Use case let as instead of case is and force casting later. [\#227](https://github.com/iwasrobbed/Down/pull/227) ([5sw](https://github.com/5sw))
+- Add macOS arm64 platform [\#224](https://github.com/iwasrobbed/Down/pull/224) ([jasminlapalme](https://github.com/jasminlapalme))
+
 ## [v0.9.3](https://github.com/iwasrobbed/Down/tree/v0.9.3) (2020-06-12)
 
 [Full Changelog](https://github.com/iwasrobbed/Down/compare/v0.9.2...v0.9.3)
@@ -111,6 +138,7 @@
 
 **Merged pull requests:**
 
+- \[SPM\] Fixes error with missing headers [\#154](https://github.com/iwasrobbed/Down/pull/154) ([aasimk2000](https://github.com/aasimk2000))
 - Create Public Initializer for DebugVisitor [\#153](https://github.com/iwasrobbed/Down/pull/153) ([mfcollins3](https://github.com/mfcollins3))
 
 ## [v0.8.4](https://github.com/iwasrobbed/Down/tree/v0.8.4) (2019-06-04)
@@ -123,7 +151,6 @@
 
 **Merged pull requests:**
 
-- \[SPM\] Fixes error with missing headers [\#154](https://github.com/iwasrobbed/Down/pull/154) ([aasimk2000](https://github.com/aasimk2000))
 - Add Swift Package Manager support [\#150](https://github.com/iwasrobbed/Down/pull/150) ([aasimk2000](https://github.com/aasimk2000))
 - \[AST\] Replace line separator with paragraph separator. [\#149](https://github.com/iwasrobbed/Down/pull/149) ([fgulan](https://github.com/fgulan))
 
