@@ -47,10 +47,10 @@ private extension ViewController {
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.translatesAutoresizingMaskIntoConstraints = false
         view.insertSubview(blurEffectView, aboveSubview: subview)
-        constrain(subview: blurEffectView, bottomAnchor: topLayoutGuide.bottomAnchor)
+        constraint(subview: blurEffectView, bottomAnchor: topLayoutGuide.bottomAnchor)
     }
     
-    func constrain(subview: UIView, bottomAnchor: NSLayoutYAxisAnchor? = nil) {
+    func constraint(subview: UIView, bottomAnchor: NSLayoutYAxisAnchor? = nil) {
         NSLayoutConstraint.activate([
             subview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             subview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
