@@ -35,7 +35,7 @@ private extension ViewController {
             })
             downView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(downView)
-            constrain(subview: downView)
+            constraint(subview: downView)
             createStatusBarBackgrounds(above: downView)
         } catch {
             showError(message: error.localizedDescription)
