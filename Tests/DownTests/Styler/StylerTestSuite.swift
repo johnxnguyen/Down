@@ -57,6 +57,7 @@ class StylerTestSuite: XCTestCase {
         let textView = showLineFragments ? DownDebugTextView(frame: frame) : DownTextView(frame: frame)
         textView.textContainerInset = textContainerInset
         textView.attributedText = attributedString(for: markdown, configuration: configuration)
+        textView.layoutIfNeeded()
         textView.resizeToContentSize()
         return textView
     }
