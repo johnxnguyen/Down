@@ -99,6 +99,7 @@
 		EEBA154F234484C300B54ECB /* VisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */; };
 		EEBE62F025E28F3D005CCAD6 /* BundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBE62EF25E28F3D005CCAD6 /* BundleHelper.swift */; };
 		EED7FED725E303000033E33A /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = EED7FED625E303000033E33A /* SnapshotTesting */; };
+		EED7FED825E3133C0033E33A /* DownView (macOS).bundle in Resources */ = {isa = PBXBuildFile; fileRef = 14C5E33621877FCD00D5380C /* DownView (macOS).bundle */; };
 		EED8DA8E22BE404F00E54492 /* DownStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA8D22BE404F00E54492 /* DownStyler.swift */; };
 		EED8DA9022BECBAE00E54492 /* NSAttributedString+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA8F22BECBAE00E54492 /* NSAttributedString+Helpers.swift */; };
 		EED8DA9222BECBF200E54492 /* NSMutableAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */; };
@@ -901,6 +902,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EED7FED825E3133C0033E33A /* DownView (macOS).bundle in Resources */,
 				14C5E33521877CE900D5380C /* DownView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -939,7 +941,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nRESOURCE_PATH=$SRCROOT/Resources\n\nFILENAME_IN_BUNDLE=DownView.bundle\n\nBUILD_APP_DIR=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Resources\n\necho \"$RESOURCE_PATH\"\necho \"$BUILD_APP_DIR\"\n\nif [ \"$PLATFORM_NAME\" == \"macosx\" ]; then\n    echo $BUILD_APP_DIR\n    rm -r \"$BUILD_APP_DIR/$FILENAME_IN_BUNDLE/\"\n    cp -R \"$RESOURCE_PATH/DownView (macOS).bundle\" \"$BUILD_APP_DIR/$FILENAME_IN_BUNDLE/\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nRESOURCE_PATH=$SRCROOT/Sources/Down/Resources\n\nFILENAME_IN_BUNDLE=DownView.bundle\n\nBUILD_APP_DIR=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Resources\n\necho \"$RESOURCE_PATH\"\necho \"$BUILD_APP_DIR\"\n\nif [ \"$PLATFORM_NAME\" == \"macosx\" ]; then\n    echo $BUILD_APP_DIR\n    rm -r \"$BUILD_APP_DIR/$FILENAME_IN_BUNDLE/\"\n    cp -R \"$RESOURCE_PATH/DownView (macOS).bundle\" \"$BUILD_APP_DIR/$FILENAME_IN_BUNDLE/\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
