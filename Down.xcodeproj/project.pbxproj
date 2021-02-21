@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -76,8 +76,8 @@
 		EE48C7D922EC9250004815ED /* ParagraphStyleCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE48C7D822EC9250004815ED /* ParagraphStyleCollection.swift */; };
 		EE48C7DB22EC946F004815ED /* ColorCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE48C7DA22EC946F004815ED /* ColorCollection.swift */; };
 		EE4F77C322FF3F170026A983 /* DownStylerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F77C222FF3F170026A983 /* DownStylerConfiguration.swift */; };
-		EE54F96C22EB9C9800628683 /* Cartfile.private in Resources */ = {isa = PBXBuildFile; fileRef = EE54F96B22EB9C9800628683 /* Cartfile.private */; };
 		EE5F2BA42262564A00B7C0F3 /* Styler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5F2BA32262564A00B7C0F3 /* Styler.swift */; };
+		EE641A9125E29D4B0025879A /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = EE641A9025E29D4B0025879A /* SnapshotTesting */; };
 		EE8F38CC22BFB2420056270E /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8F38CB22BFB2420056270E /* NodeTests.swift */; };
 		EE8F38CE22BFEDE50056270E /* ListItemPrefixGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8F38CD22BFEDE50056270E /* ListItemPrefixGenerator.swift */; };
 		EE97253E22C130D8004D3B3A /* NSMutableAttributedString+AttributesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97253D22C130D8004D3B3A /* NSMutableAttributedString+AttributesTests.swift */; };
@@ -88,8 +88,6 @@
 		EEA5C02922F58A0900B91D60 /* DownTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA5C02822F58A0900B91D60 /* DownTextView.swift */; };
 		EEA5C02D22F5C96B00B91D60 /* QuoteStripeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA5C02C22F5C96B00B91D60 /* QuoteStripeAttribute.swift */; };
 		EEBA15422344849600B54ECB /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; };
-		EEBA1543234484A000B54ECB /* SnapshotTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */; };
-		EEBA1545234484B800B54ECB /* SnapshotTesting.framework in Copy Testing Frameworks */ = {isa = PBXBuildFile; fileRef = EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEBA1546234484BF00B54ECB /* DownDebugLayoutManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D2DF822FC9E89009EC13E /* DownDebugLayoutManagerTests.swift */; };
 		EEBA1547234484BF00B54ECB /* LinkStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D2DF522FC99A6009EC13E /* LinkStyleTests.swift */; };
 		EEBA1548234484BF00B54ECB /* CodeBlockStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE64722A22F8BB0B00C5F0BA /* CodeBlockStyleTests.swift */; };
@@ -197,17 +195,6 @@
 			name = "Copy Bundled Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EEBA1544234484A400B54ECB /* Copy Testing Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				EEBA1545234484B800B54ECB /* SnapshotTesting.framework in Copy Testing Frameworks */,
-			);
-			name = "Copy Testing Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -289,7 +276,6 @@
 		EE48C7D822EC9250004815ED /* ParagraphStyleCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphStyleCollection.swift; sourceTree = "<group>"; };
 		EE48C7DA22EC946F004815ED /* ColorCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollection.swift; sourceTree = "<group>"; };
 		EE4F77C222FF3F170026A983 /* DownStylerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownStylerConfiguration.swift; sourceTree = "<group>"; };
-		EE54F96B22EB9C9800628683 /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
 		EE54F96E22EB9CE500628683 /* SnapshotTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapshotTesting.framework; path = Carthage/Build/iOS/SnapshotTesting.framework; sourceTree = "<group>"; };
 		EE59C30122ECF0BD006EE8A8 /* StylerTestSuite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StylerTestSuite.swift; sourceTree = "<group>"; };
 		EE5D2DF522FC99A6009EC13E /* LinkStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkStyleTests.swift; sourceTree = "<group>"; };
@@ -362,8 +348,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEBA1543234484A000B54ECB /* SnapshotTesting.framework in Frameworks */,
 				EEBA15422344849600B54ECB /* Down.framework in Frameworks */,
+				EE641A9125E29D4B0025879A /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +397,6 @@
 		D4201E761CFA5151008EEC6E = {
 			isa = PBXGroup;
 			children = (
-				EE54F96B22EB9C9800628683 /* Cartfile.private */,
 				D4201E9B1CFA59A5008EEC6E /* Source */,
 				D41689B41CFFE6BB00E5802B /* Resources */,
 				D4201EC41CFA59A5008EEC6E /* Tests */,
@@ -822,13 +807,15 @@
 				EEBA15362344845500B54ECB /* Sources */,
 				EEBA15372344845500B54ECB /* Frameworks */,
 				EEBA15382344845500B54ECB /* Resources */,
-				EEBA1544234484A400B54ECB /* Copy Testing Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = DownSnapshotTests;
+			packageProductDependencies = (
+				EE641A9025E29D4B0025879A /* SnapshotTesting */,
+			);
 			productName = DownSnapshotTests;
 			productReference = EEBA153A2344845500B54ECB /* DownSnapshotTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -868,6 +855,9 @@
 				Base,
 			);
 			mainGroup = D4201E761CFA5151008EEC6E;
+			packageReferences = (
+				EE641A8F25E29D4B0025879A /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
 			productRefGroup = D4201E811CFA5151008EEC6E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -884,7 +874,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE54F96C22EB9C9800628683 /* Cartfile.private in Resources */,
 				14C5E33521877CE900D5380C /* DownView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1250,7 +1239,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.downMarkdown.$(TARGET_NAME:c99-identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1274,7 +1264,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DownSnapshotTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.downMarkdown.DownSnapshotTests;
@@ -1299,7 +1293,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = DownSnapshotTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.downMarkdown.DownSnapshotTests;
@@ -1349,6 +1347,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EE641A8F25E29D4B0025879A /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EE641A9025E29D4B0025879A /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE641A8F25E29D4B0025879A /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D4201E771CFA5151008EEC6E /* Project object */;
 }
