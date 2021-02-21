@@ -100,6 +100,7 @@
 		EEBA154D234484BF00B54ECB /* ListItemStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE335C4922EDC85900648842 /* ListItemStyleTests.swift */; };
 		EEBA154E234484BF00B54ECB /* StylerTestSuite.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE59C30122ECF0BD006EE8A8 /* StylerTestSuite.swift */; };
 		EEBA154F234484C300B54ECB /* VisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE64FEEF225BEB3900A35B34 /* VisitorTests.swift */; };
+		EEBE62F025E28F3D005CCAD6 /* BundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBE62EF25E28F3D005CCAD6 /* BundleHelper.swift */; };
 		EED8DA8E22BE404F00E54492 /* DownStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA8D22BE404F00E54492 /* DownStyler.swift */; };
 		EED8DA9022BECBAE00E54492 /* NSAttributedString+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA8F22BECBAE00E54492 /* NSAttributedString+Helpers.swift */; };
 		EED8DA9222BECBF200E54492 /* NSMutableAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */; };
@@ -313,6 +314,7 @@
 		EEBA153A2344845500B54ECB /* DownSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DownSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEBA153C2344845500B54ECB /* DownSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownSnapshotTests.swift; sourceTree = "<group>"; };
 		EEBA153E2344845500B54ECB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEBE62EF25E28F3D005CCAD6 /* BundleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleHelper.swift; sourceTree = "<group>"; };
 		EED8DA8D22BE404F00E54492 /* DownStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownStyler.swift; sourceTree = "<group>"; };
 		EED8DA8F22BECBAE00E54492 /* NSAttributedString+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Helpers.swift"; sourceTree = "<group>"; };
 		EED8DA9122BECBF200E54492 /* NSMutableAttributedString+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Attributes.swift"; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 			isa = PBXGroup;
 			children = (
 				D43AE5D91CFFD0D0006E1522 /* DownView.swift */,
+				EEBE62EF25E28F3D005CCAD6 /* BundleHelper.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -976,6 +979,7 @@
 				EEF8580F22FA101C0025370B /* DownDebugLayoutManager.swift in Sources */,
 				8A569F6F1E6B3EDE008BE2AC /* DownAttributedStringRenderable.swift in Sources */,
 				EEEBEE55225D2A4E00AE438D /* Paragraph.swift in Sources */,
+				EEBE62F025E28F3D005CCAD6 /* BundleHelper.swift in Sources */,
 				8A569F721E6B3EDE008BE2AC /* DownHTMLRenderable.swift in Sources */,
 				EED8DA9422BECC2100E54492 /* UIFont+Traits.swift in Sources */,
 				EE44848B2301E51C0065C836 /* CodeBlockOptions.swift in Sources */,
