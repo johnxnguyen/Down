@@ -6,10 +6,10 @@ Pod::Spec.new do |spec|
   spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.authors      = { "John Nguyen" => "polyxo@protonmail.com" }
   spec.source       = { :git => "https://github.com/johnxnguyen/Down.git", :tag => "v" + spec.version.to_s }
-  spec.source_files = "Sources/Down/{AST,Enums & Options,Extensions,Renderers}/**/*.{h,c,swift}", "Sources/cmark/*", "Sources/Down/*"
+  spec.source_files = "Sources/Down/{AST,Enums & Options,Extensions,Renderers}/**/*.swift", "Sources/cmark/*.{h,c}", "Sources/Down/*"
   spec.ios.source_files = "Sources/Down/Views/**"
   spec.osx.source_files = "Sources/Down/Views/**"
-  spec.public_header_files = "Sources/Down/*.h", "Sources/cmark/*.h"
+  spec.public_header_files = "Sources/Down/*.h"
   spec.ios.deployment_target = "9.0"
   spec.tvos.deployment_target = "9.0"
   spec.osx.deployment_target = "10.11"
