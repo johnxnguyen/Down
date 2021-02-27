@@ -54,7 +54,7 @@ open class DownTextView: TextView {
         self.init(frame: frame, styler: styler, layoutManager: DownLayoutManager())
     }
 
-    init(frame: CGRect, styler: Styler, layoutManager: NSLayoutManager) {
+    public init(frame: CGRect, styler: Styler, layoutManager: NSLayoutManager) {
         self.styler = styler
 
         let textStorage = NSTextStorage()
