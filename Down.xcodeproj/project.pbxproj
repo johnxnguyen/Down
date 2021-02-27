@@ -1101,6 +1101,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Sources/cmark";
+				"VALID_ARCHS[sdk=iphonesimulator*]" = "i386 x86_64 arm64";
 			};
 			name = Debug;
 		};
@@ -1122,6 +1123,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Sources/cmark";
+				"VALID_ARCHS[sdk=iphonesimulator*]" = "i386 x86_64 arm64";
 			};
 			name = Release;
 		};
