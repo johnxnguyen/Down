@@ -1,5 +1,21 @@
 # Changelog
 
+## [v0.10.0](https://github.com/johnxnguyen/Down/tree/v0.10.0) (2021-02-28)
+
+[Full Changelog](https://github.com/johnxnguyen/Down/compare/v0.9.5...v0.10.0)
+
+**Closed issues:**
+
+- Does not build in 12.5 [\#244](https://github.com/johnxnguyen/Down/issues/244)
+- \[Crash\] Missing resource bundle when using SPM [\#243](https://github.com/johnxnguyen/Down/issues/243)
+
+**Merged pull requests:**
+
+- \[Improvement\] Expose DownTextView's designated initializer [\#250](https://github.com/johnxnguyen/Down/pull/250) ([max-potapov](https://github.com/max-potapov))
+- \[Chore\] Add arm64 as valid arch when building for simulator on M1 macs [\#249](https://github.com/johnxnguyen/Down/pull/249) ([michaelknoch](https://github.com/michaelknoch))
+- \[Chore\] Reorganize project structure for SPM [\#248](https://github.com/johnxnguyen/Down/pull/248) ([johnxnguyen](https://github.com/johnxnguyen))
+- \[Chore\] Use SPM to manage snapshot testing dependency [\#247](https://github.com/johnxnguyen/Down/pull/247) ([johnxnguyen](https://github.com/johnxnguyen))
+
 ## [v0.9.5](https://github.com/johnxnguyen/Down/tree/v0.9.5) (2021-02-12)
 
 [Full Changelog](https://github.com/johnxnguyen/Down/compare/v0.9.4...v0.9.5)
@@ -236,7 +252,6 @@
 **Merged pull requests:**
 
 - Wrap openURL so that Down compiles in app extensions [\#133](https://github.com/johnxnguyen/Down/pull/133) ([nheagy](https://github.com/nheagy))
-- Fix Swift module errors when used alongside Firestore [\#125](https://github.com/johnxnguyen/Down/pull/125) ([vzsg](https://github.com/vzsg))
 
 ## [v0.6.5](https://github.com/johnxnguyen/Down/tree/v0.6.5) (2019-04-02)
 
@@ -254,6 +269,10 @@
 
 - Support SwiftPM [\#128](https://github.com/johnxnguyen/Down/issues/128)
 - \[DownView\] Load multiple .md files \(link support\) [\#68](https://github.com/johnxnguyen/Down/issues/68)
+
+**Merged pull requests:**
+
+- Fix Swift module errors when used alongside Firestore [\#125](https://github.com/johnxnguyen/Down/pull/125) ([vzsg](https://github.com/vzsg))
 
 ## [v0.6.3](https://github.com/johnxnguyen/Down/tree/v0.6.3) (2019-03-27)
 
