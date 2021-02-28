@@ -1,7 +1,7 @@
 ## Down
 [![Build Status](https://travis-ci.com/johnxnguyen/Down.svg?branch=master)](https://travis-ci.com/johnxnguyen/Down)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/johnxnguyen/Down/blob/master/LICENSE)
-[![CocoaPods](https://img.shields.io/cocoapods/v/Down.svg?maxAge=10800)]()
+[![CocoaPods](https://img.shields.io/cocoapods/v/Down)](https://cocoapods.org/pods/Down)
 [![Swift 5](https://img.shields.io/badge/language-Swift-blue.svg)](https://swift.org)
 [![macOS](https://img.shields.io/badge/OS-macOS-orange.svg)](https://developer.apple.com/macos/)
 [![iOS](https://img.shields.io/badge/OS-iOS-orange.svg)](https://developer.apple.com/ios/)
