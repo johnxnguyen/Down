@@ -6,7 +6,7 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
-#if canImport(UIKit)
+#if os(iOS)
 
 class BlockQuoteStyleTests: StylerTestSuite {
 
