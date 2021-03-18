@@ -1094,6 +1094,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.downMarkdown.DownTests;
 				"TARGETED_DEVICE_FAMILY[sdk=appletvos*]" = 3;
 				"TARGETED_DEVICE_FAMILY[sdk=appletvsimulator*]" = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
 			};
 			name = Debug;
 		};
@@ -1111,6 +1112,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.downMarkdown.DownTests;
 				"TARGETED_DEVICE_FAMILY[sdk=appletvos*]" = 3;
 				"TARGETED_DEVICE_FAMILY[sdk=appletvsimulator*]" = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
 			};
 			name = Release;
 		};
