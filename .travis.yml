@@ -7,6 +7,5 @@ script:
   - travis_retry xcodebuild -project Down.xcodeproj -scheme "Down" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=14.2,name=iPhone 12" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES test
   - travis_retry xcodebuild -project Down.xcodeproj -scheme "Down" -sdk macosx -destination 'platform=OS X,arch=x86_64' -enableCodeCoverage YES test
   - travis_retry xcodebuild -project Down.xcodeproj -scheme "Down" -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV' -enableCodeCoverage YES test
-  - travis_retry xcodebuild -project Down.xcodeproj -scheme "DownSnapshotTests" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=14.2,name=iPhone 12" -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES test
 after_success:
   - bash <(curl -s https://codecov.io/bash)
