@@ -6,6 +6,8 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 class BlockQuoteStyleTests: StylerTestSuite {
 
     /// # Important
@@ -206,3 +208,4 @@ class BlockQuoteStyleTests: StylerTestSuite {
     }
 }
 
+#endif

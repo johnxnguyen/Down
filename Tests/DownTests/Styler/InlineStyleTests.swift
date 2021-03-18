@@ -6,6 +6,8 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 class InlineStyleTests: StylerTestSuite {
 
     /// # Important
@@ -92,3 +94,5 @@ class InlineStyleTests: StylerTestSuite {
         assertStyle(for: markdown, width: .wide)
     }
 }
+
+#endif

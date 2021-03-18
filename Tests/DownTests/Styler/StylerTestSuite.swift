@@ -6,6 +6,8 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 import XCTest
 import SnapshotTesting
 @testable import Down
@@ -161,3 +163,5 @@ private extension DownStylerConfiguration {
         return configuration
     }
 }
+
+#endif

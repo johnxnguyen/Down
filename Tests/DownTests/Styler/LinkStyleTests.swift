@@ -6,6 +6,8 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 class LinkStyleTests: StylerTestSuite {
 
     /// # Important
@@ -34,3 +36,5 @@ class LinkStyleTests: StylerTestSuite {
         assertStyle(for: markdown, width: .narrow)
     }
 }
+
+#endif

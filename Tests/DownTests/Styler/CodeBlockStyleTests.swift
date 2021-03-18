@@ -6,6 +6,8 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 class CodeBlockStyleTests: StylerTestSuite {
 
     /// # Important
@@ -51,3 +53,5 @@ class CodeBlockStyleTests: StylerTestSuite {
         assertStyle(for: markdown, width: .wide)
     }
 }
+
+#endif
