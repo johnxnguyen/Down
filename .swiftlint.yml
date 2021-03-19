@@ -1,0 +1,26 @@
+included:
+  - Sources/Down
+  - Tests
+
+disabled_rules:
+  - trailing_whitespace
+  - large_tuple
+  - force_try
+  - cyclomatic_complexity
+  - identifier_name
+  - line_length
+  - vertical_whitespace
+  - trailing_newline
+  - opening_brace
+  - unused_closure_parameter
+  - trailing_comma
+  - colon
+  - control_statement
+  - comma
+  - force_cast
+  - legacy_constructor
+  - type_name
+  - orphaned_doc_comment
+  - void_return
+  - xctfail_message
+  
