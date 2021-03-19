@@ -6,6 +6,8 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
+#if os(iOS)
+
 class ThematicBreakSyleTests: StylerTestSuite {
 
     /// # Important
@@ -65,3 +67,5 @@ class ThematicBreakSyleTests: StylerTestSuite {
         assertStyle(for: markdown, width: .wide, configuration: configuration)
     }
 }
+
+#endif

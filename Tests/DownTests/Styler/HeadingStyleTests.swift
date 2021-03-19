@@ -6,6 +6,8 @@
 //  Copyright © 2016-2019 Down. All rights reserved.
 //
 
+#if os(iOS)
+
 class HeadingStyleTests: StylerTestSuite {
 
     /// # Important
@@ -104,3 +106,5 @@ class HeadingStyleTests: StylerTestSuite {
         assertStyle(for: markdown, width: .wide)
     }
 }
+
+#endif
