@@ -23,7 +23,6 @@ public class Document: BaseNode {
 
 }
 
-
 // MARK: - Debug
 
 extension Document: CustomDebugStringConvertible {

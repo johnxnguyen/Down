@@ -47,7 +47,6 @@ open class DownTextView: TextView {
 
     #endif
 
-
     // MARK: - Init
 
     public convenience init(frame: CGRect, styler: Styler = DownStyler()) {

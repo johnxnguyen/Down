@@ -50,7 +50,6 @@ public class ListItemParagraphStyler {
         self.largestPrefixWidth = prefixFont.widthOfNumberedPrefix(digits: options.maxPrefixDigits)
     }
 
-
     /// The paragraph style intended for the first paragraph of the list item.
     /// 
     /// - Parameter prefixWidth: the width (in points) of the list item prefix.

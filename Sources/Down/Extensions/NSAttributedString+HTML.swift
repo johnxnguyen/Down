@@ -14,7 +14,6 @@
     import UIKit
 #endif
 
-
 extension NSAttributedString {
 
     /// Instantiates an attributed string with the given HTML string

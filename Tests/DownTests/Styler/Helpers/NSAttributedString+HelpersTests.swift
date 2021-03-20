@@ -93,7 +93,6 @@ class NSAttributedString_HelpersTests: XCTestCase {
 
   // MARK: - Missing Attribute Ranges
 
-
     func testRangesMissingAttribute_None() {
         // Given
         let sut = NSMutableAttributedString()

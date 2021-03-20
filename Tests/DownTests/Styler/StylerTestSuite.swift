@@ -71,7 +71,6 @@ class StylerTestSuite: XCTestCase {
     }
 }
 
-
 extension StylerTestSuite {
 
     enum Width: CGFloat {
@@ -79,7 +78,6 @@ extension StylerTestSuite {
         case wide = 600
     }
 }
-
 
 private extension DownTextView {
 

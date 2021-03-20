@@ -46,7 +46,6 @@ extension NodeTests {
     }
 }
 
-
 private class NodeVisitor: DebugVisitor {
 
     var listNestDepthResults = [Int]()
