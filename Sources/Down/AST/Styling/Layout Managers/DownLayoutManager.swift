@@ -57,7 +57,7 @@ public class DownLayoutManager: NSLayoutManager {
         drawCustomAttributes(forGlyphRange: glyphsToShow, at: origin)
     }
 
-    private func drawCustomBackgrounds(forGlyphRange glyphsToShow: NSRange,  at origin: CGPoint) {
+    private func drawCustomBackgrounds(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         guard let context = context else { return }
         push(context: context)
         defer { popContext() }
