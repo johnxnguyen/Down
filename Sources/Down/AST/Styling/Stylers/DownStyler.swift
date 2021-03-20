@@ -111,15 +111,15 @@ open class DownStyler: Styler {
         str.updateExistingAttributes(for: .font) { (currentFont: DownFont) in
             var newFont = font
 
-            if (currentFont.isMonospace) {
+            if currentFont.isMonospace {
                 newFont = newFont.monospace
             }
 
-            if (currentFont.isEmphasized) {
+            if currentFont.isEmphasized {
                 newFont = newFont.emphasis
             }
 
-            if (currentFont.isStrong) {
+            if currentFont.isStrong {
                 newFont = newFont.strong
             }
 
