@@ -44,7 +44,9 @@ class StylerTestSuite: XCTestCase {
         testName: String = #function,
         line: UInt = #line) {
 
-        let view = self.view(for: markdown, width: width, configuration: configuration, showLineFragments: showLineFragments)
+        guard let view = try? self.view(for: markdown, width: width, configuration: configuration, showLineFragments: showLineFragments) else {
+            return XCTFail("Failed to generate markdown view.", file: file, line: line)
+        }
 
         let failure = verifySnapshot(matching: view, as: .image, record: recording, file: file, testName: testName, line: line)
 
@@ -52,22 +54,22 @@ class StylerTestSuite: XCTestCase {
         XCTFail(message, file: file, line: line)
     }
 
-    func view(for markdown: String, width: Width, configuration: DownStylerConfiguration?, showLineFragments: Bool = false) -> DownTextView {
+    func view(for markdown: String, width: Width, configuration: DownStylerConfiguration?, showLineFragments: Bool = false) throws -> DownTextView {
         // To make the snapshots the same size of the text content, we set a huge height then resize the view
         // to the content size.
         let frame = CGRect(x: 0, y: 0, width: width.rawValue, height: 5000)
         let textView = showLineFragments ? DownDebugTextView(frame: frame) : DownTextView(frame: frame)
         textView.textContainerInset = textContainerInset
-        textView.attributedText = attributedString(for: markdown, configuration: configuration)
+        textView.attributedText = try attributedString(for: markdown, configuration: configuration)
         textView.layoutIfNeeded()
         textView.resizeToContentSize()
         return textView
     }
 
-    private func attributedString(for markdown: String, configuration: DownStylerConfiguration?) -> NSAttributedString {
+    private func attributedString(for markdown: String, configuration: DownStylerConfiguration?) throws -> NSAttributedString {
         let down = Down(markdownString: markdown)
         let styler = DownStyler(configuration: configuration ?? .testConfiguration)
-        return try! down.toAttributedString(styler: styler)
+        return try down.toAttributedString(styler: styler)
     }
 }
 

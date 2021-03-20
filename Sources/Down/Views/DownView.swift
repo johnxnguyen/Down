@@ -96,12 +96,7 @@ open class DownView: WKWebView {
     }()
 
     #if os(macOS)
-    private lazy var temporaryDirectoryURL: URL = {
-        return try! FileManager.default.url(for: .itemReplacementDirectory,
-                                            in: .userDomainMask,
-                                            appropriateFor: URL(fileURLWithPath: NSTemporaryDirectory()),
-                                            create: true).appendingPathComponent("Down", isDirectory: true)
-    }()
+    private var temporaryDirectoryURL: URL?
     #endif
 
     private var didLoadSuccessfully: DownViewClosure?
@@ -143,8 +138,19 @@ private extension DownView {
 
     #if os(macOS)
     func createTemporaryBundle(pageHTMLString: String) throws -> URL {
-        guard let bundleResourceURL = bundle.resourceURL
-            else { throw DownErrors.nonStandardBundleFormatError }
+        guard let bundleResourceURL = bundle.resourceURL else {
+            throw DownErrors.nonStandardBundleFormatError
+        }
+
+        let fileManager = FileManager.default
+
+        let temporaryDirectoryURL = try fileManager.url(for: .itemReplacementDirectory,
+                                                        in: .userDomainMask,
+                                                        appropriateFor: URL(fileURLWithPath: NSTemporaryDirectory()),
+                                                        create: true).appendingPathComponent("Down", isDirectory: true)
+
+        self.temporaryDirectoryURL = temporaryDirectoryURL
+
         let indexURL = temporaryDirectoryURL.appendingPathComponent("index.html", isDirectory: false)
 
         // If updating markdown contents, no need to re-copy bundle.
@@ -168,7 +174,9 @@ private extension DownView {
 
     @objc
     func clearTemporaryDirectory() {
-        try? FileManager.default.removeItem(at: temporaryDirectoryURL)
+        if let temporaryDirectoryURL = temporaryDirectoryURL {
+            try? FileManager.default.removeItem(at: temporaryDirectoryURL)
+        }
     }
     #endif
 

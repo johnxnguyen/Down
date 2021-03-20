@@ -10,7 +10,6 @@ cyclomatic_complexity:
   ignores_case_statements: true
 
 disabled_rules:
-  - force_try
   - line_length
   - force_cast
   - xctfail_message
