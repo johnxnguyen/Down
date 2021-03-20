@@ -40,7 +40,7 @@ open class DownTextView: TextView {
 
     open override var string: String {
         didSet {
-            guard oldValue != string else  { return }
+            guard oldValue != string else { return }
             try? render()
         }
     }
