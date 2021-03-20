@@ -12,7 +12,6 @@ disabled_rules:
   - force_cast
   - legacy_constructor
   - type_name
-  - orphaned_doc_comment
   - void_return
   - xctfail_message
   
