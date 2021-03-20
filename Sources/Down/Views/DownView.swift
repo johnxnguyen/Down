@@ -14,7 +14,7 @@ import WebKit
 
 // MARK: - Public API
 
-public typealias DownViewClosure = () -> ()
+public typealias DownViewClosure = () -> Void
 
 open class DownView: WKWebView {
 

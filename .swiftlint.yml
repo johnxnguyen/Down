@@ -12,6 +12,5 @@ disabled_rules:
   - force_cast
   - legacy_constructor
   - type_name
-  - void_return
   - xctfail_message
   
