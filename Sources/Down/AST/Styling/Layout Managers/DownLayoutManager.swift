@@ -89,7 +89,7 @@ public class DownLayoutManager: NSLayoutManager {
                 let maxX = lineRect.maxX
                 let minY = isLineStartOfBlock ? lineUsedRect.minY - inset : lineRect.minY
                 let maxY = isLineEndOfBlock ? lineUsedRect.maxY + inset : lineUsedRect.maxY
-                let blockRect = CGRect(minX: minX, minY: minY, maxX: maxX, maxY:  maxY).translated(by: origin)
+                let blockRect = CGRect(minX: minX, minY: minY, maxX: maxX, maxY: maxY).translated(by: origin)
 
                 context.fill(blockRect)
             }

@@ -53,7 +53,7 @@ class DownViewTests: XCTestCase {
         }
 
         let expect2 = expectation(description: "DownView sets the html and validates the html is correct")
-        try? downView?.update(markdownString:  "## [Google](https://google.com)") {
+        try? downView?.update(markdownString: "## [Google](https://google.com)") {
             self._pageContents(for: downView!) { htmlString in
                 XCTAssertTrue(htmlString!.contains("css/down.min.css"))
                 XCTAssertTrue(htmlString!.contains("https://google.com"))

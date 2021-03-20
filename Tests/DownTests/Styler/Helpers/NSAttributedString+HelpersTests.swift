@@ -164,7 +164,7 @@ class NSAttributedString_HelpersTests: XCTestCase {
 
     func testParagraphRanges() {
         // Given
-        let sut = NSAttributedString(string:"Hello\nhello\nworld")
+        let sut = NSAttributedString(string: "Hello\nhello\nworld")
 
         // When
         let result = sut.paragraphRanges()
@@ -179,7 +179,7 @@ class NSAttributedString_HelpersTests: XCTestCase {
     func testParagraphRangesOfStringThatHasParagraphSeparators() {
         // Given
         let separator = "\u{2029}"
-        let sut = NSAttributedString(string:"Hello\(separator)hello\(separator)world")
+        let sut = NSAttributedString(string: "Hello\(separator)hello\(separator)world")
 
         // When
         let result = sut.paragraphRanges()
@@ -193,7 +193,7 @@ class NSAttributedString_HelpersTests: XCTestCase {
 
     func testParagraphRangesOfStringWithLargeBreaks() {
         // Given
-        let sut = NSAttributedString(string:"Hello\n\nhello\n\n\nworld")
+        let sut = NSAttributedString(string: "Hello\n\nhello\n\n\nworld")
 
         // When
         let result = sut.paragraphRanges()
