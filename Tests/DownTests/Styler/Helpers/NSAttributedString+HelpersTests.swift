@@ -9,7 +9,7 @@
 import XCTest
 @testable import Down
 
-class NSAttributedString_HelpersTests: XCTestCase {
+class NSAttributedStringHelpersTests: XCTestCase {
 
     let dummyKey = NSAttributedString.Key(rawValue: "key")
     let dummyValue = "value"

@@ -9,6 +9,5 @@ disabled_rules:
   - identifier_name
   - line_length
   - force_cast
-  - type_name
   - xctfail_message
   

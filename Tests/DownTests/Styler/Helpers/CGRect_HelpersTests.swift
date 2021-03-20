@@ -9,7 +9,7 @@
 import XCTest
 @testable import Down
 
-class CGRect_HelpersTests: XCTestCase {
+class CGRectHelpersTests: XCTestCase {
 
     func testRectInitializationWithBoundaries() {
         // When
