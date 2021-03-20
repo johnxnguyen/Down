@@ -115,7 +115,7 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         let rangeOfSecondWord = NSRange(location: 6, length: 5)
 
         // When
-        sut.updateExistingAttributes(for: key1, in: rangeOfFirstWord) { (value: String) in
+        sut.updateExistingAttributes(for: key1, in: rangeOfFirstWord) { _ in
             "some new value"
         }
 
@@ -132,7 +132,7 @@ class NSMutableAttributedString_AttributesTests: XCTestCase {
         let rangeOfFirstWord = NSRange(location: 0, length: 6)
 
         // When
-        sut.updateExistingAttributes(for: key1, in: rangeOfFirstWord) { (value: String) in
+        sut.updateExistingAttributes(for: key1, in: rangeOfFirstWord) { _ in
             "some new value"
         }
 
