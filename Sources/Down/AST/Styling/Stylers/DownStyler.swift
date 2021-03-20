@@ -292,7 +292,7 @@ private extension NSAttributedString {
     func prefix(with length: Int) -> NSAttributedString {
         guard length <= self.length else { return self }
         guard length > 0 else { return NSAttributedString() }
-        return attributedSubstring(from: NSMakeRange(0, length))
+        return attributedSubstring(from: NSRange(location: 0, length: length))
     }
 }
 
