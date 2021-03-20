@@ -31,7 +31,10 @@ import AppKit
 /// of a `DownStyler`.
 ///
 /// Insert this into a TextKit stack manually, or use the provided `DownDebugTextView`.
+
 public class DownDebugLayoutManager: DownLayoutManager {
+
+    // MARK: - Drawing
 
     override public func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
@@ -55,6 +58,7 @@ public class DownDebugLayoutManager: DownLayoutManager {
         context.setStrokeColor(color)
         context.stroke(rect)
     }
+
 }
 
 #endif

@@ -252,6 +252,7 @@ class DownViewTests: XCTestCase {
             }
         }
     }
+
 }
 
 private extension DownViewTests {
@@ -263,4 +264,5 @@ private extension DownViewTests {
     }
 
 }
+
 #endif

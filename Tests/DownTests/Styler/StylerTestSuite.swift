@@ -20,7 +20,7 @@ class StylerTestSuite: XCTestCase {
 
     var textContainerInset: UIEdgeInsets!
 
-    // MARK: - Lifecycle
+    // MARK: - Life cycle
 
     override func setUp() {
         super.setUp()
@@ -88,6 +88,7 @@ class StylerTestSuite: XCTestCase {
         let styler = DownStyler(configuration: configuration ?? .testConfiguration)
         return try down.toAttributedString(styler: styler)
     }
+
 }
 
 extension StylerTestSuite {
@@ -96,6 +97,7 @@ extension StylerTestSuite {
         case narrow = 300
         case wide = 600
     }
+
 }
 
 private extension DownTextView {
@@ -103,6 +105,7 @@ private extension DownTextView {
     func resizeToContentSize() {
         frame = .init(origin: frame.origin, size: .init(width: contentSize.width, height: contentSize.height))
     }
+
 }
 
 private extension DownStylerConfiguration {
@@ -179,6 +182,7 @@ private extension DownStylerConfiguration {
 
         return configuration
     }
+
 }
 
 #endif

@@ -173,6 +173,7 @@ class NSMutableAttributedStringAttributesTests: XCTestCase {
         XCTAssertEqual(attributeRanges.first!, sut.wholeRange)
         XCTAssertTrue(value(for: key1, in: attributeRanges.first!, isEqualTo: dummyValue, sut: sut))
     }
+
 }
 
 private extension NSMutableAttributedStringAttributesTests {
@@ -190,4 +191,5 @@ private extension NSMutableAttributedStringAttributesTests {
         let value = sut.attribute(name, at: range.location, effectiveRange: &effectiveRange) as? A
         return value == aValue && effectiveRange == range
     }
+
 }

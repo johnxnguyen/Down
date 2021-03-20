@@ -20,11 +20,16 @@ import AppKit
 
 public struct CodeBlockOptions {
 
+    // MARK: - Properties
+
     public var containerInset: CGFloat
+
+    // MARK: - Life cycle
 
     public init(containerInset: CGFloat = 8) {
         self.containerInset = containerInset
     }
+
 }
 
 #endif

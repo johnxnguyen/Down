@@ -23,6 +23,7 @@ extension CGPoint {
     func translated(by point: CGPoint) -> CGPoint {
         return CGPoint(x: x + point.x, y: y + point.y)
     }
+
 }
 
 #endif

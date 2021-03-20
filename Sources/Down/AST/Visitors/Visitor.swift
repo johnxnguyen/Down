@@ -11,8 +11,11 @@ import Foundation
 /// each node of the tree and produces some result for that node. A visitor is "accepted" by
 /// the root node (of type `Document`), which will start the traversal by first invoking
 /// `visit(document:)`.
+
 public protocol Visitor {
+
     associatedtype Result
+
     func visit(document node: Document) -> Result
     func visit(blockQuote node: BlockQuote) -> Result
     func visit(list node: List) -> Result
@@ -34,9 +37,11 @@ public protocol Visitor {
     func visit(link node: Link) -> Result
     func visit(image node: Image) -> Result
     func visitChildren(of node: Node) -> [Result]
+
 }
 
 extension Visitor {
+
     public func visitChildren(of node: Node) -> [Result] {
         return node.childSequence.compactMap { child in
             switch child {
@@ -66,4 +71,5 @@ extension Visitor {
             }
         }
     }
+
 }

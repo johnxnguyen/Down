@@ -10,7 +10,10 @@ import libcmark
 
 public class CodeBlock: BaseNode {
 
+    // MARK: - Properties
+
     /// The code content, if present.
+
     public private(set) lazy var literal: String? = cmarkNode.literal
 
     /// The fence info is an optional string that trails the opening sequence of backticks.
@@ -24,6 +27,7 @@ public class CodeBlock: BaseNode {
     /// '''
     /// ```
     ///
+
     public private(set) lazy var fenceInfo: String? = cmarkNode.fenceInfo
 
 }
@@ -36,4 +40,5 @@ extension CodeBlock: CustomDebugStringConvertible {
         let content = (literal ?? "nil").replacingOccurrences(of: "\n", with: "\\n")
         return "Code Block - fenceInfo: \(fenceInfo ?? "nil"), content: \(content)"
     }
+
 }

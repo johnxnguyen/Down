@@ -9,7 +9,10 @@
 #if !os(watchOS) && !os(Linux)
 
 /// A configuration object used to initialze the `DownStyler`.
+
 public struct DownStylerConfiguration {
+
+    // MARK: - Properties
 
     public var fonts: FontCollection
     public var colors: ColorCollection
@@ -19,6 +22,8 @@ public struct DownStylerConfiguration {
     public var quoteStripeOptions: QuoteStripeOptions
     public var thematicBreakOptions: ThematicBreakOptions
     public var codeBlockOptions: CodeBlockOptions
+
+    // MARK: - Life cycle
 
     public init(fonts: FontCollection = StaticFontCollection(),
                 colors: ColorCollection = StaticColorCollection(),
@@ -36,6 +41,7 @@ public struct DownStylerConfiguration {
         self.thematicBreakOptions = thematicBreakOptions
         self.codeBlockOptions = codeBlockOptions
     }
+
 }
 
 #endif

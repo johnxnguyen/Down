@@ -54,4 +54,5 @@ extension NSMutableAttributedString {
             addAttribute(key, value: value, range: $0)
         }
     }
+
 }

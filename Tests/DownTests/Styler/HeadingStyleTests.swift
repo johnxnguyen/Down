@@ -104,6 +104,7 @@ class HeadingStyleTests: StylerTestSuite {
         // Then
         assertStyle(for: markdown, width: .wide)
     }
+
 }
 
 #endif

@@ -205,6 +205,7 @@ class BlockQuoteStyleTests: StylerTestSuite {
         // Then
         assertStyle(for: markdown, width: .wide)
     }
+
 }
 
 #endif

@@ -35,6 +35,7 @@ class LinkStyleTests: StylerTestSuite {
         // Then
         assertStyle(for: markdown, width: .narrow)
     }
+
 }
 
 #endif

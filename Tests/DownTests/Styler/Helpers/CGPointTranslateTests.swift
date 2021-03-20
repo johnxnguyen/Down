@@ -21,4 +21,5 @@ class CGPointTranslateTests: XCTestCase {
         // Then
         XCTAssertEqual(CGPoint(x: 4, y: 6), result)
     }
+
 }

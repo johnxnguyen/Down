@@ -66,6 +66,7 @@ class ThematicBreakSyleTests: StylerTestSuite {
         // Then
         assertStyle(for: markdown, width: .wide, configuration: configuration)
     }
+
 }
 
 #endif

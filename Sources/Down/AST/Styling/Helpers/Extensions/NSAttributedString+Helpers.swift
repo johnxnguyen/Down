@@ -12,6 +12,8 @@ extension NSAttributedString {
 
     typealias Attributes = [NSAttributedString.Key: Any]
 
+    // MARK: - Ranges
+
     var wholeRange: NSRange {
         return NSRange(location: 0, length: length)
     }
@@ -60,6 +62,8 @@ extension NSAttributedString {
         return result.filter { $0.length > 1 }
     }
 
+    // MARK: - Enumerate attributes
+
     func enumerateAttributes<A>(for key: Key, block: (_ attr: A, _ range: NSRange) -> Void) {
         enumerateAttributes(for: key, in: wholeRange, block: block)
     }
@@ -71,4 +75,5 @@ extension NSAttributedString {
             }
         }
     }
+
 }

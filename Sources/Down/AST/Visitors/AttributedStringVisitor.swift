@@ -13,7 +13,10 @@ import Foundation
 /// tree produced by a markdown string. It traverses the tree to construct substrings
 /// represented at each node and uses an instance of `Styler` to apply the visual attributes.
 /// These substrings are joined together to produce the final result.
+
 public class AttributedStringVisitor {
+
+    // MARK: - Properties
 
     private let styler: Styler
     private let options: DownOptions
@@ -24,13 +27,16 @@ public class AttributedStringVisitor {
     /// - parameters:
     ///     - styler: used to style the markdown elements.
     ///     - options: may be used to modify rendering.
+
     public init(styler: Styler, options: DownOptions = .default) {
         self.styler = styler
         self.options = options
     }
+
 }
 
 extension AttributedStringVisitor: Visitor {
+
     public typealias Result = NSMutableAttributedString
 
     public func visit(document node: Document) -> NSMutableAttributedString {
@@ -181,6 +187,7 @@ private extension Sequence where Iterator.Element == NSMutableAttributedString {
     var joined: NSMutableAttributedString {
         return reduce(into: NSMutableAttributedString()) { $0.append($1) }
     }
+
 }
 
 private extension NSMutableAttributedString {
@@ -188,6 +195,7 @@ private extension NSMutableAttributedString {
     static var empty: NSMutableAttributedString {
         return "".attributed
     }
+
 }
 
 private extension NSAttributedString {
@@ -195,6 +203,7 @@ private extension NSAttributedString {
     static var paragraphSeparator: NSAttributedString {
         return String.paragraphSeparator.attributed
     }
+
 }
 
 private extension String {
@@ -204,11 +213,13 @@ private extension String {
     }
 
     // This codepoint marks the end of a paragraph and the start of the next.
+
     static var paragraphSeparator: String {
         return "\u{2029}"
     }
 
     // This code point allows line breaking, without starting a new paragraph.
+
     static var lineSeparator: String {
         return "\u{2028}"
     }
@@ -222,5 +233,7 @@ private extension String {
         let lines = trimmed.components(separatedBy: .newlines)
         return lines.joined(separator: .lineSeparator)
     }
+
 }
+
 #endif // !os(Linux)

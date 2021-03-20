@@ -20,6 +20,8 @@ import AppKit
 
 struct QuoteStripeAttribute {
 
+    // MARK: - Properties
+
     var color: DownColor
     var thickness: CGFloat
     var spacingAfter: CGFloat
@@ -28,25 +30,35 @@ struct QuoteStripeAttribute {
     var layoutWidth: CGFloat {
         return thickness + spacingAfter
     }
-}
 
-extension QuoteStripeAttribute {
+    // MARK: - Life cycle
+
+    init(color: DownColor, thickness: CGFloat, spacingAfter: CGFloat, locations: [CGFloat]) {
+        self.color = color
+        self.thickness = thickness
+        self.spacingAfter = spacingAfter
+        self.locations = locations
+    }
 
     init(level: Int, color: DownColor, options: QuoteStripeOptions) {
         self.init(color: color, thickness: options.thickness, spacingAfter: options.spacingAfter, locations: [])
         locations = (0..<level).map { CGFloat($0) * layoutWidth }
     }
 
+    // MARK: - Methods
+
     func indented(by indentation: CGFloat) -> QuoteStripeAttribute {
         var copy = self
         copy.locations = locations.map { $0 + indentation }
         return copy
     }
+
 }
 
 extension NSAttributedString.Key {
 
     static let quoteStripe = NSAttributedString.Key(rawValue: "quoteStripe")
+
 }
 
 #endif

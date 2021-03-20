@@ -10,7 +10,10 @@ import libcmark
 
 public class CustomInline: BaseNode {
 
+    // MARK: - Properties
+
     /// The custom content, if present.
+
     public private(set) lazy var literal: String? = cmarkNode.literal
 }
 
@@ -21,4 +24,5 @@ extension CustomInline: CustomDebugStringConvertible {
     public var debugDescription: String {
         return "Custom Inline - \(literal ?? "nil")"
     }
+
 }

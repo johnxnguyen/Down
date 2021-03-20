@@ -10,7 +10,11 @@ import Foundation
 
 class ListItemPrefixGenerator {
 
+    // MARK: - Properties
+
     private var prefixes: IndexingIterator<[String]>
+
+    // MARK: - Life cycle
 
     convenience init(list: List) {
         self.init(listType: list.listType, numberOfItems: list.numberOfItems)
@@ -29,7 +33,10 @@ class ListItemPrefixGenerator {
         }
     }
 
+    // MARK: - Methods
+
     func next() -> String? {
         prefixes.next()
     }
+
 }

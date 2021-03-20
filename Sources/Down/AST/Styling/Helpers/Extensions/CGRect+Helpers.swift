@@ -27,6 +27,7 @@ extension CGRect {
     func translated(by point: CGPoint) -> CGRect {
         return CGRect(origin: origin.translated(by: point), size: size)
     }
+
 }
 
 #endif

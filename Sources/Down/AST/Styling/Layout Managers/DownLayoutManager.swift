@@ -21,7 +21,10 @@ import AppKit
 /// A layout manager capable of drawing the custom attributes set by the `DownStyler`.
 ///
 /// Insert this into a TextKit stack manually, or use the provided `DownTextView`.
+
 public class DownLayoutManager: NSLayoutManager {
+
+    // MARK: - Graphic context
 
     #if canImport(UIKit)
     var context: CGContext? {
@@ -50,6 +53,8 @@ public class DownLayoutManager: NSLayoutManager {
     }
 
     #endif
+
+    // MARK: - Drawing
 
     override public func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         drawCustomBackgrounds(forGlyphRange: glyphsToShow, at: origin)
@@ -196,6 +201,7 @@ private extension NSRange {
     func overlapsEnd(of range: NSRange) -> Bool {
         return lowerBound < range.upperBound && upperBound >= range.upperBound
     }
+
 }
 
 private extension Array where Element == NSRange {
@@ -219,6 +225,7 @@ private extension Array where Element == NSRange {
 
         return result
     }
+
 }
 
 #endif

@@ -7,9 +7,13 @@
 //
 
 #if !os(Linux)
+
 #if os(tvOS) || os(watchOS)
-    // Sorry, not available for tvOS nor watchOS
+
+// Sorry, not available for tvOS nor watchOS
+
 #else
+
 import WebKit
 
 // MARK: - Public API
@@ -18,19 +22,24 @@ public typealias DownViewClosure = () -> Void
 
 open class DownView: WKWebView {
 
-    /// Initializes a web view with the results of rendering a CommonMark Markdown string
+    // MARK: - Life cycle
+
+    /// Initializes a web view with the results of rendering a CommonMark Markdown string.
     ///
     /// - Parameters:
-    ///   - frame: The frame size of the web view
-    ///   - markdownString: A string containing CommonMark Markdown
-    ///   - openLinksInBrowser: Whether or not to open links using an external browser
-    ///   - templateBundle: Optional custom template bundle. Leaving this as `nil` will use the bundle included
-    ///     with Down.
-    ///   - configuration: Optional custom web view configuration.
-    ///   - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
-    ///   - didLoadSuccessfully: Optional callback for when the web content has loaded successfully
-    ///   - writableBundle: Whether or not the bundle folder is writable.
-    /// - Throws: `DownErrors` depending on the scenario
+    ///     - frame: The frame size of the web view
+    ///     - markdownString: A string containing CommonMark Markdown
+    ///     - openLinksInBrowser: Whether or not to open links using an external browser
+    ///     - templateBundle: Optional custom template bundle. Leaving this as `nil` will use the bundle included
+    ///       with Down.
+    ///     - configuration: Optional custom web view configuration.
+    ///     - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
+    ///     - didLoadSuccessfully: Optional callback for when the web content has loaded successfully
+    ///     - writableBundle: Whether or not the bundle folder is writable.
+    ///
+    /// - Throws:
+    ///     `DownErrors` depending on the scenario.
+
     public init(frame: CGRect,
                 markdownString: String,
                 openLinksInBrowser: Bool = true,
@@ -55,7 +64,7 @@ open class DownView: WKWebView {
         super.init(frame: frame, configuration: configuration ?? WKWebViewConfiguration())
 
         #if os(macOS)
-            setupMacEnvironment()
+        setupMacEnvironment()
         #endif
 
         if openLinksInBrowser || didLoadSuccessfully != nil { navigationDelegate = self }
@@ -74,13 +83,16 @@ open class DownView: WKWebView {
 
     // MARK: - API
 
-    /// Renders the given CommonMark Markdown string into HTML and updates the DownView while keeping the style intact
+    /// Renders the given CommonMark Markdown string into HTML and updates the DownView while keeping the style intact.
     ///
     /// - Parameters:
-    ///   - markdownString: A string containing CommonMark Markdown
-    ///   - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
-    ///   - didLoadSuccessfully: Optional callback for when the web content has loaded successfully
-    /// - Throws: `DownErrors` depending on the scenario
+    ///     - markdownString: A string containing CommonMark Markdown.
+    ///     - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`.
+    ///     - didLoadSuccessfully: Optional callback for when the web content has loaded successfully.
+    ///
+    /// - Throws:
+    ///     `DownErrors` depending on the scenario.
+
     public func update(markdownString: String,
                        options: DownOptions? = nil,
                        didLoadSuccessfully: DownViewClosure? = nil) throws {
@@ -90,6 +102,7 @@ open class DownView: WKWebView {
         if let options = options {
             self.options = options
         }
+
         if let didLoadSuccessfully = didLoadSuccessfully {
             self.didLoadSuccessfully = didLoadSuccessfully
         }
@@ -112,6 +125,7 @@ open class DownView: WKWebView {
     #endif
 
     private var didLoadSuccessfully: DownViewClosure?
+
 }
 
 // MARK: - Private API
@@ -123,15 +137,15 @@ private extension DownView {
         let pageHTMLString = try htmlFromTemplate(htmlString)
 
         #if os(iOS)
-            if writableBundle {
-                let newIndexUrl = try writeTempIndexFile(pageHTMLString: pageHTMLString)
-                loadFileURL(newIndexUrl, allowingReadAccessTo: newIndexUrl.deletingLastPathComponent())
-            } else {
-                loadHTMLString(pageHTMLString, baseURL: baseURL)
-            }
+        if writableBundle {
+            let newIndexUrl = try writeTempIndexFile(pageHTMLString: pageHTMLString)
+            loadFileURL(newIndexUrl, allowingReadAccessTo: newIndexUrl.deletingLastPathComponent())
+        } else {
+            loadHTMLString(pageHTMLString, baseURL: baseURL)
+        }
         #elseif os(macOS)
-            let indexURL = try createTemporaryBundle(pageHTMLString: pageHTMLString)
-            loadFileURL(indexURL, allowingReadAccessTo: indexURL.deletingLastPathComponent())
+        let indexURL = try createTemporaryBundle(pageHTMLString: pageHTMLString)
+        loadFileURL(indexURL, allowingReadAccessTo: indexURL.deletingLastPathComponent())
         #endif
     }
 
@@ -197,6 +211,7 @@ private extension DownView {
 // MARK: - WKNavigationDelegate
 
 extension DownView: WKNavigationDelegate {
+
     public func webView(_ webView: WKWebView,
                         decidePolicyFor navigationResponse: WKNavigationResponse,
                         decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
@@ -242,10 +257,13 @@ extension DownView: WKNavigationDelegate {
 }
 
 private extension WKNavigationDelegate {
+
     /// A wrapper for `UIApplication.shared.openURL` so that an empty default
     /// implementation is available in app extensions
     func openURL(url: URL) {}
+
 }
 
 #endif
+
 #endif // !os(Linux)

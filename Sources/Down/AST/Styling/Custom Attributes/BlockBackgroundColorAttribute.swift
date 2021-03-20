@@ -20,13 +20,17 @@ import AppKit
 
 struct BlockBackgroundColorAttribute {
 
+    // MARK: - Properties
+
     var color: DownColor
     var inset: CGFloat
+
 }
 
 extension NSAttributedString.Key {
 
     static let blockBackgroundColor = NSAttributedString.Key("blockBackgroundColor")
+
 }
 
 #endif

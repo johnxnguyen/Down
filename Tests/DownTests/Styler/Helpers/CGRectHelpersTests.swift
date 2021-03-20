@@ -29,4 +29,5 @@ class CGRectHelpersTests: XCTestCase {
         // Then
         XCTAssertEqual(CGRect(x: 6, y: 8, width: 3, height: 4), result)
     }
+
 }

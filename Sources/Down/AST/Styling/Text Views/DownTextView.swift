@@ -21,6 +21,7 @@ public typealias TextView = NSTextView
 #endif
 
 /// A text view capable of parsing and rendering markdown via the AST.
+
 open class DownTextView: TextView {
 
     // MARK: - Properties
@@ -47,7 +48,7 @@ open class DownTextView: TextView {
 
     #endif
 
-    // MARK: - Init
+    // MARK: - Life cycle
 
     public convenience init(frame: CGRect, styler: Styler = DownStyler()) {
         self.init(frame: frame, styler: styler, layoutManager: DownLayoutManager())
@@ -89,6 +90,7 @@ open class DownTextView: TextView {
 
         #endif
     }
+
 }
 
 #endif

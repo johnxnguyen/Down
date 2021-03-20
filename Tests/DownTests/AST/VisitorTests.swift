@@ -186,6 +186,7 @@ class VisitorTests: XCTestCase {
 }
 
 private class EmptyStyler: Styler {
+
     var listPrefixAttributes: [NSAttributedString.Key: Any] = [:]
     func style(document str: NSMutableAttributedString) {}
     func style(blockQuote str: NSMutableAttributedString, nestDepth: Int) {}
@@ -208,4 +209,5 @@ private class EmptyStyler: Styler {
     func style(strong str: NSMutableAttributedString) {}
     func style(link str: NSMutableAttributedString, title: String?, url: String?) {}
     func style(image str: NSMutableAttributedString, title: String?, url: String?) {}
+
 }

@@ -20,13 +20,18 @@ import AppKit
 
 public struct QuoteStripeOptions {
 
+    // MARK: - Properties
+
     public var thickness: CGFloat
     public var spacingAfter: CGFloat
+
+    // MARK: - Life cycle
 
     public init(thickness: CGFloat = 2, spacingAfter: CGFloat = 8) {
         self.thickness = thickness
         self.spacingAfter = spacingAfter
     }
+
 }
 
 #endif

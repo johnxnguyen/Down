@@ -17,4 +17,5 @@ extension SoftBreak: CustomDebugStringConvertible {
     public var debugDescription: String {
         return "Soft Break"
     }
+
 }

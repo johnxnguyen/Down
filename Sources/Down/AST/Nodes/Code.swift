@@ -10,7 +10,10 @@ import libcmark
 
 public class Code: BaseNode {
 
+    // MARK: - Properties
+
     /// The code content, if present.
+
     public private(set) lazy var literal: String? = cmarkNode.literal
 
 }
@@ -22,4 +25,5 @@ extension Code: CustomDebugStringConvertible {
     public var debugDescription: String {
         return "Code - \(literal ?? "nil")"
     }
+
 }

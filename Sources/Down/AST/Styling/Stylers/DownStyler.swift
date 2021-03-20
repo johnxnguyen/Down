@@ -21,6 +21,7 @@ import AppKit
 /// A default `Styler` implementation that supports a variety of configurable
 /// properties for font, text color and paragraph styling, as well as formatting
 /// of nested lists and quotes.
+
 open class DownStyler: Styler {
 
     // MARK: - Properties
@@ -40,7 +41,7 @@ open class DownStyler: Styler {
         .foregroundColor: colors.listItemPrefix]
     }
 
-    // MARK: - Init
+    // MARK: - Life cycle
 
     public init(configuration: DownStylerConfiguration = DownStylerConfiguration()) {
         fonts = configuration.fonts
@@ -291,6 +292,7 @@ private extension NSParagraphStyle {
         result.tailIndent = -amount
         return result
     }
+
 }
 
 private extension NSAttributedString {
@@ -300,6 +302,7 @@ private extension NSAttributedString {
         guard length > 0 else { return NSAttributedString() }
         return attributedSubstring(from: NSRange(location: 0, length: length))
     }
+
 }
 
 #endif

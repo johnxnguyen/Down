@@ -30,6 +30,7 @@ class NodeTests: XCTestCase {
         // Then
         XCTAssertEqual(sut.listNestDepthResults, [0, 1, 2])
     }
+
 }
 
 // MARK: - Helpers
@@ -44,6 +45,7 @@ extension NodeTests {
             XCTFail("Failed to generate document.")
         }
     }
+
 }
 
 private class NodeVisitor: DebugVisitor {
@@ -54,4 +56,5 @@ private class NodeVisitor: DebugVisitor {
         listNestDepthResults.append(node.nestDepth)
         return super.visit(list: node)
     }
+
 }

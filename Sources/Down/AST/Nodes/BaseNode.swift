@@ -11,6 +11,8 @@ import libcmark
 
 public class BaseNode: Node {
 
+    // MARK: - Properties
+
     public let cmarkNode: CMarkNode
 
     public private(set) lazy var children: [Node] = Array(childSequence)
@@ -25,6 +27,8 @@ public class BaseNode: Node {
         }
         return depth
     }()
+
+    // MARK: - Life cycle
 
     init(cmarkNode: CMarkNode) {
         self.cmarkNode = cmarkNode
