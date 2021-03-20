@@ -31,4 +31,3 @@ public struct ChildSequence: Sequence {
         return Iterator(node: cmark_node_first_child(node))
     }
 }
-
