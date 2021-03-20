@@ -175,7 +175,7 @@ class NSMutableAttributedStringAttributesTests: XCTestCase {
     }
 }
 
-private extension NSMutableAttributedString_AttributesTests {
+private extension NSMutableAttributedStringAttributesTests {
 
     func countAttribute(_ name: NSAttributedString.Key, in str: NSAttributedString) -> Int {
         str.ranges(of: name).count
