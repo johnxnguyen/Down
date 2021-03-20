@@ -41,7 +41,7 @@ extension NodeTests {
             let document = try Down(markdownString: markdown).toDocument()
             document.accept(visitor)
         } catch {
-            XCTFail()
+            XCTFail("Failed to generate document.")
         }
     }
 }

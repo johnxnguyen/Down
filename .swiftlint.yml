@@ -12,5 +12,3 @@ cyclomatic_complexity:
 disabled_rules:
   - line_length
   - force_cast
-  - xctfail_message
-  
