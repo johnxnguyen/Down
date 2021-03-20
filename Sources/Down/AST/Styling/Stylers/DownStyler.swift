@@ -49,7 +49,8 @@ open class DownStyler: Styler {
         quoteStripeOptions = configuration.quoteStripeOptions
         thematicBreakOptions = configuration.thematicBreakOptions
         codeBlockOptions = configuration.codeBlockOptions
-        itemParagraphStyler = ListItemParagraphStyler(options: configuration.listItemOptions, prefixFont: fonts.listItemPrefix)
+        itemParagraphStyler = ListItemParagraphStyler(options: configuration.listItemOptions,
+                                                      prefixFont: fonts.listItemPrefix)
     }
 
     // MARK: - Styling
@@ -59,7 +60,9 @@ open class DownStyler: Styler {
     }
 
     open func style(blockQuote str: NSMutableAttributedString, nestDepth: Int) {
-        let stripeAttribute = QuoteStripeAttribute(level: nestDepth + 1, color: colors.quoteStripe, options: quoteStripeOptions)
+        let stripeAttribute = QuoteStripeAttribute(level: nestDepth + 1,
+                                                   color: colors.quoteStripe,
+                                                   options: quoteStripeOptions)
 
         str.updateExistingAttributes(for: .paragraphStyle) { (style: NSParagraphStyle) in
             style.indented(by: stripeAttribute.layoutWidth)
@@ -82,7 +85,7 @@ open class DownStyler: Styler {
 
         guard let leadingParagraphRange = paragraphRanges.first else { return }
 
-        indentListItemLeadingParagraph(in: str, prefixLength: prefixLength, inRange: leadingParagraphRange)
+        indentListItemLeadingParagraph(in: str, prefixLength: prefixLength, in: leadingParagraphRange)
 
         paragraphRanges.dropFirst().forEach {
             indentListItemTrailingParagraph(in: str, inRange: $0)
@@ -229,7 +232,10 @@ open class DownStyler: Styler {
         }
     }
 
-    private func indentListItemLeadingParagraph(in str: NSMutableAttributedString, prefixLength: Int, inRange range: NSRange) {
+    private func indentListItemLeadingParagraph(in str: NSMutableAttributedString,
+                                                prefixLength: Int,
+                                                in range: NSRange) {
+
         str.updateExistingAttributes(for: .paragraphStyle, in: range) { (existingStyle: NSParagraphStyle) in
             existingStyle.indented(by: itemParagraphStyler.indentation)
         }

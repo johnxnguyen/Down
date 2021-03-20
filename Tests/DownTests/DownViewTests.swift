@@ -18,7 +18,11 @@ class DownViewTests: XCTestCase {
     func testInstantiation() {
         let expect1 = expectation(description: "DownView sets the html and validates the html is correct")
         var downView: DownView?
-        downView = try? DownView(frame: .zero, markdownString: "## [Down](https://github.com/iwasrobbed/Down)", didLoadSuccessfully: {
+
+        downView = try? DownView(frame: .zero,
+                                 markdownString: "## [Down](https://github.com/iwasrobbed/Down)",
+                                 didLoadSuccessfully: {
+
             self._pageContents(for: downView!) { htmlString in
                 XCTAssertTrue(htmlString!.contains("css/down.min.css"))
                 XCTAssertTrue(htmlString!.contains("https://github.com/iwasrobbed/Down"))
@@ -80,7 +84,11 @@ class DownViewTests: XCTestCase {
         }
 
         var downView: DownView?
-        downView = try? DownView(frame: .zero, markdownString: "## [Down](https://github.com/iwasrobbed/Down)", templateBundle: templateBundle, didLoadSuccessfully: {
+        downView = try? DownView(frame: .zero,
+                                 markdownString: "## [Down](https://github.com/iwasrobbed/Down)",
+                                 templateBundle: templateBundle,
+                                 didLoadSuccessfully: {
+
             self._pageContents(for: downView!) { htmlString in
                 XCTAssertTrue(htmlString!.contains("css/down.min.css"))
                 XCTAssertTrue(htmlString!.contains("https://github.com/iwasrobbed/Down"))
@@ -98,7 +106,9 @@ class DownViewTests: XCTestCase {
     }
 
     func testInstantiationWithCustomWritableTemplateBundle() {
-        let expect1 = expectation(description: "DownView accepts and loads custom bundle files from a user writable location")
+        let expect1 = expectation(
+            description: "DownView accepts and loads custom bundle files from a user writable location"
+        )
 
         guard
             let bundle = Bundle(for: type(of: self)).url(forResource: "TestDownView", withExtension: "bundle"),
@@ -108,13 +118,20 @@ class DownViewTests: XCTestCase {
             return
         }
 
-        let markdownString = """
-```swift
-let x = 1
-```
-"""
+        let markdown = """
+                       ```swift
+                       let x = 1
+                       ```
+                       """
+
         var downView: DownView?
-        downView = try? DownView(frame: .zero, markdownString: markdownString, templateBundle: templateBundle, writableBundle: true, didLoadSuccessfully: {
+
+        downView = try? DownView(frame: .zero,
+                                 markdownString: markdown,
+                                 templateBundle: templateBundle,
+                                 writableBundle: true,
+                                 didLoadSuccessfully: {
+
             self._pageContents(for: downView!) { htmlString in
                 XCTAssertTrue(htmlString!.contains("css/down.min.css"))
                 XCTAssertTrue(htmlString!.contains("hljs-keyword"))
@@ -132,21 +149,21 @@ let x = 1
     }
 
 	func testDownOptions() {
-        let markdownString = "## [Down](https://github.com/iwasrobbed/Down)\n\n<strong>I'm strong!</strong>"
+        let markdown = "## [Down](https://github.com/iwasrobbed/Down)\n\n<strong>I'm strong!</strong>"
         let renderedHTML = "<strong>I'm strong!</strong>"
 
         // Set this view to initially be HTML safe
 		let safeExpect = expectation(description: "DownView default init strips unsafe HTML")
         let toggleSafeExpect = expectation(description: "DownView update to unsafe does not strip unsafe HTML")
 		var safeDownView: DownView?
-		safeDownView = try? DownView(frame: .zero, markdownString: markdownString, didLoadSuccessfully: {
+		safeDownView = try? DownView(frame: .zero, markdownString: markdown, didLoadSuccessfully: {
 			self._pageContents(for: safeDownView!) { htmlString in
                 XCTAssertTrue(safeDownView?.options == .default)
 				XCTAssertFalse(htmlString!.contains(renderedHTML))
 				safeExpect.fulfill()
 
                 // Then change it to HTML unsafe options and ensure it's changed
-                try? safeDownView?.update(markdownString: markdownString, options: .unsafe, didLoadSuccessfully: {
+                try? safeDownView?.update(markdownString: markdown, options: .unsafe, didLoadSuccessfully: {
                     XCTAssertTrue(safeDownView?.options == .unsafe)
                     self._pageContents(for: safeDownView!) { htmlString in
                         XCTAssertTrue(htmlString!.contains(renderedHTML))
@@ -160,14 +177,15 @@ let x = 1
         let unsafeExpect = expectation(description: "DownView unsafe init does not strip unsafe HTML")
         let toggleUnsafeExpect = expectation(description: "DownView update to safe strips unsafe HTML")
         var unsafeDownView: DownView?
-        unsafeDownView = try? DownView(frame: .zero, markdownString: markdownString, options: .unsafe, didLoadSuccessfully: {
+
+        unsafeDownView = try? DownView(frame: .zero, markdownString: markdown, options: .unsafe, didLoadSuccessfully: {
             self._pageContents(for: unsafeDownView!) { htmlString in
                 XCTAssertTrue(unsafeDownView?.options == .unsafe)
                 XCTAssertTrue(htmlString!.contains(renderedHTML))
                 unsafeExpect.fulfill()
 
                 // And then toggle it to be HTML safe and ensure it's changed
-                try? unsafeDownView?.update(markdownString: markdownString, options: .default, didLoadSuccessfully: {
+                try? unsafeDownView?.update(markdownString: markdown, options: .default, didLoadSuccessfully: {
                     XCTAssertTrue(unsafeDownView?.options == .default)
                     self._pageContents(for: unsafeDownView!) { htmlString in
                         XCTAssertFalse(htmlString!.contains(renderedHTML))
@@ -222,7 +240,11 @@ let x = 1
         let configuration = WKWebViewConfiguration()
         configuration.setURLSchemeHandler(mockURLSchemeHandler, forURLScheme: mockURLScheme)
 
-        downView = try? DownView(frame: .zero, markdownString: "[Link](\(mockURL.absoluteString))", openLinksInBrowser: true, configuration: configuration, didLoadSuccessfully: didLoadSuccessfully)
+        downView = try? DownView(frame: .zero,
+                                 markdownString: "[Link](\(mockURL.absoluteString))",
+                                 openLinksInBrowser: true,
+                                 configuration: configuration,
+                                 didLoadSuccessfully: didLoadSuccessfully)
 
         waitForExpectations(timeout: 10) { (error: Error?) in
             if let error = error {

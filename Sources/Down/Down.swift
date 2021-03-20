@@ -13,7 +13,8 @@ public struct Down: DownASTRenderable, DownHTMLRenderable, DownXMLRenderable,
     /// A string containing CommonMark Markdown
     public var markdownString: String
 
-    /// Initializes the container with a CommonMark Markdown string which can then be rendered depending on protocol conformance
+    /// Initializes the container with a CommonMark Markdown string which can then be
+    /// rendered depending on protocol conformance.
     ///
     /// - Parameter markdownString: A string containing CommonMark Markdown
     public init(markdownString: String) {

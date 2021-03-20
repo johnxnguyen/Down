@@ -25,10 +25,13 @@ extension DownAttributedStringRenderable {
     ///
     /// - Parameters:
     ///   - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
-    ///   - stylesheet: a `String` to use as the CSS stylesheet when rendering, defaulting to a style that uses the `NSAttributedString` default font
+    ///   - stylesheet: a `String` to use as the CSS stylesheet when rendering, defaulting
+    ///     to a style that uses the `NSAttributedString` default font
     /// - Returns: An `NSAttributedString`
     /// - Throws: `DownErrors` depending on the scenario
-    public func toAttributedString(_ options: DownOptions = .default, stylesheet: String? = nil) throws -> NSAttributedString {
+    public func toAttributedString(_ options: DownOptions = .default,
+                                   stylesheet: String? = nil) throws -> NSAttributedString {
+
         let html = try self.toHTML(options)
         let defaultStylesheet = "* {font-family: Helvetica } code, pre { font-family: Menlo }"
         return try NSAttributedString(htmlString: "<style>" + (stylesheet ?? defaultStylesheet) + "</style>" + html)
@@ -42,7 +45,8 @@ extension DownAttributedStringRenderable {
     ///
     /// - Parameters:
     ///   - options: `DownOptions` to modify parsing or rendering
-    ///   - styler: a class/struct conforming to `Styler` to use when rendering the various elements of the attributed string
+    ///   - styler: a class/struct conforming to `Styler` to use when rendering the various
+    ///     elements of the attributed string
     /// - Returns: An `NSAttributedString`
     /// - Throws: `DownErrors` depending on the scenario
     public func toAttributedString(_ options: DownOptions = .default, styler: Styler) throws -> NSAttributedString {

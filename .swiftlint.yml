@@ -8,6 +8,3 @@ large_tuple:
 
 cyclomatic_complexity:
   ignores_case_statements: true
-
-disabled_rules:
-  - line_length

@@ -24,13 +24,22 @@ open class DownView: WKWebView {
     ///   - frame: The frame size of the web view
     ///   - markdownString: A string containing CommonMark Markdown
     ///   - openLinksInBrowser: Whether or not to open links using an external browser
-    ///   - templateBundle: Optional custom template bundle. Leaving this as `nil` will use the bundle included with Down.
+    ///   - templateBundle: Optional custom template bundle. Leaving this as `nil` will use the bundle included
+    ///     with Down.
     ///   - configuration: Optional custom web view configuration.
     ///   - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
     ///   - didLoadSuccessfully: Optional callback for when the web content has loaded successfully
     ///   - writableBundle: Whether or not the bundle folder is writable.
     /// - Throws: `DownErrors` depending on the scenario
-    public init(frame: CGRect, markdownString: String, openLinksInBrowser: Bool = true, templateBundle: Bundle? = nil, writableBundle: Bool = false, configuration: WKWebViewConfiguration? = nil, options: DownOptions = .default, didLoadSuccessfully: DownViewClosure? = nil) throws {
+    public init(frame: CGRect,
+                markdownString: String,
+                openLinksInBrowser: Bool = true,
+                templateBundle: Bundle? = nil,
+                writableBundle: Bool = false,
+                configuration: WKWebViewConfiguration? = nil,
+                options: DownOptions = .default,
+                didLoadSuccessfully: DownViewClosure? = nil) throws {
+
         self.options = options
         self.didLoadSuccessfully = didLoadSuccessfully
         self.writableBundle = writableBundle
@@ -72,9 +81,12 @@ open class DownView: WKWebView {
     ///   - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
     ///   - didLoadSuccessfully: Optional callback for when the web content has loaded successfully
     /// - Throws: `DownErrors` depending on the scenario
-    public func update(markdownString: String, options: DownOptions? = nil, didLoadSuccessfully: DownViewClosure? = nil) throws {
+    public func update(markdownString: String,
+                       options: DownOptions? = nil,
+                       didLoadSuccessfully: DownViewClosure? = nil) throws {
+
         // Note: As the init method sets this initially, we only overwrite them if
-        // a non-nil value is passed in
+        // a non-nil value is passed in.
         if let options = options {
             self.options = options
         }
@@ -185,11 +197,17 @@ private extension DownView {
 // MARK: - WKNavigationDelegate
 
 extension DownView: WKNavigationDelegate {
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+    public func webView(_ webView: WKWebView,
+                        decidePolicyFor navigationResponse: WKNavigationResponse,
+                        decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+
         decisionHandler(.allow)
     }
 
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView,
+                        decidePolicyFor navigationAction: WKNavigationAction,
+                        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+
         guard let url = navigationAction.request.url else { return decisionHandler(.allow) }
 
         switch navigationAction.navigationType {

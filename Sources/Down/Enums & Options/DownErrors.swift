@@ -21,7 +21,8 @@ public enum DownErrors: Error {
     #if os(macOS)
     /// Thrown when a custom template bundle has a non-standard bundle format.
     ///
-    /// Specifically, the file URL of the bundle’s subdirectory containing resource files could not be found (i.e. the bundle's `resourceURL` property is nil).
+    /// Specifically, the file URL of the bundle’s subdirectory containing resource files could
+    /// not be found (i.e. the bundle's `resourceURL` property is nil).
     case nonStandardBundleFormatError
     #endif
 }

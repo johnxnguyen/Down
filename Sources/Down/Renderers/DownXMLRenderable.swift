@@ -37,7 +37,7 @@ public struct DownXMLRenderer {
     ///   - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
     /// - Returns: XML string
     /// - Throws: `ASTRenderingError` if the AST could not be converted
-    public static func astToXML(_ ast: UnsafeMutablePointer<cmark_node>, options: DownOptions = .default) throws -> String {
+    public static func astToXML(_ ast: CMarkNode, options: DownOptions = .default) throws -> String {
         guard let cXMLString = cmark_render_xml(ast, options.rawValue) else {
             throw DownErrors.astRenderingError
         }

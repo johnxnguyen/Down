@@ -12,7 +12,8 @@ import XCTest
 class NSAttributedStringTests: XCTestCase {
 
     func testAttributedStringBindingsWork() {
-        let attributedString = try? Down(markdownString: "## [Down](https://github.com/iwasrobbed/Down)").toAttributedString()
+        let markdown = "## [Down](https://github.com/johnxnguyen/Down)"
+        let attributedString = try? Down(markdownString: markdown).toAttributedString()
         XCTAssertNotNil(attributedString)
         XCTAssertTrue(attributedString!.string == "Down\n")
     }

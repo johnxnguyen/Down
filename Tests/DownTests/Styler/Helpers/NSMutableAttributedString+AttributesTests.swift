@@ -31,7 +31,7 @@ class NSMutableAttributedStringAttributesTests: XCTestCase {
 
         attributeRanges = sut.ranges(of: key2)
         XCTAssertEqual(attributeRanges, [sut.wholeRange])
-        XCTAssertTrue(value(for: key2, inRange: attributeRanges.first!, isEqualTo: dummyValue, sut: sut))
+        XCTAssertTrue(value(for: key2, in: attributeRanges.first!, isEqualTo: dummyValue, sut: sut))
     }
 
     func testAddingAttributes() {
@@ -44,7 +44,7 @@ class NSMutableAttributedStringAttributesTests: XCTestCase {
         // Then
         let attributeRanges = sut.ranges(of: key1)
         XCTAssertEqual(attributeRanges, [sut.wholeRange])
-        XCTAssertTrue(value(for: key1, inRange: attributeRanges.first!, isEqualTo: dummyValue, sut: sut))
+        XCTAssertTrue(value(for: key1, in: attributeRanges.first!, isEqualTo: dummyValue, sut: sut))
     }
 
     func testAddingAttribute() {
@@ -57,7 +57,7 @@ class NSMutableAttributedStringAttributesTests: XCTestCase {
         // Then
         let attributeRanges = sut.ranges(of: key1)
         XCTAssertEqual(attributeRanges, [sut.wholeRange])
-        XCTAssertTrue(value(for: key1, inRange: attributeRanges.first!, isEqualTo: dummyValue, sut: sut))
+        XCTAssertTrue(value(for: key1, in: attributeRanges.first!, isEqualTo: dummyValue, sut: sut))
     }
 
     func testRemovingAttribute() {
@@ -90,7 +90,7 @@ class NSMutableAttributedStringAttributesTests: XCTestCase {
         let attributeRanges = sut.ranges(of: .foregroundColor)
         XCTAssertEqual(attributeRanges.count, 1)
         XCTAssertEqual(attributeRanges.first, NSRange(location: 0, length: 12))
-        XCTAssertTrue(value(for: .foregroundColor, inRange: attributeRanges.first!, isEqualTo: DownColor.yellow, sut: sut))
+        XCTAssertTrue(value(for: .foregroundColor, in: attributeRanges.first!, isEqualTo: DownColor.yellow, sut: sut))
     }
 
     func testUpdatingAttribute() {
@@ -105,7 +105,7 @@ class NSMutableAttributedStringAttributesTests: XCTestCase {
         // Then
         let attributeRanges = sut.ranges(of: key1)
         XCTAssertEqual(attributeRanges, [sut.wholeRange])
-        XCTAssertTrue(value(for: key1, inRange: attributeRanges.first!, isEqualTo: dummyValue.uppercased(), sut: sut))
+        XCTAssertTrue(value(for: key1, in: attributeRanges.first!, isEqualTo: dummyValue.uppercased(), sut: sut))
     }
 
     func testUpdatingAttributeInRange() {
@@ -123,7 +123,7 @@ class NSMutableAttributedStringAttributesTests: XCTestCase {
         let attributeRanges = sut.ranges(of: key1)
         XCTAssertEqual(attributeRanges.count, 2)
         XCTAssertEqual(attributeRanges, [rangeOfFirstWord, rangeOfSecondWord])
-        XCTAssertTrue(value(for: key1, inRange: attributeRanges.first!, isEqualTo: "some new value", sut: sut))
+        XCTAssertTrue(value(for: key1, in: attributeRanges.first!, isEqualTo: "some new value", sut: sut))
     }
 
     func testUpdatingAttributeThatDidNotExistInRangeDoesNothing() {
@@ -156,8 +156,8 @@ class NSMutableAttributedStringAttributesTests: XCTestCase {
         let attributeRanges = sut.ranges(of: key1)
         XCTAssertEqual(attributeRanges.count, 2)
         XCTAssertEqual(attributeRanges, [rangeOfFirstWord, rangeOfSecondWord])
-        XCTAssertTrue(value(for: key1, inRange: attributeRanges.first!, isEqualTo: dummyValue, sut: sut))
-        XCTAssertTrue(value(for: key1, inRange: attributeRanges.last!, isEqualTo: "some new value", sut: sut))
+        XCTAssertTrue(value(for: key1, in: attributeRanges.first!, isEqualTo: dummyValue, sut: sut))
+        XCTAssertTrue(value(for: key1, in: attributeRanges.last!, isEqualTo: "some new value", sut: sut))
     }
 
     func testAdddingAttributeInMissingRangesDoesNothingIfNoMissingRanges() {
@@ -171,7 +171,7 @@ class NSMutableAttributedStringAttributesTests: XCTestCase {
         let attributeRanges = sut.ranges(of: key1)
         XCTAssertEqual(attributeRanges.count, 1)
         XCTAssertEqual(attributeRanges.first!, sut.wholeRange)
-        XCTAssertTrue(value(for: key1, inRange: attributeRanges.first!, isEqualTo: dummyValue, sut: sut))
+        XCTAssertTrue(value(for: key1, in: attributeRanges.first!, isEqualTo: dummyValue, sut: sut))
     }
 }
 
@@ -181,9 +181,13 @@ private extension NSMutableAttributedStringAttributesTests {
         str.ranges(of: name).count
     }
 
-    func value<A: Equatable>(for name: NSAttributedString.Key, inRange: NSRange, isEqualTo aValue: A, sut: NSMutableAttributedString) -> Bool {
+    func value<A: Equatable>(for name: NSAttributedString.Key,
+                             in range: NSRange,
+                             isEqualTo aValue: A,
+                             sut: NSMutableAttributedString) -> Bool {
+
         var effectiveRange = NSRange()
-        let value = sut.attribute(name, at: inRange.location, effectiveRange: &effectiveRange) as? A
-        return value == aValue && effectiveRange == inRange
+        let value = sut.attribute(name, at: range.location, effectiveRange: &effectiveRange) as? A
+        return value == aValue && effectiveRange == range
     }
 }

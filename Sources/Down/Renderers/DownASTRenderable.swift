@@ -49,7 +49,7 @@ public struct DownASTRenderer {
     ///   - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
     /// - Returns: An abstract syntax tree representation of the Markdown input
     /// - Throws: `MarkdownToASTError` if conversion fails
-    public static func stringToAST(_ string: String, options: DownOptions = .default) throws -> UnsafeMutablePointer<cmark_node> {
+    public static func stringToAST(_ string: String, options: DownOptions = .default) throws -> CMarkNode {
         var tree: UnsafeMutablePointer<cmark_node>?
         string.withCString {
             let stringLength = Int(strlen($0))
