@@ -6,7 +6,6 @@ disabled_rules:
   - large_tuple
   - force_try
   - cyclomatic_complexity
-  - identifier_name
   - line_length
   - force_cast
   - xctfail_message

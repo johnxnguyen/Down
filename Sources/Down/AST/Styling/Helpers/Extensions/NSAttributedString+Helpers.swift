@@ -32,11 +32,11 @@ extension NSAttributedString {
         return ranges(for: key, in: range, where: { $0 == nil })
     }
 
-    private func ranges(for key: Key, in range: NSRange, where p: (Any?) -> Bool) -> [NSRange] {
+    private func ranges(for key: Key, in range: NSRange, where predicate: (Any?) -> Bool) -> [NSRange] {
         var ranges = [NSRange]()
 
         enumerateAttribute(key, in: range, options: []) { value, attrRange, _ in
-            if p(value) {
+            if predicate(value) {
                 ranges.append(attrRange)
             }
         }

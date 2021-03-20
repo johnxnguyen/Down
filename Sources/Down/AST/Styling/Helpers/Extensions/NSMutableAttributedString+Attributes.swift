@@ -35,14 +35,14 @@ extension NSMutableAttributedString {
         addAttribute(key, value: value, range: range)
     }
 
-    func updateExistingAttributes<A>(for key: Key, using f: (A) -> A) {
-        updateExistingAttributes(for: key, in: wholeRange, using: f)
+    func updateExistingAttributes<A>(for key: Key, using transform: (A) -> A) {
+        updateExistingAttributes(for: key, in: wholeRange, using: transform)
     }
 
-    func updateExistingAttributes<A>(for key: Key, in range: NSRange, using f: (A) -> A) {
+    func updateExistingAttributes<A>(for key: Key, in range: NSRange, using transform: (A) -> A) {
         var existingValues = [(value: A, range: NSRange)]()
         enumerateAttributes(for: key, in: range) { existingValues.append(($0, $1)) }
-        existingValues.forEach { addAttribute(key, value: f($0.0), range: $0.1) }
+        existingValues.forEach { addAttribute(key, value: transform($0.0), range: $0.1) }
     }
 
     func addAttributeInMissingRanges<A>(for key: Key, value: A) {
