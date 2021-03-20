@@ -47,7 +47,7 @@ public struct DownGroffRenderer {
             throw DownErrors.astRenderingError
         }
         defer { free(cGroffString) }
-        
+
         guard let groffString = String(cString: cGroffString, encoding: String.Encoding.utf8) else {
             throw DownErrors.astRenderingError
         }

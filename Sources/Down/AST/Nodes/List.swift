@@ -16,10 +16,10 @@ public class List: BaseNode {
             assertionFailure("Unsupported or missing list type. Defaulting to .bullet.")
             return .bullet
         }
-        
+
         return type
     }()
-    
+
     /// The number of items in the list.
     public lazy var numberOfItems: Int = children.count
 
@@ -59,7 +59,7 @@ public extension List {
 // MARK: - Debug
 
 extension List: CustomDebugStringConvertible {
-    
+
     public var debugDescription: String {
         return "List - type: \(listType), isTight: \(isTight)"
     }

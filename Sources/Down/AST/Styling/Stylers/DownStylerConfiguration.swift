@@ -10,11 +10,11 @@
 
 /// A configuration object used to initialze the `DownStyler`.
 public struct DownStylerConfiguration {
-    
+
     public var fonts: FontCollection
     public var colors: ColorCollection
     public var paragraphStyles: ParagraphStyleCollection
-    
+
     public var listItemOptions: ListItemOptions
     public var quoteStripeOptions: QuoteStripeOptions
     public var thematicBreakOptions: ThematicBreakOptions

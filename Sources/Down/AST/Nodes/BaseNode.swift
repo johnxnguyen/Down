@@ -10,7 +10,7 @@ import Foundation
 import libcmark
 
 public class BaseNode: Node {
-    
+
     public let cmarkNode: CMarkNode
 
     public private(set) lazy var children: [Node] = Array(childSequence)
@@ -25,9 +25,9 @@ public class BaseNode: Node {
         }
         return depth
     }()
-    
+
     init(cmarkNode: CMarkNode) {
         self.cmarkNode = cmarkNode
     }
-    
+
 }

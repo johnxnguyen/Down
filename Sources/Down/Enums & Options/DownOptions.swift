@@ -33,7 +33,7 @@ public struct DownOptions: OptionSet {
     /// Note: this is the default option as of cmark v0.29.0. Use `unsafe`
     ///       to disable this behavior.
     public static let safe = DownOptions(rawValue: CMARK_OPT_SAFE)
-    
+
     /// Render raw HTML and unsafe links (`javascript:`, `vbscript:`,
     /// `file:`, and `data:`, except for `image/png`, `image/gif`,
     /// `image/jpeg`, or `image/webp` mime types).  By default,
@@ -54,9 +54,9 @@ public struct DownOptions: OptionSet {
 
     /// Convert straight quotes to curly, --- to em dashes, -- to en dashes.
     public static let smart = DownOptions(rawValue: CMARK_OPT_SMART)
-    
+
     // MARK: - Combo Options
-    
+
     /// Combines 'unsafe' and 'smart' to render raw HTML and produce smart typography.
     public static let smartUnsafe = DownOptions(rawValue: CMARK_OPT_SMART + CMARK_OPT_UNSAFE)
 

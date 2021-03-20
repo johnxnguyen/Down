@@ -47,11 +47,11 @@ public struct DownLaTeXRenderer {
             throw DownErrors.astRenderingError
         }
         defer { free(cLatexString) }
-        
+
         guard let latexString = String(cString: cLatexString, encoding: String.Encoding.utf8) else {
             throw DownErrors.astRenderingError
         }
-        
+
         return latexString
     }
 }

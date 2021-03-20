@@ -25,7 +25,7 @@ struct ThematicBreakAttribute {
 }
 
 extension NSAttributedString.Key {
-    
+
     static let thematicBreak = NSAttributedString.Key(rawValue: "thematicBreak")
 }
 

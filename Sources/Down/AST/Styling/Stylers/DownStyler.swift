@@ -114,7 +114,7 @@ open class DownStyler: Styler {
             if (currentFont.isMonospace) {
                 newFont = newFont.monospace
             }
-            
+
             if (currentFont.isEmphasized) {
                 newFont = newFont.emphasis
             }

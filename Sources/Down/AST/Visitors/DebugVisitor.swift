@@ -10,7 +10,7 @@ import Foundation
 /// This visitor will generate the debug description of an entire abstract syntax tree,
 /// indicating relationships between nodes with indentation.
 public class DebugVisitor: Visitor {
-    
+
     private var depth = 0
 
     private var indent: String {

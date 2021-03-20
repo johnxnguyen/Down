@@ -45,7 +45,7 @@ extension QuoteStripeAttribute {
 }
 
 extension NSAttributedString.Key {
-    
+
     static let quoteStripe = NSAttributedString.Key(rawValue: "quoteStripe")
 }
 

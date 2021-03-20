@@ -3,7 +3,6 @@ included:
   - Tests
 
 disabled_rules:
-  - trailing_whitespace
   - large_tuple
   - force_try
   - cyclomatic_complexity

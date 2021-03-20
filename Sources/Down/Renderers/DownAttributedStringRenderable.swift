@@ -33,7 +33,7 @@ extension DownAttributedStringRenderable {
         let defaultStylesheet = "* {font-family: Helvetica } code, pre { font-family: Menlo }"
         return try NSAttributedString(htmlString: "<style>" + (stylesheet ?? defaultStylesheet) + "</style>" + html)
     }
-    
+
     /// Generates an `NSAttributedString` from the `markdownString` property
     ///
     /// **Note:** The attributed string is constructed directly by traversing the abstract syntax tree. It is

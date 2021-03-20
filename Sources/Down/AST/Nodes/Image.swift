@@ -9,7 +9,7 @@ import Foundation
 import libcmark
 
 public class Image: BaseNode {
-    
+
     /// The title of the image, if present.
     ///
     /// In the example below, the first line is a reference link, with the reference at the
@@ -23,7 +23,7 @@ public class Image: BaseNode {
     /// ```
     ///
     public private(set) lazy var title: String? = cmarkNode.title
-    
+
     /// The url of the image, if present.
     ///
     /// For example:
@@ -33,13 +33,13 @@ public class Image: BaseNode {
     /// ```
     ///
     public private(set) lazy var url: String? = cmarkNode.url
-    
+
 }
 
 // MARK: - Debug
 
 extension Image: CustomDebugStringConvertible {
-    
+
     public var debugDescription: String {
         return "Image - title: \(title ?? "nil"), url: \(url ?? "nil"))"
     }

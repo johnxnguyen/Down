@@ -47,5 +47,5 @@ class BindingTests: XCTestCase {
         XCTAssertNotNil(commonMark)
         XCTAssertTrue(commonMark == "## [Down](https://github.com/iwasrobbed/Down)\n")
     }
-    
+
 }

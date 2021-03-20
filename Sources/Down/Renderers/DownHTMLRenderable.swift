@@ -39,7 +39,7 @@ public struct DownHTMLRenderer {
             throw DownErrors.astRenderingError
         }
         defer { free(cHTMLString) }
-        
+
         guard let htmlString = String(cString: cHTMLString, encoding: String.Encoding.utf8) else {
             throw DownErrors.astRenderingError
         }

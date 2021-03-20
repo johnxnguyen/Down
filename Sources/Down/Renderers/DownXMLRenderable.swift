@@ -42,7 +42,7 @@ public struct DownXMLRenderer {
             throw DownErrors.astRenderingError
         }
         defer { free(cXMLString) }
-        
+
         guard let xmlString = String(cString: cXMLString, encoding: String.Encoding.utf8) else {
             throw DownErrors.astRenderingError
         }

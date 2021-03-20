@@ -47,11 +47,11 @@ public struct DownCommonMarkRenderer {
             throw DownErrors.astRenderingError
         }
         defer { free(cCommonMarkString) }
-        
+
         guard let commonMarkString = String(cString: cCommonMarkString, encoding: String.Encoding.utf8) else {
             throw DownErrors.astRenderingError
         }
-        
+
         return commonMarkString
     }
 }

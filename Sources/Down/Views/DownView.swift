@@ -62,9 +62,9 @@ open class DownView: WKWebView {
         clearTemporaryDirectory()
     }
     #endif
-    
+
     // MARK: - API
-    
+
     /// Renders the given CommonMark Markdown string into HTML and updates the DownView while keeping the style intact
     ///
     /// - Parameters:
@@ -103,7 +103,7 @@ open class DownView: WKWebView {
                                             create: true).appendingPathComponent("Down", isDirectory: true)
     }()
     #endif
-    
+
     private var didLoadSuccessfully: DownViewClosure?
 }
 
@@ -208,11 +208,11 @@ extension DownView: WKNavigationDelegate {
             NSWorkspace.shared.open(url)
         #endif
     }
-    
+
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         didLoadSuccessfully?()
     }
-    
+
 }
 
 private extension WKNavigationDelegate {
