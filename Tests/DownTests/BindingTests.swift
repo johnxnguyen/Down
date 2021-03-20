@@ -7,45 +7,40 @@
 //
 
 import XCTest
+import SnapshotTesting
 @testable import Down
 
 class BindingTests: XCTestCase {
 
-    let down = Down(markdownString: "## [Down](https://github.com/iwasrobbed/Down)")
+    let down = Down(markdownString: "## [Down](https://github.com/johnxnnguyen/Down)")
 
-    func testASTBindingsWork() {
-        let ast = try? down.toAST()
-        XCTAssertNotNil(ast)
+    func testASTBindingsWork() throws {
+        _ = try down.toAST()
     }
 
-    func testHTMLBindingsWork() {
-        let html = try? down.toHTML()
-        XCTAssertNotNil(html)
-        XCTAssertTrue(html == "<h2><a href=\"https://github.com/iwasrobbed/Down\">Down</a></h2>\n")
+    func testHTMLBindingsWork() throws {
+        let html = try down.toHTML()
+        assertSnapshot(matching: html, as: .lines)
     }
 
-    func testXMLBindingsWork() {
-        let xml = try? down.toXML()
-        XCTAssertNotNil(xml)
-        XCTAssertTrue(xml == "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE document SYSTEM \"CommonMark.dtd\">\n<document xmlns=\"http://commonmark.org/xml/1.0\">\n  <heading level=\"2\">\n    <link destination=\"https://github.com/iwasrobbed/Down\" title=\"\">\n      <text xml:space=\"preserve\">Down</text>\n    </link>\n  </heading>\n</document>\n")
+    func testXMLBindingsWork() throws {
+        let xml = try down.toXML()
+        assertSnapshot(matching: xml, as: .lines)
     }
 
-    func testGroffBindingsWork() {
-        let man = try? down.toGroff()
-        XCTAssertNotNil(man)
-        XCTAssertTrue(man == ".SS\nDown (https://github.com/iwasrobbed/Down)\n")
+    func testGroffBindingsWork() throws {
+        let man = try down.toGroff()
+        assertSnapshot(matching: man, as: .lines)
     }
 
-    func testLaTeXBindngsWork() {
-        let latex = try? down.toLaTeX()
-        XCTAssertNotNil(latex)
-        XCTAssertTrue(latex == "\\subsection{\\href{https://github.com/iwasrobbed/Down}{Down}}\n")
+    func testLaTeXBindngsWork() throws {
+        let latex = try down.toLaTeX()
+        assertSnapshot(matching: latex, as: .lines)
     }
 
-    func testCommonMarkBindngsWork() {
-        let commonMark = try? down.toCommonMark()
-        XCTAssertNotNil(commonMark)
-        XCTAssertTrue(commonMark == "## [Down](https://github.com/iwasrobbed/Down)\n")
+    func testCommonMarkBindngsWork() throws {
+        let commonMark = try down.toCommonMark()
+        assertSnapshot(matching: commonMark, as: .lines)
     }
 
 }
