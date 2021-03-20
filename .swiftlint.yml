@@ -6,9 +6,11 @@ large_tuple:
   warning: 3
   error: 4
 
+cyclomatic_complexity:
+  ignores_case_statements: true
+
 disabled_rules:
   - force_try
-  - cyclomatic_complexity
   - line_length
   - force_cast
   - xctfail_message
