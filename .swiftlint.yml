@@ -2,8 +2,11 @@ included:
   - Sources/Down
   - Tests
 
+large_tuple:
+  warning: 3
+  error: 4
+
 disabled_rules:
-  - large_tuple
   - force_try
   - cyclomatic_complexity
   - line_length
