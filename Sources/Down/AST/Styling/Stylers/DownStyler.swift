@@ -21,6 +21,7 @@ import AppKit
 /// A default `Styler` implementation that supports a variety of configurable
 /// properties for font, text color and paragraph styling, as well as formatting
 /// of nested lists and quotes.
+
 open class DownStyler: Styler {
 
     // MARK: - Properties
@@ -35,12 +36,12 @@ open class DownStyler: Styler {
 
     private let itemParagraphStyler: ListItemParagraphStyler
 
-    private var listPrefixAttributes: [NSAttributedString.Key : Any] {[
+    private var listPrefixAttributes: [NSAttributedString.Key: Any] {[
         .font: fonts.listItemPrefix,
         .foregroundColor: colors.listItemPrefix]
     }
 
-    // MARK: - Init
+    // MARK: - Life cycle
 
     public init(configuration: DownStylerConfiguration = DownStylerConfiguration()) {
         fonts = configuration.fonts
@@ -49,7 +50,8 @@ open class DownStyler: Styler {
         quoteStripeOptions = configuration.quoteStripeOptions
         thematicBreakOptions = configuration.thematicBreakOptions
         codeBlockOptions = configuration.codeBlockOptions
-        itemParagraphStyler = ListItemParagraphStyler(options: configuration.listItemOptions, prefixFont: fonts.listItemPrefix)
+        itemParagraphStyler = ListItemParagraphStyler(options: configuration.listItemOptions,
+                                                      prefixFont: fonts.listItemPrefix)
     }
 
     // MARK: - Styling
@@ -59,7 +61,9 @@ open class DownStyler: Styler {
     }
 
     open func style(blockQuote str: NSMutableAttributedString, nestDepth: Int) {
-        let stripeAttribute = QuoteStripeAttribute(level: nestDepth + 1, color: colors.quoteStripe, options: quoteStripeOptions)
+        let stripeAttribute = QuoteStripeAttribute(level: nestDepth + 1,
+                                                   color: colors.quoteStripe,
+                                                   options: quoteStripeOptions)
 
         str.updateExistingAttributes(for: .paragraphStyle) { (style: NSParagraphStyle) in
             style.indented(by: stripeAttribute.layoutWidth)
@@ -82,7 +86,7 @@ open class DownStyler: Styler {
 
         guard let leadingParagraphRange = paragraphRanges.first else { return }
 
-        indentListItemLeadingParagraph(in: str, prefixLength: prefixLength, inRange: leadingParagraphRange)
+        indentListItemLeadingParagraph(in: str, prefixLength: prefixLength, in: leadingParagraphRange)
 
         paragraphRanges.dropFirst().forEach {
             indentListItemTrailingParagraph(in: str, inRange: $0)
@@ -111,15 +115,15 @@ open class DownStyler: Styler {
         str.updateExistingAttributes(for: .font) { (currentFont: DownFont) in
             var newFont = font
 
-            if (currentFont.isMonospace) {
+            if currentFont.isMonospace {
                 newFont = newFont.monospace
             }
-            
-            if (currentFont.isEmphasized) {
+
+            if currentFont.isEmphasized {
                 newFont = newFont.emphasis
             }
 
-            if (currentFont.isStrong) {
+            if currentFont.isStrong {
                 newFont = newFont.strong
             }
 
@@ -229,7 +233,10 @@ open class DownStyler: Styler {
         }
     }
 
-    private func indentListItemLeadingParagraph(in str: NSMutableAttributedString, prefixLength: Int, inRange range: NSRange) {
+    private func indentListItemLeadingParagraph(in str: NSMutableAttributedString,
+                                                prefixLength: Int,
+                                                in range: NSRange) {
+
         str.updateExistingAttributes(for: .paragraphStyle, in: range) { (existingStyle: NSParagraphStyle) in
             existingStyle.indented(by: itemParagraphStyler.indentation)
         }
@@ -265,7 +272,7 @@ open class DownStyler: Styler {
 private extension NSParagraphStyle {
 
     func indented(by indentation: CGFloat) -> NSParagraphStyle {
-        let result = mutableCopy() as! NSMutableParagraphStyle
+        guard let result = mutableCopy() as? NSMutableParagraphStyle else { return self }
         result.firstLineHeadIndent += indentation
         result.headIndent += indentation
 
@@ -277,7 +284,7 @@ private extension NSParagraphStyle {
     }
 
     func inset(by amount: CGFloat) -> NSParagraphStyle {
-        let result = mutableCopy() as! NSMutableParagraphStyle
+        guard let result = mutableCopy() as? NSMutableParagraphStyle else { return self }
         result.paragraphSpacingBefore += amount
         result.paragraphSpacing += amount
         result.firstLineHeadIndent += amount
@@ -285,6 +292,7 @@ private extension NSParagraphStyle {
         result.tailIndent = -amount
         return result
     }
+
 }
 
 private extension NSAttributedString {
@@ -292,8 +300,9 @@ private extension NSAttributedString {
     func prefix(with length: Int) -> NSAttributedString {
         guard length <= self.length else { return self }
         guard length > 0 else { return NSAttributedString() }
-        return attributedSubstring(from: NSMakeRange(0, length))
+        return attributedSubstring(from: NSRange(location: 0, length: length))
     }
+
 }
 
 #endif

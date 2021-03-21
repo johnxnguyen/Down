@@ -20,13 +20,17 @@ import AppKit
 
 struct ThematicBreakAttribute {
 
+    // MARK: - Properties
+
     var thickness: CGFloat
     var color: DownColor
+
 }
 
 extension NSAttributedString.Key {
-    
+
     static let thematicBreak = NSAttributedString.Key(rawValue: "thematicBreak")
+
 }
 
 #endif

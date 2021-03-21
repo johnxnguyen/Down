@@ -9,7 +9,7 @@
 import XCTest
 @testable import Down
 
-class CGPoint_TranslateTests: XCTestCase {
+class CGPointTranslateTests: XCTestCase {
 
     func testPointTranslation() {
         // Given
@@ -21,4 +21,5 @@ class CGPoint_TranslateTests: XCTestCase {
         // Then
         XCTAssertEqual(CGPoint(x: 4, y: 6), result)
     }
+
 }

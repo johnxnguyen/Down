@@ -20,13 +20,18 @@ import AppKit
 
 public struct ThematicBreakOptions {
 
+    // MARK: - Properties
+
     public var thickness: CGFloat
     public var indentation: CGFloat
+
+    // MARK: - Life cycle
 
     public init(thickness: CGFloat = 1, indentation: CGFloat = 0) {
         self.thickness = thickness
         self.indentation = indentation
     }
+
 }
 
 #endif

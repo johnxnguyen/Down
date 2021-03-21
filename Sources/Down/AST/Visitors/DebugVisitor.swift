@@ -9,15 +9,22 @@ import Foundation
 
 /// This visitor will generate the debug description of an entire abstract syntax tree,
 /// indicating relationships between nodes with indentation.
+
 public class DebugVisitor: Visitor {
-    
+
+    // MARK: - Properties
+
     private var depth = 0
 
     private var indent: String {
         return String(repeating: "    ", count: depth)
     }
 
+    // MARK: - Life cycle
+
     public init() {}
+
+    // MARK: - Helpers
 
     private func report(_ node: Node) -> String {
         return "\(indent)\(node is Document ? "" : "↳ ")\(String(reflecting: node))\n"
@@ -114,5 +121,5 @@ public class DebugVisitor: Visitor {
     public func visit(image node: Image) -> String {
         return reportWithChildren(node)
     }
-}
 
+}

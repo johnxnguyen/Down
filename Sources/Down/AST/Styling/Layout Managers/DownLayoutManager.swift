@@ -21,7 +21,10 @@ import AppKit
 /// A layout manager capable of drawing the custom attributes set by the `DownStyler`.
 ///
 /// Insert this into a TextKit stack manually, or use the provided `DownTextView`.
+
 public class DownLayoutManager: NSLayoutManager {
+
+    // MARK: - Graphic context
 
     #if canImport(UIKit)
     var context: CGContext? {
@@ -51,13 +54,15 @@ public class DownLayoutManager: NSLayoutManager {
 
     #endif
 
+    // MARK: - Drawing
+
     override public func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         drawCustomBackgrounds(forGlyphRange: glyphsToShow, at: origin)
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
         drawCustomAttributes(forGlyphRange: glyphsToShow, at: origin)
     }
 
-    private func drawCustomBackgrounds(forGlyphRange glyphsToShow: NSRange,  at origin: CGPoint) {
+    private func drawCustomBackgrounds(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         guard let context = context else { return }
         push(context: context)
         defer { popContext() }
@@ -66,17 +71,19 @@ public class DownLayoutManager: NSLayoutManager {
 
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
 
-        textStorage.enumerateAttributes(for: .blockBackgroundColor, in: characterRange) { (attr: BlockBackgroundColorAttribute, blockRange) in
-
+        textStorage.enumerateAttributes(for: .blockBackgroundColor,
+                                        in: characterRange) { (attr: BlockBackgroundColorAttribute, blockRange) in
             let inset = attr.inset
 
             context.setFillColor(attr.color.cgColor)
 
-            let allBlockColorRanges = glyphRanges(for: .blockBackgroundColor, in: textStorage, inCharacterRange: blockRange)
-            let blockColorGlyphRange = glyphRange(forCharacterRange: blockRange, actualCharacterRange: nil)
+            let allBlockColorRanges = glyphRanges(for: .blockBackgroundColor,
+                                                  in: textStorage,
+                                                  inCharacterRange: blockRange)
 
-            enumerateLineFragments(forGlyphRange: blockColorGlyphRange) { lineRect, lineUsedRect, container, lineGlyphRange, _ in
+            let glyphRange = self.glyphRange(forCharacterRange: blockRange, actualCharacterRange: nil)
 
+            enumerateLineFragments(forGlyphRange: glyphRange) { lineRect, lineUsedRect, container, lineGlyphRange, _ in
                 let isLineStartOfBlock = allBlockColorRanges.contains {
                     lineGlyphRange.overlapsStart(of: $0)
                 }
@@ -89,7 +96,7 @@ public class DownLayoutManager: NSLayoutManager {
                 let maxX = lineRect.maxX
                 let minY = isLineStartOfBlock ? lineUsedRect.minY - inset : lineRect.minY
                 let maxY = isLineEndOfBlock ? lineUsedRect.maxY + inset : lineUsedRect.maxY
-                let blockRect = CGRect(minX: minX, minY: minY, maxX: maxX, maxY:  maxY).translated(by: origin)
+                let blockRect = CGRect(minX: minX, minY: minY, maxX: maxX, maxY: maxY).translated(by: origin)
 
                 context.fill(blockRect)
             }
@@ -107,7 +114,9 @@ public class DownLayoutManager: NSLayoutManager {
         push(context: context)
         defer { popContext() }
 
-        textStorage?.enumerateAttributes(for: .thematicBreak, in: characterRange) { (attr: ThematicBreakAttribute, range) in
+        textStorage?.enumerateAttributes(for: .thematicBreak,
+                                         in: characterRange) { (attr: ThematicBreakAttribute, range) in
+
             let firstGlyphIndex = glyphIndexForCharacter(at: range.lowerBound)
 
             let lineRect = lineFragmentRect(forGlyphAt: firstGlyphIndex, effectiveRange: nil)
@@ -115,7 +124,10 @@ public class DownLayoutManager: NSLayoutManager {
 
             let lineStart = usedRect.minX + fragmentPadding(forGlyphAt: firstGlyphIndex)
 
-            let boundingRect = CGRect(x: lineStart, y: lineRect.minY, width: lineRect.width - lineStart, height: lineRect.height)
+            let width = lineRect.width - lineStart
+            let height = lineRect.height
+
+            let boundingRect = CGRect(x: lineStart, y: lineRect.minY, width: width, height: height)
             let adjustedLineRect = boundingRect.translated(by: origin)
 
             drawThematicBreak(with: context, in: adjustedLineRect, attr: attr)
@@ -140,7 +152,9 @@ public class DownLayoutManager: NSLayoutManager {
         push(context: context)
         defer { popContext() }
 
-        textStorage?.enumerateAttributes(for: .quoteStripe, in: characterRange) { (attr: QuoteStripeAttribute, quoteRange) in
+        textStorage?.enumerateAttributes(for: .quoteStripe,
+                                         in: characterRange) { (attr: QuoteStripeAttribute, quoteRange) in
+
             context.setFillColor(attr.color.cgColor)
 
             let glyphRangeOfQuote = self.glyphRange(forCharacterRange: quoteRange, actualCharacterRange: nil)
@@ -165,7 +179,10 @@ public class DownLayoutManager: NSLayoutManager {
         }
     }
 
-    private func glyphRanges(for key: NSAttributedString.Key, in storage: NSTextStorage, inCharacterRange range: NSRange) -> [NSRange] {
+    private func glyphRanges(for key: NSAttributedString.Key,
+                             in storage: NSTextStorage,
+                             inCharacterRange range: NSRange) -> [NSRange] {
+
         return storage
             .ranges(of: key, in: range)
             .map { self.glyphRange(forCharacterRange: $0, actualCharacterRange: nil) }
@@ -184,6 +201,7 @@ private extension NSRange {
     func overlapsEnd(of range: NSRange) -> Bool {
         return lowerBound < range.upperBound && upperBound >= range.upperBound
     }
+
 }
 
 private extension Array where Element == NSRange {
@@ -207,6 +225,7 @@ private extension Array where Element == NSRange {
 
         return result
     }
+
 }
 
 #endif

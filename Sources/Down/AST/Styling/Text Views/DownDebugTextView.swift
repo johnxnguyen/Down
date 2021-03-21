@@ -21,7 +21,10 @@ import AppKit
 /// A text view capable of parsing and rendering markdown via the AST, as well as line fragments.
 ///
 /// See `DownDebugLayoutManager`.
+
 public class DownDebugTextView: DownTextView {
+
+    // MARK: - Life cycle
 
     public init(frame: CGRect, styler: Styler = DownStyler()) {
         super.init(frame: frame, styler: styler, layoutManager: DownDebugLayoutManager())
@@ -30,6 +33,7 @@ public class DownDebugTextView: DownTextView {
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 }
 
 #endif

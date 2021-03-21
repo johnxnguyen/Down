@@ -18,147 +18,172 @@ import Foundation
 ///
 /// A styler is used in conjunction with an instance of `AttributedStringVisitor` in order
 /// to generate an NSAttributedString from an abstract syntax tree.
+
 public protocol Styler {
 
     /// Styles the content of the document in the given string.
     ///
-    /// - Parameter str: the document content.
-    func style(document str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the document content.
 
+    func style(document str: NSMutableAttributedString)
 
     /// Styles the content of the block quote contained in the given string.
     ///
-    /// - Parameter str: the quote content.
-    /// - Parameter nestDepth: the zero indexed nesting depth of the block quote node.
-    func style(blockQuote str: NSMutableAttributedString, nestDepth: Int)
+    /// - Parameters:
+    ///     - str: the quote content.
+    ///     - nestDepth: the zero indexed nesting depth of the block quote node.
 
+    func style(blockQuote str: NSMutableAttributedString, nestDepth: Int)
 
     /// Styles the content of the list contained in the given string.
     ///
-    /// - Parameter str: the list content.
-    /// - Parameter nestDepth: the zero indexed nesting depth of the list node.
-    func style(list str: NSMutableAttributedString, nestDepth: Int)
+    /// - Parameters:
+    ///     - str: the list content.
+    ///     - nestDepth: the zero indexed nesting depth of the list node.
 
+    func style(list str: NSMutableAttributedString, nestDepth: Int)
 
     /// Styles the number or bullet list item prefix.
     ///
-    /// - Parameter str: the list item prefix.
-    func style(listItemPrefix str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the list item prefix.
 
+    func style(listItemPrefix str: NSMutableAttributedString)
 
     /// Styles the content of the list item contained in the given string, including the
     /// number or bullet prefix.
     ///
-    /// - Parameter str: the item content.
-    /// - Parameter prefixLength: the character length of the number or bullet prefix.
-    func style(item str: NSMutableAttributedString, prefixLength: Int)
+    /// - Parameters:
+    ///     - str: the item content.
+    ///     - prefixLength: the character length of the number or bullet prefix.
 
+    func style(item str: NSMutableAttributedString, prefixLength: Int)
 
     /// Styles the content of the code block in the given string.
     ///
     /// An example use case for `fenceInfo` is to specify a programming language name,
     /// which could be used to support syntax highlighting.
     ///
-    /// - Parameter str: the code content.
-    /// - Parameter fenceInfo: the string that trails the initial ``` ticks.
-    func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?)
+    /// - Parameters:
+    ///     - str: the code content.
+    ///     - fenceInfo: the string that trails the initial \`\`\` ticks.
 
+    func style(codeBlock str: NSMutableAttributedString, fenceInfo: String?)
 
     /// Styles the content of the html block contained in the given string.
     ///
-    /// - Parameter str: the html content.
-    func style(htmlBlock str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the html content.
 
+    func style(htmlBlock str: NSMutableAttributedString)
 
     /// Styles the content of the custom block contained in the given string.
     ///
-    /// - Parameter str: the content.
-    func style(customBlock str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the content.
 
+    func style(customBlock str: NSMutableAttributedString)
 
     /// Styles the content of the paragraph in the given string.
     ///
-    /// - Parameter str: the paragraph content.
-    func style(paragraph str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the paragraph content.
 
+    func style(paragraph str: NSMutableAttributedString)
 
     /// Styles the content of the heading in the given string.
     ///
-    /// - Parameter str: the heading content.
-    /// - Parameter level: the heading level [1, 6]
-    func style(heading str: NSMutableAttributedString, level: Int)
+    /// - Parameters:
+    ///     - str: the heading content.
+    ///     - level: the heading level [1, 6]
 
+    func style(heading str: NSMutableAttributedString, level: Int)
 
     /// Styles the content of the thematic break in the given string.
     ///
-    /// - Parameter str: the thematic break.
-    func style(thematicBreak str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the thematic break.
 
+    func style(thematicBreak str: NSMutableAttributedString)
 
     /// Styles the content of the inline text node in the given string.
     ///
     /// The text nodes are always the leaves of the AST, thus they
     /// contain the base style upon which other nodes can work with.
     ///
-    /// - Parameter str: the text content.
-    func style(text str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the text content.
 
+    func style(text str: NSMutableAttributedString)
 
     /// Styles the content of the soft break in the given string.
     ///
-    /// - Parameter str: the soft break.
-    func style(softBreak str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the soft break.
 
+    func style(softBreak str: NSMutableAttributedString)
 
     /// Styles the content of the line break in the given string.
     ///
-    /// - Parameter str: the line break.
-    func style(lineBreak str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the line break.
 
+    func style(lineBreak str: NSMutableAttributedString)
 
     /// Styles the content of the inline code in the given string.
     ///
-    /// - Parameter str: the code content.
-    func style(code str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the code content.
 
+    func style(code str: NSMutableAttributedString)
 
     /// Styles the content of the inline html tags in the given string.
     ///
     /// Note, the content does not include text between matching tags.
     ///
-    /// - Parameter str: the html content.
-    func style(htmlInline str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the html content.
 
+    func style(htmlInline str: NSMutableAttributedString)
 
     /// Styles the content of the inline custom node in the given string.
     ///
-    /// - Parameter str: the custom content.
-    func style(customInline str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the custom content.
 
+    func style(customInline str: NSMutableAttributedString)
 
     /// Styles the content of the inline emphasis node in the given string.
     ///
-    /// - Parameter str: the ephasized content.
-    func style(emphasis str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the ephasized content.
 
+    func style(emphasis str: NSMutableAttributedString)
 
     /// Styles the content of the inline strong node in the given string.
     ///
-    /// - Parameter str: the strong content.
-    func style(strong str: NSMutableAttributedString)
+    /// - Parameters:
+    ///     - str: the strong content.
 
+    func style(strong str: NSMutableAttributedString)
 
     /// Styles the content of the inline link node in the given string.
     ///
-    /// - Parameter str: the link content.
-    /// - Parameter title: the link title.
-    /// - Parameter url: the linked url.
+    /// - Parameters:
+    ///     - str: the link content.
+    ///     - title: the link title.
+    ///     - url: the linked url.
+
     func style(link str: NSMutableAttributedString, title: String?, url: String?)
 
     /// Styles the content of the inline image node in the given string.
     ///
-    /// - Parameter str: the link content.
-    /// - Parameter title: the link title.
-    /// - Parameter url: the linked url.
+    /// - Parameters:
+    ///     - str: the link content.
+    ///     - title: the link title.
+    ///     - url: the linked url.
+
     func style(image str: NSMutableAttributedString, title: String?, url: String?)
+
 }

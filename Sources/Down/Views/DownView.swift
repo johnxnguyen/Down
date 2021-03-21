@@ -7,30 +7,48 @@
 //
 
 #if !os(Linux)
+
 #if os(tvOS) || os(watchOS)
-    // Sorry, not available for tvOS nor watchOS
+
+// Sorry, not available for tvOS nor watchOS
+
 #else
+
 import WebKit
 
 // MARK: - Public API
 
-public typealias DownViewClosure = () -> ()
+public typealias DownViewClosure = () -> Void
 
 open class DownView: WKWebView {
 
-    /// Initializes a web view with the results of rendering a CommonMark Markdown string
+    // MARK: - Life cycle
+
+    /// Initializes a web view with the results of rendering a CommonMark Markdown string.
     ///
     /// - Parameters:
-    ///   - frame: The frame size of the web view
-    ///   - markdownString: A string containing CommonMark Markdown
-    ///   - openLinksInBrowser: Whether or not to open links using an external browser
-    ///   - templateBundle: Optional custom template bundle. Leaving this as `nil` will use the bundle included with Down.
-    ///   - configuration: Optional custom web view configuration.
-    ///   - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
-    ///   - didLoadSuccessfully: Optional callback for when the web content has loaded successfully
-    ///   - writableBundle: Whether or not the bundle folder is writable.
-    /// - Throws: `DownErrors` depending on the scenario
-    public init(frame: CGRect, markdownString: String, openLinksInBrowser: Bool = true, templateBundle: Bundle? = nil, writableBundle: Bool = false, configuration: WKWebViewConfiguration? = nil, options: DownOptions = .default, didLoadSuccessfully: DownViewClosure? = nil) throws {
+    ///     - frame: The frame size of the web view
+    ///     - markdownString: A string containing CommonMark Markdown
+    ///     - openLinksInBrowser: Whether or not to open links using an external browser
+    ///     - templateBundle: Optional custom template bundle. Leaving this as `nil` will use the bundle included
+    ///       with Down.
+    ///     - configuration: Optional custom web view configuration.
+    ///     - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
+    ///     - didLoadSuccessfully: Optional callback for when the web content has loaded successfully
+    ///     - writableBundle: Whether or not the bundle folder is writable.
+    ///
+    /// - Throws:
+    ///     `DownErrors` depending on the scenario.
+
+    public init(frame: CGRect,
+                markdownString: String,
+                openLinksInBrowser: Bool = true,
+                templateBundle: Bundle? = nil,
+                writableBundle: Bool = false,
+                configuration: WKWebViewConfiguration? = nil,
+                options: DownOptions = .default,
+                didLoadSuccessfully: DownViewClosure? = nil) throws {
+
         self.options = options
         self.didLoadSuccessfully = didLoadSuccessfully
         self.writableBundle = writableBundle
@@ -46,7 +64,7 @@ open class DownView: WKWebView {
         super.init(frame: frame, configuration: configuration ?? WKWebViewConfiguration())
 
         #if os(macOS)
-            setupMacEnvironment()
+        setupMacEnvironment()
         #endif
 
         if openLinksInBrowser || didLoadSuccessfully != nil { navigationDelegate = self }
@@ -62,22 +80,29 @@ open class DownView: WKWebView {
         clearTemporaryDirectory()
     }
     #endif
-    
+
     // MARK: - API
-    
-    /// Renders the given CommonMark Markdown string into HTML and updates the DownView while keeping the style intact
+
+    /// Renders the given CommonMark Markdown string into HTML and updates the DownView while keeping the style intact.
     ///
     /// - Parameters:
-    ///   - markdownString: A string containing CommonMark Markdown
-    ///   - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`
-    ///   - didLoadSuccessfully: Optional callback for when the web content has loaded successfully
-    /// - Throws: `DownErrors` depending on the scenario
-    public func update(markdownString: String, options: DownOptions? = nil, didLoadSuccessfully: DownViewClosure? = nil) throws {
+    ///     - markdownString: A string containing CommonMark Markdown.
+    ///     - options: `DownOptions` to modify parsing or rendering, defaulting to `.default`.
+    ///     - didLoadSuccessfully: Optional callback for when the web content has loaded successfully.
+    ///
+    /// - Throws:
+    ///     `DownErrors` depending on the scenario.
+
+    public func update(markdownString: String,
+                       options: DownOptions? = nil,
+                       didLoadSuccessfully: DownViewClosure? = nil) throws {
+
         // Note: As the init method sets this initially, we only overwrite them if
-        // a non-nil value is passed in
+        // a non-nil value is passed in.
         if let options = options {
             self.options = options
         }
+
         if let didLoadSuccessfully = didLoadSuccessfully {
             self.didLoadSuccessfully = didLoadSuccessfully
         }
@@ -96,15 +121,11 @@ open class DownView: WKWebView {
     }()
 
     #if os(macOS)
-    private lazy var temporaryDirectoryURL: URL = {
-        return try! FileManager.default.url(for: .itemReplacementDirectory,
-                                            in: .userDomainMask,
-                                            appropriateFor: URL(fileURLWithPath: NSTemporaryDirectory()),
-                                            create: true).appendingPathComponent("Down", isDirectory: true)
-    }()
+    private var temporaryDirectoryURL: URL?
     #endif
-    
+
     private var didLoadSuccessfully: DownViewClosure?
+
 }
 
 // MARK: - Private API
@@ -116,15 +137,15 @@ private extension DownView {
         let pageHTMLString = try htmlFromTemplate(htmlString)
 
         #if os(iOS)
-            if writableBundle {
-                let newIndexUrl = try writeTempIndexFile(pageHTMLString: pageHTMLString)
-                loadFileURL(newIndexUrl, allowingReadAccessTo: newIndexUrl.deletingLastPathComponent())
-            } else {
-                loadHTMLString(pageHTMLString, baseURL: baseURL)
-            }
+        if writableBundle {
+            let newIndexUrl = try writeTempIndexFile(pageHTMLString: pageHTMLString)
+            loadFileURL(newIndexUrl, allowingReadAccessTo: newIndexUrl.deletingLastPathComponent())
+        } else {
+            loadHTMLString(pageHTMLString, baseURL: baseURL)
+        }
         #elseif os(macOS)
-            let indexURL = try createTemporaryBundle(pageHTMLString: pageHTMLString)
-            loadFileURL(indexURL, allowingReadAccessTo: indexURL.deletingLastPathComponent())
+        let indexURL = try createTemporaryBundle(pageHTMLString: pageHTMLString)
+        loadFileURL(indexURL, allowingReadAccessTo: indexURL.deletingLastPathComponent())
         #endif
     }
 
@@ -143,8 +164,19 @@ private extension DownView {
 
     #if os(macOS)
     func createTemporaryBundle(pageHTMLString: String) throws -> URL {
-        guard let bundleResourceURL = bundle.resourceURL
-            else { throw DownErrors.nonStandardBundleFormatError }
+        guard let bundleResourceURL = bundle.resourceURL else {
+            throw DownErrors.nonStandardBundleFormatError
+        }
+
+        let fileManager = FileManager.default
+
+        let temporaryDirectoryURL = try fileManager.url(for: .itemReplacementDirectory,
+                                                        in: .userDomainMask,
+                                                        appropriateFor: URL(fileURLWithPath: NSTemporaryDirectory()),
+                                                        create: true).appendingPathComponent("Down", isDirectory: true)
+
+        self.temporaryDirectoryURL = temporaryDirectoryURL
+
         let indexURL = temporaryDirectoryURL.appendingPathComponent("index.html", isDirectory: false)
 
         // If updating markdown contents, no need to re-copy bundle.
@@ -168,7 +200,9 @@ private extension DownView {
 
     @objc
     func clearTemporaryDirectory() {
-        try? FileManager.default.removeItem(at: temporaryDirectoryURL)
+        if let temporaryDirectoryURL = temporaryDirectoryURL {
+            try? FileManager.default.removeItem(at: temporaryDirectoryURL)
+        }
     }
     #endif
 
@@ -177,11 +211,18 @@ private extension DownView {
 // MARK: - WKNavigationDelegate
 
 extension DownView: WKNavigationDelegate {
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+
+    public func webView(_ webView: WKWebView,
+                        decidePolicyFor navigationResponse: WKNavigationResponse,
+                        decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+
         decisionHandler(.allow)
     }
 
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView,
+                        decidePolicyFor navigationAction: WKNavigationAction,
+                        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+
         guard let url = navigationAction.request.url else { return decisionHandler(.allow) }
 
         switch navigationAction.navigationType {
@@ -208,18 +249,21 @@ extension DownView: WKNavigationDelegate {
             NSWorkspace.shared.open(url)
         #endif
     }
-    
+
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         didLoadSuccessfully?()
     }
-    
+
 }
 
 private extension WKNavigationDelegate {
+
     /// A wrapper for `UIApplication.shared.openURL` so that an empty default
     /// implementation is available in app extensions
     func openURL(url: URL) {}
+
 }
 
 #endif
+
 #endif // !os(Linux)

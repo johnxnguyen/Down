@@ -19,7 +19,7 @@ class LinkStyleTests: StylerTestSuite {
     func testThat_Link_IsStyled() {
         // Given
         let markdown = """
-        Praesent facilisis [pellentesque](www.example.com) ipsum at pulvinar. Sed consectetur augue vel mattis hendrerit.
+        Praesent facilisis [pellentesque](www.example.com) ipsum at pulvinar. Sed consectetur augue.
         """
 
         // Then
@@ -35,6 +35,7 @@ class LinkStyleTests: StylerTestSuite {
         // Then
         assertStyle(for: markdown, width: .narrow)
     }
+
 }
 
 #endif

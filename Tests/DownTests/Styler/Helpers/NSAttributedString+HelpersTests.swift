@@ -9,7 +9,7 @@
 import XCTest
 @testable import Down
 
-class NSAttributedString_HelpersTests: XCTestCase {
+class NSAttributedStringHelpersTests: XCTestCase {
 
     let dummyKey = NSAttributedString.Key(rawValue: "key")
     let dummyValue = "value"
@@ -91,8 +91,7 @@ class NSAttributedString_HelpersTests: XCTestCase {
         XCTAssertEqual(result[1], NSRange(location: 19, length: 4)) // "you "
     }
 
-  // MARK: - Missing Attribute Ranges
-
+    // MARK: - Missing Attribute Ranges
 
     func testRangesMissingAttribute_None() {
         // Given
@@ -165,7 +164,7 @@ class NSAttributedString_HelpersTests: XCTestCase {
 
     func testParagraphRanges() {
         // Given
-        let sut = NSAttributedString(string:"Hello\nhello\nworld")
+        let sut = NSAttributedString(string: "Hello\nhello\nworld")
 
         // When
         let result = sut.paragraphRanges()
@@ -180,7 +179,7 @@ class NSAttributedString_HelpersTests: XCTestCase {
     func testParagraphRangesOfStringThatHasParagraphSeparators() {
         // Given
         let separator = "\u{2029}"
-        let sut = NSAttributedString(string:"Hello\(separator)hello\(separator)world")
+        let sut = NSAttributedString(string: "Hello\(separator)hello\(separator)world")
 
         // When
         let result = sut.paragraphRanges()
@@ -194,7 +193,7 @@ class NSAttributedString_HelpersTests: XCTestCase {
 
     func testParagraphRangesOfStringWithLargeBreaks() {
         // Given
-        let sut = NSAttributedString(string:"Hello\n\nhello\n\n\nworld")
+        let sut = NSAttributedString(string: "Hello\n\nhello\n\n\nworld")
 
         // When
         let result = sut.paragraphRanges()
@@ -206,28 +205,29 @@ class NSAttributedString_HelpersTests: XCTestCase {
         XCTAssertEqual(result[2], NSRange(location: 15, length: 5)) // "world
     }
 
-  // MARK: - Enumeration
+    // MARK: - Enumeration
 
-  func testEnumerationOfAttributes() {
-    // Given
-    let sut = NSMutableAttributedString()
-    sut.append(make("Hello ", attributed: true))
-    sut.append(make("world ", attributed: true))
-    sut.append(make("how do "))
-    sut.append(make("you ", attributed: true))
-    sut.append(make("do?"))
+    func testEnumerationOfAttributes() {
+        // Given
+        let sut = NSMutableAttributedString()
+        sut.append(make("Hello ", attributed: true))
+        sut.append(make("world ", attributed: true))
+        sut.append(make("how do "))
+        sut.append(make("you ", attributed: true))
+        sut.append(make("do?"))
 
-    // When
-    var result = [(String, NSRange)]()
-    sut.enumerateAttributes(for: dummyKey) { (attr: String, range) in
-      result.append((attr, range))
+        // When
+        var result = [(String, NSRange)]()
+        sut.enumerateAttributes(for: dummyKey) { (attr: String, range) in
+            result.append((attr, range))
+        }
+
+        // Then
+        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result[0].0, "value")
+        XCTAssertEqual(result[0].1, NSRange(location: 0, length: 12)) // "Hello world "
+        XCTAssertEqual(result[1].0, "value")
+        XCTAssertEqual(result[1].1, NSRange(location: 19, length: 4)) // "you "
     }
 
-    // Then
-    XCTAssertEqual(result.count, 2)
-    XCTAssertEqual(result[0].0, "value")
-    XCTAssertEqual(result[0].1, NSRange(location: 0, length: 12)) // "Hello world "
-    XCTAssertEqual(result[1].0, "value")
-    XCTAssertEqual(result[1].1, NSRange(location: 19, length: 4)) // "you "
-  }
 }

@@ -66,6 +66,7 @@ extension DownFont {
     private func contains(_ trait: DownFontDescriptor.SymbolicTraits) -> Bool {
         return fontDescriptor.symbolicTraits.contains(trait)
     }
+
 }
 
 #if canImport(UIKit)
@@ -75,6 +76,7 @@ private extension DownFontDescriptor.SymbolicTraits {
     static let strong = DownFontDescriptor.SymbolicTraits.traitBold
     static let emphasis = DownFontDescriptor.SymbolicTraits.traitItalic
     static let monoSpace = DownFontDescriptor.SymbolicTraits.traitMonoSpace
+
 }
 
 #elseif canImport(AppKit)
@@ -84,6 +86,7 @@ private extension DownFontDescriptor.SymbolicTraits {
     static let strong = DownFontDescriptor.SymbolicTraits.bold
     static let emphasis = DownFontDescriptor.SymbolicTraits.italic
     static let monoSpace = DownFontDescriptor.SymbolicTraits.monoSpace
+
 }
 
 #endif

@@ -36,9 +36,12 @@ public protocol ColorCollection {
     var thematicBreak: DownColor { get }
     var listItemPrefix: DownColor { get }
     var codeBlockBackground: DownColor { get }
+
 }
 
 public struct StaticColorCollection: ColorCollection {
+
+    // MARK: - Properties
 
     public var heading1: DownColor
     public var heading2: DownColor
@@ -54,6 +57,8 @@ public struct StaticColorCollection: ColorCollection {
     public var thematicBreak: DownColor
     public var listItemPrefix: DownColor
     public var codeBlockBackground: DownColor
+
+    // MARK: - Life cycle
 
     public init(
         heading1: DownColor = .black,
@@ -86,6 +91,7 @@ public struct StaticColorCollection: ColorCollection {
         self.listItemPrefix = listItemPrefix
         self.codeBlockBackground = codeBlockBackground
     }
+
 }
 
 #endif

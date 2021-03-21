@@ -20,13 +20,17 @@ import AppKit
 
 /// A convenient class used to format lists, such that list item prefixes
 /// are right aligned and list item content left aligns.
+
 public class ListItemParagraphStyler {
+
+    // MARK: - Properties
 
     public var indentation: CGFloat {
         return largestPrefixWidth + options.spacingAfterPrefix
     }
 
     /// The paragraph style intended for all paragraphs excluding the first.
+
     public var trailingParagraphStyle: NSParagraphStyle {
         let contentIndentation = indentation
         let style = baseStyle
@@ -45,15 +49,19 @@ public class ListItemParagraphStyler {
         return style
     }
 
+    // MARK: - Life cycle
+
     public init(options: ListItemOptions, prefixFont: DownFont) {
         self.options = options
         self.largestPrefixWidth = prefixFont.widthOfNumberedPrefix(digits: options.maxPrefixDigits)
     }
 
+    // MARK: - Methods
 
     /// The paragraph style intended for the first paragraph of the list item.
     /// 
     /// - Parameter prefixWidth: the width (in points) of the list item prefix.
+
     public func leadingParagraphStyle(prefixWidth: CGFloat) -> NSParagraphStyle {
         let contentIndentation = indentation
         let prefixIndentation: CGFloat = contentIndentation - options.spacingAfterPrefix - prefixWidth
@@ -70,6 +78,7 @@ public class ListItemParagraphStyler {
     private func tabStop(at location: CGFloat) -> NSTextTab {
         return NSTextTab(textAlignment: .left, location: location, options: [:])
     }
+
 }
 
 // MARK: - Helpers
@@ -91,6 +100,7 @@ private extension DownFont {
             .size()
             .width
     }
+
 }
 
 private extension Int {
@@ -98,6 +108,7 @@ private extension Int {
     static var decimalDigits: [Int] {
         return Array(0...9)
     }
+
 }
 
 #endif

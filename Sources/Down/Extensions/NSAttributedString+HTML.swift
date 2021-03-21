@@ -9,18 +9,25 @@
 #if !os(Linux)
 
 #if os(macOS)
-    import AppKit
-#else
-    import UIKit
-#endif
 
+import AppKit
+
+#else
+
+import UIKit
+
+#endif
 
 extension NSAttributedString {
 
     /// Instantiates an attributed string with the given HTML string
     ///
-    /// - Parameter htmlString: An HTML string
-    /// - Throws: `HTMLDataConversionError` or an instantiation error
+    /// - Parameters:
+    ///     - htmlString: An HTML string.
+    ///
+    /// - Throws:
+    ///     `HTMLDataConversionError` or an instantiation error.
+
     convenience init(htmlString: String) throws {
         guard let data = htmlString.data(using: String.Encoding.utf8) else {
             throw DownErrors.htmlDataConversionError
@@ -30,8 +37,10 @@ extension NSAttributedString {
             .documentType: NSAttributedString.DocumentType.html,
             .characterEncoding: NSNumber(value: String.Encoding.utf8.rawValue)
         ]
+
         try self.init(data: data, options: options, documentAttributes: nil)
     }
 
 }
+
 #endif // !os(Linux)

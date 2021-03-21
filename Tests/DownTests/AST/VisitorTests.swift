@@ -11,18 +11,18 @@ import SnapshotTesting
 
 class VisitorTests: XCTestCase {
 
-    func result(for markdown: String) -> String {
+    func result(for markdown: String) throws -> String {
         let down = Down(markdownString: markdown)
-        return try! down.toAttributedString(styler: EmptyStyler()).string
+        return try down.toAttributedString(styler: EmptyStyler()).string
     }
 
-    func debugResult(for markdown: String) -> String {
+    func debugResult(for markdown: String) throws -> String {
         let down = Down(markdownString: markdown)
-        let document = try! down.toDocument()
+        let document = try down.toDocument()
         return document.accept(DebugVisitor())
     }
 
-    func testBlockQuote() {
+    func testBlockQuote() throws {
         // Given
         let markdown = """
         Text text.
@@ -35,11 +35,11 @@ class VisitorTests: XCTestCase {
         """
 
         // Then
-        assertSnapshot(matching: result(for: markdown), as: .lines)
-        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
+        assertSnapshot(matching: try result(for: markdown), as: .lines)
+        assertSnapshot(matching: try debugResult(for: markdown), as: .lines)
     }
 
-    func testList() {
+    func testList() throws {
         // Given
         let markdown = """
         Text text.
@@ -54,11 +54,11 @@ class VisitorTests: XCTestCase {
         """
 
         // Then
-        assertSnapshot(matching: result(for: markdown), as: .lines)
-        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
+        assertSnapshot(matching: try result(for: markdown), as: .lines)
+        assertSnapshot(matching: try debugResult(for: markdown), as: .lines)
     }
 
-    func testCodeBlock() {
+    func testCodeBlock() throws {
         // Given
         let markdown = """
         Text text.
@@ -72,11 +72,11 @@ class VisitorTests: XCTestCase {
         """
 
         // Then
-        assertSnapshot(matching: result(for: markdown), as: .lines)
-        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
+        assertSnapshot(matching: try result(for: markdown), as: .lines)
+        assertSnapshot(matching: try debugResult(for: markdown), as: .lines)
     }
 
-    func testHtmlBlock() {
+    func testHtmlBlock() throws {
         // Given
         let markdown = """
         Text text.
@@ -89,11 +89,11 @@ class VisitorTests: XCTestCase {
         """
 
         // Then
-        assertSnapshot(matching: result(for: markdown), as: .lines)
-        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
+        assertSnapshot(matching: try result(for: markdown), as: .lines)
+        assertSnapshot(matching: try debugResult(for: markdown), as: .lines)
     }
 
-    func testParagraph() {
+    func testParagraph() throws {
         // Given
         let markdown = """
         Text text.
@@ -104,11 +104,11 @@ class VisitorTests: XCTestCase {
         """
 
         // Then
-        assertSnapshot(matching: result(for: markdown), as: .lines)
-        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
+        assertSnapshot(matching: try result(for: markdown), as: .lines)
+        assertSnapshot(matching: try debugResult(for: markdown), as: .lines)
     }
 
-    func testHeading() {
+    func testHeading() throws {
         // Given
         let markdown = """
         Text text.
@@ -119,11 +119,11 @@ class VisitorTests: XCTestCase {
         """
 
         // Then
-        assertSnapshot(matching: result(for: markdown), as: .lines)
-        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
+        assertSnapshot(matching: try result(for: markdown), as: .lines)
+        assertSnapshot(matching: try debugResult(for: markdown), as: .lines)
     }
 
-    func testThematicBreak() {
+    func testThematicBreak() throws {
         // Given
         let markdown = """
         Text text.
@@ -134,11 +134,11 @@ class VisitorTests: XCTestCase {
         """
 
         // Then
-        assertSnapshot(matching: result(for: markdown), as: .lines)
-        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
+        assertSnapshot(matching: try result(for: markdown), as: .lines)
+        assertSnapshot(matching: try debugResult(for: markdown), as: .lines)
     }
 
-    func testSoftBreak() {
+    func testSoftBreak() throws {
         // Given
         let markdown = """
         Text text
@@ -146,11 +146,11 @@ class VisitorTests: XCTestCase {
         """
 
         // Then
-        assertSnapshot(matching: result(for: markdown), as: .lines)
-        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
+        assertSnapshot(matching: try result(for: markdown), as: .lines)
+        assertSnapshot(matching: try debugResult(for: markdown), as: .lines)
     }
 
-    func testLineBreak() {
+    func testLineBreak() throws {
         // Given
         let markdown = """
         Text text.\\
@@ -158,35 +158,36 @@ class VisitorTests: XCTestCase {
         """
 
         // Then
-        assertSnapshot(matching: result(for: markdown), as: .lines)
-        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
+        assertSnapshot(matching: try result(for: markdown), as: .lines)
+        assertSnapshot(matching: try debugResult(for: markdown), as: .lines)
     }
 
-    func testInline() {
+    func testInline() throws {
         // Given
         let markdown = """
         Text **strong _emphasis `code` <html>_**
         """
 
         // Then
-        assertSnapshot(matching: result(for: markdown), as: .lines)
-        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
+        assertSnapshot(matching: try result(for: markdown), as: .lines)
+        assertSnapshot(matching: try debugResult(for: markdown), as: .lines)
     }
 
-    func testLink() {
+    func testLink() throws {
         // Given
         let markdown = """
         Text [link](www.example.com) text ![image](www.example.com)
         """
 
         // Then
-        assertSnapshot(matching: result(for: markdown), as: .lines)
-        assertSnapshot(matching: debugResult(for: markdown), as: .lines)
+        assertSnapshot(matching: try result(for: markdown), as: .lines)
+        assertSnapshot(matching: try debugResult(for: markdown), as: .lines)
     }
 }
 
 private class EmptyStyler: Styler {
-    var listPrefixAttributes: [NSAttributedString.Key : Any] = [:]
+
+    var listPrefixAttributes: [NSAttributedString.Key: Any] = [:]
     func style(document str: NSMutableAttributedString) {}
     func style(blockQuote str: NSMutableAttributedString, nestDepth: Int) {}
     func style(list str: NSMutableAttributedString, nestDepth: Int) {}
@@ -208,4 +209,5 @@ private class EmptyStyler: Styler {
     func style(strong str: NSMutableAttributedString) {}
     func style(link str: NSMutableAttributedString, title: String?, url: String?) {}
     func style(image str: NSMutableAttributedString, title: String?, url: String?) {}
+
 }

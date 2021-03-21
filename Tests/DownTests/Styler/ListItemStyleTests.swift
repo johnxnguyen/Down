@@ -10,11 +10,10 @@
 
 class ListItemStyleTests: StylerTestSuite {
 
-    /// # Important
-    ///
-    /// Snapshot tests must be run on the same simulator used to record the reference snapshots, otherwise
-    /// the comparison may fail. These tests were recorded on the **iPhone 12** simulator.
-    ///
+    // # Important
+    //
+    // Snapshot tests must be run on the same simulator used to record the reference snapshots, otherwise
+    // the comparison may fail. These tests were recorded on the **iPhone 12** simulator.
 
     // MARK: - Prefix Alignment
 
@@ -264,6 +263,7 @@ class ListItemStyleTests: StylerTestSuite {
         // Then
         assertStyle(for: markdown, width: .narrow)
     }
+
 }
 
 #endif

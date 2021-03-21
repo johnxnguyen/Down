@@ -13,8 +13,9 @@ public class Strong: BaseNode {}
 // MARK: - Debug
 
 extension Strong: CustomDebugStringConvertible {
-    
+
     public var debugDescription: String {
         return "Strong"
     }
+
 }

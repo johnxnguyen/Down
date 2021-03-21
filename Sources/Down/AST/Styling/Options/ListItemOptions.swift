@@ -20,21 +20,26 @@ import AppKit
 
 public struct ListItemOptions {
 
+    // MARK: - Properties
+
     public var maxPrefixDigits: UInt
     public var spacingAfterPrefix: CGFloat
     public var spacingAbove: CGFloat
     public var spacingBelow: CGFloat
 
+    // MARK: - Life cycle
+
     public init(maxPrefixDigits: UInt = 2,
                 spacingAfterPrefix: CGFloat = 8,
                 spacingAbove: CGFloat = 4,
-                spacingBelow: CGFloat = 8
-    ) {
+                spacingBelow: CGFloat = 8) {
+
         self.maxPrefixDigits = maxPrefixDigits
         self.spacingAfterPrefix = spacingAfterPrefix
         self.spacingAbove = spacingAbove
         self.spacingBelow = spacingBelow
     }
+
 }
 
 #endif

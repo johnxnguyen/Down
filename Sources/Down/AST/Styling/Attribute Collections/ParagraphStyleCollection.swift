@@ -28,9 +28,12 @@ public protocol ParagraphStyleCollection {
     var heading6: NSParagraphStyle { get }
     var body: NSParagraphStyle { get }
     var code: NSParagraphStyle { get }
+
 }
 
 public struct StaticParagraphStyleCollection: ParagraphStyleCollection {
+
+    // MARK: - Properties
 
     public var heading1: NSParagraphStyle
     public var heading2: NSParagraphStyle
@@ -40,6 +43,8 @@ public struct StaticParagraphStyleCollection: ParagraphStyleCollection {
     public var heading6: NSParagraphStyle
     public var body: NSParagraphStyle
     public var code: NSParagraphStyle
+
+    // MARK: - Life cycle
 
     public init() {
         let headingStyle = NSMutableParagraphStyle()
@@ -63,6 +68,7 @@ public struct StaticParagraphStyleCollection: ParagraphStyleCollection {
         body = bodyStyle
         code = codeStyle
     }
+
 }
 
 #endif

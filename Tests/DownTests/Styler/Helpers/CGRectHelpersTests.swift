@@ -9,7 +9,7 @@
 import XCTest
 @testable import Down
 
-class CGRect_HelpersTests: XCTestCase {
+class CGRectHelpersTests: XCTestCase {
 
     func testRectInitializationWithBoundaries() {
         // When
@@ -29,4 +29,5 @@ class CGRect_HelpersTests: XCTestCase {
         // Then
         XCTAssertEqual(CGRect(x: 6, y: 8, width: 3, height: 4), result)
     }
+
 }

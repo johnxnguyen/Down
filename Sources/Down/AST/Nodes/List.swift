@@ -10,17 +10,21 @@ import libcmark
 
 public class List: BaseNode {
 
+    // MARK: - Properties
+
     /// The type of the list, either bullet or ordered.
+
     public lazy var listType: ListType = {
         guard let type = ListType(cmarkNode: cmarkNode) else {
             assertionFailure("Unsupported or missing list type. Defaulting to .bullet.")
             return .bullet
         }
-        
+
         return type
     }()
-    
+
     /// The number of items in the list.
+
     public lazy var numberOfItems: Int = children.count
 
     /// Whether the list is "tight".
@@ -29,6 +33,7 @@ public class List: BaseNode {
     /// a hint to render the list with more (loose) or less (tight) spacing between items.
 
     public lazy var isTight: Bool = cmark_node_get_list_tight(cmarkNode) == 1
+
 }
 
 // MARK: - List Type
@@ -39,12 +44,16 @@ public extension List {
         case bullet
         case ordered(start: Int)
 
+        // MARK: - Properties
+
         public var debugDescription: String {
             switch self {
             case .bullet: return "Bullet"
             case .ordered(let start): return "Ordered (start: \(start))"
             }
         }
+
+        // MARK: - Life cycle
 
         init?(cmarkNode: CMarkNode) {
             switch cmarkNode.listType {
@@ -53,14 +62,16 @@ public extension List {
             default: return nil
             }
         }
+
     }
 }
 
 // MARK: - Debug
 
 extension List: CustomDebugStringConvertible {
-    
+
     public var debugDescription: String {
         return "List - type: \(listType), isTight: \(isTight)"
     }
+
 }

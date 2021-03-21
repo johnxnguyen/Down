@@ -32,4 +32,5 @@ class ListItemPrefixGeneratorTests: XCTestCase {
         XCTAssertEqual("•", sut.next())
         XCTAssertNil(sut.next())
     }
+
 }

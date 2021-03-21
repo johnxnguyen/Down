@@ -19,7 +19,7 @@ extension Foundation.Bundle {
       Bundle(for: BundleFinder.self).resourceURL,
 
       // For command-line tools.
-      Bundle.main.bundleURL,
+      Bundle.main.bundleURL
     ]
 
     for candidate in candidates {

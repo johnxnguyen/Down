@@ -31,9 +31,12 @@ public protocol FontCollection {
     var body: DownFont { get }
     var code: DownFont { get }
     var listItemPrefix: DownFont { get }
+
 }
 
 public struct StaticFontCollection: FontCollection {
+
+    // MARK: - Properties
 
     public var heading1: DownFont
     public var heading2: DownFont
@@ -44,6 +47,8 @@ public struct StaticFontCollection: FontCollection {
     public var body: DownFont
     public var code: DownFont
     public var listItemPrefix: DownFont
+
+    // MARK: - Life cycle
 
     public init(
         heading1: DownFont = .boldSystemFont(ofSize: 28),
@@ -66,6 +71,7 @@ public struct StaticFontCollection: FontCollection {
         self.code = code
         self.listItemPrefix = listItemPrefix
     }
+
 }
 
 #endif
