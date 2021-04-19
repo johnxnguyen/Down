@@ -11,9 +11,9 @@ import XCTest
 
 class ListItemPrefixGeneratorTests: XCTestCase {
 
-    func testNumberPrefixGeneration() {
+    func testNumberStaticPrefixGeneration() {
         // Given
-        let sut = ListItemPrefixGenerator(listType: .ordered(start: 3), numberOfItems: 3)
+        let sut = StaticListItemPrefixGenerator(listType: .ordered(start: 3), numberOfItems: 3, nestDepth: 1)
 
         // Then
         XCTAssertEqual("3.", sut.next())
@@ -22,9 +22,9 @@ class ListItemPrefixGeneratorTests: XCTestCase {
         XCTAssertNil(sut.next())
     }
 
-    func testBulletPrefixGeneration() {
+    func testBulletStaticPrefixGeneration() {
         // Given
-        let sut = ListItemPrefixGenerator(listType: .bullet, numberOfItems: 3)
+        let sut = StaticListItemPrefixGenerator(listType: .bullet, numberOfItems: 3, nestDepth: 1)
 
         // Then
         XCTAssertEqual("•", sut.next())

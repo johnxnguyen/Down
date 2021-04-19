@@ -20,6 +20,7 @@ public class AttributedStringVisitor {
 
     private let styler: Styler
     private let options: DownOptions
+    private let listPrefixGeneratorBuilder: ListItemPrefixGeneratorBuilder
     private var listPrefixGenerators = [ListItemPrefixGenerator]()
 
     /// Creates a new instance with the given styler and options.
@@ -27,10 +28,15 @@ public class AttributedStringVisitor {
     /// - parameters:
     ///     - styler: used to style the markdown elements.
     ///     - options: may be used to modify rendering.
+    ///     - listPrefixGeneratorBuilder: may be used to modify list prefixes.
 
-    public init(styler: Styler, options: DownOptions = .default) {
+    public init(
+        styler: Styler,
+        options: DownOptions = .default,
+        listPrefixGeneratorBuilder: ListItemPrefixGeneratorBuilder = StaticListItemPrefixGeneratorBuilder()) {
         self.styler = styler
         self.options = options
+        self.listPrefixGeneratorBuilder = listPrefixGeneratorBuilder
     }
 
 }
@@ -53,7 +59,12 @@ extension AttributedStringVisitor: Visitor {
     }
 
     public func visit(list node: List) -> NSMutableAttributedString {
-        listPrefixGenerators.append(ListItemPrefixGenerator(list: node))
+
+        listPrefixGenerators.append(
+            listPrefixGeneratorBuilder.build(
+            listType: node.listType,
+            numberOfItems: node.numberOfItems,
+            nestDepth: node.nestDepth))
         defer { listPrefixGenerators.removeLast() }
 
         let items = visitChildren(of: node)
