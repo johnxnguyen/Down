@@ -9,12 +9,15 @@
 import Foundation
 
 /// A ListItemPrefixGenerator is an object used to generate list item prefix.
-///
-/// ListItemPrefixGenerator are created by `ListItemPrefixGeneratorBuilder`, the later used in
-/// conjunction with an instance of `AttributedStringVisitor`.
 public protocol ListItemPrefixGenerator {
     init(listType: List.ListType, numberOfItems: Int, nestDepth: Int)
     func next() -> String?
+}
+
+public extension ListItemPrefixGenerator {
+    init(list: List) {
+        self.init(listType: list.listType, numberOfItems: list.numberOfItems, nestDepth: list.nestDepth)
+    }
 }
 
 /// Default implementation of `ListItemPrefixGenerator`.

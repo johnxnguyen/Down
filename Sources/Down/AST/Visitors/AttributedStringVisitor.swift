@@ -14,13 +14,15 @@ import Foundation
 /// represented at each node and uses an instance of `Styler` to apply the visual attributes.
 /// These substrings are joined together to produce the final result.
 
+public typealias ListPrefixGeneratorBuilder = (List) -> ListItemPrefixGenerator
+
 public class AttributedStringVisitor {
 
     // MARK: - Properties
 
     private let styler: Styler
     private let options: DownOptions
-    private let listPrefixGeneratorBuilder: ListItemPrefixGeneratorBuilder
+    private let listPrefixGeneratorBuilder: ListPrefixGeneratorBuilder
     private var listPrefixGenerators = [ListItemPrefixGenerator]()
 
     /// Creates a new instance with the given styler and options.
@@ -33,7 +35,8 @@ public class AttributedStringVisitor {
     public init(
         styler: Styler,
         options: DownOptions = .default,
-        listPrefixGeneratorBuilder: ListItemPrefixGeneratorBuilder = StaticListItemPrefixGeneratorBuilder()) {
+        listPrefixGeneratorBuilder: @escaping ListPrefixGeneratorBuilder = { StaticListItemPrefixGenerator(list: $0) }
+    ) {
         self.styler = styler
         self.options = options
         self.listPrefixGeneratorBuilder = listPrefixGeneratorBuilder
@@ -60,11 +63,7 @@ extension AttributedStringVisitor: Visitor {
 
     public func visit(list node: List) -> NSMutableAttributedString {
 
-        listPrefixGenerators.append(
-            listPrefixGeneratorBuilder.build(
-            listType: node.listType,
-            numberOfItems: node.numberOfItems,
-            nestDepth: node.nestDepth))
+        listPrefixGenerators.append(listPrefixGeneratorBuilder(node))
         defer { listPrefixGenerators.removeLast() }
 
         let items = visitChildren(of: node)
