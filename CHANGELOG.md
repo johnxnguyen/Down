@@ -1,5 +1,25 @@
 # Changelog
 
+## [v0.11.0](https://github.com/johnxnguyen/Down/tree/v0.11.0) (2021-05-04)
+
+[Full Changelog](https://github.com/johnxnguyen/Down/compare/v0.10.0...v0.11.0)
+
+**Implemented enhancements:**
+
+- \[CodeCoverage\] Improve accuracy for combined code coverage reporting [\#205](https://github.com/johnxnguyen/Down/issues/205)
+
+**Closed issues:**
+
+- DownStyler not included when installed via CocoaPods [\#254](https://github.com/johnxnguyen/Down/issues/254)
+- \[Commonmark\] Strikethrough not working / not supported [\#253](https://github.com/johnxnguyen/Down/issues/253)
+- \[Attributed Strings\] Unordered list items with a single line appear further indented than those with multiple lines when using a custom font [\#246](https://github.com/johnxnguyen/Down/issues/246)
+
+**Merged pull requests:**
+
+- \[Feature\] Custom list prefixes for AttributedStringVisitor [\#255](https://github.com/johnxnguyen/Down/pull/255) ([dloic](https://github.com/dloic))
+- \[Chore\] Add SwiftLint [\#252](https://github.com/johnxnguyen/Down/pull/252) ([johnxnguyen](https://github.com/johnxnguyen))
+- \[Chore\] Fix codecov report [\#251](https://github.com/johnxnguyen/Down/pull/251) ([johnxnguyen](https://github.com/johnxnguyen))
+
 ## [v0.10.0](https://github.com/johnxnguyen/Down/tree/v0.10.0) (2021-02-28)
 
 [Full Changelog](https://github.com/johnxnguyen/Down/compare/v0.9.5...v0.10.0)
@@ -87,6 +107,7 @@
 **Merged pull requests:**
 
 - Swift 5.1 Support [\#204](https://github.com/johnxnguyen/Down/pull/204) ([ghost](https://github.com/ghost))
+- Resolves Swift Package Manager issue related to swift-snapshot-testing [\#203](https://github.com/johnxnguyen/Down/pull/203) ([ghost](https://github.com/ghost))
 
 ## [v0.9.1](https://github.com/johnxnguyen/Down/tree/v0.9.1) (2020-02-28)
 
@@ -115,7 +136,6 @@
 
 **Merged pull requests:**
 
-- Resolves Swift Package Manager issue related to swift-snapshot-testing [\#203](https://github.com/johnxnguyen/Down/pull/203) ([ghost](https://github.com/ghost))
 - Improve configurability of DownStyler [\#188](https://github.com/johnxnguyen/Down/pull/188) ([mgacy](https://github.com/mgacy))
 - Make color & font collection initializers public [\#184](https://github.com/johnxnguyen/Down/pull/184) ([johnxnguyen](https://github.com/johnxnguyen))
 
