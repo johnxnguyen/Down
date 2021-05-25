@@ -226,10 +226,10 @@ open class DownStyler: Styler {
             if let data = data {
                 let image1Attachment = NSTextAttachment()
                 
-                #if os(iOS)
-                image1Attachment.image = UIImage(data: data)
-                #elseif os(macOS)
+                #if os(macOS)
                 image1Attachment.image = NSImage(data: data)
+                #else
+                image1Attachment.image = UIImage(data: data)
                 #endif
                 let image1String = NSAttributedString(attachment: image1Attachment)
                 
