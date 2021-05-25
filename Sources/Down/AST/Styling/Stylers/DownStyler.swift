@@ -187,8 +187,9 @@ open class DownStyler: Styler {
     }
 
     open func style(image str: NSMutableAttributedString, title: String?, url: String?) {
-        guard let url = url else { return }
-        styleGenericImg(in: str, url: url)
+        guard let url = url,
+              let urlImg = URL(string: url) else { return }
+        styleGenericImg(in: str, url: urlImg)
     }
 
     // MARK: - Common Styling
@@ -219,22 +220,25 @@ open class DownStyler: Styler {
             .foregroundColor: colors.link])
     }
     
-    private func styleGenericImg(in str: NSMutableAttributedString, url: String) {
-        if let urlImg = URL(string: url) {
-            let semaphore = DispatchSemaphore(value: 0)
-            URLSession.shared.dataTask(with: urlImg) { data, _, _ in
-                if let data = data {
-                    let image1Attachment = NSTextAttachment()
-                    image1Attachment.image = UIImage(data: data)
-                    let image1String = NSAttributedString(attachment: image1Attachment)
-                    
-                    str.setAttributedString(image1String)
-                    semaphore.signal()
-                }
-            }.resume()
-            
-            semaphore.wait()
-        }
+    private func styleGenericImg(in str: NSMutableAttributedString, url: URL) {
+        let semaphore = DispatchSemaphore(value: 0)
+        URLSession.shared.dataTask(with: url) { data, _, _ in
+            if let data = data {
+                let image1Attachment = NSTextAttachment()
+                
+                #if os(iOS)
+                image1Attachment.image = UIImage(data: data)
+                #elseif os(macOS)
+                image1Attachment.image = NSImage(data: data)
+                #endif
+                let image1String = NSAttributedString(attachment: image1Attachment)
+                
+                str.setAttributedString(image1String)
+                semaphore.signal()
+            }
+        }.resume()
+        
+        semaphore.wait()
     }
 
     // MARK: - Helpers
