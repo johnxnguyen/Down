@@ -234,8 +234,9 @@ open class DownStyler: Styler {
                 let image1String = NSAttributedString(attachment: image1Attachment)
                 
                 str.setAttributedString(image1String)
-                semaphore.signal()
             }
+            
+            semaphore.signal()
         }.resume()
         
         semaphore.wait()
