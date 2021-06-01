@@ -63,7 +63,11 @@ struct MarkdownRepresentable: UIViewRepresentable {
     
     func updateUIView(_ uiView: UITextView, context: Context) {
         DispatchQueue.main.async {
+            
+            /// Allows you to change the color of the text when switching the device theme.
+            /// I advise you to do it in the future through the configuration when setting up your own Styler class
             uiView.textColor = colorScheme == .dark ? UIColor.white : UIColor.black
+            
             dynamicHeight = uiView.sizeThatFits(CGSize(width: uiView.bounds.width,
                                                        height: CGFloat.greatestFiniteMagnitude))
                 .height
