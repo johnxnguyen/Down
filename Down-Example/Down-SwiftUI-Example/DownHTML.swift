@@ -58,9 +58,10 @@ struct DownViewSwiftUI: UIViewRepresentable {
 
 
 struct DownHTML: View {
+    /// This class has a float variable in it to get data about the length of the resulting markup
     @ObservedObject private var markdownSize = MarkdownSize()
     
-    @State var markdownString: String
+    var markdownString: String
     var body: some View {
         DownViewSwiftUI(markdown: markdownString).environmentObject(markdownSize)
             .navigationBarTitleDisplayMode(.inline)

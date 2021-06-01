@@ -25,12 +25,38 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            VStack() {
+                Spacer()
+                Text("Hello")
+                    .font(.title)
+                    .padding(.top, 20.0)
+                    .padding(.bottom, 2.0)
+                
+                Text("This example allows you to get acquainted with the work of Down inside the SwiftUI lifecycle")
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 10.0)
+                
+                Spacer()
+                
+                Text("Two options for work are presented:")
+                
                 NavigationLink(
                     destination: DownHTML(markdownString: markdownString),
                     label: {
-                        Text("Down HTML")
-                    })
+                        Text("1. Down HTML")
+                    }).padding(.top, 5.0)
+                
+                NavigationLink(
+                    destination: DownAttributedString(text: markdownString),
+                    label: {
+                        Text("2. Down Attributed String - default Styler class is used")
+                    }).padding(.top, 5.0)
+            
+                Text("P.S. - Down Attributed String uses the standard Styler class by default")
+                    .font(.caption)
+                    .fontWeight(.light)
+                    .multilineTextAlignment(.center)
+                Spacer()
             }
             .navigationBarHidden(true)
         }
