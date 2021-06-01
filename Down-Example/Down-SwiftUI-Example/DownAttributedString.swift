@@ -101,5 +101,6 @@ struct DownAttributedString: View {
         }.onReceive(markdownObject.$isLoading, perform: { bool in
             isLoading = bool
         })
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
