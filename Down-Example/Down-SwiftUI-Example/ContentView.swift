@@ -9,14 +9,31 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
+    
+    @State var markdownString: String
+    
+    init() {
+        if let readMeURL = Bundle.main.url(forResource: nil, withExtension: "md"),
+           let readMeContents = try? String(contentsOf: readMeURL) {
+            markdownString = readMeContents
+        }
+        else {
+            markdownString = ""
+                debugPrint("Could not load readme contents.")
+        }
     }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                NavigationLink(
+                    destination: DownHTML(markdownString: markdownString),
+                    label: {
+                        Text("Down HTML")
+                    })
+            }
+            .navigationBarHidden(true)
+        }
+        
     }
 }
