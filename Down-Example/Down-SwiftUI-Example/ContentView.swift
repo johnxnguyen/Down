@@ -51,11 +51,7 @@ struct ContentView: View {
                     label: {
                         Text("2. Down Attributed String - default Styler class is used")
                     }).padding(.top, 5.0)
-            
-                Text("P.S. - Down Attributed String uses the standard Styler class by default")
-                    .font(.caption)
-                    .fontWeight(.light)
-                    .multilineTextAlignment(.center)
+                
                 Spacer()
             }
             .navigationBarHidden(true)

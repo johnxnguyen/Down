@@ -26,7 +26,7 @@ class MarkdownObservable: ObservableObject {
         let down = Down(markdownString: text)
         self.isLoading = true
         DispatchQueue(label: "markdownParse").async {
-            let attributedText = try? down.toAttributedString()
+            let attributedText = try? down.toAttributedString(styler: DownStyler())
             
             DispatchQueue.main.async {
                 self.textView.attributedText = attributedText
@@ -47,9 +47,16 @@ struct MarkdownRepresentable: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> UITextView {
-        
-        /// Allows you to adjust the alignment of the text
         markdownObject.textView.textAlignment = .left
+        markdownObject.textView.isScrollEnabled = false
+        markdownObject.textView.isUserInteractionEnabled = false
+        markdownObject.textView.showsVerticalScrollIndicator = false
+        markdownObject.textView.showsHorizontalScrollIndicator = false
+        markdownObject.textView.allowsEditingTextAttributes = false
+        markdownObject.textView.backgroundColor = .clear
+        
+        markdownObject.textView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        markdownObject.textView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         
         return markdownObject.textView
     }
