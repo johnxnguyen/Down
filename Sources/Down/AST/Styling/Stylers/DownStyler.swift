@@ -221,25 +221,10 @@ open class DownStyler: Styler {
     }
     
     private func styleGenericImg(in str: NSMutableAttributedString, url: URL) {
-        let semaphore = DispatchSemaphore(value: 0)
-        URLSession.shared.dataTask(with: url) { data, _, _ in
-            if let data = data {
-                let image1Attachment = NSTextAttachment()
-                
-                #if os(macOS)
-                image1Attachment.image = NSImage(data: data)
-                #else
-                image1Attachment.image = UIImage(data: data)
-                #endif
-                let image1String = NSAttributedString(attachment: image1Attachment)
-                
-                str.setAttributedString(image1String)
-            }
-            
-            semaphore.signal()
-        }.resume()
+        let image1Attachment = AsyncImageLoad(imageURL: url)
+        let image1String = NSAttributedString(attachment: image1Attachment)
         
-        semaphore.wait()
+        str.setAttributedString(image1String)
     }
 
     // MARK: - Helpers
