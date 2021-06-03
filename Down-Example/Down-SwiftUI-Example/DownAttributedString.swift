@@ -10,30 +10,11 @@ import SwiftUI
 import Down
 
 class MarkdownObservable: ObservableObject {
-    let textView = UITextView()
-    private let text: String
-    
-    @Published var isLoading: Bool = true
+    @Published public var textView = UITextView()
+    public let text: String
     
     init(text: String) {
-        
         self.text = text
-        
-        loadingDown()
-    }
-    
-    private func loadingDown() {
-        let down = Down(markdownString: text)
-        self.isLoading = true
-        DispatchQueue(label: "markdownParse").async {
-            let attributedText = try? down.toAttributedString(styler: DownStyler())
-            
-            DispatchQueue.main.async {
-                self.textView.attributedText = attributedText
-                
-                self.isLoading = false
-            }
-        }
     }
 }
 
@@ -42,11 +23,28 @@ struct MarkdownRepresentable: UIViewRepresentable {
     @Binding var dynamicHeight: CGFloat
     @EnvironmentObject var markdownObject: MarkdownObservable
     
+    @State var test: Int = 0
+    
     init(height: Binding<CGFloat>) {
         self._dynamicHeight = height
     }
     
+    
+    // TODO: As soon as PR: 258 is accepted - you need to uncomment
+//    func makeCoordinator() -> Cordinator {
+//        Cordinator(text: markdownObject.textView)
+//    }
+    
     func makeUIView(context: Context) -> UITextView {
+        
+        let down = Down(markdownString: markdownObject.text)
+        
+        // TODO: As soon as PR: 258 is accepted - you need to uncomment
+//        let attributedText = try? down.toAttributedString(styler: DownStyler(delegate: context.coordinator))
+        
+        let attributedText = try? down.toAttributedString(styler: DownStyler())
+        markdownObject.textView.attributedText = attributedText
+        markdownObject.textView.attributedText = attributedText
         markdownObject.textView.textAlignment = .left
         markdownObject.textView.isScrollEnabled = false
         markdownObject.textView.isUserInteractionEnabled = true
@@ -63,7 +61,6 @@ struct MarkdownRepresentable: UIViewRepresentable {
     
     func updateUIView(_ uiView: UITextView, context: Context) {
         DispatchQueue.main.async {
-            
             /// Allows you to change the color of the text when switching the device theme.
             /// I advise you to do it in the future through the configuration when setting up your own Styler class
             uiView.textColor = colorScheme == .dark ? UIColor.white : UIColor.black
@@ -73,12 +70,33 @@ struct MarkdownRepresentable: UIViewRepresentable {
                 .height
         }
     }
+    
+    // TODO: As soon as PR: 258 is accepted - you need to uncomment
+//    class Cordinator: NSObject, AsyncImageLoadDelegate {
+//
+//        public var textView: UITextView
+//
+//        init(text: UITextView) {
+//            textView = text
+//        }
+//
+//        func textAttachmentDidLoadImage(textAttachment: AsyncImageLoad, displaySizeChanged: Bool)
+//            {
+//                if displaySizeChanged
+//                {
+//                    textView.layoutManager.setNeedsLayout(forAttachment: textAttachment)
+//                }
+//
+//                // always re-display, the image might have changed
+//                textView.layoutManager.setNeedsDisplay(forAttachment: textAttachment)
+//            }
+//    }
 }
 
 struct DownAttributedString: View {
     @ObservedObject private var markdownObject: MarkdownObservable
     private var markdownString: String
-    @State private var isLoading: Bool = false
+    
     @State private var height: CGFloat = .zero
     
     init(text: String) {
@@ -88,23 +106,12 @@ struct DownAttributedString: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            if isLoading {
-                GeometryReader { geometry in
-                    ProgressView()
-                        .frame(width: geometry.size.width,
-                               height: geometry.size.height,
-                               alignment: .center)
-                }
-            } else {
-                ScrollView {
-                    MarkdownRepresentable(height: $height)
-                        .frame(height: height)
-                        .environmentObject(markdownObject)
-                }
+            ScrollView {
+                MarkdownRepresentable(height: $height)
+                    .frame(height: height)
+                    .environmentObject(markdownObject)
             }
-        }.onReceive(markdownObject.$isLoading, perform: { bool in
-            isLoading = bool
-        })
+        }
         .navigationBarTitleDisplayMode(.inline)
     }
 }
