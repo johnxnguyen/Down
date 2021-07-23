@@ -59,13 +59,13 @@
 		8A569F781E6B3EE7008BE2AC /* DownErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E81CFA6CF30037A624 /* DownErrors.swift */; };
 		8A569F791E6B3EE7008BE2AC /* DownOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44875E91CFA6CF30037A624 /* DownOptions.swift */; };
 		8A569F7A1E6B3EEA008BE2AC /* Down.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4201EF01CFA59F2008EEC6E /* Down.swift */; };
-		8AFAEB001E6E32E900E09B68 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; };
+		8AFAEB001E6E32E900E09B68 /* DownLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* DownLib.framework */; };
 		8AFAEB061E6E331700E09B68 /* BindingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4201EC51CFA59A5008EEC6E /* BindingTests.swift */; };
 		8AFAEB071E6E331700E09B68 /* DownViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41689B21CFFE28200E5802B /* DownViewTests.swift */; };
 		8AFAEB081E6E331700E09B68 /* NSAttributedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F948DB1D00A4A800C9C0F6 /* NSAttributedStringTests.swift */; };
 		8AFAEB091E6E331700E09B68 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438696B1D00D27700E95A1F /* StringTests.swift */; };
 		907C64651EC133780095FEE1 /* TestDownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 907C64621EC120530095FEE1 /* TestDownView.bundle */; };
-		90A40A9C1EC03292004F2E91 /* Down.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		90A40A9C1EC03292004F2E91 /* DownLib.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = 8A569F401E6B3E50008BE2AC /* DownLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE0E54F82300800E0070C83F /* BlockBackgroundColorAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0E54F72300800E0070C83F /* BlockBackgroundColorAttribute.swift */; };
 		EE3E7E38260400E800170A52 /* DownDebugLayoutManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D2DF822FC9E89009EC13E /* DownDebugLayoutManagerTests.swift */; };
 		EE3E7E3F260400EE00170A52 /* LinkStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D2DF522FC99A6009EC13E /* LinkStyleTests.swift */; };
@@ -192,7 +192,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				90A40A9C1EC03292004F2E91 /* Down.framework in Copy Bundled Frameworks */,
+				90A40A9C1EC03292004F2E91 /* DownLib.framework in Copy Bundled Frameworks */,
 			);
 			name = "Copy Bundled Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,8 +202,8 @@
 /* Begin PBXFileReference section */
 		14C5E33621877FCD00D5380C /* DownView (macOS).bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "DownView (macOS).bundle"; sourceTree = "<group>"; };
 		26CABB92252B4D490032183C /* ChildSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildSequence.swift; sourceTree = "<group>"; };
-		8A569F401E6B3E50008BE2AC /* Down.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Down.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8AFAEAFB1E6E32E900E09B68 /* DownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A569F401E6B3E50008BE2AC /* DownLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DownLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8AFAEAFB1E6E32E900E09B68 /* DownLib.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DownLib.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C73B9B522A687C400C8E60F /* Down.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = Down.modulemap; sourceTree = "<group>"; };
 		907C64621EC120530095FEE1 /* TestDownView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TestDownView.bundle; sourceTree = "<group>"; };
 		90A40A951EC02FF6004F2E91 /* Down-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Down-Info.plist"; sourceTree = "<group>"; };
@@ -341,7 +341,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AFAEB001E6E32E900E09B68 /* Down.framework in Frameworks */,
+				8AFAEB001E6E32E900E09B68 /* DownLib.framework in Frameworks */,
 				EE3E7E812604019300170A52 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,8 +401,8 @@
 		D4201E811CFA5151008EEC6E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8A569F401E6B3E50008BE2AC /* Down.framework */,
-				8AFAEAFB1E6E32E900E09B68 /* DownTests.xctest */,
+				8A569F401E6B3E50008BE2AC /* DownLib.framework */,
+				8AFAEAFB1E6E32E900E09B68 /* DownLib.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -788,7 +788,7 @@
 			);
 			name = Down;
 			productName = Down;
-			productReference = 8A569F401E6B3E50008BE2AC /* Down.framework */;
+			productReference = 8A569F401E6B3E50008BE2AC /* DownLib.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8AFAEAFA1E6E32E900E09B68 /* DownTests */ = {
@@ -810,7 +810,7 @@
 				EE3E7E802604019300170A52 /* SnapshotTesting */,
 			);
 			productName = "DownTests-macOS";
-			productReference = 8AFAEAFB1E6E32E900E09B68 /* DownTests.xctest */;
+			productReference = 8AFAEAFB1E6E32E900E09B68 /* DownLib.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */

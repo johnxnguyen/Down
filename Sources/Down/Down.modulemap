@@ -1,4 +1,4 @@
-framework module Down {
+framework module DownLib {
     umbrella header "Down.h"
 
     module libcmark [system][extern_c] {

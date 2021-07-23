@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Down.libcmark
+import DownLib.libcmark
 
 public struct DownOptions: OptionSet {
 

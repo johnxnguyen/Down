@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8A569F3F1E6B3E50008BE2AC"
-               BuildableName = "Down.framework"
+               BuildableName = "DownLib.framework"
                BlueprintName = "Down"
                ReferencedContainer = "container:Down.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A569F3F1E6B3E50008BE2AC"
-            BuildableName = "Down.framework"
+            BuildableName = "DownLib.framework"
             BlueprintName = "Down"
             ReferencedContainer = "container:Down.xcodeproj">
          </BuildableReference>
@@ -43,7 +43,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8AFAEAFA1E6E32E900E09B68"
-               BuildableName = "DownTests.xctest"
+               BuildableName = "DownLib.xctest"
                BlueprintName = "DownTests"
                ReferencedContainer = "container:Down.xcodeproj">
             </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A569F3F1E6B3E50008BE2AC"
-            BuildableName = "Down.framework"
+            BuildableName = "DownLib.framework"
             BlueprintName = "Down"
             ReferencedContainer = "container:Down.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A569F3F1E6B3E50008BE2AC"
-            BuildableName = "Down.framework"
+            BuildableName = "DownLib.framework"
             BlueprintName = "Down"
             ReferencedContainer = "container:Down.xcodeproj">
          </BuildableReference>

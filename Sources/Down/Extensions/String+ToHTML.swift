@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Down.libcmark
+import DownLib.libcmark
 
 extension String {
 
