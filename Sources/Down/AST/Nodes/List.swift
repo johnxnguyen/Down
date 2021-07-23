@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import libcmark
+import Down.libcmark
 
 public class List: BaseNode {
 
