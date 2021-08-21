@@ -2,3 +2,10 @@ ignore:
   - "Sources/cmark/"
   - "Down-Example/"
   - "Tests/"
+
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 3%
