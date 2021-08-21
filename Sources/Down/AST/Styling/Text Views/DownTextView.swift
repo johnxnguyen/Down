@@ -26,7 +26,11 @@ open class DownTextView: TextView {
 
     // MARK: - Properties
 
-    open var styler: Styler
+    open var styler: Styler {
+        didSet {
+            try? render()
+        }
+    }
 
     #if canImport(UIKit)
 
