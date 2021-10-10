@@ -34,11 +34,28 @@ public class List: BaseNode {
 
     public lazy var isTight: Bool = cmark_node_get_list_tight(cmarkNode) == 1
 
+    /// The list delimiter.
+
+    public lazy var delimiter: Delimiter? = Delimiter(cmarkNode.listDelimiter)
 }
 
 // MARK: - List Type
 
 public extension List {
+
+    enum Delimiter {
+        case period
+        case paren
+
+        init?(_ cmark: cmark_delim_type) {
+            switch cmark {
+            case CMARK_NO_DELIM: return nil
+            case CMARK_PERIOD_DELIM: self = .period
+            case CMARK_PAREN_DELIM: self = .paren
+            default: preconditionFailure("Invalid delim type")
+            }
+        }
+    }
 
     enum ListType: CustomDebugStringConvertible {
         case bullet
@@ -71,7 +88,20 @@ public extension List {
 extension List: CustomDebugStringConvertible {
 
     public var debugDescription: String {
-        return "List - type: \(listType), isTight: \(isTight)"
+        var result = "List - type: \(listType), isTight: \(isTight)"
+        if let delim = delimiter {
+            result += ", delimiter: \(delim)"
+        }
+        return result
     }
 
+}
+
+extension List.Delimiter: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        switch self {
+        case .paren: return "paren"
+        case .period: return "period"
+        }
+    }
 }
