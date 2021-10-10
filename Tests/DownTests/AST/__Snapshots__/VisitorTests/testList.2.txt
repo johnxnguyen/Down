@@ -1,7 +1,7 @@
 Document
     ↳ Paragraph
         ↳ Text - Text text.
-    ↳ List - type: Ordered (start: 3), isTight: true
+    ↳ List - type: Ordered (start: 3), isTight: true, delimiter: period
         ↳ Item
             ↳ Paragraph
                 ↳ Text - One
