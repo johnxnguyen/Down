@@ -101,6 +101,10 @@ public extension CMarkNode {
         return Int(cmark_node_get_list_start(self))
     }
 
+    var listDelimiter: cmark_delim_type {
+        return cmark_node_get_list_delim(self)
+    }
+
     var url: String? {
         return String(cString: cmark_node_get_url(self))
     }
