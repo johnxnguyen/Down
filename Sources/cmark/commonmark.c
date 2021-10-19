@@ -241,7 +241,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
       snprintf(listmarker, LISTMARKER_SIZE, "%d%s%s", list_number,
                list_delim == CMARK_PAREN_DELIM ? ")" : ".",
                list_number < 10 ? "  " : " ");
-      marker_width = strlen(listmarker);
+      marker_width = (bufsize_t)strlen(listmarker);
     }
     if (entering) {
       if (cmark_node_get_list_type(node->parent) == CMARK_BULLET_LIST) {
