@@ -112,6 +112,22 @@ public extension CMarkNode {
     var title: String? {
         return String(cString: cmark_node_get_title(self))
     }
+
+    var startLine: Int {
+        return Int(cmark_node_get_start_line(self))
+    }
+
+    var endLine: Int {
+        return Int(cmark_node_get_end_line(self))
+    }
+
+    var startColumn: Int {
+        return Int(cmark_node_get_start_column(self))
+    }
+
+    var endColumn: Int {
+        return Int(cmark_node_get_end_column(self))
+    }
 }
 
 private extension String {
