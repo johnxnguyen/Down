@@ -2,8 +2,8 @@
 #define CMARK_H
 
 #include <stdio.h>
-#include <cmark_export.h>
-#include <cmark_version.h>
+#include "cmark_export.h"
+#include "cmark_version.h"
 
 #ifdef __cplusplus
 extern "C" {
