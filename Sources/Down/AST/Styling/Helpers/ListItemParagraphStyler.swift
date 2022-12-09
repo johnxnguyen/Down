@@ -70,7 +70,7 @@ public class ListItemParagraphStyler {
         let firstLineContentIndentation = contentIndentation + prefixSpill
 
         let style = baseStyle
-        style.firstLineHeadIndent = prefixIndentation
+        // style.firstLineHeadIndent = prefixIndentation
         style.tabStops = [tabStop(at: firstLineContentIndentation)]
         style.headIndent = contentIndentation
         return style
