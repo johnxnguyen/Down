@@ -7,20 +7,20 @@
 /*
  * The following characters will not be escaped:
  *
- *		-_.+!*'(),%#@?=;:/,+&$ alphanum
+ *              -_.+!*'(),%#@?=;:/,+&$~ alphanum
  *
  * Note that this character set is the addition of:
  *
- *	- The characters which are safe to be in an URL
- *	- The characters which are *not* safe to be in
- *	an URL because they are RESERVED characters.
+ *      - The characters which are safe to be in an URL
+ *      - The characters which are *not* safe to be in
+ *      an URL because they are RESERVED characters.
  *
  * We assume (lazily) that any RESERVED char that
  * appears inside an URL is actually meant to
  * have its native function (i.e. as an URL
  * component/separator) and hence needs no escaping.
  *
- * There are two exceptions: the chacters & (amp)
+ * There are two exceptions: the characters & (amp)
  * and ' (single quote) do not appear in the table.
  * They are meant to appear in the URL as components,
  * yet they require special HTML-entity escaping
@@ -35,7 +35,7 @@ static const char HREF_SAFE[] = {
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1,
     0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -81,9 +81,9 @@ int houdini_escape_href(cmark_strbuf *ob, const uint8_t *src, bufsize_t size) {
  * for now. the plus thing is more commonly seen
  * when building GET strings */
 #if 0
-		case ' ':
-			cmark_strbuf_putc(ob, '+');
-			break;
+    case ' ':
+      cmark_strbuf_putc(ob, '+');
+      break;
 #endif
 
     /* every other character goes with a %XX escaping */

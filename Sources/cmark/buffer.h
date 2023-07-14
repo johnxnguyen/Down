@@ -51,9 +51,11 @@ unsigned char *cmark_strbuf_detach(cmark_strbuf *buf);
 void cmark_strbuf_copy_cstr(char *data, bufsize_t datasize,
                             const cmark_strbuf *buf);
 
+/*
 static CMARK_INLINE const char *cmark_strbuf_cstr(const cmark_strbuf *buf) {
-  return (char *)buf->ptr;
+ return (char *)buf->ptr;
 }
+*/
 
 #define cmark_strbuf_at(buf, n) ((buf)->ptr[n])
 

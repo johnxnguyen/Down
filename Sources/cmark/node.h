@@ -8,23 +8,22 @@ extern "C" {
 #include <stdio.h>
 #include <stdint.h>
 
+#include "config.h"
 #include "cmark.h"
 #include "buffer.h"
-#include "chunk.h"
 
 typedef struct {
-  cmark_list_type list_type;
   int marker_offset;
   int padding;
   int start;
-  cmark_delim_type delimiter;
+  unsigned char list_type;
+  unsigned char delimiter;
   unsigned char bullet_char;
   bool tight;
 } cmark_list;
 
 typedef struct {
-  cmark_chunk info;
-  cmark_chunk literal;
+  unsigned char *info;
   uint8_t fence_length;
   uint8_t fence_offset;
   unsigned char fence_char;
@@ -32,18 +31,19 @@ typedef struct {
 } cmark_code;
 
 typedef struct {
-  int level;
+  int internal_offset;
+  int8_t level;
   bool setext;
 } cmark_heading;
 
 typedef struct {
-  cmark_chunk url;
-  cmark_chunk title;
+  unsigned char *url;
+  unsigned char *title;
 } cmark_link;
 
 typedef struct {
-  cmark_chunk on_enter;
-  cmark_chunk on_exit;
+  unsigned char *on_enter;
+  unsigned char *on_exit;
 } cmark_custom;
 
 enum cmark_node__internal_flags {
@@ -53,7 +53,7 @@ enum cmark_node__internal_flags {
 };
 
 struct cmark_node {
-  cmark_strbuf content;
+  cmark_mem *mem;
 
   struct cmark_node *next;
   struct cmark_node *prev;
@@ -63,16 +63,17 @@ struct cmark_node {
 
   void *user_data;
 
+  unsigned char *data;
+  bufsize_t len;
+
   int start_line;
   int start_column;
   int end_line;
   int end_column;
-  int internal_offset;
   uint16_t type;
   uint16_t flags;
 
   union {
-    cmark_chunk literal;
     cmark_list list;
     cmark_code code;
     cmark_heading heading;
@@ -82,9 +83,6 @@ struct cmark_node {
   } as;
 };
 
-static CMARK_INLINE cmark_mem *cmark_node_mem(cmark_node *node) {
-  return node->content.mem;
-}
 CMARK_EXPORT int cmark_node_check(cmark_node *node, FILE *out);
 
 #ifdef __cplusplus

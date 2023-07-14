@@ -29,8 +29,10 @@ struct cmark_parser {
   cmark_strbuf curline;
   bufsize_t last_line_length;
   cmark_strbuf linebuf;
+  cmark_strbuf content;
   int options;
   bool last_buffer_ended_with_cr;
+  unsigned int total_size;
 };
 
 #ifdef __cplusplus

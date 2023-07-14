@@ -6,8 +6,6 @@
 
 static void S_node_unlink(cmark_node *node);
 
-#define NODE_MEM(node) cmark_node_mem(node)
-
 static CMARK_INLINE bool S_is_block(cmark_node *node) {
   if (node == NULL) {
     return false;
@@ -25,20 +23,21 @@ static CMARK_INLINE bool S_is_inline(cmark_node *node) {
 }
 
 static bool S_can_contain(cmark_node *node, cmark_node *child) {
-  cmark_node *cur;
-
-  if (node == NULL || child == NULL) {
+  if (node == NULL || child == NULL || node == child) {
     return false;
   }
 
-  // Verify that child is not an ancestor of node or equal to node.
-  cur = node;
-  do {
-    if (cur == child) {
-      return false;
+  // Verify that child is not an ancestor of node.
+  if (child->first_child != NULL) {
+    cmark_node *cur = node->parent;
+
+    while (cur != NULL) {
+      if (cur == child) {
+        return false;
+      }
+      cur = cur->parent;
     }
-    cur = cur->parent;
-  } while (cur != NULL);
+  }
 
   if (child->type == CMARK_NODE_DOCUMENT) {
     return false;
@@ -74,7 +73,7 @@ static bool S_can_contain(cmark_node *node, cmark_node *child) {
 
 cmark_node *cmark_node_new_with_mem(cmark_node_type type, cmark_mem *mem) {
   cmark_node *node = (cmark_node *)mem->calloc(1, sizeof(*node));
-  cmark_strbuf_init(mem, &node->content, 0);
+  node->mem = mem;
   node->type = (uint16_t)type;
 
   switch (node->type) {
@@ -104,29 +103,29 @@ cmark_node *cmark_node_new(cmark_node_type type) {
 
 // Free a cmark_node list and any children.
 static void S_free_nodes(cmark_node *e) {
+  cmark_mem *mem = e->mem;
   cmark_node *next;
   while (e != NULL) {
-    cmark_strbuf_free(&e->content);
     switch (e->type) {
     case CMARK_NODE_CODE_BLOCK:
-      cmark_chunk_free(NODE_MEM(e), &e->as.code.info);
-      cmark_chunk_free(NODE_MEM(e), &e->as.code.literal);
+      mem->free(e->data);
+      mem->free(e->as.code.info);
       break;
     case CMARK_NODE_TEXT:
     case CMARK_NODE_HTML_INLINE:
     case CMARK_NODE_CODE:
     case CMARK_NODE_HTML_BLOCK:
-      cmark_chunk_free(NODE_MEM(e), &e->as.literal);
+      mem->free(e->data);
       break;
     case CMARK_NODE_LINK:
     case CMARK_NODE_IMAGE:
-      cmark_chunk_free(NODE_MEM(e), &e->as.link.url);
-      cmark_chunk_free(NODE_MEM(e), &e->as.link.title);
+      mem->free(e->as.link.url);
+      mem->free(e->as.link.title);
       break;
     case CMARK_NODE_CUSTOM_BLOCK:
     case CMARK_NODE_CUSTOM_INLINE:
-      cmark_chunk_free(NODE_MEM(e), &e->as.custom.on_enter);
-      cmark_chunk_free(NODE_MEM(e), &e->as.custom.on_exit);
+      mem->free(e->as.custom.on_enter);
+      mem->free(e->as.custom.on_exit);
       break;
     default:
       break;
@@ -137,7 +136,7 @@ static void S_free_nodes(cmark_node *e) {
       e->next = e->first_child;
     }
     next = e->next;
-    NODE_MEM(e)->free(e);
+    mem->free(e);
     e = next;
   }
 }
@@ -249,6 +248,26 @@ cmark_node *cmark_node_last_child(cmark_node *node) {
   }
 }
 
+static bufsize_t cmark_set_cstr(cmark_mem *mem, unsigned char **dst,
+                                const char *src) {
+  unsigned char *old = *dst;
+  bufsize_t len;
+
+  if (src && src[0]) {
+      len = (bufsize_t)strlen(src);
+      *dst = (unsigned char *)mem->realloc(NULL, len + 1);
+      memcpy(*dst, src, len + 1);
+  } else {
+      len = 0;
+      *dst = NULL;
+  }
+  if (old) {
+    mem->free(old);
+  }
+
+  return len;
+}
+
 void *cmark_node_get_user_data(cmark_node *node) {
   if (node == NULL) {
     return NULL;
@@ -275,10 +294,8 @@ const char *cmark_node_get_literal(cmark_node *node) {
   case CMARK_NODE_TEXT:
   case CMARK_NODE_HTML_INLINE:
   case CMARK_NODE_CODE:
-    return cmark_chunk_to_cstr(NODE_MEM(node), &node->as.literal);
-
   case CMARK_NODE_CODE_BLOCK:
-    return cmark_chunk_to_cstr(NODE_MEM(node), &node->as.code.literal);
+    return node->data ? (char *)node->data : "";
 
   default:
     break;
@@ -297,11 +314,8 @@ int cmark_node_set_literal(cmark_node *node, const char *content) {
   case CMARK_NODE_TEXT:
   case CMARK_NODE_HTML_INLINE:
   case CMARK_NODE_CODE:
-    cmark_chunk_set_cstr(NODE_MEM(node), &node->as.literal, content);
-    return 1;
-
   case CMARK_NODE_CODE_BLOCK:
-    cmark_chunk_set_cstr(NODE_MEM(node), &node->as.code.literal, content);
+    node->len = cmark_set_cstr(node->mem, &node->data, content);
     return 1;
 
   default:
@@ -350,7 +364,7 @@ cmark_list_type cmark_node_get_list_type(cmark_node *node) {
   }
 
   if (node->type == CMARK_NODE_LIST) {
-    return node->as.list.list_type;
+    return (cmark_list_type)node->as.list.list_type;
   } else {
     return CMARK_NO_LIST;
   }
@@ -366,7 +380,7 @@ int cmark_node_set_list_type(cmark_node *node, cmark_list_type type) {
   }
 
   if (node->type == CMARK_NODE_LIST) {
-    node->as.list.list_type = type;
+    node->as.list.list_type = (unsigned char)type;
     return 1;
   } else {
     return 0;
@@ -379,7 +393,7 @@ cmark_delim_type cmark_node_get_list_delim(cmark_node *node) {
   }
 
   if (node->type == CMARK_NODE_LIST) {
-    return node->as.list.delimiter;
+    return (cmark_delim_type)node->as.list.delimiter;
   } else {
     return CMARK_NO_DELIM;
   }
@@ -395,7 +409,7 @@ int cmark_node_set_list_delim(cmark_node *node, cmark_delim_type delim) {
   }
 
   if (node->type == CMARK_NODE_LIST) {
-    node->as.list.delimiter = delim;
+    node->as.list.delimiter = (unsigned char)delim;
     return 1;
   } else {
     return 0;
@@ -458,7 +472,7 @@ const char *cmark_node_get_fence_info(cmark_node *node) {
   }
 
   if (node->type == CMARK_NODE_CODE_BLOCK) {
-    return cmark_chunk_to_cstr(NODE_MEM(node), &node->as.code.info);
+    return node->as.code.info ? (char *)node->as.code.info : "";
   } else {
     return NULL;
   }
@@ -470,7 +484,7 @@ int cmark_node_set_fence_info(cmark_node *node, const char *info) {
   }
 
   if (node->type == CMARK_NODE_CODE_BLOCK) {
-    cmark_chunk_set_cstr(NODE_MEM(node), &node->as.code.info, info);
+    cmark_set_cstr(node->mem, &node->as.code.info, info);
     return 1;
   } else {
     return 0;
@@ -485,7 +499,7 @@ const char *cmark_node_get_url(cmark_node *node) {
   switch (node->type) {
   case CMARK_NODE_LINK:
   case CMARK_NODE_IMAGE:
-    return cmark_chunk_to_cstr(NODE_MEM(node), &node->as.link.url);
+    return node->as.link.url ? (char *)node->as.link.url : "";
   default:
     break;
   }
@@ -501,7 +515,7 @@ int cmark_node_set_url(cmark_node *node, const char *url) {
   switch (node->type) {
   case CMARK_NODE_LINK:
   case CMARK_NODE_IMAGE:
-    cmark_chunk_set_cstr(NODE_MEM(node), &node->as.link.url, url);
+    cmark_set_cstr(node->mem, &node->as.link.url, url);
     return 1;
   default:
     break;
@@ -518,7 +532,7 @@ const char *cmark_node_get_title(cmark_node *node) {
   switch (node->type) {
   case CMARK_NODE_LINK:
   case CMARK_NODE_IMAGE:
-    return cmark_chunk_to_cstr(NODE_MEM(node), &node->as.link.title);
+    return node->as.link.title ? (char *)node->as.link.title : "";
   default:
     break;
   }
@@ -534,7 +548,7 @@ int cmark_node_set_title(cmark_node *node, const char *title) {
   switch (node->type) {
   case CMARK_NODE_LINK:
   case CMARK_NODE_IMAGE:
-    cmark_chunk_set_cstr(NODE_MEM(node), &node->as.link.title, title);
+    cmark_set_cstr(node->mem, &node->as.link.title, title);
     return 1;
   default:
     break;
@@ -551,7 +565,7 @@ const char *cmark_node_get_on_enter(cmark_node *node) {
   switch (node->type) {
   case CMARK_NODE_CUSTOM_INLINE:
   case CMARK_NODE_CUSTOM_BLOCK:
-    return cmark_chunk_to_cstr(NODE_MEM(node), &node->as.custom.on_enter);
+    return node->as.custom.on_enter ? (char *)node->as.custom.on_enter : "";
   default:
     break;
   }
@@ -567,7 +581,7 @@ int cmark_node_set_on_enter(cmark_node *node, const char *on_enter) {
   switch (node->type) {
   case CMARK_NODE_CUSTOM_INLINE:
   case CMARK_NODE_CUSTOM_BLOCK:
-    cmark_chunk_set_cstr(NODE_MEM(node), &node->as.custom.on_enter, on_enter);
+    cmark_set_cstr(node->mem, &node->as.custom.on_enter, on_enter);
     return 1;
   default:
     break;
@@ -584,7 +598,7 @@ const char *cmark_node_get_on_exit(cmark_node *node) {
   switch (node->type) {
   case CMARK_NODE_CUSTOM_INLINE:
   case CMARK_NODE_CUSTOM_BLOCK:
-    return cmark_chunk_to_cstr(NODE_MEM(node), &node->as.custom.on_exit);
+    return node->as.custom.on_exit ? (char *)node->as.custom.on_exit : "";
   default:
     break;
   }
@@ -600,7 +614,7 @@ int cmark_node_set_on_exit(cmark_node *node, const char *on_exit) {
   switch (node->type) {
   case CMARK_NODE_CUSTOM_INLINE:
   case CMARK_NODE_CUSTOM_BLOCK:
-    cmark_chunk_set_cstr(NODE_MEM(node), &node->as.custom.on_exit, on_exit);
+    cmark_set_cstr(node->mem, &node->as.custom.on_exit, on_exit);
     return 1;
   default:
     break;

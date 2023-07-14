@@ -62,7 +62,7 @@ typedef enum {
   CMARK_NODE_IMAGE,
 
   CMARK_NODE_FIRST_INLINE = CMARK_NODE_TEXT,
-  CMARK_NODE_LAST_INLINE = CMARK_NODE_IMAGE,
+  CMARK_NODE_LAST_INLINE = CMARK_NODE_IMAGE
 } cmark_node_type;
 
 /* For backwards compatibility: */
@@ -99,6 +99,10 @@ typedef struct cmark_mem {
   void *(*realloc)(void *, size_t);
   void (*free)(void *);
 } cmark_mem;
+
+/** Returns a pointer to the default memory allocator.
+ */
+CMARK_EXPORT cmark_mem *cmark_get_default_mem_allocator(void);
 
 /**
  * ## Creating and Destroying Nodes
@@ -448,10 +452,10 @@ CMARK_EXPORT void cmark_consolidate_text_nodes(cmark_node *root);
  *     cmark_parser *parser = cmark_parser_new(CMARK_OPT_DEFAULT);
  *     FILE *fp = fopen("myfile.md", "rb");
  *     while ((bytes = fread(buffer, 1, sizeof(buffer), fp)) > 0) {
- *     	   cmark_parser_feed(parser, buffer, bytes);
- *     	   if (bytes < sizeof(buffer)) {
- *     	       break;
- *     	   }
+ *         cmark_parser_feed(parser, buffer, bytes);
+ *         if (bytes < sizeof(buffer)) {
+ *             break;
+ *         }
  *     }
  *     document = cmark_parser_finish(parser);
  *     cmark_parser_free(parser);

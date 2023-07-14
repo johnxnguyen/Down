@@ -76,9 +76,24 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
   int list_number;
   bool entering = (ev_type == CMARK_EVENT_ENTER);
   bool allow_wrap = renderer->width > 0 && !(CMARK_OPT_NOBREAKS & options);
+  struct block_number *new_block_number;
+  cmark_mem *allocator = cmark_get_default_mem_allocator();
 
   // avoid unused parameter error:
   (void)(options);
+
+  // indent inside nested lists
+  if (renderer->block_number_in_list_item &&
+      node->type < CMARK_NODE_FIRST_INLINE) {
+    if (entering) {
+      renderer->block_number_in_list_item->number += 1;
+      if (renderer->block_number_in_list_item->number == 2) {
+        CR();
+        LIT(".RS"); // indent
+        CR();
+      }
+    }
+  }
 
   switch (node->type) {
   case CMARK_NODE_DOCUMENT:
@@ -101,6 +116,10 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
 
   case CMARK_NODE_ITEM:
     if (entering) {
+      new_block_number = allocator->calloc(1, sizeof(struct block_number));
+      new_block_number->number = 0;
+      new_block_number->parent = renderer->block_number_in_list_item;
+      renderer->block_number_in_list_item = new_block_number;
       CR();
       LIT(".IP ");
       if (cmark_node_get_list_type(node->parent) == CMARK_BULLET_LIST) {
@@ -118,6 +137,16 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
       }
       CR();
     } else {
+      if (renderer->block_number_in_list_item) {
+        if (renderer->block_number_in_list_item->number >= 2) {
+          CR();
+          LIT(".RE"); // de-indent
+        }
+        new_block_number = renderer->block_number_in_list_item;
+        renderer->block_number_in_list_item =
+          renderer->block_number_in_list_item->parent;
+        allocator->free(new_block_number);
+      }
       CR();
     }
     break;

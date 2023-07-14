@@ -42,6 +42,7 @@ bufsize_t houdini_unescape_ent(cmark_strbuf *ob, const uint8_t *src,
   if (size >= 3 && src[0] == '#') {
     int codepoint = 0;
     int num_digits = 0;
+    int max_digits = 7;
 
     if (_isdigit(src[1])) {
       for (i = 1; i < size && _isdigit(src[i]); ++i) {
@@ -55,6 +56,7 @@ bufsize_t houdini_unescape_ent(cmark_strbuf *ob, const uint8_t *src,
       }
 
       num_digits = i - 1;
+      max_digits = 7;
     }
 
     else if (src[1] == 'x' || src[1] == 'X') {
@@ -69,9 +71,11 @@ bufsize_t houdini_unescape_ent(cmark_strbuf *ob, const uint8_t *src,
       }
 
       num_digits = i - 2;
+      max_digits = 6;
     }
 
-    if (num_digits >= 1 && num_digits <= 8 && i < size && src[i] == ';') {
+    if (num_digits >= 1 && num_digits <= max_digits &&
+                    i < size && src[i] == ';') {
       if (codepoint == 0 || (codepoint >= 0xD800 && codepoint < 0xE000) ||
           codepoint >= 0x110000) {
         codepoint = 0xFFFD;

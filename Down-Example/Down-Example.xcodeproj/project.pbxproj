@@ -11,54 +11,45 @@
 		14090A4E2185411800503C06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14090A4D2185411800503C06 /* ViewController.swift */; };
 		14090A502185411A00503C06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14090A4F2185411A00503C06 /* Assets.xcassets */; };
 		14090A532185411A00503C06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14090A512185411A00503C06 /* Main.storyboard */; };
-		1466417E218D2A18009627F9 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; };
-		1466417F218D2A18009627F9 /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14954EA521A7DCB9001933C4 /* README-sample.md in Resources */ = {isa = PBXBuildFile; fileRef = 14954EA421A7DCA3001933C4 /* README-sample.md */; };
 		14954EA621A7DCBA001933C4 /* README-sample.md in Resources */ = {isa = PBXBuildFile; fileRef = 14954EA421A7DCA3001933C4 /* README-sample.md */; };
+		651B3EF02A610BE700DB2EFF /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651B3EED2A610BD500DB2EFF /* Down.framework */; };
+		651B3EF52A610C4400DB2EFF /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 651B3EED2A610BD500DB2EFF /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8A07D7D31F085EC6004D7141 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A07D7D21F085EC6004D7141 /* AppDelegate.swift */; };
 		8A07D7D51F085EC6004D7141 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A07D7D41F085EC6004D7141 /* ViewController.swift */; };
 		8A07D7D81F085EC6004D7141 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A07D7D61F085EC6004D7141 /* Main.storyboard */; };
 		8A07D7DA1F085EC6004D7141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A07D7D91F085EC6004D7141 /* Assets.xcassets */; };
 		8A07D7DD1F085EC6004D7141 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A07D7DB1F085EC6004D7141 /* LaunchScreen.storyboard */; };
-		D4591E9C226D293F00EBD476 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; };
-		D4591E9D226D293F00EBD476 /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		14664180218D2A18009627F9 /* PBXContainerItemProxy */ = {
+		651B3EEC2A610BD500DB2EFF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D49980AF1FA560F8004EE42E /* Down.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8A569F3F1E6B3E50008BE2AC;
-			remoteInfo = Down;
-		};
-		D4591E9E226D293F00EBD476 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D49980AF1FA560F8004EE42E /* Down.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8A569F3F1E6B3E50008BE2AC;
-			remoteInfo = Down;
-		};
-		D49980B41FA560F8004EE42E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D49980AF1FA560F8004EE42E /* Down.xcodeproj */;
+			containerPortal = 651B3EE72A610BD400DB2EFF /* Down.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 8A569F401E6B3E50008BE2AC;
 			remoteInfo = Down;
 		};
-		D49980B61FA560F8004EE42E /* PBXContainerItemProxy */ = {
+		651B3EEE2A610BD500DB2EFF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D49980AF1FA560F8004EE42E /* Down.xcodeproj */;
+			containerPortal = 651B3EE72A610BD400DB2EFF /* Down.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 8AFAEAFB1E6E32E900E09B68;
 			remoteInfo = DownTests;
 		};
-		D4C77E06240EEB64004675B3 /* PBXContainerItemProxy */ = {
+		651B3EF12A610C0900DB2EFF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D49980AF1FA560F8004EE42E /* Down.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EEBA153A2344845500B54ECB;
-			remoteInfo = DownSnapshotTests;
+			containerPortal = 651B3EE72A610BD400DB2EFF /* Down.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A569F3F1E6B3E50008BE2AC;
+			remoteInfo = Down;
+		};
+		651B3EF32A610C2F00DB2EFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 651B3EE72A610BD400DB2EFF /* Down.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A569F3F1E6B3E50008BE2AC;
+			remoteInfo = Down;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -69,7 +60,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1466417F218D2A18009627F9 /* Down.framework in Embed Frameworks */,
+				651B3EF52A610C4400DB2EFF /* Down.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,7 +71,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D4591E9D226D293F00EBD476 /* Down.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +86,7 @@
 		14090A542185411A00503C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14090A5E2185443800503C06 /* macOS Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "macOS Demo.entitlements"; sourceTree = "<group>"; };
 		14954EA421A7DCA3001933C4 /* README-sample.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "README-sample.md"; sourceTree = "<group>"; };
+		651B3EE72A610BD400DB2EFF /* Down.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Down.xcodeproj; path = ../Down.xcodeproj; sourceTree = "<group>"; };
 		8A07D7CF1F085EC6004D7141 /* Down-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Down-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A07D7D21F085EC6004D7141 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A07D7D41F085EC6004D7141 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,7 +94,6 @@
 		8A07D7D91F085EC6004D7141 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A07D7DC1F085EC6004D7141 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A07D7DE1F085EC6004D7141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D49980AF1FA560F8004EE42E /* Down.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Down.xcodeproj; path = ../Down.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +101,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4591E9C226D293F00EBD476 /* Down.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1466417E218D2A18009627F9 /* Down.framework in Frameworks */,
+				651B3EF02A610BE700DB2EFF /* Down.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,10 +143,19 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		651B3EE82A610BD400DB2EFF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				651B3EED2A610BD500DB2EFF /* Down.framework */,
+				651B3EEF2A610BD500DB2EFF /* DownTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		8A07D7C61F085EC6004D7141 = {
 			isa = PBXGroup;
 			children = (
-				D49980AF1FA560F8004EE42E /* Down.xcodeproj */,
+				651B3EE72A610BD400DB2EFF /* Down.xcodeproj */,
 				8A07D7D11F085EC6004D7141 /* Down-Example */,
 				14090A4A2185411800503C06 /* macOS Demo */,
 				14954EA321A7DCA3001933C4 /* Shared */,
@@ -188,16 +186,6 @@
 			path = "Down-Example";
 			sourceTree = "<group>";
 		};
-		D49980B01FA560F8004EE42E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D49980B51FA560F8004EE42E /* Down.framework */,
-				D49980B71FA560F8004EE42E /* DownTests.xctest */,
-				D4C77E07240EEB64004675B3 /* DownSnapshotTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -213,7 +201,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				D4591E9F226D293F00EBD476 /* PBXTargetDependency */,
+				651B3EF42A610C2F00DB2EFF /* PBXTargetDependency */,
 			);
 			name = "macOS Demo";
 			productName = "macOS Demo";
@@ -232,7 +220,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				14664181218D2A18009627F9 /* PBXTargetDependency */,
+				651B3EF22A610C0900DB2EFF /* PBXTargetDependency */,
 			);
 			name = "Down-Example";
 			productName = "Down-Example";
@@ -262,6 +250,7 @@
 					};
 					8A07D7CE1F085EC6004D7141 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 92R793LQ2T;
 						LastSwiftMigration = 1020;
 					};
 				};
@@ -279,8 +268,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = D49980B01FA560F8004EE42E /* Products */;
-					ProjectRef = D49980AF1FA560F8004EE42E /* Down.xcodeproj */;
+					ProductGroup = 651B3EE82A610BD400DB2EFF /* Products */;
+					ProjectRef = 651B3EE72A610BD400DB2EFF /* Down.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -292,25 +281,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		D49980B51FA560F8004EE42E /* Down.framework */ = {
+		651B3EED2A610BD500DB2EFF /* Down.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Down.framework;
-			remoteRef = D49980B41FA560F8004EE42E /* PBXContainerItemProxy */;
+			remoteRef = 651B3EEC2A610BD500DB2EFF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D49980B71FA560F8004EE42E /* DownTests.xctest */ = {
+		651B3EEF2A610BD500DB2EFF /* DownTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = DownTests.xctest;
-			remoteRef = D49980B61FA560F8004EE42E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D4C77E07240EEB64004675B3 /* DownSnapshotTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DownSnapshotTests.xctest;
-			remoteRef = D4C77E06240EEB64004675B3 /* PBXContainerItemProxy */;
+			remoteRef = 651B3EEE2A610BD500DB2EFF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -361,15 +343,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		14664181218D2A18009627F9 /* PBXTargetDependency */ = {
+		651B3EF22A610C0900DB2EFF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Down;
-			targetProxy = 14664180218D2A18009627F9 /* PBXContainerItemProxy */;
+			targetProxy = 651B3EF12A610C0900DB2EFF /* PBXContainerItemProxy */;
 		};
-		D4591E9F226D293F00EBD476 /* PBXTargetDependency */ = {
+		651B3EF42A610C2F00DB2EFF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Down;
-			targetProxy = D4591E9E226D293F00EBD476 /* PBXContainerItemProxy */;
+			targetProxy = 651B3EF32A610C2F00DB2EFF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -574,7 +556,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 92R793LQ2T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Down-Example",
@@ -594,7 +576,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 92R793LQ2T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Down-Example",

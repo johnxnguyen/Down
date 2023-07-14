@@ -7,15 +7,74 @@
 #include "cmark.h"
 #include "node.h"
 #include "buffer.h"
-#include "houdini.h"
 
 #define BUFFER_SIZE 100
+#define MAX_INDENT 40
 
 // Functions to convert cmark_nodes to XML strings.
 
-static void escape_xml(cmark_strbuf *dest, const unsigned char *source,
-                       bufsize_t length) {
-  houdini_escape_html0(dest, source, length, 0);
+// C0 control characters, U+FFFE and U+FFF aren't allowed in XML.
+static const char XML_ESCAPE_TABLE[256] = {
+    /* 0x00 */ 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1,
+    /* 0x10 */ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    /* 0x20 */ 0, 0, 2, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    /* 0x30 */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 5, 0,
+    /* 0x40 */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    /* 0x50 */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    /* 0x60 */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    /* 0x70 */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    /* 0x80 */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    /* 0x90 */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    /* 0xA0 */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    /* 0xB0 */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9,
+    /* 0xC0 */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    /* 0xD0 */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    /* 0xE0 */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    /* 0xF0 */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+// U+FFFD Replacement Character encoded in UTF-8
+#define UTF8_REPL "\xEF\xBF\xBD"
+
+static const char *XML_ESCAPES[] = {
+  "", UTF8_REPL, "&quot;", "&amp;", "&lt;", "&gt;"
+};
+
+static void escape_xml(cmark_strbuf *ob, const unsigned char *src,
+                       bufsize_t size) {
+  bufsize_t i = 0, org, esc = 0;
+
+  while (i < size) {
+    org = i;
+    while (i < size && (esc = XML_ESCAPE_TABLE[src[i]]) == 0)
+      i++;
+
+    if (i > org)
+      cmark_strbuf_put(ob, src + org, i - org);
+
+    if (i >= size)
+      break;
+
+    if (esc == 9) {
+      // To replace U+FFFE and U+FFFF with U+FFFD, only the last byte has to
+      // be changed.
+      // We know that src[i] is 0xBE or 0xBF.
+      if (i >= 2 && src[i-2] == 0xEF && src[i-1] == 0xBF) {
+        cmark_strbuf_putc(ob, 0xBD);
+      } else {
+        cmark_strbuf_putc(ob, src[i]);
+      }
+    } else {
+      cmark_strbuf_puts(ob, XML_ESCAPES[esc]);
+    }
+
+    i++;
+  }
+}
+
+static void escape_xml_str(cmark_strbuf *dest, const unsigned char *source) {
+  if (source)
+    escape_xml(dest, source, strlen((char *)source));
 }
 
 struct render_state {
@@ -25,7 +84,7 @@ struct render_state {
 
 static CMARK_INLINE void indent(struct render_state *state) {
   int i;
-  for (i = 0; i < state->indent; i++) {
+  for (i = 0; i < state->indent && i < MAX_INDENT; i++) {
     cmark_strbuf_putc(state->xml, ' ');
   }
 }
@@ -61,7 +120,7 @@ static int S_render_node(cmark_node *node, cmark_event_type ev_type,
     case CMARK_NODE_HTML_BLOCK:
     case CMARK_NODE_HTML_INLINE:
       cmark_strbuf_puts(xml, " xml:space=\"preserve\">");
-      escape_xml(xml, node->as.literal.data, node->as.literal.len);
+      escape_xml(xml, node->data, node->len);
       cmark_strbuf_puts(xml, "</");
       cmark_strbuf_puts(xml, cmark_node_get_type_string(node));
       literal = true;
@@ -95,13 +154,13 @@ static int S_render_node(cmark_node *node, cmark_event_type ev_type,
       cmark_strbuf_puts(xml, buffer);
       break;
     case CMARK_NODE_CODE_BLOCK:
-      if (node->as.code.info.len > 0) {
+      if (node->as.code.info) {
         cmark_strbuf_puts(xml, " info=\"");
-        escape_xml(xml, node->as.code.info.data, node->as.code.info.len);
+        escape_xml_str(xml, node->as.code.info);
         cmark_strbuf_putc(xml, '"');
       }
       cmark_strbuf_puts(xml, " xml:space=\"preserve\">");
-      escape_xml(xml, node->as.code.literal.data, node->as.code.literal.len);
+      escape_xml(xml, node->data, node->len);
       cmark_strbuf_puts(xml, "</");
       cmark_strbuf_puts(xml, cmark_node_get_type_string(node));
       literal = true;
@@ -109,22 +168,22 @@ static int S_render_node(cmark_node *node, cmark_event_type ev_type,
     case CMARK_NODE_CUSTOM_BLOCK:
     case CMARK_NODE_CUSTOM_INLINE:
       cmark_strbuf_puts(xml, " on_enter=\"");
-      escape_xml(xml, node->as.custom.on_enter.data,
-                 node->as.custom.on_enter.len);
+      escape_xml_str(xml, node->as.custom.on_enter);
       cmark_strbuf_putc(xml, '"');
       cmark_strbuf_puts(xml, " on_exit=\"");
-      escape_xml(xml, node->as.custom.on_exit.data,
-                 node->as.custom.on_exit.len);
+      escape_xml_str(xml, node->as.custom.on_exit);
       cmark_strbuf_putc(xml, '"');
       break;
     case CMARK_NODE_LINK:
     case CMARK_NODE_IMAGE:
       cmark_strbuf_puts(xml, " destination=\"");
-      escape_xml(xml, node->as.link.url.data, node->as.link.url.len);
+      escape_xml_str(xml, node->as.link.url);
       cmark_strbuf_putc(xml, '"');
-      cmark_strbuf_puts(xml, " title=\"");
-      escape_xml(xml, node->as.link.title.data, node->as.link.title.len);
-      cmark_strbuf_putc(xml, '"');
+      if (node->as.link.title) {
+        cmark_strbuf_puts(xml, " title=\"");
+        escape_xml_str(xml, node->as.link.title);
+        cmark_strbuf_putc(xml, '"');
+      }
       break;
     default:
       break;
@@ -149,7 +208,7 @@ static int S_render_node(cmark_node *node, cmark_event_type ev_type,
 
 char *cmark_render_xml(cmark_node *root, int options) {
   char *result;
-  cmark_strbuf xml = CMARK_BUF_INIT(cmark_node_mem(root));
+  cmark_strbuf xml = CMARK_BUF_INIT(root->mem);
   cmark_event_type ev_type;
   cmark_node *cur;
   struct render_state state = {&xml, 0};

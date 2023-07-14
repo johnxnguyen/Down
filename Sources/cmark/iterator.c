@@ -16,7 +16,7 @@ cmark_iter *cmark_iter_new(cmark_node *root) {
   if (root == NULL) {
     return NULL;
   }
-  cmark_mem *mem = root->content.mem;
+  cmark_mem *mem = root->mem;
   cmark_iter *iter = (cmark_iter *)mem->calloc(1, sizeof(cmark_iter));
   iter->mem = mem;
   iter->root = root;
@@ -101,18 +101,19 @@ void cmark_consolidate_text_nodes(cmark_node *root) {
     if (ev_type == CMARK_EVENT_ENTER && cur->type == CMARK_NODE_TEXT &&
         cur->next && cur->next->type == CMARK_NODE_TEXT) {
       cmark_strbuf_clear(&buf);
-      cmark_strbuf_put(&buf, cur->as.literal.data, cur->as.literal.len);
+      cmark_strbuf_put(&buf, cur->data, cur->len);
       tmp = cur->next;
       while (tmp && tmp->type == CMARK_NODE_TEXT) {
         cmark_iter_next(iter); // advance pointer
-        cmark_strbuf_put(&buf, tmp->as.literal.data, tmp->as.literal.len);
+        cmark_strbuf_put(&buf, tmp->data, tmp->len);
         cur->end_column = tmp->end_column;
         next = tmp->next;
         cmark_node_free(tmp);
         tmp = next;
       }
-      cmark_chunk_free(iter->mem, &cur->as.literal);
-      cur->as.literal = cmark_chunk_buf_detach(&buf);
+      iter->mem->free(cur->data);
+      cur->len = buf.size;
+      cur->data = cmark_strbuf_detach(&buf);
     }
   }
 

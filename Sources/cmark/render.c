@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include "buffer.h"
-#include "chunk.h"
 #include "cmark.h"
 #include "utf8.h"
 #include "render.h"
 #include "node.h"
+#include "cmark_ctype.h"
 
 static CMARK_INLINE void S_cr(cmark_renderer *renderer) {
   if (renderer->need_cr < 1) {
@@ -26,7 +26,6 @@ static void S_out(cmark_renderer *renderer, const char *source, bool wrap,
   int i = 0;
   int last_nonspace;
   int len;
-  cmark_chunk remainder = cmark_chunk_literal("");
   int k = renderer->buffer->size - 1;
 
   wrap = wrap && !renderer->no_linebreaks;
@@ -112,18 +111,22 @@ static void S_out(cmark_renderer *renderer, const char *source, bool wrap,
         !renderer->begin_line && renderer->last_breakable > 0) {
 
       // copy from last_breakable to remainder
-      cmark_chunk_set_cstr(renderer->mem, &remainder,
-                           (char *)renderer->buffer->ptr +
-                               renderer->last_breakable + 1);
+      unsigned char *src = renderer->buffer->ptr +
+                           renderer->last_breakable + 1;
+      bufsize_t remainder_len = renderer->buffer->size -
+                                renderer->last_breakable - 1;
+      unsigned char *remainder =
+          (unsigned char *)renderer->mem->realloc(NULL, remainder_len);
+      memcpy(remainder, src, remainder_len);
       // truncate at last_breakable
       cmark_strbuf_truncate(renderer->buffer, renderer->last_breakable);
       // add newline, prefix, and remainder
       cmark_strbuf_putc(renderer->buffer, '\n');
       cmark_strbuf_put(renderer->buffer, renderer->prefix->ptr,
                        renderer->prefix->size);
-      cmark_strbuf_put(renderer->buffer, remainder.data, remainder.len);
-      renderer->column = renderer->prefix->size + remainder.len;
-      cmark_chunk_free(renderer->mem, &remainder);
+      cmark_strbuf_put(renderer->buffer, remainder, remainder_len);
+      renderer->column = renderer->prefix->size + remainder_len;
+      renderer->mem->free(remainder);
       renderer->last_breakable = 0;
       renderer->begin_line = false;
       renderer->begin_content = false;
@@ -151,7 +154,7 @@ char *cmark_render(cmark_node *root, int options, int width,
                    int (*render_node)(cmark_renderer *renderer,
                                       cmark_node *node,
                                       cmark_event_type ev_type, int options)) {
-  cmark_mem *mem = cmark_node_mem(root);
+  cmark_mem *mem = root->mem;
   cmark_strbuf pref = CMARK_BUF_INIT(mem);
   cmark_strbuf buf = CMARK_BUF_INIT(mem);
   cmark_node *cur;
@@ -159,9 +162,11 @@ char *cmark_render(cmark_node *root, int options, int width,
   char *result;
   cmark_iter *iter = cmark_iter_new(root);
 
-  cmark_renderer renderer = {mem,   &buf, &pref, 0,           width,
-                             0,     0,    true,  true,        false,
-                             false, outc, S_cr,  S_blankline, S_out};
+  cmark_renderer renderer = {options,
+                             mem,    &buf,    &pref,      0,      width,
+                             0,      0,       true,       true,   false,
+                             false,  NULL,
+                             outc,   S_cr,    S_blankline, S_out};
 
   while ((ev_type = cmark_iter_next(iter)) != CMARK_EVENT_DONE) {
     cur = cmark_iter_get_node(iter);

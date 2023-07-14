@@ -6,9 +6,9 @@
 #include "cmark.h"
 #include "buffer.h"
 
-int cmark_version() { return CMARK_VERSION; }
+int cmark_version(void) { return CMARK_VERSION; }
 
-const char *cmark_version_string() { return CMARK_VERSION_STRING; }
+const char *cmark_version_string(void) { return CMARK_VERSION_STRING; }
 
 static void *xcalloc(size_t nmem, size_t size) {
   void *ptr = calloc(nmem, size);
@@ -29,6 +29,11 @@ static void *xrealloc(void *ptr, size_t size) {
 }
 
 cmark_mem DEFAULT_MEM_ALLOCATOR = {xcalloc, xrealloc, free};
+
+cmark_mem *cmark_get_default_mem_allocator(void) {
+  return &DEFAULT_MEM_ALLOCATOR;
+}
+
 
 char *cmark_markdown_to_html(const char *text, size_t len, int options) {
   cmark_node *doc;
