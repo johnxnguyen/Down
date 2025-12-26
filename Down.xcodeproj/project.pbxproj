@@ -1062,7 +1062,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Sources/cmark";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Sources/cmark/include";
 				"VALID_ARCHS[sdk=iphonesimulator*]" = "i386 x86_64 arm64";
 			};
 			name = Debug;
@@ -1084,7 +1084,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Sources/cmark";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Sources/cmark/include";
 				"VALID_ARCHS[sdk=iphonesimulator*]" = "i386 x86_64 arm64";
 			};
 			name = Release;
