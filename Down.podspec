@@ -15,8 +15,15 @@ Pod::Spec.new do |spec|
   spec.osx.deployment_target = "10.11"
   spec.requires_arc = true
   spec.module_name = "Down"
-  spec.preserve_paths = "Sources/cmark/include/module.modulemap", "Sources/cmark/*.inc", "Sources/cmark/COPYING"
-  spec.pod_target_xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/Down/Sources/cmark/**' }
+  spec.preserve_paths = "Sources/cmark/include/module.modulemap", "Sources/cmark/include/libcmark.h", "Sources/cmark/*.inc", "Sources/cmark/COPYING"
+  spec.pod_target_xcconfig = {
+    'SWIFT_INCLUDE_PATHS' => '$(inherited) $(PODS_ROOT)/Down/Sources/cmark/include',
+    'HEADER_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Down/Sources/cmark',
+    'SWIFT_ENABLE_EXPLICIT_MODULES' => 'NO'
+  }
+  spec.user_target_xcconfig = {
+    'SWIFT_INCLUDE_PATHS' => '$(inherited) $(PODS_ROOT)/Down/Sources/cmark/include'
+  }
   spec.ios.resource = 'Sources/Down/Resources/DownView.bundle'
   spec.osx.resource = 'Sources/Down/Resources/DownView.bundle'
   spec.swift_versions = ['5.0', '5.1']
