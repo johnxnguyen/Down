@@ -151,24 +151,9 @@ static bool is_autolink(cmark_node *node) {
                   link_text->as.literal.len) == 0);
 }
 
-// if node is a block node, returns node.
-// otherwise returns first block-level node that is an ancestor of node.
-// if there is no block-level ancestor, returns NULL.
-static cmark_node *get_containing_block(cmark_node *node) {
-  while (node) {
-    if (node->type >= CMARK_NODE_FIRST_BLOCK &&
-        node->type <= CMARK_NODE_LAST_BLOCK) {
-      return node;
-    } else {
-      node = node->parent;
-    }
-  }
-  return NULL;
-}
 
 static int S_render_node(cmark_renderer *renderer, cmark_node *node,
                          cmark_event_type ev_type, int options) {
-  cmark_node *tmp;
   int list_number;
   cmark_delim_type list_delim;
   int numticks;
@@ -188,14 +173,17 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
   // Don't adjust tight list status til we've started the list.
   // Otherwise we loose the blank line between a paragraph and
   // a following list.
-  if (!(node->type == CMARK_NODE_ITEM && node->prev == NULL && entering)) {
-    tmp = get_containing_block(node);
-    renderer->in_tight_list_item =
-        tmp && // tmp might be NULL if there is no containing block
-        ((tmp->type == CMARK_NODE_ITEM &&
-          cmark_node_get_list_tight(tmp->parent)) ||
-         (tmp && tmp->parent && tmp->parent->type == CMARK_NODE_ITEM &&
-          cmark_node_get_list_tight(tmp->parent->parent)));
+  if (entering) {
+    if (node->parent && node->parent->type == CMARK_NODE_ITEM) {
+      renderer->in_tight_list_item = node->parent->parent->as.list.tight;
+    }
+  } else {
+    if (node->type == CMARK_NODE_LIST) {
+      renderer->in_tight_list_item =
+        node->parent &&
+        node->parent->type == CMARK_NODE_ITEM &&
+        node->parent->parent->as.list.tight;
+    }
   }
 
   switch (node->type) {
@@ -222,19 +210,15 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
       LIT("<!-- end list -->");
       BLANKLINE();
     }
+    renderer->list_number = cmark_node_get_list_start(node);
     break;
 
   case CMARK_NODE_ITEM:
     if (cmark_node_get_list_type(node->parent) == CMARK_BULLET_LIST) {
       marker_width = 4;
     } else {
-      list_number = cmark_node_get_list_start(node->parent);
+      list_number = renderer->list_number++;
       list_delim = cmark_node_get_list_delim(node->parent);
-      tmp = node;
-      while (tmp->prev) {
-        tmp = tmp->prev;
-        list_number += 1;
-      }
       // we ensure a width of at least 4 so
       // we get nice transition from single digits
       // to double
@@ -399,10 +383,12 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     break;
 
   case CMARK_NODE_STRONG:
-    if (entering) {
-      LIT("**");
-    } else {
-      LIT("**");
+    if (node->parent == NULL || node->parent->type != CMARK_NODE_STRONG) {
+      if (entering) {
+        LIT("**");
+      } else {
+        LIT("**");
+      }
     }
     break;
 

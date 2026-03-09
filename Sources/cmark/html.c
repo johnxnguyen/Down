@@ -260,10 +260,12 @@ static int S_render_node(cmark_node *node, cmark_event_type ev_type,
     break;
 
   case CMARK_NODE_STRONG:
-    if (entering) {
-      cmark_strbuf_puts(html, "<strong>");
-    } else {
-      cmark_strbuf_puts(html, "</strong>");
+    if (node->parent == NULL || node->parent->type != CMARK_NODE_STRONG) {
+      if (entering) {
+        cmark_strbuf_puts(html, "<strong>");
+      } else {
+        cmark_strbuf_puts(html, "</strong>");
+      }
     }
     break;
 
