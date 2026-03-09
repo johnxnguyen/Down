@@ -71,6 +71,14 @@ struct cmark_node {
   uint16_t type;
   uint16_t flags;
 
+  /**
+   * Used during cmark_render() to cache the most recent non-NULL
+   * extension, if you go up the parent chain like this:
+   *
+   * node->parent->...parent->extension
+   */
+  cmark_syntax_extension *ancestor_extension;
+
   union {
     cmark_chunk literal;
     cmark_list list;
